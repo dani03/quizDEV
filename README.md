@@ -52,6 +52,10 @@ Pour voir les routes(endpoints) que vous pouvez utiliser vous pouvez avoir accè
 voir la doc.
 </a>
 
+# FRONT
+
+`npm install`
+
 # Gitignore
 
 ```

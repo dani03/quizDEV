@@ -2,10 +2,10 @@ import { useCallback, useContext, useState } from "react"
 import NavBar from "../src/components/NavBar"
 import { AppContext } from "../src/components/AppContext"
 import UseApi from "../src/components/UseApi"
-import Button from "../src/components/Button"
 import PopupGame from "../src/components/PopupGame"
 import { makeClient } from "../src/services/makeClient"
 import { motion } from "framer-motion"
+import { Button } from "@material-tailwind/react"
 
 const Classic = () => {
   const questions = UseApi([{}], "get", "/classic")
@@ -84,6 +84,7 @@ const Classic = () => {
         <>
           <div className="flex justify-between mt-10 ml-5">
             <div>
+              {/* COUNTER QUESTION + SCORE */}
               <motion.div
                 key={currentQuestion}
                 initial="initial"
@@ -94,7 +95,7 @@ const Classic = () => {
                 }}
                 variants={counterQuestion}
               >
-                <h1 className="font-montserrat text-xl">
+                <h1 className=" text-xl">
                   {currentQuestion} <span className="text-yellow-400">|</span>{" "}
                   {questions.length}
                 </h1>
@@ -107,12 +108,13 @@ const Classic = () => {
               variants={scoreVariant}
             >
               <div>
-                <span className="font-montserrat text-neutral-800 mr-5 p-5 text-2xl font-bold text-yellow-400 md:text-5xl md:text-neutral-800">
+                <span className=" text-neutral-800 mr-5 p-5 text-2xl font-bold text-yellow-400">
                   {score}
                 </span>
               </div>
             </motion.div>
           </div>
+          {/* QUESTIONS */}
           <div className="grid justify-items-center max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
             <motion.div
               key={currentQuestion}
@@ -124,10 +126,11 @@ const Classic = () => {
               }}
               variants={interrogationVariant}
             >
-              <h1 className="font-montserrat text-center text-xl underline font-bold mb-5">
+              <h1 className="text-center text-xl underline font-bold mb-8 uppercase">
                 {questions[currentQuestion].interrogation}
               </h1>
             </motion.div>
+            {/* LIST ANSWERS */}
             <motion.ul
               initial="hidden"
               animate="visible"
@@ -141,10 +144,8 @@ const Classic = () => {
                 variants={answerVariant}
               >
                 <Button
-                  color="normal"
+                  className="bg-zinc-100 text-gray-900 rounded-full shadow-lg w-64 sm:w-96 h-16 text-md md:text-lg"
                   onClick={() => checkAnswer(1)}
-                  variant="classicAnswer"
-                  size="lg"
                 >
                   A.&nbsp;&nbsp;{questions[currentQuestion].first_answer}
                 </Button>
@@ -156,10 +157,8 @@ const Classic = () => {
                 variants={answerVariant}
               >
                 <Button
-                  color="normal"
+                  className="bg-zinc-100 text-gray-900 rounded-full shadow-lg w-64 sm:w-96 h-16 text-md md:text-lg"
                   onClick={() => checkAnswer(2)}
-                  variant="classicAnswer"
-                  size="lg"
                 >
                   B.&nbsp;&nbsp;{questions[currentQuestion].second_answer}
                 </Button>
@@ -171,10 +170,8 @@ const Classic = () => {
                 variants={answerVariant}
               >
                 <Button
-                  color="normal"
+                  className="bg-zinc-100 text-gray-900 rounded-full shadow-lg w-64 sm:w-96 h-16 text-md md:text-lg"
                   onClick={() => checkAnswer(3)}
-                  variant="classicAnswer"
-                  size="lg"
                 >
                   C.&nbsp;&nbsp;{questions[currentQuestion].third_answer}
                 </Button>
@@ -186,10 +183,8 @@ const Classic = () => {
                 variants={answerVariant}
               >
                 <Button
-                  color="normal"
+                  className="bg-zinc-100 text-gray-900 rounded-full shadow-lg w-64 sm:w-96 h-16 text-md md:text-lg"
                   onClick={() => checkAnswer(4)}
-                  variant="classicAnswer"
-                  size="lg"
                 >
                   D.&nbsp;&nbsp;{questions[currentQuestion].fourth_answer}
                 </Button>
