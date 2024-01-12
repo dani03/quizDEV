@@ -2,4 +2,7 @@
 /front/.next
 /front/node_modules
 /front/README.md
-
+.DS_Store
+.vscode
+.idea
+Thumbs.db

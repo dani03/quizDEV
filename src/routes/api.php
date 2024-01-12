@@ -33,4 +33,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::put('update/profil', [ProfileController::class, 'update'])->name('profil.update');
     Route::put('update/password', \App\Http\Controllers\Api\V1\PasswordUpdateController::class);
     Route::post('logout', LogoutController::class);
+
+    Route::get('user/quiz', [\App\Http\Controllers\Api\V1\Users\UserController::class, 'index']);
+    Route::get('entreprise/quiz', [\App\Http\Controllers\Api\V1\Users\EntrepriseController::class, 'index']);
 });
