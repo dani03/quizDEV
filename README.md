@@ -40,3 +40,16 @@ password : secret
 Pour voir les routes(endpoints) que vous pouvez utiliser vous pouvez avoir accès si vos containers sont en marche sur le lien: <a href="http://localhost:3002/docs/index.html">
 voir la doc.
 </a>
+
+# FRONT
+
+`npm install`
+
+# Gitignore
+
+```
+/mysql/*
+/front/.next
+/front/node_modules
+/front/README.md
+```

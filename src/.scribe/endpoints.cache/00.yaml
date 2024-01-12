@@ -6,275 +6,6 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/documentation
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display Swagger API page.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-              <meta charset="UTF-8">
-              <title>L5 Swagger UI</title>
-              <link rel="stylesheet" type="text/css" href="http://quizdev.test/docs/asset/swagger-ui.css?v=c77412539e429303ace61d9a6fb3e34e">
-              <link rel="icon" type="image/png" href="http://quizdev.test/docs/asset/favicon-32x32.png?v=40d4f2c38d1cd854ad463f16373cbcb6" sizes="32x32"/>
-              <link rel="icon" type="image/png" href="http://quizdev.test/docs/asset/favicon-16x16.png?v=f0ae831196d55d8f4115b6c5e8ec5384" sizes="16x16"/>
-              <style>
-              html
-              {
-                  box-sizing: border-box;
-                  overflow: -moz-scrollbars-vertical;
-                  overflow-y: scroll;
-              }
-              *,
-              *:before,
-              *:after
-              {
-                  box-sizing: inherit;
-              }
-
-              body {
-                margin:0;
-                background: #fafafa;
-              }
-              </style>
-          </head>
-
-          <body>
-          <div id="swagger-ui"></div>
-
-          <script src="http://quizdev.test/docs/asset/swagger-ui-bundle.js?v=59603f5dac337eda0dc4c92753eddf5a"></script>
-          <script src="http://quizdev.test/docs/asset/swagger-ui-standalone-preset.js?v=50c83b2cf08d97b626ae1aff72aa162b"></script>
-          <script>
-              window.onload = function() {
-                  // Build a system
-                  const ui = SwaggerUIBundle({
-                      dom_id: '#swagger-ui',
-                      url: "http://quizdev.test/docs/api-docs.json",
-                      operationsSorter: null,
-                      configUrl: null,
-                      validatorUrl: null,
-                      oauth2RedirectUrl: "http://quizdev.test/api/oauth2-callback",
-
-                      requestInterceptor: function(request) {
-                          request.headers['X-CSRF-TOKEN'] = '';
-                          return request;
-                      },
-
-                      presets: [
-                          SwaggerUIBundle.presets.apis,
-                          SwaggerUIStandalonePreset
-                      ],
-
-                      plugins: [
-                          SwaggerUIBundle.plugins.DownloadUrl
-                      ],
-
-                      layout: "StandaloneLayout",
-                      docExpansion : "none",
-                      deepLinking: true,
-                      filter: true,
-                      persistAuthorization: "false",
-
-                  })
-
-                  window.ui = ui
-
-                      }
-          </script>
-          </body>
-          </html>
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/oauth2-callback
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display Oauth2 callback pages.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |
-          <!doctype html>
-          <html lang="en-US">
-          <head>
-              <title>Swagger UI: OAuth2 Redirect</title>
-          </head>
-          <body>
-          <script>
-              'use strict';
-              function run () {
-                  var oauth2 = window.opener.swaggerUIRedirectOauth2;
-                  var sentState = oauth2.state;
-                  var redirectUrl = oauth2.redirectUrl;
-                  var isValid, qp, arr;
-
-                  if (/code|token|error/.test(window.location.hash)) {
-                      qp = window.location.hash.substring(1).replace('?', '&');
-                  } else {
-                      qp = location.search.substring(1);
-                  }
-
-                  arr = qp.split("&");
-                  arr.forEach(function (v,i,_arr) { _arr[i] = '"' + v.replace('=', '":"') + '"';});
-                  qp = qp ? JSON.parse('{' + arr.join() + '}',
-                          function (key, value) {
-                              return key === "" ? value : decodeURIComponent(value);
-                          }
-                  ) : {};
-
-                  isValid = qp.state === sentState;
-
-                  if ((
-                    oauth2.auth.schema.get("flow") === "accessCode" ||
-                    oauth2.auth.schema.get("flow") === "authorizationCode" ||
-                    oauth2.auth.schema.get("flow") === "authorization_code"
-                  ) && !oauth2.auth.code) {
-                      if (!isValid) {
-                          oauth2.errCb({
-                              authId: oauth2.auth.name,
-                              source: "auth",
-                              level: "warning",
-                              message: "Authorization may be unsafe, passed state was changed in server. The passed state wasn't returned from auth server."
-                          });
-                      }
-
-                      if (qp.code) {
-                          delete oauth2.state;
-                          oauth2.auth.code = qp.code;
-                          oauth2.callback({auth: oauth2.auth, redirectUrl: redirectUrl});
-                      } else {
-                          let oauthErrorMsg;
-                          if (qp.error) {
-                              oauthErrorMsg = "["+qp.error+"]: " +
-                                  (qp.error_description ? qp.error_description+ ". " : "no accessCode received from the server. ") +
-                                  (qp.error_uri ? "More info: "+qp.error_uri : "");
-                          }
-
-                          oauth2.errCb({
-                              authId: oauth2.auth.name,
-                              source: "auth",
-                              level: "error",
-                              message: oauthErrorMsg || "[Authorization failed]: no accessCode received from the server."
-                          });
-                      }
-                  } else {
-                      oauth2.callback({auth: oauth2.auth, token: qp, isValid: isValid, redirectUrl: redirectUrl});
-                  }
-                  window.close();
-              }
-
-              if (document.readyState !== 'loading') {
-                  run();
-              } else {
-                  document.addEventListener('DOMContentLoaded', function () {
-                      run();
-                  });
-              }
-          </script>
-          </body>
-          </html>
-        headers:
-          content-type: 'text/html; charset=UTF-8'
-          cache-control: 'no-cache, private'
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/profil
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
     uri: api/v1/test
     metadata:
       groupName: Endpoints
@@ -338,7 +69,7 @@ endpoints:
         name: lastname
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: blqinwsjqyqvkgvkqcibdmd
+        example: tpahysxtlw
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -347,7 +78,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: lyws
+        example: wfpyzn
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -356,7 +87,7 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: voluptatum
+        example: non
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -376,17 +107,17 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: wjenkins@example.org
+        example: melody.zieme@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      lastname: blqinwsjqyqvkgvkqcibdmd
-      name: lyws
-      password: voluptatum
+      lastname: tpahysxtlw
+      name: wfpyzn
+      password: non
       role_id: '3'
-      email: wjenkins@example.org
+      email: melody.zieme@example.org
     fileParameters: []
     responses: []
     responseFields: []
@@ -420,7 +151,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: botsford.sterling@example.org
+        example: imann@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -429,14 +160,113 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: quasi
+        example: hic
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: botsford.sterling@example.org
-      password: quasi
+      email: imann@example.org
+      password: hic
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/profil
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: api/v1/update/profil
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: ward.eve@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: true
+        example: sapiente
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      lastname:
+        name: lastname
+        description: ''
+        required: true
+        example: quisquam
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      email: ward.eve@example.com
+      name: sapiente
+      lastname: quisquam
     fileParameters: []
     responses: []
     responseFields: []

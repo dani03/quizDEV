@@ -17,7 +17,7 @@ class Role extends Model
     const ROLE_USER = 2;
     const ROLE_ENTREPRISE = 3;
 
-    # nrelation many to many : on lit
+    # relation many to many : on lit
     # un role à plusieurs permissions
     public function permissions(): BelongsToMany
     {
