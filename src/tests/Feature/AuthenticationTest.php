@@ -11,7 +11,7 @@ class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -20,6 +20,7 @@ class AuthenticationTest extends TestCase
 
         // Install Passport
         $this->artisan('passport:install', ['--no-interaction' => true]);
+
 
     }
 

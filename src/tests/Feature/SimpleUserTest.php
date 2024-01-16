@@ -5,9 +5,13 @@ namespace Tests\Feature;
 use App\Models\Role;
 
 use App\Models\User;
+use Database\Seeders\AdminUserSeeder;
+use Database\Seeders\PermissionSeeder;
+use Database\Seeders\RoleSeeder;
 use Faker\Factory as Faker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class SimpleUserTest extends TestCase
@@ -26,7 +30,7 @@ class SimpleUserTest extends TestCase
             'lastname' => $faker->firstName,
             'name' => $faker->lastName,
             'email' => $faker->email,
-            'password' => 'password',
+            'password' => Hash::make('password') ,
         ]);
         $response = $this->actingAs($userSimple)->getJson('api/v1/user/quiz');
 
@@ -40,16 +44,18 @@ class SimpleUserTest extends TestCase
      */
     public function test_user_not_have_access_to_entreprise_quiz_fonctionalities()
     {
+        $this->seed();
         $faker = Faker::create();
         $userSimple = User::factory()->create([
             'role_id' => Role::ROLE_USER,
             'lastname' => $faker->firstName,
             'name' => $faker->lastName,
             'email' => $faker->email,
-            'password' => 'password',
+            'password' => Hash::make('password') ,
             ]);
         $response = $this->actingAs($userSimple)->getJson('/api/V1/entreprise/quiz');
 
         $response->assertStatus(403);
     }
+
 }
