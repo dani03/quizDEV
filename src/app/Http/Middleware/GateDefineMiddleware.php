@@ -30,6 +30,7 @@ class GateDefineMiddleware
             }
         }
 
+
         return $next($request);
     }
 }

@@ -20,6 +20,7 @@ class AuthenticationTest extends TestCase
 
         // Install Passport
         $this->artisan('passport:install', ['--no-interaction' => true]);
+
     }
 
 
