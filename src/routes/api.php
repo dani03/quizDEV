@@ -36,4 +36,7 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::get('user/quiz', [\App\Http\Controllers\Api\V1\Users\UserController::class, 'index']);
     Route::get('entreprise/quiz', [\App\Http\Controllers\Api\V1\Users\EntrepriseController::class, 'index']);
+
+    //level les nivaux
+    Route::post('level/store', [\App\Http\Controllers\Levels\LevelController::class, 'store']);
 });

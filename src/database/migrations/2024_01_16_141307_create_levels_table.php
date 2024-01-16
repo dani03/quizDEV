@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('levels', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('points')->default(0);
             $table->timestamps();
         });
     }
