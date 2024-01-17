@@ -22,13 +22,14 @@ class LevelController extends Controller
 
     /**
      * @return \Illuminate\Http\JsonResponse
-     * récupération de tous les levels(niveaux)
-     * on utilise LevelResource::collection()
-     * car on récupére une collection de données et pas une seule donnée
+     *
+
+     */
+    /**
+     *  récupération de tous les levels(niveaux) récupére une collection de données et pas une seule donnée
      */
     public function index() {
         $levels = $this->levelService->getAllLevels();
-
        return response()->json(['data' => LevelResource::collection($levels)], Response::HTTP_OK);
 
     }
