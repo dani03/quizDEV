@@ -21,6 +21,7 @@ services:
       - php
       - mysql
       - phpmyadmin
+      - react
 
   php:
     build:
@@ -77,5 +78,16 @@ services:
       PMA_HOST: mysql
       PMA_USER: homestead
       PMA_PASSWORD: secret
+    networks:
+      - laravel_network
+  react:
+    build:
+      context: ./front
+      dockerfile: react.Dockerfile
+    container_name: react
+    volumes:
+      - ./front:/app
+    ports:
+      - 3000:3000
     networks:
       - laravel_network

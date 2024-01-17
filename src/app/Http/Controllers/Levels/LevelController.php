@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Levels;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LevelDestroyRequest;
 use App\Http\Requests\LevelRequest;
 use App\Http\Resources\LevelResource;
+use App\Http\Resources\LevelsResource;
 use App\Http\Services\Levels\LevelService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -18,6 +20,18 @@ class LevelController extends Controller
     {
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     * récupération de tous les levels(niveaux)
+     * on utilise LevelResource::collection()
+     * car on récupére une collection de données et pas une seule donnée
+     */
+    public function index() {
+        $levels = $this->levelService->getAllLevels();
+
+       return response()->json(['data' => LevelResource::collection($levels)], Response::HTTP_OK);
+
+    }
 
     /**
      * Store the newly created resource in storage.
@@ -62,8 +76,16 @@ class LevelController extends Controller
     /**
      * Remove the resource from storage.
      */
-    public function destroy(): never
+    public function destroy(LevelDestroyRequest $request)
     {
-        abort(404);
+        Gate::authorize('create-level');
+        $slug = $request->slug;
+        $level = $this->levelService->deleteLevel($slug);
+
+       if(!$level) {
+           return response()->json(['message' => ' ce niveau n\'existe pas '], Response::HTTP_NOT_FOUND);
+       }
+        return  response()->json(['message' => ' niveau supprimé '], Response::HTTP_OK);
+
     }
 }

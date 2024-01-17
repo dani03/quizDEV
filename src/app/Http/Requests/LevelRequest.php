@@ -24,6 +24,7 @@ class LevelRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'points' => ['integer'],
+            'slug' => ['string']
         ];
     }
 }

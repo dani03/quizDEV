@@ -39,4 +39,6 @@ Route::middleware(['auth:api'])->group(function () {
 
     //level les nivaux
     Route::post('level/store', [\App\Http\Controllers\Levels\LevelController::class, 'store']);
+    Route::get('levels', [\App\Http\Controllers\Levels\LevelController::class, 'index']);
+    Route::delete('level/destroy', [\App\Http\Controllers\Levels\LevelController::class, 'destroy']);
 });

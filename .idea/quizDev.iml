@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/app" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/src/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
       <sourceFolder url="file://$MODULE_DIR$/src/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/phar-io/manifest" />
@@ -144,6 +145,8 @@
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/shalvah/clara" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/shalvah/upgrader" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/spatie/data-transfer-object" />
+      <excludeFolder url="file://$MODULE_DIR$/src/vendor/cocur/slugify" />
+      <excludeFolder url="file://$MODULE_DIR$/src/vendor/cviebrock/eloquent-sluggable" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
