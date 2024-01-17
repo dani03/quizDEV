@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Services\Auth\LoginService;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -15,10 +15,10 @@ class LoginController extends Controller
     {
     }
 
-    function __invoke(LoginRequest $request)
+    public function __invoke(LoginRequest $request): JsonResponse
     {
         $user = $this->loginService->getUser($request);
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->input('password'), $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['l\'email ou le mot de passe est incorrecte...']
             ]);
