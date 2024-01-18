@@ -8,6 +8,7 @@ use App\Http\Resources\ProfilRessource;
 use App\Http\Services\Profils\ProfilService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 
 class ProfileController extends Controller
 {
@@ -23,24 +24,26 @@ class ProfileController extends Controller
 
     public function update(ProfilUpdateRequest $request) {
         $user = auth()->user();
+        $cacheKey = 'user:' . $user->id;
+        $fromCache = false;
         # on met à jour
         $user->update($request->all());
-
-        //on vérifie juste si les données de l'utilisateur ont changé
+        //on vérifie si une clé soit name, lastname, email à changer
         $valuesHasChanged = $user->wasChanged(['name', 'lastname', 'email']);
-
         if($valuesHasChanged) {
         $data = [
+            "data" => $request->all(),
             "message" => "profil mis à jour",
-            "data" => $request->all()];
-
+        ];
         } else {
             $data = [
+                "data" => $request->all(),
                 "message" => "pas de changements effectués",
-                "data" => $request->all()
                 ];
+            // set temps d'expirations de 4 heures
+            Cache::store('redis')->put($cacheKey, $data, now()->addHours(4));
+            $fromCache = true ;
         }
-
-        return response()->json($data, Response::HTTP_ACCEPTED);
+        return response()->json([$cacheKey => $data, "from cache" => $fromCache], Response::HTTP_ACCEPTED);
     }
 }
