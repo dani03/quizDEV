@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Profil;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfilUpdateRequest;
 use App\Http\Resources\ProfilRessource;
+use App\Http\Services\Cache\RedisCacheService;
 use App\Http\Services\Profils\ProfilService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ProfileController extends Controller
 {
@@ -18,11 +21,13 @@ class ProfileController extends Controller
         $this->profilService->getProfile();
     }
 
-    public function show(Request $request) {
+    public function show(Request $request): JsonResponse
+    {
         return Response()->json(['data' => new ProfilRessource($request->user())], Response::HTTP_OK);
     }
 
-    public function update(ProfilUpdateRequest $request) {
+    public function update(ProfilUpdateRequest $request): JsonResponse
+    {
         $user = auth()->user();
         $cacheKey = 'user:' . $user->id;
         $fromCache = false;
@@ -40,10 +45,8 @@ class ProfileController extends Controller
                 "data" => $request->all(),
                 "message" => "pas de changements effectués",
                 ];
-            // set temps d'expirations de 4 heures
-            Cache::store('redis')->put($cacheKey, $data, now()->addHours(4));
-            $fromCache = true ;
+            $fromCache = (new RedisCacheService())->updateCache($cacheKey, $data);
         }
-        return response()->json([$cacheKey => $data, "from cache" => $fromCache], Response::HTTP_ACCEPTED);
+        return response()->json([$cacheKey => $data, "from cache" => $fromCache], ResponseAlias::HTTP_ACCEPTED);
     }
 }
