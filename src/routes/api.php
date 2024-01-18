@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Domain\DomainController;
 use App\Http\Controllers\Api\V1\PasswordUpdateController;
 use App\Http\Controllers\Api\V1\RegisterController;
 use App\Http\Controllers\Api\V1\Users\EntrepriseController;
@@ -44,4 +45,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('level/store', [LevelController::class, 'store']);
     Route::get('levels', [LevelController::class, 'index']);
     Route::delete('level/destroy', [LevelController::class, 'destroy']);
+
+    // domain
+    Route::post('domain/create', [DomainController::class, 'store'])->middleware('is.admin');
 });
