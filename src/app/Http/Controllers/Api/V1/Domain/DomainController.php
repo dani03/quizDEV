@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\DomainStoreRequest;
 use App\Http\Resources\DomainResource;
 use App\Models\Domain;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
 class DomainController extends Controller
@@ -14,15 +17,18 @@ class DomainController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        return DomainResource::collection(Domain::all());
+        //ont stockent dans le cache une cle domains
+        return DomainResource::collection(Cache::remember('domains', 60*60*24, static function () {
+           return Domain::all();
+        }));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(DomainStoreRequest $request)
+    public function store(DomainStoreRequest $request): JsonResponse
     {
         //creation du domain je ne passe par un service ici car c'est relativement court
        $createDomain = Domain::create(['name' => $request->input('name')]);
@@ -43,7 +49,7 @@ class DomainController extends Controller
      * Remove the specified resource from storage.
      * @id id of a specific domain to delete
      */
-    public function destroy(int $id)
+    public function destroy(int $id): JsonResponse
     {
 
         if(Domain::destroy($id)) {
