@@ -47,5 +47,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::delete('level/destroy', [LevelController::class, 'destroy']);
 
     // domain
-    Route::post('domain/create', [DomainController::class, 'store'])->middleware('is.admin');
+    Route::get('domains', [DomainController::class, 'index']);
+    Route::post('domain/store', [DomainController::class, 'store'])->middleware('is.admin');
+    Route::delete('domain/delete/{id}', [DomainController::class, 'destroy'])->middleware('is.admin');
 });

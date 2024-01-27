@@ -20,8 +20,6 @@ class GateDefineMiddleware
         //on verifie si le user possède le role adéquat
         if( auth()->check()) {
             //$permissions = Permission::whereHas('roles')->get();
-
-
             $permissions = Permission::whereHas('roles', function($query) {
                     $query->where('id', auth()->user()->role_id);
             })->get();
@@ -29,8 +27,6 @@ class GateDefineMiddleware
                 Gate::define($permission->name, fn() => true);
             }
         }
-
-
         return $next($request);
     }
 }

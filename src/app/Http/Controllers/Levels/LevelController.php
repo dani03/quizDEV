@@ -10,6 +10,7 @@ use App\Http\Resources\LevelsResource;
 use App\Http\Services\Levels\LevelService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
 
@@ -29,8 +30,10 @@ class LevelController extends Controller
      *  récupération de tous les levels(niveaux) récupére une collection de données et pas une seule donnée
      */
     public function index() {
-        $levels = $this->levelService->getAllLevels();
-       return response()->json(['data' => LevelResource::collection($levels)], Response::HTTP_OK);
+        // $levels =$this->levelService->getAllLevels();
+       return response()->json(['data' => Cache::remember('levels',60*60*24, function() {
+          return LevelResource::collection($this->levelService->getAllLevels());
+        })  ], Response::HTTP_OK);
 
     }
 
