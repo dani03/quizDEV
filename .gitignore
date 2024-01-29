@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-mysql/*
-mysql/*
-=======
 ./mysql/*
->>>>>>> 5d2b525 (fix: readme and remove the updated of the mysql)
 ./front/.next
 ./front/node_modules
 ./front/README.md

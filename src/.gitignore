@@ -17,7 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-<<<<<<< HEAD
 ./mysql/*
 ../mysql/*
 
@@ -31,6 +30,3 @@ mysql/*
 .vscode
 .idea
 Thumbs.db
-=======
-../mysql/*
->>>>>>> f341d82 (fix: bug on installation)
