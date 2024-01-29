@@ -19,6 +19,7 @@ yarn-error.log
 /.vscode
 ./mysql/*
 ../mysql/*
+mysql/
 
 mysql/*
 
