@@ -1,9 +1,8 @@
 import { Disclosure, Menu } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
-import Button from "./Button"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Typography } from "@material-tailwind/react"
+import { Button, Typography } from "@material-tailwind/react"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -61,21 +60,17 @@ const NavBar = (props) => {
                         {pseudo}
                       </Link>
                     )}
-                    <Button variant="secondary" size="lg" onClick={logout}>
-                      ❌
-                    </Button>
+                    <Button onClick={logout}>❌</Button>
                   </div>
                 ) : (
-                  <div className="bg-zinc-100 rounded-xl">
+                  <div className="bg-zinc-100 rounded-xl bg-transparent">
                     <Link href="/login">
-                      <Button variant="navBar" size="lg">
+                      <Button>
                         <Typography>LOGIN</Typography>
                       </Button>
                     </Link>
                     <Link href="/register">
-                      <Button variant="navBar" size="lg">
-                        REGISTER
-                      </Button>
+                      <Button>REGISTER</Button>
                     </Link>
                   </div>
                 )}
