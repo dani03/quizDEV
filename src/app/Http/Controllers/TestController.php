@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\Gate;
 class TestController extends Controller
 {
 
-    public function testingMethod() {
+    public function test() {
        // $permissions = Permission::whereHas('roles')->get();
 
 
         $permissions = Permission::whereHas('roles', function($query) {
-        dd(auth()->user());
-            $query->where('Role.id', auth()->user()->role_id);
+        //dd(auth()->user());
+            $query->where('roles.id', 2);
 
         })->get();
-        dd($permissions);
         foreach($permissions as $permission) {
-            Gate::define($permission->name, fn() => true);
+        //dd($permission);
+           dd (Gate::define($permission->name, fn() => true));
         }
     }
 }

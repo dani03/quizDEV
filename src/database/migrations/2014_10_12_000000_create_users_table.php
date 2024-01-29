@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('lastname');
+            $table->integer('points')->default(0);
             $table->string('email')->unique();
             $table->foreignIdFor(Role::class);
             $table->timestamp('email_verified_at')->nullable();

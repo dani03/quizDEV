@@ -144,6 +144,10 @@
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/shalvah/clara" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/shalvah/upgrader" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/spatie/data-transfer-object" />
+      <excludeFolder url="file://$MODULE_DIR$/src/vendor/cocur/slugify" />
+      <excludeFolder url="file://$MODULE_DIR$/src/vendor/cviebrock/eloquent-sluggable" />
+      <excludeFolder url="file://$MODULE_DIR$/src/vendor/predis/predis" />
+      <excludeFolder url="file://$MODULE_DIR$/src/vendor/laravel/telescope" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

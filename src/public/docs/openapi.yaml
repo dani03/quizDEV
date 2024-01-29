@@ -43,15 +43,15 @@ paths:
                 lastname:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: tpahysxtlw
+                  example: zimc
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: wfpyzn
+                  example: nqoiegzfbcdfymjxlbgvzgdhj
                 password:
                   type: string
                   description: ''
-                  example: non
+                  example: voluptatum
                 role_id:
                   type: string
                   description: ''
@@ -62,7 +62,7 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: melody.zieme@example.org
+                  example: melyssa.veum@example.org
               required:
                 - lastname
                 - name
@@ -89,11 +89,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: imann@example.org
+                  example: shaylee62@example.org
                 password:
                   type: string
                   description: ''
-                  example: hic
+                  example: est
               required:
                 - email
                 - password
@@ -139,19 +139,177 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: ward.eve@example.com
+                  example: sanford.raymond@example.com
                 name:
                   type: string
                   description: ''
-                  example: sapiente
+                  example: voluptatem
                 lastname:
                   type: string
                   description: ''
-                  example: quisquam
+                  example: dolores
               required:
                 - email
                 - name
                 - lastname
+      security: []
+  /api/v1/update/password:
+    put:
+      summary: ''
+      operationId: putApiV1UpdatePassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                  description: ''
+                  example: similique
+                password:
+                  type: string
+                  description: ''
+                  example: nihil
+              required:
+                - current_password
+                - password
+      security: []
+  /api/v1/logout:
+    post:
+      summary: ''
+      operationId: postApiV1Logout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/user/quiz:
+    get:
+      summary: ''
+      operationId: getApiV1UserQuiz
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/entreprise/quiz:
+    get:
+      summary: ''
+      operationId: getApiV1EntrepriseQuiz
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/level/store:
+    post:
+      summary: 'Store the newly created resource in storage.'
+      operationId: storeTheNewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: alias
+                points:
+                  type: integer
+                  description: ''
+                  example: 1
+                slug:
+                  type: string
+                  description: ''
+                  example: non
+              required:
+                - name
+      security: []
+  /api/v1/levels:
+    get:
+      summary: ''
+      operationId: getApiV1Levels
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/level/destroy:
+    delete:
+      summary: 'Remove the resource from storage.'
+      operationId: removeTheResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+                  description: ''
+                  example: soluta
+              required:
+                - slug
       security: []
 tags:
   -

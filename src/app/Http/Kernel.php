@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\GateDefineMiddleware;
+use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -44,6 +45,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             GateDefineMiddleware::class,
+
         ],
     ];
 
@@ -67,5 +69,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'treblle' => \Treblle\Middlewares\TreblleMiddleware::class,
+        'is.admin' => IsAdminMiddleware::class,
     ];
 }

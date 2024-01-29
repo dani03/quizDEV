@@ -4,8 +4,11 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 
+use App\Models\Role;
 use Carbon\Carbon;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
@@ -26,5 +29,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         Passport::personalAccessTokensExpireIn(Carbon::now()->addMinutes(120));
         Passport::refreshTokensExpireIn(Carbon::now()->addMinutes(120));
+
+        //on défini une gate afin de restreindre l'accès de certaines fonctionnalités
+        Gate::define('create-level', function($user) {
+            return $user->role_id === Role::ROLE_ADMINISTRATOR ? Response::allow()
+                : Response::deny('Vous n\'avez pas les droits pour effectuer cette action.');
+        });
     }
 }
