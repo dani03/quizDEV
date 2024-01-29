@@ -10,7 +10,7 @@ class UserController extends Controller
 
 
     public function index() {
-        $this->authorize('basic-user');
+       return $this->authorize('basic-user');
 
 
         return response()->json(['success' => true]);

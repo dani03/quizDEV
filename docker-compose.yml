@@ -14,13 +14,16 @@ services:
       - 3002:80
       - 443:443
     volumes:
-      - ./src:/var/www/html
+      - ./src:/var/www/html:delegated
     networks:
       - laravel_network
     depends_on:
       - php
       - mysql
       - phpmyadmin
+      - redis
+      - adminer
+    #  - react
 
   php:
     build:
@@ -28,7 +31,7 @@ services:
       dockerfile: php.dockerfile
     container_name: php
     volumes:
-      - ./src:/var/www/html
+      - ./src:/var/www/html:delegated
     networks:
       - laravel_network
 
@@ -46,7 +49,7 @@ services:
       - ./mysql:/var/lib/mysql
     networks:
       - laravel_network
-  
+
   artisan:
     build:
       context: .
@@ -79,3 +82,37 @@ services:
       PMA_PASSWORD: secret
     networks:
       - laravel_network
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - 6379:6379
+    networks:
+      - laravel_network
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    restart: always
+    ports:
+      - 2025:8080
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+      ADMINER_DESIGN: dracula
+      MYSQL_DATABASE: quizdevbdd
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    networks:
+      - laravel_network
+
+ # react:
+ #  build:
+ #    context: ./front
+  #    dockerfile: react.Dockerfile
+  #  container_name: react
+   # volumes:
+   #   - ./front:/app
+   # ports:
+   #   - 3000:3000
+   # networks:
+   #   - laravel_network
