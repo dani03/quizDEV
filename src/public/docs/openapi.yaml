@@ -43,15 +43,15 @@ paths:
                 lastname:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: zimc
+                  example: kcs
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: nqoiegzfbcdfymjxlbgvzgdhj
+                  example: kntmwxu
                 password:
                   type: string
                   description: ''
-                  example: voluptatum
+                  example: dolores
                 role_id:
                   type: string
                   description: ''
@@ -62,7 +62,7 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: melyssa.veum@example.org
+                  example: ihayes@example.org
               required:
                 - lastname
                 - name
@@ -89,11 +89,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: shaylee62@example.org
+                  example: fmonahan@example.com
                 password:
                   type: string
                   description: ''
-                  example: est
+                  example: facere
               required:
                 - email
                 - password
@@ -139,11 +139,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: sanford.raymond@example.com
+                  example: ioconner@example.org
                 name:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: eum
                 lastname:
                   type: string
                   description: ''
@@ -172,11 +172,11 @@ paths:
                 current_password:
                   type: string
                   description: ''
-                  example: similique
+                  example: quia
                 password:
                   type: string
                   description: ''
-                  example: nihil
+                  example: quae
               required:
                 - current_password
                 - password
@@ -254,7 +254,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: alias
+                  example: aspernatur
                 points:
                   type: integer
                   description: ''
@@ -262,14 +262,14 @@ paths:
                 slug:
                   type: string
                   description: ''
-                  example: non
+                  example: est
               required:
                 - name
       security: []
   /api/v1/levels:
     get:
-      summary: ''
-      operationId: getApiV1Levels
+      summary: 'récupération de tous les levels(niveaux) récupére une collection de données et pas une seule donnée'
+      operationId: rcuprationDeTousLesLevelsniveauxRcupreUneCollectionDeDonnesEtPasUneSeuleDonne
       description: ''
       parameters: []
       responses:
@@ -307,10 +307,74 @@ paths:
                 slug:
                   type: string
                   description: ''
-                  example: soluta
+                  example: voluptate
               required:
                 - slug
       security: []
+  /api/v1/domains:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/domain/store:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: aliquid
+              required:
+                - name
+      security: []
+  '/api/v1/domain/delete/{id}':
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the delete.'
+        example: nemo
+        required: true
+        schema:
+          type: string
 tags:
   -
     name: Endpoints

@@ -32,7 +32,7 @@ endpoints:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '58'
+          x-ratelimit-remaining: '59'
           vary: Origin
         description: null
         custom: []
@@ -67,7 +67,7 @@ endpoints:
         name: lastname
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: zimc
+        example: kcs
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -76,7 +76,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: nqoiegzfbcdfymjxlbgvzgdhj
+        example: kntmwxu
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -85,7 +85,7 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: voluptatum
+        example: dolores
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -105,17 +105,17 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: melyssa.veum@example.org
+        example: ihayes@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      lastname: zimc
-      name: nqoiegzfbcdfymjxlbgvzgdhj
-      password: voluptatum
+      lastname: kcs
+      name: kntmwxu
+      password: dolores
       role_id: '3'
-      email: melyssa.veum@example.org
+      email: ihayes@example.org
     fileParameters: []
     responses: []
     responseFields: []
@@ -149,7 +149,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: shaylee62@example.org
+        example: fmonahan@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -158,14 +158,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: est
+        example: facere
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: shaylee62@example.org
-      password: est
+      email: fmonahan@example.com
+      password: facere
     fileParameters: []
     responses: []
     responseFields: []
@@ -238,7 +238,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: sanford.raymond@example.com
+        example: ioconner@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -247,7 +247,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: voluptatem
+        example: eum
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -262,8 +262,8 @@ endpoints:
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: sanford.raymond@example.com
-      name: voluptatem
+      email: ioconner@example.org
+      name: eum
       lastname: dolores
     fileParameters: []
     responses: []
@@ -298,7 +298,7 @@ endpoints:
         name: current_password
         description: ''
         required: true
-        example: similique
+        example: quia
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -307,14 +307,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: nihil
+        example: quae
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      current_password: similique
-      password: nihil
+      current_password: quia
+      password: quae
     fileParameters: []
     responses: []
     responseFields: []
@@ -456,7 +456,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: alias
+        example: aspernatur
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -474,15 +474,15 @@ endpoints:
         name: slug
         description: ''
         required: false
-        example: non
+        example: est
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: alias
+      name: aspernatur
       points: 1
-      slug: non
+      slug: est
     fileParameters: []
     responses: []
     responseFields: []
@@ -500,7 +500,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'récupération de tous les levels(niveaux) récupére une collection de données et pas une seule donnée'
       description: ''
       authenticated: false
       custom: []
@@ -555,13 +555,132 @@ endpoints:
         name: slug
         description: ''
         required: true
-        example: soluta
+        example: voluptate
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      slug: soluta
+      slug: voluptate
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/domains
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/domain/store
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: aliquid
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      name: aliquid
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/domain/delete/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the delete.'
+        required: true
+        example: nemo
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: nemo
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []

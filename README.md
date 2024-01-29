@@ -36,6 +36,7 @@ Une fois la clé générée, taper la commande `docker-compose up --build -d ngi
 # RUN les migrations 
 
 Une fois vos conteneurs en marche, taper la commande `docker compose run --rm artisan migrate` afin de lancer les migrations vers votre base de données. 
+Après les migrations lancer les seeders afin de peupler notre base de données avec la commande `docker compose run --rm db:seed`.
 # PHP MY ADMIN
 
 L'accès à PHpMyadmin est sur le port 2023 et donc sur le lien : http://localhost:2023 et le port 2025 pour le SGBD adminer similaire à phpMyadmin 
