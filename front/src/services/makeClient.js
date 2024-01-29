@@ -5,7 +5,7 @@ export const makeClient = (options = {}) =>
   axios.create(
     deepmerge(
       {
-        baseURL: "http://localhost:3002",
+        baseURL: "http://localhost:3002/api/v1",
       },
       options
     )

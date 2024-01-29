@@ -1,9 +1,9 @@
 import NavBar from "../src/components/NavBar"
 import { useContext, useState } from "react"
-import { makeClient } from "../src/services/makeClient"
 import { AppContext } from "../src/components/AppContext"
 import Popup from "../src/components/Popup"
 import { Card, Input, Button, Typography } from "@material-tailwind/react"
+import axios from "axios"
 
 const Register = () => {
   const { jwt, logout } = useContext(AppContext)
@@ -13,37 +13,32 @@ const Register = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
-    try {
-      setError(null)
-      const {
-        data: { jwt, userId },
-      } = await makeClient().post("/register", {
-        pseudo: event.currentTarget.pseudo.value,
+
+    axios
+      .post("http://localhost:3002/api/v1/auth/register", {
+        name: event.currentTarget.name.value,
+        lastname: event.currentTarget.lastname.value,
+        email: event.currentTarget.email.value,
         password: event.currentTarget.password.value,
+        password_confirmation: event.currentTarget.password_confirmation.value,
+        role_id: 2,
       })
-
-      if (!jwt) {
-        throw new Error("Missing jwt")
-      }
-
-      saveJwt(jwt, userId)
-      setError(null)
-    } catch (err) {
-      if (err.message) {
-        setError(err.message)
+      .then(function (response) {
+        if (response.data.access_token) {
+          console.log("res : ", response.data.access_token)
+        }
+      })
+      .catch(function (error) {
+        setError(error.response.data.message || "Error 403")
         handleOpen()
-        return
-      }
-      setError("Something went wrong...")
-      handleOpen()
-    }
+      })
   }
 
   return (
     <div>
       <NavBar jwt={jwt} logout={logout} />
       <div className="flex justify-center mt-20">
-        <Card className="bg-white px-8 py-4" shadow={false}>
+        <Card className="bg-white px-4 py-2 md:px-12 md:py-4" shadow={false}>
           <Typography variant="h4" color="blue-gray" className="text-center">
             REGISTER
           </Typography>
@@ -56,12 +51,37 @@ const Register = () => {
           >
             <div className="mb-1 flex flex-col gap-6">
               <Typography variant="h6" color="blue-gray" className="-mb-3">
-                Your Pseudo
+                Firstname
               </Typography>
               <Input
                 size="lg"
-                name="pseudo"
-                placeholder="name@mail.com"
+                name="name"
+                placeholder="firstname"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
+              />
+              <Typography variant="h6" color="blue-gray" className="-mb-3">
+                Lastname
+              </Typography>
+              <Input
+                size="lg"
+                name="lastname"
+                placeholder="lastname"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
+              />
+              <Typography variant="h6" color="blue-gray" className="-mb-3">
+                Email
+              </Typography>
+              <Input
+                size="lg"
+                type="email"
+                name="email"
+                placeholder="email@email.com"
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
                   className: "before:content-none after:content-none",
@@ -74,6 +94,19 @@ const Register = () => {
                 type="password"
                 size="lg"
                 name="password"
+                placeholder="********"
+                className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
+              />
+              <Typography variant="h6" color="blue-gray" className="-mb-3">
+                Password Confirmation
+              </Typography>
+              <Input
+                type="password"
+                size="lg"
+                name="password_confirmation"
                 placeholder="********"
                 className="!border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
