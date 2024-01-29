@@ -30,10 +30,15 @@ Une fois la clé générée, taper la commande `docker-compose up --build -d ngi
 
 # PHP MY ADMIN
 
-l'accès à PHpMyadmin est sur le port 2023 et donc sur le lien: http://localhost:2023
+l'accès à PHpMyadmin est sur le port 2023 et donc sur le lien: http://localhost:2023 et le port 2025 pour le SGBD adminer similaire à 
+à phpMyadmin 
 
 username : homestead
 password : secret
+
+# RUN les migrations 
+
+lorsque que tout vos containers tournent vous 
 
 # La documentation des endpoints de l'API
 

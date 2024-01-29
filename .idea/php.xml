@@ -158,11 +158,6 @@
       <path value="$PROJECT_DIR$/src/vendor/cocur/slugify" />
       <path value="$PROJECT_DIR$/src/vendor/cviebrock/eloquent-sluggable" />
       <path value="$PROJECT_DIR$/src/vendor/predis/predis" />
-      <path value="$PROJECT_DIR$/src/vendor/darkaonline/l5-swagger" />
-      <path value="$PROJECT_DIR$/src/vendor/zircote/swagger-php" />
-      <path value="$PROJECT_DIR$/src/vendor/swagger-api/swagger-ui" />
-      <path value="$PROJECT_DIR$/src/vendor/doctrine/annotations" />
-      <path value="$PROJECT_DIR$/src/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/src/vendor/laravel/telescope" />
     </include_path>
   </component>
