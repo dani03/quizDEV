@@ -24,10 +24,16 @@ DB_PASSWORD=secret
 
 DB_CONNECTION=mysql , 'mysql' ici correspond au service (container) mysql qu'on peut voir dans le fichier docker-compose.yml à la racine du projet ainsi que le mot de passe (DB_PASSWORD) et le username (DB_USERNAME) tous definis dans le docker-compose.yml dans le service(container) mysql.
 
-Ensuite taper la commande `docker-compose run --rm artisan key:generate` afin de generer une clé unique pour notre application.
+Ensuite taper la commande `docker-compose run --rm artisan key:generate` afin de génerer une clé unique pour notre application.
+
+Et pour mettre à jour les utilisateurs password on  tape la commande `docker compose run --rm artisan passport:install` afin de 
+générer les utilisateurs
+
+Si le dossier "mysql" est présent à la racine de votre projet supprimer le. 
 
 Une fois la clé générée, taper la commande `docker-compose up --build -d nginx` pour lancer vos containers, ensuite taper la commande `docker-compose ps` pour voir si vos containers tournent bien. vous pouvez tester l'api sur le endpoint `http://localhost/api/v1/test. vous devriez avoir un retour si vous êtes connecter à l'api.
 
+Une fois vos containers en marche, taper la commande `docker compose run --rm artisan migrate` afin de lancer les migrations vers votre base de données. 
 # PHP MY ADMIN
 
 l'accès à PHpMyadmin est sur le port 2023 et donc sur le lien: http://localhost:2023 et le port 2025 pour le SGBD adminer similaire à 
