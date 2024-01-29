@@ -585,13 +585,30 @@ endpoints:
         name: slug
         description: ''
         required: true
+<<<<<<< HEAD
         example: aspernatur
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+        example: voluptate
+>>>>>>> e382b63 (add: question and anwser model)
+>>>>>>> bf7ab2a (add: question and anwser model)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       slug: aspernatur
+=======
+<<<<<<< HEAD
+      slug: aspernatur
+=======
+      slug: voluptate
+>>>>>>> e382b63 (add: question and anwser model)
+>>>>>>> bf7ab2a (add: question and anwser model)
     fileParameters: []
     responses: []
     responseFields: []
@@ -664,13 +681,29 @@ endpoints:
         name: name
         description: ''
         required: true
+<<<<<<< HEAD
         example: quidem
+=======
+<<<<<<< HEAD
+        example: quidem
+=======
+        example: aliquid
+>>>>>>> e382b63 (add: question and anwser model)
+>>>>>>> bf7ab2a (add: question and anwser model)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       name: quidem
+=======
+<<<<<<< HEAD
+      name: quidem
+=======
+      name: aliquid
+>>>>>>> e382b63 (add: question and anwser model)
+>>>>>>> bf7ab2a (add: question and anwser model)
     fileParameters: []
     responses: []
     responseFields: []
@@ -700,13 +733,29 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
+<<<<<<< HEAD
         example: adipisci
+=======
+<<<<<<< HEAD
+        example: adipisci
+=======
+        example: nemo
+>>>>>>> e382b63 (add: question and anwser model)
+>>>>>>> bf7ab2a (add: question and anwser model)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
+<<<<<<< HEAD
       id: adipisci
+=======
+<<<<<<< HEAD
+      id: adipisci
+=======
+      id: nemo
+>>>>>>> e382b63 (add: question and anwser model)
+>>>>>>> bf7ab2a (add: question and anwser model)
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -719,6 +768,7 @@ endpoints:
     method: null
     route: null
     custom: []
+<<<<<<< HEAD
   -
     httpMethods:
       - POST
@@ -799,3 +849,6 @@ endpoints:
     method: null
     route: null
     custom: []
+=======
+>>>>>>> 8a88faf (add: question and anwser model)
+>>>>>>> bf7ab2a (add: question and anwser model)
