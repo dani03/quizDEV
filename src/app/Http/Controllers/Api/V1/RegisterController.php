@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\ProfilRessource;
 use App\Http\Services\Auth\RegisterService;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class RegisterController extends Controller
@@ -30,7 +30,8 @@ class RegisterController extends Controller
         $device = substr($request->userAgent() ?? '', 0, 255);
 
         return Response()->json([
-            'access_token' => $userCreate->createToken($device)->accessToken
+            'access_token' => $userCreate->createToken($device)->accessToken,
+            'user' => ProfilRessource::make($userCreate)
         ], Response::HTTP_CREATED);
     }
 }

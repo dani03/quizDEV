@@ -4,14 +4,14 @@ export const AppContext = createContext(null)
 
 const AppContextProvider = (props) => {
   const [jwt, setJwt] = useState(null)
-  useEffect(() => setJwt(localStorage.getItem("session_jwt")), [])
+  useEffect(() => setJwt(localStorage.getItem("access_token")), [])
   const [userId, setUserId] = useState(null)
   useEffect(() => setUserId(localStorage.getItem("id")), [])
   const [user, setUser] = useState(null)
   useEffect(() => setUser(localStorage.getItem("user")), [])
 
   const saveJwt = useCallback((jwt, userId) => {
-    localStorage.setItem("session_jwt", jwt)
+    localStorage.setItem("access_token", jwt)
     localStorage.setItem("id", userId)
     setJwt(jwt)
     setUserId(userId)
@@ -23,7 +23,7 @@ const AppContextProvider = (props) => {
   }, [])
 
   const logout = useCallback(() => {
-    localStorage.removeItem("session_jwt")
+    localStorage.removeItem("access_token")
     localStorage.removeItem("id")
     localStorage.removeItem("user")
     setJwt(null)
@@ -34,7 +34,7 @@ const AppContextProvider = (props) => {
   // surveiller les changements dans le localStorage et mettre à jour les valeurs du contexte en conséquence
   useEffect(() => {
     const updateContext = () => {
-      setJwt(localStorage.getItem("session_jwt"))
+      setJwt(localStorage.getItem("access_token"))
       setUserId(localStorage.getItem("id"))
       setUser(localStorage.getItem("user"))
     }

@@ -10,7 +10,7 @@ const UseApi = (defaultValue, method, ...args) => {
   useEffect(() => {
     ;(async () => {
       const { data } = await makeClient({
-        headers: { authentification: jwt },
+        headers: { access_token: jwt },
       })[method](...args)
       setResult(data)
     })()
