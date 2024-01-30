@@ -1,17 +1,17 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Domain\DomainController;
+use App\Http\Controllers\Api\V1\Levels\LevelController;
+use App\Http\Controllers\Api\V1\LoginController;
+use App\Http\Controllers\Api\V1\LogoutController;
 use App\Http\Controllers\Api\V1\PasswordUpdateController;
+use App\Http\Controllers\Api\V1\Profil\ProfileController;
+use App\Http\Controllers\Api\V1\Questions\QuestionController;
 use App\Http\Controllers\Api\V1\RegisterController;
 use App\Http\Controllers\Api\V1\Users\EntrepriseController;
 use App\Http\Controllers\Api\V1\Users\UserController;
-use App\Http\Controllers\Levels\LevelController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\Profil\ProfileController;
 use App\Http\Controllers\TestConnexionController;
-
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +37,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::put('update/profil', [ProfileController::class, 'update'])->name('profil.update');
     Route::put('update/password', PasswordUpdateController::class);
     Route::post('logout', LogoutController::class);
+    Route::delete('delete/profil', [ProfileController::class, 'destroy']);
 
     Route::get('user/quiz', [UserController::class, 'index']);
     Route::get('entreprise/quiz', [EntrepriseController::class, 'index']);
@@ -50,4 +51,8 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('domains', [DomainController::class, 'index']);
     Route::post('domain/store', [DomainController::class, 'store'])->middleware('is.admin');
     Route::delete('domain/delete/{id}', [DomainController::class, 'destroy'])->middleware('is.admin');
+
+    // questions
+
+    Route::post('question/store', [QuestionController::class, 'store']);
 });

@@ -28,4 +28,12 @@ class UserRepository
   {
     return User::where('email', $email)->first();
   }
+
+  public function find(int $id): User|null {
+      return User::find($id);
+  }
+
+  public function delete( User $user): bool|null {
+      return $user->delete();
+  }
 }

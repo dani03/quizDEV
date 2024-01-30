@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Levels;
+namespace App\Http\Controllers\Api\V1\Levels;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LevelDestroyRequest;
@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Http;
 
 class LevelController extends Controller
 {
