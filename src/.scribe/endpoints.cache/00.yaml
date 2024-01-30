@@ -70,10 +70,14 @@ endpoints:
         description: 'Must not be greater than 255 characters.'
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: gggwnjcoraywbzpnayqrg
 =======
         example: kcs
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: gggwnjcoraywbzpnayqrg
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -83,10 +87,14 @@ endpoints:
         description: 'Must not be greater than 255 characters.'
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: euftmwlfnaf
 =======
         example: kntmwxu
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: euftmwlfnaf
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -96,10 +104,14 @@ endpoints:
         description: ''
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: accusamus
 =======
         example: dolores
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: accusamus
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -120,21 +132,29 @@ endpoints:
         description: 'Must be a valid email address.'
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: jnader@example.net
 =======
         example: ihayes@example.org
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: jnader@example.net
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4e33055 (add: question and responses)
       lastname: gggwnjcoraywbzpnayqrg
       name: euftmwlfnaf
       password: accusamus
       role_id: '2'
       email: jnader@example.net
+<<<<<<< HEAD
 =======
       lastname: kcs
       name: kntmwxu
@@ -142,6 +162,8 @@ endpoints:
       role_id: '3'
       email: ihayes@example.org
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+>>>>>>> 4e33055 (add: question and responses)
     fileParameters: []
     responses: []
     responseFields: []
@@ -176,10 +198,14 @@ endpoints:
         description: 'Must be a valid email address.'
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: jovany15@example.com
 =======
         example: fmonahan@example.com
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: jovany15@example.com
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -189,15 +215,20 @@ endpoints:
         description: ''
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: ut
 =======
         example: facere
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: ut
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
 <<<<<<< HEAD
       email: jovany15@example.com
       password: ut
@@ -205,6 +236,10 @@ endpoints:
       email: fmonahan@example.com
       password: facere
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+      email: jovany15@example.com
+      password: ut
+>>>>>>> 4e33055 (add: question and responses)
     fileParameters: []
     responses: []
     responseFields: []
@@ -278,10 +313,14 @@ endpoints:
         description: 'Must be a valid email address.'
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: katrina.stanton@example.com
 =======
         example: ioconner@example.org
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: katrina.stanton@example.com
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -291,10 +330,14 @@ endpoints:
         description: ''
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: debitis
 =======
         example: eum
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: debitis
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -310,6 +353,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
 <<<<<<< HEAD
+<<<<<<< HEAD
       email: katrina.stanton@example.com
       name: debitis
       lastname: cupiditate
@@ -318,6 +362,11 @@ endpoints:
       name: eum
       lastname: dolores
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+      email: katrina.stanton@example.com
+      name: debitis
+      lastname: cupiditate
+>>>>>>> 4e33055 (add: question and responses)
     fileParameters: []
     responses: []
     responseFields: []
@@ -352,10 +401,14 @@ endpoints:
         description: ''
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: dolore
 =======
         example: quia
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: dolore
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -365,15 +418,20 @@ endpoints:
         description: ''
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: soluta
 =======
         example: quae
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: soluta
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
 <<<<<<< HEAD
       current_password: dolore
       password: soluta
@@ -381,6 +439,10 @@ endpoints:
       current_password: quia
       password: quae
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+      current_password: dolore
+      password: soluta
+>>>>>>> 4e33055 (add: question and responses)
     fileParameters: []
     responses: []
     responseFields: []
@@ -553,10 +615,14 @@ endpoints:
         description: ''
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: necessitatibus
 =======
         example: aspernatur
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: necessitatibus
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -575,15 +641,20 @@ endpoints:
         description: ''
         required: false
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: ut
 =======
         example: est
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: ut
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
 <<<<<<< HEAD
       name: necessitatibus
       points: 18
@@ -593,6 +664,11 @@ endpoints:
       points: 1
       slug: est
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+      name: necessitatibus
+      points: 18
+      slug: ut
+>>>>>>> 4e33055 (add: question and responses)
     fileParameters: []
     responses: []
     responseFields: []
@@ -666,20 +742,28 @@ endpoints:
         description: ''
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: aspernatur
 =======
         example: voluptate
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: aspernatur
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
 <<<<<<< HEAD
+<<<<<<< HEAD
       slug: aspernatur
 =======
       slug: voluptate
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+      slug: aspernatur
+>>>>>>> 4e33055 (add: question and responses)
     fileParameters: []
     responses: []
     responseFields: []
@@ -753,20 +837,28 @@ endpoints:
         description: ''
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: quidem
 =======
         example: aliquid
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: quidem
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
 <<<<<<< HEAD
+<<<<<<< HEAD
       name: quidem
 =======
       name: aliquid
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+      name: quidem
+>>>>>>> 4e33055 (add: question and responses)
     fileParameters: []
     responses: []
     responseFields: []
@@ -797,20 +889,28 @@ endpoints:
         description: 'The ID of the delete.'
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: adipisci
 =======
         example: nemo
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+        example: adipisci
+>>>>>>> 4e33055 (add: question and responses)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
 <<<<<<< HEAD
+<<<<<<< HEAD
       id: adipisci
 =======
       id: nemo
 >>>>>>> e382b63 (add: question and anwser model)
+=======
+      id: adipisci
+>>>>>>> 4e33055 (add: question and responses)
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
