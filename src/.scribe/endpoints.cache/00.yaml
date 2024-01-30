@@ -258,7 +258,6 @@ endpoints:
         name: lastname
         description: ''
         required: true
-
         type: string
         enumValues: []
         exampleWasSpecified: false
