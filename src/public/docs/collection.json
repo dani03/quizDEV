@@ -702,7 +702,7 @@
                         }
                     },
                     "response": []
-<<<<<<< HEAD
+
                 },
                 {
                     "name": "Display the specified resource.",
@@ -716,13 +716,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-<<<<<<< HEAD
                                     "value": "ullam",
                                     "description": "The ID of the delete."
-=======
-                                    "value": "tempora",
-                                    "description": "The ID of the show."
->>>>>>> 6d5c080 (updated docs of api)
                                 }
                             ]
                         },
@@ -803,39 +798,6 @@
                         }
                     },
                     "response": []
-                },
-                {
-                    "name": "POST api\/v1\/question\/store",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/question\/store",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/question\/store"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"title\":\"lpltvzjffuzosnoojyafljpi\",\"domain_id\":16,\"level_id\":14,\"points\":15,\"answers\":[]}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-=======
->>>>>>> 56f72d8 (add : show and get all questions)
                 }
             ]
         }
