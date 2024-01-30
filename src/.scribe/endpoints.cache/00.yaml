@@ -585,30 +585,15 @@ endpoints:
         name: slug
         description: ''
         required: true
-<<<<<<< HEAD
+
         example: aspernatur
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
         example: voluptate
->>>>>>> e382b63 (add: question and anwser model)
->>>>>>> bf7ab2a (add: question and anwser model)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-<<<<<<< HEAD
-      slug: aspernatur
-=======
-<<<<<<< HEAD
-      slug: aspernatur
-=======
       slug: voluptate
->>>>>>> e382b63 (add: question and anwser model)
->>>>>>> bf7ab2a (add: question and anwser model)
     fileParameters: []
     responses: []
     responseFields: []
@@ -681,29 +666,13 @@ endpoints:
         name: name
         description: ''
         required: true
-<<<<<<< HEAD
-        example: quidem
-=======
-<<<<<<< HEAD
-        example: quidem
-=======
         example: aliquid
->>>>>>> e382b63 (add: question and anwser model)
->>>>>>> bf7ab2a (add: question and anwser model)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-<<<<<<< HEAD
-      name: quidem
-=======
-<<<<<<< HEAD
-      name: quidem
-=======
       name: aliquid
->>>>>>> e382b63 (add: question and anwser model)
->>>>>>> bf7ab2a (add: question and anwser model)
     fileParameters: []
     responses: []
     responseFields: []
@@ -733,29 +702,13 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-<<<<<<< HEAD
-        example: adipisci
-=======
-<<<<<<< HEAD
-        example: adipisci
-=======
         example: nemo
->>>>>>> e382b63 (add: question and anwser model)
->>>>>>> bf7ab2a (add: question and anwser model)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-<<<<<<< HEAD
-      id: adipisci
-=======
-<<<<<<< HEAD
-      id: adipisci
-=======
       id: nemo
->>>>>>> e382b63 (add: question and anwser model)
->>>>>>> bf7ab2a (add: question and anwser model)
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -768,87 +721,3 @@ endpoints:
     method: null
     route: null
     custom: []
-<<<<<<< HEAD
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/question/store
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      title:
-        name: title
-        description: 'Must not be greater than 150 characters.'
-        required: true
-        example: lpltvzjffuzosnoojyafljpi
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      domain_id:
-        name: domain_id
-        description: ''
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      level_id:
-        name: level_id
-        description: ''
-        required: true
-        example: 14
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      points:
-        name: points
-        description: ''
-        required: false
-        example: 15
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      answers:
-        name: answers
-        description: 'Must have at least 2 items.'
-        required: true
-        example: []
-        type: object
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanBodyParameters:
-      title: lpltvzjffuzosnoojyafljpi
-      domain_id: 16
-      level_id: 14
-      points: 15
-      answers: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-=======
->>>>>>> 8a88faf (add: question and anwser model)
->>>>>>> bf7ab2a (add: question and anwser model)
