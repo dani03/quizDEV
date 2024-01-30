@@ -258,7 +258,7 @@ endpoints:
         name: lastname
         description: ''
         required: true
-        example: qui
+        example: cupiditate
         type: string
         enumValues: []
         exampleWasSpecified: false
