@@ -585,23 +585,9 @@ endpoints:
         name: slug
         description: ''
         required: true
-<<<<<<< HEAD
+
         example: aspernatur
-<<<<<<< HEAD
-=======
-=======
-        example: voluptate
->>>>>>> e382b63 (add: question and anwser model)
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanBodyParameters:
-<<<<<<< HEAD
       slug: aspernatur
-=======
-      slug: voluptate
->>>>>>> e382b63 (add: question and anwser model)
     fileParameters: []
     responses: []
     responseFields: []
@@ -674,21 +660,14 @@ endpoints:
         name: name
         description: ''
         required: true
-<<<<<<< HEAD
         example: quidem
-=======
-        example: aliquid
->>>>>>> e382b63 (add: question and anwser model)
+
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-<<<<<<< HEAD
       name: quidem
-=======
-      name: aliquid
->>>>>>> e382b63 (add: question and anwser model)
     fileParameters: []
     responses: []
     responseFields: []
@@ -718,31 +697,12 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-<<<<<<< HEAD
         example: adipisci
-=======
-        example: nemo
->>>>>>> e382b63 (add: question and anwser model)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-<<<<<<< HEAD
       id: adipisci
-=======
-      id: nemo
->>>>>>> e382b63 (add: question and anwser model)
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
->>>>>>> 8a88faf (add: question and anwser model)
+
+
