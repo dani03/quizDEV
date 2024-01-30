@@ -704,21 +704,13 @@
                     "response": []
                 },
                 {
-                    "name": "GET api\/v1\/question\/show\/{id}",
+                    "name": "Display a listing of the resource.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/question\/show\/:id",
+                            "path": "api\/v1\/domains",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/question\/show\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "odit",
-                                    "description": "The ID of the show."
-                                }
-                            ]
+                            "raw": "{{baseUrl}}\/api\/v1\/domains"
                         },
                         "method": "GET",
                         "header": [
@@ -760,136 +752,13 @@
                     ]
                 },
                 {
-                    "name": "PUT api\/v1\/question\/update\/{id}",
+                    "name": "Store a newly created resource in storage.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/question\/update\/:id",
+                            "path": "api\/v1\/domain\/store",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/question\/update\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "ab",
-                                    "description": "The ID of the update."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"title\":\"hbvfjioqebnvxdcztuo\",\"domain_id\":1,\"level_id\":19,\"points\":5}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "PUT api\/v1\/question\/delete\/{id}",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/question\/delete\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/question\/delete\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "amet",
-                                    "description": "The ID of the delete."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "GET QUIZ\nr\u00e9cup\u00e9rations de tous les quiz",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/quizzes",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/quizzes"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "vary",
-                                    "value": "Origin"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Pour cr\u00e9er un quiz",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/quiz\/store",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/quiz\/store"
+                            "raw": "{{baseUrl}}\/api\/v1\/domain\/store"
                         },
                         "method": "POST",
                         "header": [
@@ -904,9 +773,45 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"odio\",\"level_id\":20}"
+                            "raw": "{\"name\":\"quidem\"}"
                         },
-                        "description": "Utiliser les param\u00e8tres ci-dessous.\nVous pouvez ajouter \u00e0 la cr\u00e9ation d'un quiz l'ajout ou des questions \u00e0 ce quiz ou\nla cr\u00e9ation des questions\n\nle param\u00e8tre questions attend une liste (tableau \/ objet) de question comme d\u00e9fini dans l'onglet de cr\u00e9ation d'une\nquestion\n\nLe param\u00e8tre questions_ids attend un tableau d'ids de question existante.",
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/domain\/delete\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/domain\/delete\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "adipisci",
+                                    "description": "The ID of the delete."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
                         "auth": {
                             "type": "noauth"
                         }

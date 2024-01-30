@@ -117,7 +117,7 @@ endpoints:
         name: role_id
         description: ''
         required: true
-        example: '3'
+        example: '2'
         type: string
         enumValues:
           - '2'
@@ -313,7 +313,7 @@ endpoints:
         name: lastname
         description: ''
         required: true
-        example: qui
+        example: cupiditate
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -576,10 +576,14 @@ endpoints:
         description: ''
         required: false
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: 10
 =======
         example: 3
 >>>>>>> main
+=======
+        example: 18
+>>>>>>> cc29799 (Feature/profile (#18))
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -788,8 +792,11 @@ endpoints:
       name: quam
 =======
       name: quidem
+<<<<<<< HEAD
 
 >>>>>>> main
+=======
+>>>>>>> cc29799 (Feature/profile (#18))
     fileParameters: []
     responses: []
     responseFields: []
@@ -824,12 +831,16 @@ endpoints:
         description: 'The ID of the delete.'
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: voluptas
 =======
 
         example: adipisci
 
 >>>>>>> main
+=======
+        example: adipisci
+>>>>>>> cc29799 (Feature/profile (#18))
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -852,6 +863,7 @@ endpoints:
     method: null
     route: null
     custom: []
+<<<<<<< HEAD
   -
     httpMethods:
 <<<<<<< HEAD
@@ -1284,3 +1296,5 @@ endpoints:
     method: null
     route: null
     custom: []
+=======
+>>>>>>> cc29799 (Feature/profile (#18))
