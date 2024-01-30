@@ -11,7 +11,7 @@ class Answer extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $fillable = ['answer', 'slug', 'correct_answer', 'question_id', 'slug'];
+    protected $fillable = ['answer', 'correct_answer', 'question_id', 'slug'];
 
     public function sluggable(): array
     {

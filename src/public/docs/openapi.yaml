@@ -43,26 +43,26 @@ paths:
                 lastname:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: kcs
+                  example: gggwnjcoraywbzpnayqrg
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: kntmwxu
+                  example: euftmwlfnaf
                 password:
                   type: string
                   description: ''
-                  example: dolores
+                  example: accusamus
                 role_id:
                   type: string
                   description: ''
-                  example: '3'
+                  example: '2'
                   enum:
                     - '2'
                     - '3'
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: ihayes@example.org
+                  example: jnader@example.net
               required:
                 - lastname
                 - name
@@ -89,11 +89,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: fmonahan@example.com
+                  example: jovany15@example.com
                 password:
                   type: string
                   description: ''
-                  example: facere
+                  example: ut
               required:
                 - email
                 - password
@@ -139,15 +139,15 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: ioconner@example.org
+                  example: katrina.stanton@example.com
                 name:
                   type: string
                   description: ''
-                  example: eum
+                  example: debitis
                 lastname:
                   type: string
                   description: ''
-                  example: dolores
+                  example: cupiditate
               required:
                 - email
                 - name
@@ -172,11 +172,11 @@ paths:
                 current_password:
                   type: string
                   description: ''
-                  example: quia
+                  example: dolore
                 password:
                   type: string
                   description: ''
-                  example: quae
+                  example: soluta
               required:
                 - current_password
                 - password
@@ -185,6 +185,16 @@ paths:
     post:
       summary: ''
       operationId: postApiV1Logout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/delete/profil:
+    delete:
+      summary: ''
+      operationId: deleteApiV1DeleteProfil
       description: ''
       parameters: []
       responses: {  }
@@ -254,15 +264,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: aspernatur
+                  example: necessitatibus
                 points:
                   type: integer
                   description: ''
-                  example: 1
+                  example: 18
                 slug:
                   type: string
                   description: ''
-                  example: est
+                  example: ut
               required:
                 - name
       security: []
@@ -307,7 +317,7 @@ paths:
                 slug:
                   type: string
                   description: ''
-                  example: voluptate
+                  example: aspernatur
               required:
                 - slug
       security: []
@@ -352,7 +362,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: aliquid
+                  example: quidem
               required:
                 - name
       security: []
@@ -371,7 +381,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: nemo
+        example: adipisci
         required: true
         schema:
           type: string

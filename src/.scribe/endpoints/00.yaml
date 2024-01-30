@@ -67,7 +67,7 @@ endpoints:
         name: lastname
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: kcs
+        example: gggwnjcoraywbzpnayqrg
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -76,7 +76,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: kntmwxu
+        example: euftmwlfnaf
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -85,7 +85,7 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: dolores
+        example: accusamus
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -94,7 +94,7 @@ endpoints:
         name: role_id
         description: ''
         required: true
-        example: '3'
+        example: '2'
         type: string
         enumValues:
           - '2'
@@ -105,17 +105,17 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: ihayes@example.org
+        example: jnader@example.net
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      lastname: kcs
-      name: kntmwxu
-      password: dolores
-      role_id: '3'
-      email: ihayes@example.org
+      lastname: gggwnjcoraywbzpnayqrg
+      name: euftmwlfnaf
+      password: accusamus
+      role_id: '2'
+      email: jnader@example.net
     fileParameters: []
     responses: []
     responseFields: []
@@ -149,7 +149,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: fmonahan@example.com
+        example: jovany15@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -158,14 +158,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: facere
+        example: ut
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: fmonahan@example.com
-      password: facere
+      email: jovany15@example.com
+      password: ut
     fileParameters: []
     responses: []
     responseFields: []
@@ -238,7 +238,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: ioconner@example.org
+        example: katrina.stanton@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -247,7 +247,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: eum
+        example: debitis
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -256,15 +256,15 @@ endpoints:
         name: lastname
         description: ''
         required: true
-        example: dolores
+        example: cupiditate
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: ioconner@example.org
-      name: eum
-      lastname: dolores
+      email: katrina.stanton@example.com
+      name: debitis
+      lastname: cupiditate
     fileParameters: []
     responses: []
     responseFields: []
@@ -298,7 +298,7 @@ endpoints:
         name: current_password
         description: ''
         required: true
-        example: quia
+        example: dolore
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -307,14 +307,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: quae
+        example: soluta
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      current_password: quia
-      password: quae
+      current_password: dolore
+      password: soluta
     fileParameters: []
     responses: []
     responseFields: []
@@ -327,6 +327,36 @@ endpoints:
     httpMethods:
       - POST
     uri: api/v1/logout
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: api/v1/delete/profil
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -456,7 +486,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: aspernatur
+        example: necessitatibus
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -465,7 +495,7 @@ endpoints:
         name: points
         description: ''
         required: false
-        example: 1
+        example: 18
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -474,15 +504,15 @@ endpoints:
         name: slug
         description: ''
         required: false
-        example: est
+        example: ut
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: aspernatur
-      points: 1
-      slug: est
+      name: necessitatibus
+      points: 18
+      slug: ut
     fileParameters: []
     responses: []
     responseFields: []
@@ -555,13 +585,13 @@ endpoints:
         name: slug
         description: ''
         required: true
-        example: voluptate
+        example: aspernatur
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      slug: voluptate
+      slug: aspernatur
     fileParameters: []
     responses: []
     responseFields: []
@@ -634,13 +664,13 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: aliquid
+        example: quidem
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: aliquid
+      name: quidem
     fileParameters: []
     responses: []
     responseFields: []
@@ -670,13 +700,13 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: nemo
+        example: adipisci
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: nemo
+      id: adipisci
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

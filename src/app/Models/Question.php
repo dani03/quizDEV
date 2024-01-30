@@ -13,7 +13,7 @@ class Question extends Model
 {
     use HasFactory, SoftDeletes, Sluggable;
 
-    protected $fillable = ['title', 'slug', 'domain_id', 'user_id', 'points', 'role_id', 'level_id' ];
+    protected $fillable = ['title', 'slug', 'domain_id', 'user_id', 'points', 'level_id' ];
 
     public function answers(): HasMany {
         return $this->hasMany(Answer::class);

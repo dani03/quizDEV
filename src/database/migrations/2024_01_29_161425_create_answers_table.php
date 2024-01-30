@@ -15,8 +15,9 @@ return new class extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->string('answer');
+            $table->string('slug');
             $table->foreignIdFor(Question::class)->constrained()->cascadeOnDelete();
-            $table->boolean('correct_answer')->default(false);
+            $table->boolean('correct_answer')->default(false)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

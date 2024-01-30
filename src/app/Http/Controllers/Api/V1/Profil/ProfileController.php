@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Profil;
+namespace App\Http\Controllers\Api\V1\Profil;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfilUpdateRequest;
@@ -11,7 +11,6 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ProfileController extends Controller
@@ -19,7 +18,6 @@ class ProfileController extends Controller
 
     public function __construct(private ProfilService $profilService)
     {
-       // $this->profilService->getProfile(auth()->user()->id);
     }
 
     public function show(Request $request): JsonResponse
