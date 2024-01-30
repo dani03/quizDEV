@@ -258,7 +258,7 @@ endpoints:
         name: lastname
         description: ''
         required: true
-        example: qui
+        example: cupiditate
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -497,7 +497,7 @@ endpoints:
         name: points
         description: ''
         required: false
-        example: 3
+        example: 18
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -702,9 +702,7 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-
         example: adipisci
-
         type: string
         enumValues: []
         exampleWasSpecified: false
