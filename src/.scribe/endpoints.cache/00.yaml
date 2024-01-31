@@ -96,7 +96,7 @@ endpoints:
         name: role_id
         description: ''
         required: true
-        example: '2'
+        example: '3'
         type: string
         enumValues:
           - '2'
@@ -666,7 +666,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: aliquid
+        example: quidem
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -708,16 +708,4 @@ endpoints:
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: nemo
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
+      id: adipisci

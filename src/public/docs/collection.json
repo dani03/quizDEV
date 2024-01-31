@@ -702,6 +702,7 @@
                         }
                     },
                     "response": []
+<<<<<<< HEAD
                 },
                 {
                     "name": "Remove the specified resource from storage.",
@@ -769,6 +770,8 @@
                         }
                     },
                     "response": []
+=======
+>>>>>>> 56f72d8 (add : show and get all questions)
                 }
             ]
         }
