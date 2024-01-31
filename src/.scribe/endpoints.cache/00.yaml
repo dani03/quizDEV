@@ -96,7 +96,7 @@ endpoints:
         name: role_id
         description: ''
         required: true
-        example: '2'
+        example: '3'
         type: string
         enumValues:
           - '2'
@@ -661,7 +661,6 @@ endpoints:
         description: ''
         required: true
         example: quidem
-
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -704,5 +703,3 @@ endpoints:
         custom: []
     cleanUrlParameters:
       id: adipisci
-
-
