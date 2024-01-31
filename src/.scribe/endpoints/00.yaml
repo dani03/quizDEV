@@ -94,7 +94,7 @@ endpoints:
         name: role_id
         description: ''
         required: true
-        example: '2'
+        example: '3'
         type: string
         enumValues:
           - '2'
