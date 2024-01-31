@@ -54,5 +54,7 @@ Route::middleware(['auth:api'])->group(function () {
 
     // questions
 
+    Route::get('questions', [QuestionController::class, 'index']);
     Route::post('question/store', [QuestionController::class, 'store']);
+    Route::get('question/show/{id}', [QuestionController::class, 'show']);
 });

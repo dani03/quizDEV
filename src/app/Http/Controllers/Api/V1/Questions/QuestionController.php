@@ -10,6 +10,7 @@ use App\Http\Services\answers\AnswerService;
 use App\Http\Services\Questions\QuestionService;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
 class QuestionController extends Controller
@@ -24,7 +25,14 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $questions = $this->questionService->findAllQuestions();
+        if(!$questions) {
+            return response()->json(['message' => 'aucunes questions trouvées'], Response::HTTP_OK);
+        }
+        return response()->json(['data' => Cache::rememberForever('questions', static function() use ($questions) {
+            return QuestionResource::collection($questions);
+        })], Response::HTTP_OK);
+
     }
 
     /**
@@ -49,7 +57,6 @@ class QuestionController extends Controller
         //ajouter les réponses de la question qu'on vient de créer.
         $answers = $request->answers;
         $answerAdded = (new AnswerService((new AnswerRepository())))->creatingAnswer($answers, $question);
-        return $answerAdded;
         if(!$answerAdded) {
             return response()->json(['message' => 'impossible d\'ajouter des réponses à ses questions '], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -59,9 +66,14 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
-        //
+      $question =  $this->questionService->getQuestion($id);
+
+      if(!$question) {
+          return response()->json(['message' => 'cette question n\'existe pas '], Response::HTTP_NOT_FOUND);
+      }
+      return response()->json(['data' => QuestionResource::make($question)], Response::HTTP_OK);
     }
 
     /**

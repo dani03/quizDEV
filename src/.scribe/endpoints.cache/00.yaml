@@ -69,7 +69,7 @@ endpoints:
         name: lastname
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: gggwnjcoraywbzpnayqrg
+        example: xrdxiau
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -78,7 +78,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: euftmwlfnaf
+        example: bsplwirvzghjzvqpfu
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -87,7 +87,7 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: accusamus
+        example: ullam
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -96,7 +96,7 @@ endpoints:
         name: role_id
         description: ''
         required: true
-        example: '2'
+        example: '3'
         type: string
         enumValues:
           - '2'
@@ -107,17 +107,17 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: jnader@example.net
+        example: nreichert@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      lastname: gggwnjcoraywbzpnayqrg
-      name: euftmwlfnaf
-      password: accusamus
-      role_id: '2'
-      email: jnader@example.net
+      lastname: xrdxiau
+      name: bsplwirvzghjzvqpfu
+      password: ullam
+      role_id: '3'
+      email: nreichert@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -151,7 +151,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: jovany15@example.com
+        example: mills.dagmar@example.net
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -160,14 +160,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: ut
+        example: veniam
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: jovany15@example.com
-      password: ut
+      email: mills.dagmar@example.net
+      password: veniam
     fileParameters: []
     responses: []
     responseFields: []
@@ -240,7 +240,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: katrina.stanton@example.com
+        example: jennifer.predovic@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -249,7 +249,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: debitis
+        example: dolorem
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -258,15 +258,15 @@ endpoints:
         name: lastname
         description: ''
         required: true
-        example: cupiditate
+        example: qui
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: katrina.stanton@example.com
-      name: debitis
-      lastname: cupiditate
+      email: jennifer.predovic@example.com
+      name: dolorem
+      lastname: qui
     fileParameters: []
     responses: []
     responseFields: []
@@ -300,7 +300,7 @@ endpoints:
         name: current_password
         description: ''
         required: true
-        example: dolore
+        example: quod
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -309,14 +309,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: soluta
+        example: rem
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      current_password: dolore
-      password: soluta
+      current_password: quod
+      password: rem
     fileParameters: []
     responses: []
     responseFields: []
@@ -488,7 +488,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: necessitatibus
+        example: et
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -497,7 +497,7 @@ endpoints:
         name: points
         description: ''
         required: false
-        example: 18
+        example: 3
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -506,15 +506,15 @@ endpoints:
         name: slug
         description: ''
         required: false
-        example: ut
+        example: repellendus
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: necessitatibus
-      points: 18
-      slug: ut
+      name: et
+      points: 3
+      slug: repellendus
     fileParameters: []
     responses: []
     responseFields: []
@@ -587,13 +587,13 @@ endpoints:
         name: slug
         description: ''
         required: true
-        example: aspernatur
+        example: sit
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      slug: aspernatur
+      slug: sit
     fileParameters: []
     responses: []
     responseFields: []
@@ -666,13 +666,13 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: quidem
+        example: rem
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: quidem
+      name: rem
     fileParameters: []
     responses: []
     responseFields: []
@@ -702,17 +702,97 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: adipisci
+        example: ullam
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: adipisci
+      id: ullam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/question/store
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Must not be greater than 150 characters.'
+        required: true
+        example: lpltvzjffuzosnoojyafljpi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      domain_id:
+        name: domain_id
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      level_id:
+        name: level_id
+        description: ''
+        required: true
+        example: 14
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      points:
+        name: points
+        description: ''
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      answers:
+        name: answers
+        description: 'Must have at least 2 items.'
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      title: lpltvzjffuzosnoojyafljpi
+      domain_id: 16
+      level_id: 14
+      points: 15
+      answers: []
     fileParameters: []
     responses: []
     responseFields: []

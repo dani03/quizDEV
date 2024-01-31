@@ -25,4 +25,14 @@ class QuestionService
        return $this->questionRepository->create($data);
 
     }
+
+    public function getQuestion(int $questionID): Question|null {
+       return $this->questionRepository->find($questionID);
+
+    }
+
+    public function findAllQuestions() {
+       return $this->questionRepository->all();
+    }
+
 }
