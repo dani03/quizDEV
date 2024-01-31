@@ -725,7 +725,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"quidem\"}"
+                            "raw": "{\"name\":\"rem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -746,7 +746,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "adipisci",
+                                    "value": "ullam",
                                     "description": "The ID of the delete."
                                 }
                             ]
@@ -763,6 +763,37 @@
                             }
                         ],
                         "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/v1\/question\/store",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/question\/store",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/question\/store"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"lpltvzjffuzosnoojyafljpi\",\"domain_id\":16,\"level_id\":14,\"points\":15,\"answers\":[]}"
+                        },
                         "description": "",
                         "auth": {
                             "type": "noauth"
