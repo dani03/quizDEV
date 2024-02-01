@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\Questions;
 
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Answers\AnswerRepository;
+use App\Http\Repositories\Questions\QuestionRepository;
 use App\Http\Requests\QuestionStoreRequest;
 use App\Http\Requests\QuestionUpdateRequest;
 use App\Http\Resources\QuestionResource;
