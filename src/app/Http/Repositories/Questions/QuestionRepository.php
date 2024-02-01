@@ -16,6 +16,10 @@ class QuestionRepository
     }
 
     public function all(): Collection|null {
-        return Question::all();
+        return Question::with('answers')->get();
+    }
+
+    public function update(Question $question, array $data): bool {
+        return $question->update($data);
     }
 }

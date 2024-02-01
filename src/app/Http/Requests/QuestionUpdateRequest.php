@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class QuestionStoreRequest extends FormRequest
+class QuestionUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,10 @@ class QuestionStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['string', 'max:150', 'required'],
-            'domain_id' => ['int', 'required', Rule::exists('domains', 'id')],
-            'level_id' => ['int', 'required', Rule::exists('levels', 'id')],
+            'title' => ['string', 'max:150'],
+            'domain_id' => ['int', Rule::exists('domains', 'id')], //on vérifie si l'id passé est dans notre BDD
+            'level_id' => ['int', Rule::exists('levels', 'id')],
             'points' => ['int'],
-            'answers' => ['min:2', 'required', 'array'],
         ];
     }
 }

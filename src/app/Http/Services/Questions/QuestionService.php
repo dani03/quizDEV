@@ -5,6 +5,7 @@ namespace App\Http\Services\Questions;
 use App\Http\Repositories\Questions\QuestionRepository;
 use App\Http\Requests\QuestionStoreRequest;
 use App\Models\Question;
+use Illuminate\Support\Collection;
 
 class QuestionService
 {
@@ -31,8 +32,16 @@ class QuestionService
 
     }
 
-    public function findAllQuestions() {
+    public function findAllQuestions(): Collection | null {
        return $this->questionRepository->all();
+    }
+
+    public function updateQuestion(Question $question, $data) {
+
+       return $this->questionRepository->update($question, $data);
+
+
+
     }
 
 }

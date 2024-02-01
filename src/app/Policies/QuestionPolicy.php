@@ -2,13 +2,17 @@
 
 namespace App\Policies;
 
+use App\Http\Repositories\Questions\QuestionRepository;
 use App\Models\Question;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class QuestionPolicy
 {
+    use HandlesAuthorization;
     /**
      * Determine whether the user can view any models.
      */
@@ -36,10 +40,18 @@ class QuestionPolicy
 
     /**
      * Determine whether the user can update the model.
+     * verifie si le user à le droit de modifier cette resource donc cette question
      */
-    public function update(User $user, Question $question): bool
+    public function update(User $user, Question $question)
     {
-        return false;
+        $quest = (new QuestionRepository())->find($question->id);
+        if(!$quest) {
+            return false;
+        }
+       return $question->user_id === $user->id || $user->role_id === Role::ROLE_ADMINISTRATOR;
+
+
+
     }
 
     /**

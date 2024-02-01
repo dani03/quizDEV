@@ -39,5 +39,6 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('create-question', [QuestionPolicy::class, 'create']);
+        Gate::define('update-question',  [QuestionPolicy::class, 'update']);
     }
 }
