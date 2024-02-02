@@ -69,11 +69,7 @@ endpoints:
         name: lastname
         description: 'Must not be greater than 255 characters.'
         required: true
-<<<<<<< HEAD
-        example: hvsdxm
-=======
         example: gggwnjcoraywbzpnayqrg
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -82,11 +78,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-<<<<<<< HEAD
-        example: doaj
-=======
         example: euftmwlfnaf
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -95,20 +87,7 @@ endpoints:
         name: password
         description: ''
         required: true
-<<<<<<< HEAD
-        example: molestiae
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      password_confirmation:
-        name: password_confirmation
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: br
-=======
         example: accusamus
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -128,30 +107,17 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-<<<<<<< HEAD
-        example: nitzsche.kenna@example.com
-=======
         example: jnader@example.net
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-<<<<<<< HEAD
-      lastname: hvsdxm
-      name: doaj
-      password: molestiae
-      password_confirmation: br
-      role_id: '3'
-      email: nitzsche.kenna@example.com
-=======
       lastname: gggwnjcoraywbzpnayqrg
       name: euftmwlfnaf
       password: accusamus
       role_id: '2'
       email: jnader@example.net
->>>>>>> main
     fileParameters: []
     responses: []
     responseFields: []
@@ -185,11 +151,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-<<<<<<< HEAD
-        example: ankunding.ubaldo@example.net
-=======
         example: jovany15@example.com
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -198,23 +160,14 @@ endpoints:
         name: password
         description: ''
         required: true
-<<<<<<< HEAD
-        example: quisquam
-=======
         example: ut
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-<<<<<<< HEAD
-      email: ankunding.ubaldo@example.net
-      password: quisquam
-=======
       email: jovany15@example.com
       password: ut
->>>>>>> main
     fileParameters: []
     responses: []
     responseFields: []
@@ -287,11 +240,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-<<<<<<< HEAD
-        example: sporer.athena@example.org
-=======
         example: katrina.stanton@example.com
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -300,11 +249,7 @@ endpoints:
         name: name
         description: ''
         required: true
-<<<<<<< HEAD
-        example: consequuntur
-=======
         example: debitis
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -313,21 +258,15 @@ endpoints:
         name: lastname
         description: ''
         required: true
-        example: cupiditate
+        example: qui
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-<<<<<<< HEAD
-      email: sporer.athena@example.org
-      name: consequuntur
-      lastname: qui
-=======
       email: katrina.stanton@example.com
       name: debitis
       lastname: cupiditate
->>>>>>> main
     fileParameters: []
     responses: []
     responseFields: []
@@ -361,11 +300,7 @@ endpoints:
         name: current_password
         description: ''
         required: true
-<<<<<<< HEAD
-        example: consequuntur
-=======
         example: dolore
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -374,23 +309,14 @@ endpoints:
         name: password
         description: ''
         required: true
-<<<<<<< HEAD
-        example: sed
-=======
         example: soluta
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-<<<<<<< HEAD
-      current_password: consequuntur
-      password: sed
-=======
       current_password: dolore
       password: soluta
->>>>>>> main
     fileParameters: []
     responses: []
     responseFields: []
@@ -562,11 +488,7 @@ endpoints:
         name: name
         description: ''
         required: true
-<<<<<<< HEAD
-        example: tempore
-=======
         example: necessitatibus
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -575,15 +497,7 @@ endpoints:
         name: points
         description: ''
         required: false
-<<<<<<< HEAD
-<<<<<<< HEAD
-        example: 10
-=======
-        example: 3
->>>>>>> main
-=======
         example: 18
->>>>>>> cc29799 (Feature/profile (#18))
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -592,25 +506,15 @@ endpoints:
         name: slug
         description: ''
         required: false
-<<<<<<< HEAD
-        example: repellat
-=======
         example: ut
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-<<<<<<< HEAD
-      name: tempore
-      points: 10
-      slug: repellat
-=======
       name: necessitatibus
       points: 18
       slug: ut
->>>>>>> main
     fileParameters: []
     responses: []
     responseFields: []
@@ -683,21 +587,13 @@ endpoints:
         name: slug
         description: ''
         required: true
-<<<<<<< HEAD
-        example: quos
-=======
         example: aspernatur
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-<<<<<<< HEAD
-      slug: quos
-=======
       slug: aspernatur
->>>>>>> main
     fileParameters: []
     responses: []
     responseFields: []
@@ -715,11 +611,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-<<<<<<< HEAD
-      title: ''
-=======
       title: 'Display a listing of the resource.'
->>>>>>> main
       description: ''
       authenticated: false
       custom: []
@@ -758,11 +650,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-<<<<<<< HEAD
-      title: ''
-=======
       title: 'Store a newly created resource in storage.'
->>>>>>> main
       description: ''
       authenticated: false
       custom: []
@@ -778,11 +666,7 @@ endpoints:
         name: name
         description: ''
         required: true
-<<<<<<< HEAD
-        example: quam
-=======
         example: quidem
->>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -830,17 +714,7 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-<<<<<<< HEAD
-<<<<<<< HEAD
-        example: voluptas
-=======
-
         example: adipisci
-
->>>>>>> main
-=======
-        example: adipisci
->>>>>>> cc29799 (Feature/profile (#18))
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -863,438 +737,3 @@ endpoints:
     method: null
     route: null
     custom: []
-<<<<<<< HEAD
-  -
-    httpMethods:
-<<<<<<< HEAD
-      - GET
-    uri: api/v1/questions
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-=======
->>>>>>> main
-      - POST
-    uri: api/v1/question/store
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      title:
-        name: title
-        description: 'Must not be greater than 150 characters.'
-        required: true
-<<<<<<< HEAD
-        example: ghxumcbanwosv
-=======
-        example: lpltvzjffuzosnoojyafljpi
->>>>>>> main
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      domain_id:
-        name: domain_id
-        description: ''
-        required: true
-<<<<<<< HEAD
-        example: 7
-=======
-        example: 16
->>>>>>> main
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      level_id:
-        name: level_id
-        description: ''
-        required: true
-<<<<<<< HEAD
-        example: 16
-=======
-        example: 14
->>>>>>> main
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      points:
-        name: points
-        description: ''
-        required: false
-<<<<<<< HEAD
-        example: 10
-=======
-        example: 15
->>>>>>> main
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      answers:
-        name: answers
-        description: 'Must have at least 2 items.'
-        required: true
-        example: []
-        type: object
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanBodyParameters:
-<<<<<<< HEAD
-      title: ghxumcbanwosv
-      domain_id: 7
-      level_id: 16
-      points: 10
-      answers: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/question/show/{id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the show.'
-        required: true
-        example: odit
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanUrlParameters:
-      id: odit
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-    uri: 'api/v1/question/update/{id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the update.'
-        required: true
-        example: ab
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanUrlParameters:
-      id: ab
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      title:
-        name: title
-        description: 'Must not be greater than 150 characters.'
-        required: false
-        example: hbvfjioqebnvxdcztuo
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      domain_id:
-        name: domain_id
-        description: ''
-        required: false
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      level_id:
-        name: level_id
-        description: ''
-        required: false
-        example: 19
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      points:
-        name: points
-        description: ''
-        required: false
-        example: 5
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanBodyParameters:
-      title: hbvfjioqebnvxdcztuo
-      domain_id: 1
-      level_id: 19
-      points: 5
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-    uri: 'api/v1/question/delete/{id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the delete.'
-        required: true
-        example: amet
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanUrlParameters:
-      id: amet
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/quizzes
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: |-
-        GET QUIZ
-        récupérations de tous les quiz
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/quiz/store
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Pour créer un quiz'
-      description: |-
-        Utiliser les paramètres ci-dessous.
-        Vous pouvez ajouter à la création d'un quiz l'ajout ou des questions à ce quiz ou
-        la création des questions
-
-        le paramètre questions attend une liste (tableau / objet) de question comme défini dans l'onglet de création d'une
-        question
-
-        Le paramètre questions_ids attend un tableau d'ids de question existante.
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      title:
-        name: title
-        description: ''
-        required: true
-        example: odio
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      level_id:
-        name: level_id
-        description: ''
-        required: true
-        example: 20
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      questions:
-        name: questions
-        description: 'Must have at least 1 items.'
-        required: false
-        example: null
-        type: object
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      questions_ids:
-        name: questions_ids
-        description: 'Must have at least 1 items.'
-        required: false
-        example: null
-        type: object
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanBodyParameters:
-      title: odio
-      level_id: 20
-=======
-      title: lpltvzjffuzosnoojyafljpi
-      domain_id: 16
-      level_id: 14
-      points: 15
-      answers: []
->>>>>>> main
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-=======
->>>>>>> cc29799 (Feature/profile (#18))
