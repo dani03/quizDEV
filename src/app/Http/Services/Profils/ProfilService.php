@@ -10,7 +10,11 @@ class ProfilService
     {
     }
 
-    public function getProfile() {
+    public function getProfile(int $id) {
+        return $this->userRepository->find($id);
+    }
+
+    public function deleteProfile() {
 
     }
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Profil;
+namespace App\Http\Controllers\Api\V1\Profil;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfilUpdateRequest;
 use App\Http\Resources\ProfilRessource;
 use App\Http\Services\Cache\RedisCacheService;
 use App\Http\Services\Profils\ProfilService;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ProfileController extends Controller
@@ -18,7 +18,6 @@ class ProfileController extends Controller
 
     public function __construct(private ProfilService $profilService)
     {
-        $this->profilService->getProfile();
     }
 
     public function show(Request $request): JsonResponse
@@ -48,5 +47,18 @@ class ProfileController extends Controller
             $fromCache = (new RedisCacheService())->updateCache($cacheKey, $data);
         }
         return response()->json([$cacheKey => $data, "from cache" => $fromCache], ResponseAlias::HTTP_ACCEPTED);
+    }
+
+    public function destroy() {
+        $id = auth()->user()->id;
+        $userToDelete = $this->profilService->getProfile($id);
+        if(!$userToDelete) {
+            return response()->json('cet utilisateur n\'existe pas.. ', ResponseAlias::HTTP_NOT_FOUND);
+        }
+       if (User::destroy($userToDelete->id)) {
+           return response()->json('compte supprimé avec succès', ResponseAlias::HTTP_NO_CONTENT);
+       }
+
+        return response()->json('Une erreur est survenue impossible de supprimer le compte', ResponseAlias::HTTP_BAD_REQUEST);
     }
 }

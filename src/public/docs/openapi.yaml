@@ -43,15 +43,15 @@ paths:
                 lastname:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: zimc
+                  example: xrdxiau
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: nqoiegzfbcdfymjxlbgvzgdhj
+                  example: bsplwirvzghjzvqpfu
                 password:
                   type: string
                   description: ''
-                  example: voluptatum
+                  example: ullam
                 role_id:
                   type: string
                   description: ''
@@ -62,7 +62,7 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: melyssa.veum@example.org
+                  example: nreichert@example.com
               required:
                 - lastname
                 - name
@@ -89,11 +89,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: shaylee62@example.org
+                  example: mills.dagmar@example.net
                 password:
                   type: string
                   description: ''
-                  example: est
+                  example: veniam
               required:
                 - email
                 - password
@@ -139,15 +139,15 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: sanford.raymond@example.com
+                  example: jennifer.predovic@example.com
                 name:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: dolorem
                 lastname:
                   type: string
                   description: ''
-                  example: dolores
+                  example: qui
               required:
                 - email
                 - name
@@ -172,11 +172,11 @@ paths:
                 current_password:
                   type: string
                   description: ''
-                  example: similique
+                  example: quod
                 password:
                   type: string
                   description: ''
-                  example: nihil
+                  example: rem
               required:
                 - current_password
                 - password
@@ -185,6 +185,16 @@ paths:
     post:
       summary: ''
       operationId: postApiV1Logout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/delete/profil:
+    delete:
+      summary: ''
+      operationId: deleteApiV1DeleteProfil
       description: ''
       parameters: []
       responses: {  }
@@ -254,22 +264,22 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: alias
+                  example: et
                 points:
                   type: integer
                   description: ''
-                  example: 1
+                  example: 3
                 slug:
                   type: string
                   description: ''
-                  example: non
+                  example: repellendus
               required:
                 - name
       security: []
   /api/v1/levels:
     get:
-      summary: ''
-      operationId: getApiV1Levels
+      summary: 'récupération de tous les levels(niveaux) récupére une collection de données et pas une seule donnée'
+      operationId: rcuprationDeTousLesLevelsniveauxRcupreUneCollectionDeDonnesEtPasUneSeuleDonne
       description: ''
       parameters: []
       responses:
@@ -307,9 +317,116 @@ paths:
                 slug:
                   type: string
                   description: ''
-                  example: soluta
+                  example: sit
               required:
                 - slug
+      security: []
+  /api/v1/domains:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/domain/store:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: rem
+              required:
+                - name
+      security: []
+  '/api/v1/domain/delete/{id}':
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the delete.'
+        example: ullam
+        required: true
+        schema:
+          type: string
+  /api/v1/question/store:
+    post:
+      summary: ''
+      operationId: postApiV1QuestionStore
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Must not be greater than 150 characters.'
+                  example: lpltvzjffuzosnoojyafljpi
+                domain_id:
+                  type: integer
+                  description: ''
+                  example: 16
+                level_id:
+                  type: integer
+                  description: ''
+                  example: 14
+                points:
+                  type: integer
+                  description: ''
+                  example: 15
+                answers:
+                  type: object
+                  description: 'Must have at least 2 items.'
+                  example: []
+                  properties: {  }
+              required:
+                - title
+                - domain_id
+                - level_id
+                - answers
       security: []
 tags:
   -
