@@ -43,15 +43,15 @@ paths:
                 lastname:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: lje
+                  example: xrdxiau
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: oqpglyiv
+                  example: bsplwirvzghjzvqpfu
                 password:
                   type: string
                   description: ''
-                  example: sit
+                  example: ullam
                 role_id:
                   type: string
                   description: ''
@@ -62,7 +62,7 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: murl97@example.net
+                  example: nreichert@example.com
               required:
                 - lastname
                 - name
@@ -89,11 +89,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: bryana94@example.net
+                  example: mills.dagmar@example.net
                 password:
                   type: string
                   description: ''
-                  example: dignissimos
+                  example: veniam
               required:
                 - email
                 - password
@@ -139,15 +139,15 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: gene.jast@example.org
+                  example: jennifer.predovic@example.com
                 name:
                   type: string
                   description: ''
-                  example: dolores
+                  example: dolorem
                 lastname:
                   type: string
                   description: ''
-                  example: quia
+                  example: qui
               required:
                 - email
                 - name
@@ -172,11 +172,11 @@ paths:
                 current_password:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: quod
                 password:
                   type: string
                   description: ''
-                  example: quia
+                  example: rem
               required:
                 - current_password
                 - password
@@ -264,15 +264,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: repudiandae
+                  example: et
                 points:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 3
                 slug:
                   type: string
                   description: ''
-                  example: aut
+                  example: repellendus
               required:
                 - name
       security: []
@@ -317,7 +317,7 @@ paths:
                 slug:
                   type: string
                   description: ''
-                  example: reiciendis
+                  example: sit
               required:
                 - slug
       security: []
@@ -362,7 +362,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: omnis
+                  example: rem
               required:
                 - name
       security: []
@@ -381,32 +381,10 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: facere
+        example: ullam
         required: true
         schema:
           type: string
-  /api/v1/questions:
-    get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - Endpoints
-      security: []
   /api/v1/question/store:
     post:
       summary: ''
@@ -426,7 +404,7 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 150 characters.'
-                  example: fzatch
+                  example: lpltvzjffuzosnoojyafljpi
                 domain_id:
                   type: integer
                   description: ''
@@ -434,11 +412,11 @@ paths:
                 level_id:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 14
                 points:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 15
                 answers:
                   type: object
                   description: 'Must have at least 2 items.'
@@ -450,79 +428,6 @@ paths:
                 - level_id
                 - answers
       security: []
-  '/api/v1/question/show/{id}':
-    get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - Endpoints
-      security: []
-    parameters:
-      -
-        in: path
-        name: id
-        description: 'The ID of the show.'
-        example: tempora
-        required: true
-        schema:
-          type: string
-  '/api/v1/question/update/{id}':
-    put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                title:
-                  type: string
-                  description: 'Must not be greater than 150 characters.'
-                  example: tpyuosianikmkdlmpfo
-                domain_id:
-                  type: integer
-                  description: ''
-                  example: 12
-                level_id:
-                  type: integer
-                  description: ''
-                  example: 3
-                points:
-                  type: integer
-                  description: ''
-                  example: 20
-      security: []
-    parameters:
-      -
-        in: path
-        name: id
-        description: 'The ID of the update.'
-        example: facere
-        required: true
-        schema:
-          type: string
 tags:
   -
     name: Endpoints
