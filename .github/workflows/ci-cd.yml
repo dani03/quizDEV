@@ -3,7 +3,7 @@ name: CI/CD WOrkflow
 on:
   push:
     branches:
-      - quentin
+      - Quentin
 
 jobs:
   laravel-tests:
