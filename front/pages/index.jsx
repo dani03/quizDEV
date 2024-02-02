@@ -20,7 +20,7 @@ const Home = () => {
         >
           <motion.li variants={item}>
             <Typography variant="h1" color="white">
-              {user}
+              {user || ""}
             </Typography>
           </motion.li>
           <motion.li variants={item}>
