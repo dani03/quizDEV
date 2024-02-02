@@ -15,10 +15,11 @@ class AnswerService
 
 
     //cette methode permet de créer des réponses liées à une question
-    public function creatingAnswer(array $datas, Question $question) {
+    public function creatingAnswer(array $datas, Question $question):bool {
         foreach ($datas as $title => $value) {
             if(is_string($value)) {
-                $value = ($value === "false" || $value === "null") ? false : true;
+                //$value = ($value === "false" || $value === "null") ? false : true;
+                $value = !($value === "false" || $value === "null");
             }
 
             $data = ['title' => $title, 'correct_answer' => $value];

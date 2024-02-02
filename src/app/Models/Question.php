@@ -23,6 +23,10 @@ class Question extends Model
         return $this->BelongsTo(Domain::class);
     }
 
+    public function user():BelongsTo {
+        return $this->belongsTo(User::class);
+    }
+
     public function sluggable(): array
     {
 

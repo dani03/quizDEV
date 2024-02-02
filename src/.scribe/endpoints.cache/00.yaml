@@ -258,7 +258,7 @@ endpoints:
         name: lastname
         description: ''
         required: true
-        example: cupiditate
+        example: qui
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -497,7 +497,7 @@ endpoints:
         name: points
         description: ''
         required: false
-        example: 18
+        example: 3
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -702,7 +702,9 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
+
         example: adipisci
+
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -713,6 +715,86 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/question/store
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Must not be greater than 150 characters.'
+        required: true
+        example: lpltvzjffuzosnoojyafljpi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      domain_id:
+        name: domain_id
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      level_id:
+        name: level_id
+        description: ''
+        required: true
+        example: 14
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      points:
+        name: points
+        description: ''
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      answers:
+        name: answers
+        description: 'Must have at least 2 items.'
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      title: lpltvzjffuzosnoojyafljpi
+      domain_id: 16
+      level_id: 14
+      points: 15
+      answers: []
     fileParameters: []
     responses: []
     responseFields: []
