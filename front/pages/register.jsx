@@ -4,12 +4,14 @@ import { AppContext } from "../src/components/AppContext"
 import Popup from "../src/components/Popup"
 import { Card, Input, Button, Typography } from "@material-tailwind/react"
 import axios from "axios"
+import { useRouter } from "next/router"
 
 const Register = () => {
-  const { jwt, logout } = useContext(AppContext)
+  const { jwt, logout, saveJwt, saveUser } = useContext(AppContext)
   const [error, setError] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
   const handleOpen = () => setOpenPopup(!openPopup)
+  const router = useRouter()
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
@@ -24,12 +26,20 @@ const Register = () => {
         role_id: 2,
       })
       .then(function (response) {
-        if (response.data.access_token) {
-          console.log("res : ", response.data.access_token)
+        if (
+          response.data.access_token &&
+          response.data.name &&
+          response.data.id
+        ) {
+          saveJwt(response.data.access_token, response.data.id)
+          saveUser(response.data.name)
+          setTimeout(() => router.push("/"), 1000)
+        } else {
+          setError("Error JWT")
         }
       })
       .catch(function (error) {
-        setError(error.response.data.message || "Error 403")
+        setError(error?.response?.data?.message || "Error 403")
         handleOpen()
       })
   }
