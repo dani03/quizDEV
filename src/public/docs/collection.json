@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "quizDev",
-        "_postman_id": "511ba2ee-a8a6-43f1-9bb3-3a39cfb999da",
+        "_postman_id": "bde7af16-6aca-478b-b899-237e1c6f06be",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -97,7 +97,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"lastname\":\"lje\",\"name\":\"oqpglyiv\",\"password\":\"sit\",\"role_id\":\"2\",\"email\":\"murl97@example.net\"}"
+                            "raw": "{\"lastname\":\"xrdxiau\",\"name\":\"bsplwirvzghjzvqpfu\",\"password\":\"ullam\",\"role_id\":\"3\",\"email\":\"nreichert@example.com\"}"
                         },
                         "description": "permet de s'enregistrer",
                         "auth": {
@@ -128,7 +128,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"bryana94@example.net\",\"password\":\"dignissimos\"}"
+                            "raw": "{\"email\":\"mills.dagmar@example.net\",\"password\":\"veniam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -207,7 +207,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"gene.jast@example.org\",\"name\":\"dolores\",\"lastname\":\"quia\"}"
+                            "raw": "{\"email\":\"jennifer.predovic@example.com\",\"name\":\"dolorem\",\"lastname\":\"qui\"}"
                         },
                         "description": "",
                         "auth": {
@@ -238,7 +238,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"current_password\":\"aliquam\",\"password\":\"quia\"}"
+                            "raw": "{\"current_password\":\"quod\",\"password\":\"rem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -421,7 +421,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"repudiandae\",\"points\":4,\"slug\":\"aut\"}"
+                            "raw": "{\"name\":\"et\",\"points\":3,\"slug\":\"repellendus\"}"
                         },
                         "description": "",
                         "auth": {
@@ -500,7 +500,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"slug\":\"reiciendis\"}"
+                            "raw": "{\"slug\":\"sit\"}"
                         },
                         "description": "",
                         "auth": {
@@ -579,7 +579,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"omnis\"}"
+                            "raw": "{\"name\":\"rem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -600,7 +600,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "facere",
+                                    "value": "ullam",
                                     "description": "The ID of the delete."
                                 }
                             ]
@@ -625,13 +625,44 @@
                     "response": []
                 },
                 {
+                    "name": "POST api\/v1\/question\/store",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/question\/store",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/question\/store"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"lpltvzjffuzosnoojyafljpi\",\"domain_id\":16,\"level_id\":14,\"points\":15,\"answers\":[]}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
                     "name": "Display a listing of the resource.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/questions",
+                            "path": "api\/v1\/domains",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/questions"
+                            "raw": "{{baseUrl}}\/api\/v1\/domains"
                         },
                         "method": "GET",
                         "header": [
@@ -671,6 +702,73 @@
                             "name": ""
                         }
                     ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/domain\/store",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/domain\/store"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"rem\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/domain\/delete\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/domain\/delete\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "ullam",
+                                    "description": "The ID of the delete."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
                 },
                 {
                     "name": "POST api\/v1\/question\/store",
@@ -694,103 +792,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"fzatch\",\"domain_id\":16,\"level_id\":6,\"points\":12,\"answers\":[]}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-
-                },
-                {
-                    "name": "Display the specified resource.",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/question\/show\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/question\/show\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "tempora",
-                                    "description": "The ID of the show."
-                                }
-                            ]
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "vary",
-                                    "value": "Origin"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Update the specified resource in storage.",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/v1\/question\/update\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/question\/update\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "facere",
-                                    "description": "The ID of the update."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"title\":\"tpyuosianikmkdlmpfo\",\"domain_id\":12,\"level_id\":3,\"points\":20}"
+                            "raw": "{\"title\":\"lpltvzjffuzosnoojyafljpi\",\"domain_id\":16,\"level_id\":14,\"points\":15,\"answers\":[]}"
                         },
                         "description": "",
                         "auth": {
