@@ -18,8 +18,12 @@ const AppContextProvider = (props) => {
   }, [])
 
   const saveUser = useCallback((user) => {
-    localStorage.setItem("user", user)
-    setUser(user)
+    if (user) {
+      localStorage.setItem("user", user)
+      setUser(user)
+    } else {
+      return console.error("error in user data name !")
+    }
   }, [])
 
   const logout = useCallback(() => {

@@ -1,32 +1,16 @@
 import { useContext } from "react"
 import { AppContext } from "../src/components/AppContext"
 import NavBar from "../src/components/NavBar"
-import UseApi from "../src/components/UseApi"
-import { Typography } from "@material-tailwind/react"
+import { Button, Typography } from "@material-tailwind/react"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 const Home = () => {
-  const { jwt, logout, userId, saveUser, user } = useContext(AppContext)
-  if (userId) {
-    const user = UseApi({}, "get", `/users/${userId}`)
-    if (user) {
-      saveUser(
-        JSON.stringify({
-          id: user.id,
-          pseudo: user.pseudo,
-          totalPoints: user.total_points,
-        })
-      )
-    }
-  }
+  const { jwt, logout, user } = useContext(AppContext)
 
   return (
     <div className="h-screen">
-      <NavBar
-        jwt={jwt}
-        logout={logout}
-        pseudo={user ? JSON.parse(user).pseudo : null}
-      />
+      <NavBar jwt={jwt} logout={logout} pseudo={user || ""} />
       <div className="flex justify-center mt-10">
         <motion.ul
           className="grid grid-cols-1 gap-4 place-content-center w-2/3"
@@ -36,21 +20,18 @@ const Home = () => {
         >
           <motion.li variants={item}>
             <Typography variant="h1" color="white">
-              Welcome {user ? <h1>{JSON.parse(user).pseudo}</h1> : null}
+              {user}
             </Typography>
           </motion.li>
           <motion.li variants={item}>
             <Typography variant="h5" color="white">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-              voluptates itaque saepe blanditiis corrupti facilis voluptatem
-              dicta est. Nihil omnis, voluptas voluptatem minus quidem
-              distinctio fuga eveniet cum voluptate corporis.
+              If you want to test, click on the button !
             </Typography>
           </motion.li>
           <motion.li variants={item}>
-            <Typography variant="h5" color="white">
-              Welcom
-            </Typography>
+            <Link href="/classic-mode">
+              <Button color="white">Test questions</Button>
+            </Link>
           </motion.li>
         </motion.ul>
       </div>

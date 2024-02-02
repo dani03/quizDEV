@@ -51,16 +51,21 @@ const NavBar = (props) => {
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-5 ">
                 {isLoggedIn ? (
-                  <div>
-                    {pseudo && (
-                      <Link
-                        className=" text-lg md:text-2xl text-zinc-100 md:text-neutral-800 px-4 py-4 rounded-xl hover:scale-110"
-                        href="/account"
-                      >
-                        {pseudo}
-                      </Link>
+                  <div className="flex items-center">
+                    {pseudo !== "" && (
+                      <>
+                        <Link href="/account">
+                          <Typography
+                            variant="h1"
+                            color="white"
+                            className="px-4 py-4 rounded-xl hover:scale-110 uppercase"
+                          >
+                            {pseudo}
+                          </Typography>
+                        </Link>
+                        <Button onClick={logout}>❌</Button>
+                      </>
                     )}
-                    <Button onClick={logout}>❌</Button>
                   </div>
                 ) : (
                   <div className="bg-zinc-100 rounded-xl bg-transparent">

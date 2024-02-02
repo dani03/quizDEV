@@ -1,9 +1,8 @@
-import { useCallback, useContext, useState } from "react"
+import { useContext, useState } from "react"
 import NavBar from "../src/components/NavBar"
 import { AppContext } from "../src/components/AppContext"
 import UseApi from "../src/components/UseApi"
 import PopupGame from "../src/components/PopupGame"
-import { makeClient } from "../src/services/makeClient"
 import { motion } from "framer-motion"
 import { Button } from "@material-tailwind/react"
 
@@ -28,54 +27,10 @@ const Classic = () => {
     await timeout(1000)
     setIsWrong(false)
   }
-  const addpoints = useCallback(async (id, jwt, points) => {
-    try {
-      const { data } = await makeClient({
-        headers: { authentification: jwt },
-      }).post(`/user/points/${id}`, {
-        score: points,
-      })
-    } catch (err) {
-      const { response: { data } = {} } = err
-      if (data.error) {
-        return
-      }
-      setError("Oops, something went wrong.")
-    }
-  }, [])
-  const checkAnswer = async (answerIndex) => {
-    if (answerIndex === questions[currentQuestion].good_answer) {
-      setScore(score + questions[currentQuestion].points)
-
-      if (questions[currentQuestion + 1]) {
-        winPoints()
-        setCurrentQuestion(currentQuestion + 1)
-      } else {
-        winPoints()
-        addpoints(userId, jwt, score)
-        await timeout(1000)
-        setIsFinish(true)
-      }
-    } else {
-      if (questions[currentQuestion + 1]) {
-        loosePoints()
-        setCurrentQuestion(currentQuestion + 1)
-      } else {
-        loosePoints()
-        addpoints(userId, jwt, score)
-        await timeout(1000)
-        setIsFinish(true)
-      }
-    }
-  }
 
   return (
     <div className="h-screen z-1">
-      <NavBar
-        jwt={jwt}
-        logout={logout}
-        pseudo={user ? JSON.parse(user).pseudo : null}
-      />
+      <NavBar jwt={jwt} logout={logout} pseudo={user ? user : ""} />
       {(isCorrect && <PopupGame msg="CORRECT" color="bg-green-500" />) ||
         (isWrong && <PopupGame msg="WRONG" color="bg-red-500" />)}
       {isFinish ? (

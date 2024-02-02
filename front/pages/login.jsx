@@ -2,12 +2,7 @@ import NavBar from "../src/components/NavBar"
 import { useContext, useState } from "react"
 import { AppContext } from "../src/components/AppContext"
 import { makeClient } from "../src/services/makeClient"
-import {
-  Card,
-  Input,
-  Button,
-  Typography,
-} from "@material-tailwind/react"
+import { Card, Input, Button, Typography } from "@material-tailwind/react"
 import Popup from "../src/components/Popup"
 
 const Login = () => {
@@ -46,7 +41,7 @@ const Login = () => {
 
   return (
     <div>
-      <NavBar jwt={jwt} logout={logout} />
+      <NavBar jwt={jwt} logout={logout} pseudo={user || ""} />
       <div className="flex justify-center mt-20">
         <Card className="bg-white px-8 py-4" shadow={false}>
           <Typography variant="h4" color="blue-gray">
