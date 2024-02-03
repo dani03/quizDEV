@@ -26,7 +26,7 @@ class DomainController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Créer un nouveau domain.
      */
     public function store(DomainStoreRequest $request): JsonResponse
     {
