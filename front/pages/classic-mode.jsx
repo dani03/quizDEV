@@ -4,11 +4,12 @@ import { AppContext } from "../src/components/AppContext"
 import UseApi from "../src/components/UseApi"
 import PopupGame from "../src/components/PopupGame"
 import { motion } from "framer-motion"
-import { Button } from "@material-tailwind/react"
+import { Button, Card } from "@material-tailwind/react"
+import ParticlesComponent from "../src/components/ParticlesComponent"
 
 const Classic = () => {
   const questions = UseApi([{}], "get", "/classic")
-  const { jwt, logout, user, userId } = useContext(AppContext)
+  const { jwt, logout, user, isError } = useContext(AppContext)
   const [isFinish, setIsFinish] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [score, setScore] = useState(0)
@@ -30,6 +31,7 @@ const Classic = () => {
 
   return (
     <div className="h-screen z-1">
+      <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} pseudo={user ? user : ""} />
       {(isCorrect && <PopupGame msg="CORRECT" color="bg-green-500" />) ||
         (isWrong && <PopupGame msg="WRONG" color="bg-red-500" />)}
@@ -37,7 +39,7 @@ const Classic = () => {
         <h1>Fini votre score : {score}</h1>
       ) : (
         <>
-          <div className="flex justify-between mt-10 ml-5">
+          <Card className="flex justify-between mt-10 ml-5 bg-transparent">
             <div>
               {/* COUNTER QUESTION + SCORE */}
               <motion.div
@@ -68,9 +70,9 @@ const Classic = () => {
                 </span>
               </div>
             </motion.div>
-          </div>
+          </Card>
           {/* QUESTIONS */}
-          <div className="grid justify-items-center max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
+          <Card className="grid bg-transparent justify-items-center max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
             <motion.div
               key={currentQuestion}
               initial="hidden"
@@ -145,7 +147,7 @@ const Classic = () => {
                 </Button>
               </motion.li>
             </motion.ul>
-          </div>
+          </Card>
         </>
       )}
     </div>
