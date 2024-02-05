@@ -1,41 +1,46 @@
-import { useContext } from "react"
 import { AppContext } from "../src/components/AppContext"
 import NavBar from "../src/components/NavBar"
-import { Button, Typography } from "@material-tailwind/react"
+import { Card, Typography } from "@material-tailwind/react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { Button } from "@material-tailwind/react"
+import { useContext } from "react"
+import ParticlesComponent from "../src/components/ParticlesComponent"
 
 const Home = () => {
-  const { jwt, logout, user } = useContext(AppContext)
+  const { jwt, logout, user, isError } = useContext(AppContext)
 
   return (
-    <div className="h-screen">
-      <NavBar jwt={jwt} logout={logout} pseudo={user || ""} />
-      <div className="flex justify-center mt-10">
-        <motion.ul
-          className="grid grid-cols-1 gap-4 place-content-center w-2/3"
-          initial="hidden"
-          animate="visible"
-          variants={list}
-        >
-          <motion.li variants={item}>
-            <Typography variant="h1" color="white">
-              {user || ""}
-            </Typography>
-          </motion.li>
-          <motion.li variants={item}>
-            <Typography variant="h5" color="white">
-              If you want to test, click on the button !
-            </Typography>
-          </motion.li>
-          <motion.li variants={item}>
-            <Link href="/classic-mode">
-              <Button color="white">Test questions</Button>
-            </Link>
-          </motion.li>
-        </motion.ul>
+    <>
+      <ParticlesComponent isError={isError} />
+      <div className="h-screen">
+        <NavBar jwt={jwt} logout={logout} pseudo={user || ""} />
+        <Card className="bg-transparent mt-10 px-16">
+          <motion.ul
+            className="grid grid-cols-1 gap-4 place-content-center w-2/3"
+            initial="hidden"
+            animate="visible"
+            variants={list}
+          >
+            <motion.li variants={item}>
+              <Typography variant="h1" color="white">
+                {user ? user : ""}
+              </Typography>
+            </motion.li>
+            <motion.li variants={item}>
+              <Typography variant="h5" color="white">
+                If you want to test, click on the button !
+              </Typography>
+            </motion.li>
+            <motion.li variants={item}>
+              <Link href="/classic-mode">
+                <Button color="white">Test questions</Button>
+              </Link>
+            </motion.li>
+          </motion.ul>
+        </Card>
       </div>
-    </div>
+    </>
   )
 }
 

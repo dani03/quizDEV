@@ -5,15 +5,16 @@ import Popup from "../src/components/Popup"
 import { Card, Input, Button, Typography } from "@material-tailwind/react"
 import axios from "axios"
 import { useRouter } from "next/router"
+import ParticlesComponent from "../src/components/ParticlesComponent"
 
 const Register = () => {
-  const { jwt, logout, saveJwt, saveUser } = useContext(AppContext)
+  const { jwt, logout, saveJwt, saveUser, isError } = useContext(AppContext)
   const [error, setError] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
   const handleOpen = () => setOpenPopup(!openPopup)
   const router = useRouter()
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault()
 
     axios
@@ -46,6 +47,7 @@ const Register = () => {
 
   return (
     <div>
+      <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} />
       <div className="flex justify-center mt-20">
         <Card className="bg-white px-4 py-2 md:px-12 md:py-4" shadow={false}>
@@ -129,7 +131,7 @@ const Register = () => {
             </Button>
             <Typography color="gray" className="mt-4 text-center font-normal">
               You already have a account ?{" "}
-              <a href="#" className="font-medium text-blue-400">
+              <a href="/login" className="font-medium text-blue-400">
                 Sign in here
               </a>
             </Typography>

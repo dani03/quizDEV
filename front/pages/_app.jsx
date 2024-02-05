@@ -1,4 +1,4 @@
-import AppContextProvider from "../src/components/AppContext"
+import AppContextProvider, { AppContext } from "../src/components/AppContext"
 import "../styles/globals.css"
 import { Roboto } from "next/font/google"
 
