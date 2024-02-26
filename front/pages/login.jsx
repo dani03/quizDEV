@@ -50,7 +50,7 @@ const Login = () => {
     <div>
       <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} pseudo={user ? user : ""} />
-      <div className="flex justify-center mt-20">
+      <div className="flex justify-center mt-12">
         <Card className="bg-white px-4 py-2 md:px-12 md:py-4" shadow={false}>
           <Typography variant="h4" color="blue-gray" className="text-center">
             Login
