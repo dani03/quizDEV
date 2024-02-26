@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - Quentin
+      - main
 
 jobs:
   php_tests:
