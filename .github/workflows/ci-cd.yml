@@ -1,4 +1,4 @@
-name: CI/CD WOrkflow
+name: CI/CD Workflow
 
 on:
   push:
@@ -6,28 +6,63 @@ on:
       - Quentin
 
 jobs:
-  laravel-tests:
+  php_tests:
     runs-on: ubuntu-latest
-    steps:
-      - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
-        with:
-          php-version: '8.1.2' 
-      - uses: actions/checkout@v3 
-      - name: Copy .env
-        run: php -r "file_exists('src/.env') || copy('src/.env.example', 'src/.env');"
-      - name: Update Dependencies
-        run: composer update --working-dir=src
-      - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --working-dir=src
-      - name: Directory Permissions
-        run: chmod -R 777 src/storage src/bootstrap/cache
-      - name: Create Database
-        run: |
-          mkdir -p src/database
-          touch src/database/database.sqlite
-      - name: Execute tests (Unit and Feature tests) via PHPUnit
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: src/database/database.sqlite
-        run: src/vendor/bin/phpunit
 
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, pdo_sqlite
+
+    - name: Copy .env
+      run: php -r "file_exists('src/.env') || copy('src/.env.example', 'src/.env');"
+
+    - name: Update Dependencies
+      run: composer update --working-dir=src
+
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --working-dir=src
+
+    - name: Directory Permissions
+      run: chmod -R 777 src/storage src/bootstrap/cache
+
+    - name: Create Database
+      run: |
+        mkdir -p src/database
+        touch src/database/database.sqlite
+
+    - name: Execute PHPUnit Tests
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: src/database/database.sqlite
+      run: src/vendor/bin/phpunit
+
+  sonarcloud_analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Analyze with SonarCloud
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  snyk_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Scan with Snyk
+      run: npx snyk test --all-projects
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
