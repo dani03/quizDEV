@@ -33,6 +33,8 @@ class LoginController extends Controller
             "access_token" => $user->createToken($device)->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => $expireDate,
+            'name' => $user->name,
+            'id' => $user->id,
 
         ], Response::HTTP_CREATED);
     }

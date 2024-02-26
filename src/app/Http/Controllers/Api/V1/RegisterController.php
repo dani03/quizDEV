@@ -31,7 +31,9 @@ class RegisterController extends Controller
 
         return Response()->json([
             'access_token' => $userCreate->createToken($device)->accessToken,
-            'user' => ProfilRessource::make($userCreate)
+            'name' => $userCreate->name,
+            'id' => $userCreate->id,
+            ProfilRessource::make($userCreate)
         ], Response::HTTP_CREATED);
     }
 }
