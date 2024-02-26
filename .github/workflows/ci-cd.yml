@@ -20,7 +20,11 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.repository_owner }}" --password-stdin
   
       - name: Build Docker image
-        run: docker-compose -f docker-compose.yml build
+        run: |
+          docker-compose -f docker-compose.yml build
+          docker-compose -f docker-compose.yml images  # Print the list of images to check the correct name
+
+
   
       - name: Tag Docker image
         run: docker tag your_image_name ghcr.io/${{ github.repository_owner }}/your_image_name:latest
