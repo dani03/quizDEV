@@ -1,26 +1,26 @@
 import { Card, Typography } from "@material-tailwind/react"
 
+const TABLE_HEAD = [
+  "Question",
+  "Answer 1",
+  "Answer 2",
+  "Answer 3",
+  "Answer 4",
+  "Good answer",
+]
+
+const TABLE_ROWS = [
+  {
+    question: "Quelle est la capital de la France ? ",
+    answer1: "Paris",
+    answer2: "Madrid",
+    answer3: "London",
+    answer4: "Oran",
+    goodAnswer: 1,
+  },
+]
+
 const QuestionTable = () => {
-  const TABLE_HEAD = [
-    "Question",
-    "Answer 1",
-    "Answer 2",
-    "Answer 3",
-    "Answer 4",
-    "Good answer",
-  ]
-
-  const TABLE_ROWS = [
-    {
-      question: "Quelle est la capital de la France ? ",
-      answer1: "Paris",
-      answer2: "Madrid",
-      answer3: "London",
-      answer4: "Oran",
-      goodAnswer: 1,
-    },
-  ]
-
   return (
     <Card className=" overflow-scroll">
       <table className="w-full min-w-max table-auto text-left">

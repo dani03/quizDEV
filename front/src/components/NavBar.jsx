@@ -171,12 +171,12 @@ const NavBar = (props) => {
               )}
             </div>
           ) : (
-            <div className="rounded-xl bg-transparent">
+            <div className="rounded-xl bg-transparent mx-2">
               <Link href="/login">
-                <Button className="hover:scale-105">LOGIN</Button>
+                <Button className="hover:scale-105 mx-2">LOGIN</Button>
               </Link>
               <Link href="/register">
-                <Button className="hover:scale-105">REGISTER</Button>
+                <Button className="hover:scale-105 mx-2">REGISTER</Button>
               </Link>
             </div>
           )}

@@ -8,10 +8,14 @@ import { useRouter } from "next/router"
 import ParticlesComponent from "../src/components/ParticlesComponent"
 
 const Register = () => {
-  const { jwt, logout, saveJwt, saveUser, isError } = useContext(AppContext)
+  const { jwt, logout, saveJwt, saveUser, isError, changeIsError } =
+    useContext(AppContext)
   const [error, setError] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
-  const handleOpen = () => setOpenPopup(!openPopup)
+  const handleOpen = () => {
+    changeIsError()
+    setOpenPopup(!openPopup)
+  }
   const router = useRouter()
 
   const handleFormSubmit = (event) => {
@@ -50,7 +54,7 @@ const Register = () => {
       <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} />
       <div className="flex justify-center mt-20">
-        <Card className="bg-white px-4 py-2 md:px-12 md:py-4" shadow={false}>
+        <Card className="bg-white px-4 py-4 md:px-12 md:py-4" shadow={false}>
           <Typography variant="h4" color="blue-gray" className="text-center">
             REGISTER
           </Typography>
