@@ -4,15 +4,19 @@ import { AppContext } from "../src/components/AppContext"
 import { Card, Input, Button, Typography } from "@material-tailwind/react"
 import Popup from "../src/components/Popup"
 import axios from "axios"
-import { Router } from "next/router"
+import { useRouter } from "next/router"
 import ParticlesComponent from "../src/components/ParticlesComponent"
 
 const Login = () => {
+  const router = useRouter()
   const [error, setError] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
   const { jwt, logout, saveJwt, user, saveUser, isError, changeIsError } =
     useContext(AppContext)
-  const handleOpen = () => setOpenPopup(!openPopup)
+  const handleOpen = () => {
+    changeIsError()
+    setOpenPopup(!openPopup)
+  }
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -31,14 +35,12 @@ const Login = () => {
           console.log(response.data)
           saveJwt(response.data.access_token, response.data.id)
           saveUser(response.data.name)
-          setTimeout(() => Router.push("/"), 1000)
+          setTimeout(() => router.push("/"), 1000)
         } else {
-          changeIsError()
           setError("Error JWT")
         }
       })
       .catch(function (error) {
-        changeIsError()
         setError(error?.response?.data?.message || "Error 403")
         handleOpen()
       })
@@ -49,11 +51,11 @@ const Login = () => {
       <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} pseudo={user ? user : ""} />
       <div className="flex justify-center mt-20">
-        <Card className="bg-white px-8 py-4" shadow={false}>
-          <Typography variant="h4" color="blue-gray">
+        <Card className="bg-white px-4 py-2 md:px-12 md:py-4" shadow={false}>
+          <Typography variant="h4" color="blue-gray" className="text-center">
             Login
           </Typography>
-          <Typography color="gray" className="mt-1 font-normal">
+          <Typography color="gray" className="mt-1 font-normal text-center">
             Nice to meet you! Enter your details to login.
           </Typography>
           <form
@@ -96,9 +98,9 @@ const Login = () => {
                 Sign up here
               </a>
             </Typography>
+            <Popup msg={error} open={openPopup} handleOpen={handleOpen} />
           </form>
         </Card>
-        <Popup msg={error} open={openPopup} handleOpen={handleOpen} />
       </div>
     </div>
   )

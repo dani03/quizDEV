@@ -68,7 +68,7 @@ const particlesErrorOptions = {
       speed: 10,
       straight: false,
     },
-    number: { density: { enable: true, area: 2000 }, value: 40 },
+    number: { density: { enable: true, area: 2000 }, value: 100 },
     opacity: {
       value: 1,
     },
