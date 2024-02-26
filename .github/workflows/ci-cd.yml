@@ -24,8 +24,6 @@ jobs:
           docker-compose -f docker-compose.yml build
           docker-compose -f docker-compose.yml images  # Print the list of images to check the correct name
 
-
-  
       - name: Tag Docker image
         run: docker tag your_image_name ghcr.io/${{ github.repository_owner }}/your_image_name:latest
   
