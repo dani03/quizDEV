@@ -53,7 +53,7 @@ const Register = () => {
     <div>
       <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} />
-      <div className="flex justify-center mt-20">
+      <div className="flex justify-center mt-12">
         <Card className="bg-white px-4 py-4 md:px-12 md:py-4" shadow={false}>
           <Typography variant="h4" color="blue-gray" className="text-center">
             REGISTER
