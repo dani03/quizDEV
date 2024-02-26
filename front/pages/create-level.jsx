@@ -1,8 +1,7 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AppContext } from "../src/components/AppContext"
 import NavBar from "../src/components/NavBar"
 import ParticlesComponent from "../src/components/ParticlesComponent"
-import CreateTheme from "../src/components/tabs/CreateTheme"
 import {
   Card,
   Tab,
@@ -11,20 +10,46 @@ import {
   TabsBody,
   TabsHeader,
 } from "@material-tailwind/react"
-import ThemeTable from "../src/components/tabs/ThemeTable"
+import CreateLevel from "../src/components/tabs/CreateLevel"
+import LevelTable from "../src/components/tabs/LevelTable"
+import axios from "axios"
 
 const Login = () => {
   const { jwt, logout, user, isError } = useContext(AppContext)
+  const [levels, setLevels] = useState([])
+
+  useEffect(() => {
+    const fetchLevels = async () => {
+      if (!jwt) return
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/v1/levels",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        setLevels(response.data)
+      } catch (error) {
+        console.error("Error fetching levels:", error)
+        setLevels([])
+      }
+    }
+
+    fetchLevels()
+  }, [jwt])
+
   const data = [
     {
       index: 1,
-      label: "Create Theme",
-      value: <CreateTheme />,
+      label: "Create Level",
+      value: <CreateLevel jwt={jwt} />,
     },
     {
       index: 1,
-      label: "View all Themes",
-      value: <ThemeTable />,
+      label: "View all Levels",
+      value: <LevelTable levels={levels} />,
     },
   ]
 
