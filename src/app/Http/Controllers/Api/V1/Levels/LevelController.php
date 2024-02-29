@@ -30,8 +30,8 @@ class LevelController extends Controller
      */
     public function index() {
         // $levels =$this->levelService->getAllLevels();
-       return response()->json(['data' => Cache::remember('levels',60*60*24, function() {
-          return LevelResource::collection($this->levelService->getAllLevels());
+        return response()->json(['data' => Cache::remember('levels',60*60*24, function() {
+            return LevelResource::collection($this->levelService->getAllLevels());
         })  ], Response::HTTP_OK);
 
     }
