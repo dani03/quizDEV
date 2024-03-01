@@ -12,7 +12,10 @@ class QuizService
     }
 
     public function createQuiz(QuizStoreRequest $request) {
-        $data = ['title' => $request->title, 'level_id' => $request->level_id];
+        $data = [
+            'title' => $request->title,
+            'level_id' => $request->level_id
+        ];
         return $this->quizRepository->create($data);
 
     }
