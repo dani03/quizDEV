@@ -18,6 +18,8 @@ class QuizController extends Controller
     }
 
     public function store(QuizStoreRequest $request) {
-        return $request->all();
+
+        //store the quiz
+        return $this->quizService->createQuiz($request);
     }
 }
