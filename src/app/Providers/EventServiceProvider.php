@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Level;
+use App\Models\Question;
 use App\Observers\LevelObserver;
+use App\Observers\QuestionObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -29,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
     {
         // on enregistre l'observer afin de modifier le cache
         Level::observe(LevelObserver::class);
+        Question::observe(QuestionObserver::class);
     }
 
     /**

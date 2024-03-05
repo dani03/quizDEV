@@ -15,8 +15,14 @@ class QuizController extends Controller
 
     }
 
+
+    /**
+     * GET QUIZ
+     * récupérations de tous les quiz
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index() {
-       // return $this->quizService->getQuizzes();
+
         return response()->json(['data' => QuizResource::collection($this->quizService->getQuizzes())]);
 
     }
