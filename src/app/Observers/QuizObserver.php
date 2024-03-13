@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Quiz;
+use Illuminate\Support\Facades\Cache;
 
 class QuizObserver
 {
@@ -11,7 +12,7 @@ class QuizObserver
      */
     public function created(Quiz $quiz): void
     {
-        //
+        Cache::forget('quizzes');
     }
 
     /**
@@ -19,7 +20,7 @@ class QuizObserver
      */
     public function updated(Quiz $quiz): void
     {
-        //
+        Cache::forget('quizzes');
     }
 
     /**
@@ -27,7 +28,7 @@ class QuizObserver
      */
     public function deleted(Quiz $quiz): void
     {
-        //
+        Cache::forget('quizzes');
     }
 
     /**
