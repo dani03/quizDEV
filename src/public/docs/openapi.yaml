@@ -26,9 +26,9 @@ paths:
       security: []
   /api/v1/auth/register:
     post:
-      summary: ''
-      operationId: postApiV1AuthRegister
-      description: ''
+      summary: 'POST api/v1/auth/register'
+      operationId: pOSTApiv1authregister
+      description: "permet de s'enregistrer"
       parameters: []
       responses: {  }
       tags:
@@ -43,26 +43,26 @@ paths:
                 lastname:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: lje
+                  example: ywgmeatjdaaaepbr
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: oqpglyiv
+                  example: exeuamforrpmrzxwwuzeddfcs
                 password:
                   type: string
                   description: ''
-                  example: sit
+                  example: libero
                 role_id:
                   type: string
                   description: ''
-                  example: '3'
+                  example: '2'
                   enum:
                     - '2'
                     - '3'
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: murl97@example.net
+                  example: pearline.krajcik@example.org
               required:
                 - lastname
                 - name
@@ -89,11 +89,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: bryana94@example.net
+                  example: ona75@example.com
                 password:
                   type: string
                   description: ''
-                  example: dignissimos
+                  example: sit
               required:
                 - email
                 - password
@@ -139,15 +139,15 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: gene.jast@example.org
+                  example: eldred.schneider@example.org
                 name:
                   type: string
                   description: ''
-                  example: dolores
+                  example: dolore
                 lastname:
                   type: string
                   description: ''
-                  example: quia
+                  example: non
               required:
                 - email
                 - name
@@ -172,11 +172,11 @@ paths:
                 current_password:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: necessitatibus
                 password:
                   type: string
                   description: ''
-                  example: quia
+                  example: perferendis
               required:
                 - current_password
                 - password
@@ -247,8 +247,8 @@ paths:
       security: []
   /api/v1/level/store:
     post:
-      summary: 'Store the newly created resource in storage.'
-      operationId: storeTheNewlyCreatedResourceInStorage
+      summary: ''
+      operationId: postApiV1LevelStore
       description: ''
       parameters: []
       responses: {  }
@@ -264,22 +264,22 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: repudiandae
+                  example: laudantium
                 points:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 16
                 slug:
                   type: string
                   description: ''
-                  example: aut
+                  example: alias
               required:
                 - name
       security: []
   /api/v1/levels:
     get:
-      summary: 'récupération de tous les levels(niveaux) récupére une collection de données et pas une seule donnée'
-      operationId: rcuprationDeTousLesLevelsniveauxRcupreUneCollectionDeDonnesEtPasUneSeuleDonne
+      summary: ''
+      operationId: getApiV1Levels
       description: ''
       parameters: []
       responses:
@@ -300,8 +300,8 @@ paths:
       security: []
   /api/v1/level/destroy:
     delete:
-      summary: 'Remove the resource from storage.'
-      operationId: removeTheResourceFromStorage
+      summary: ''
+      operationId: deleteApiV1LevelDestroy
       description: ''
       parameters: []
       responses: {  }
@@ -317,14 +317,14 @@ paths:
                 slug:
                   type: string
                   description: ''
-                  example: reiciendis
+                  example: sunt
               required:
                 - slug
       security: []
   /api/v1/domains:
     get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
+      summary: ''
+      operationId: getApiV1Domains
       description: ''
       parameters: []
       responses:
@@ -345,8 +345,8 @@ paths:
       security: []
   /api/v1/domain/store:
     post:
-      summary: 'Store a newly created resource in storage.'
-      operationId: storeANewlyCreatedResourceInStorage
+      summary: ''
+      operationId: postApiV1DomainStore
       description: ''
       parameters: []
       responses: {  }
@@ -362,14 +362,14 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: omnis
+                  example: aut
               required:
                 - name
       security: []
   '/api/v1/domain/delete/{id}':
     delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
+      summary: ''
+      operationId: deleteApiV1DomainDeleteId
       description: ''
       parameters: []
       responses: {  }
@@ -381,14 +381,14 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: facere
+        example: ipsa
         required: true
         schema:
           type: string
   /api/v1/questions:
     get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
+      summary: ''
+      operationId: getApiV1Questions
       description: ''
       parameters: []
       responses:
@@ -426,19 +426,19 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 150 characters.'
-                  example: fzatch
+                  example: eneoxrcjw
                 domain_id:
                   type: integer
                   description: ''
-                  example: 16
+                  example: 14
                 level_id:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 2
                 points:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 4
                 answers:
                   type: object
                   description: 'Must have at least 2 items.'
@@ -452,8 +452,8 @@ paths:
       security: []
   '/api/v1/question/show/{id}':
     get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
+      summary: ''
+      operationId: getApiV1QuestionShowId
       description: ''
       parameters: []
       responses:
@@ -477,14 +477,14 @@ paths:
         in: path
         name: id
         description: 'The ID of the show.'
-        example: tempora
+        example: dolores
         required: true
         schema:
           type: string
   '/api/v1/question/update/{id}':
     put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
+      summary: ''
+      operationId: putApiV1QuestionUpdateId
       description: ''
       parameters: []
       responses: {  }
@@ -500,11 +500,11 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 150 characters.'
-                  example: tpyuosianikmkdlmpfo
+                  example: cnavojwxwa
                 domain_id:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 17
                 level_id:
                   type: integer
                   description: ''
@@ -512,17 +512,96 @@ paths:
                 points:
                   type: integer
                   description: ''
-                  example: 20
+                  example: 19
       security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the update.'
-        example: facere
+        example: laborum
         required: true
         schema:
           type: string
+  '/api/v1/question/delete/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1QuestionDeleteId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the delete.'
+        example: qui
+        required: true
+        schema:
+          type: string
+  /api/v1/quizzes:
+    get:
+      summary: "GET QUIZ\nrécupérations de tous les quiz"
+      operationId: gETQUIZrcuprationsDeTousLesQuiz
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/quiz/store:
+    post:
+      summary: ''
+      operationId: postApiV1QuizStore
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: beatae
+                level_id:
+                  type: integer
+                  description: ''
+                  example: 7
+                questions:
+                  type: object
+                  description: 'Must have at least 1 items.'
+                  example: null
+                  properties: {  }
+                questions_ids:
+                  type: object
+                  description: 'Must have at least 1 items.'
+                  example: null
+                  properties: {  }
+              required:
+                - title
+                - level_id
+      security: []
 tags:
   -
     name: Endpoints

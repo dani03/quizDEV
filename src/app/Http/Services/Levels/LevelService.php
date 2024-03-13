@@ -41,7 +41,8 @@ class LevelService
 
     public function getLevelName(int $levelId): string {
         $level = $this->levelRepository->findById($levelId);
-        if($level) {
+
+        if($level !== null) {
             return $level->name;
         }
         return 'Level name not exist';

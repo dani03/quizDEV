@@ -23,7 +23,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -66,7 +66,8 @@ class QuestionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(int $id)
     {
@@ -79,7 +80,9 @@ class QuestionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @param QuestionUpdateRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(QuestionUpdateRequest $request, $id)
     {
@@ -105,7 +108,8 @@ class QuestionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param string $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(string $id)
     {

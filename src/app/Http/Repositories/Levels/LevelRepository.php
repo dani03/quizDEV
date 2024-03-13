@@ -33,6 +33,6 @@ class LevelRepository
      * cette function récupère seulement le nom d'un level
       */
     public function findById(int $levelId) {
-        return Level::where('id', $levelId)->first();
+        return Level::where('id',$levelId)->first();
     }
 }

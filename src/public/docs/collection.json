@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "quizDev",
-        "_postman_id": "511ba2ee-a8a6-43f1-9bb3-3a39cfb999da",
+        "_postman_id": "8a94cd69-497a-4723-a26d-4bfb1992f3cb",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -97,9 +97,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"lastname\":\"lje\",\"name\":\"oqpglyiv\",\"password\":\"sit\",\"role_id\":\"2\",\"email\":\"murl97@example.net\"}"
+                            "raw": "{\"lastname\":\"ywgmeatjdaaaepbr\",\"name\":\"exeuamforrpmrzxwwuzeddfcs\",\"password\":\"libero\",\"role_id\":\"2\",\"email\":\"pearline.krajcik@example.org\"}"
                         },
-                        "description": "",
+                        "description": "permet de s'enregistrer",
                         "auth": {
                             "type": "noauth"
                         }
@@ -128,7 +128,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"bryana94@example.net\",\"password\":\"dignissimos\"}"
+                            "raw": "{\"email\":\"ona75@example.com\",\"password\":\"sit\"}"
                         },
                         "description": "",
                         "auth": {
@@ -207,7 +207,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"gene.jast@example.org\",\"name\":\"dolores\",\"lastname\":\"quia\"}"
+                            "raw": "{\"email\":\"eldred.schneider@example.org\",\"name\":\"dolore\",\"lastname\":\"non\"}"
                         },
                         "description": "",
                         "auth": {
@@ -238,7 +238,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"current_password\":\"aliquam\",\"password\":\"quia\"}"
+                            "raw": "{\"current_password\":\"necessitatibus\",\"password\":\"perferendis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -400,7 +400,7 @@
                     ]
                 },
                 {
-                    "name": "Store the newly created resource in storage.",
+                    "name": "POST api\/v1\/level\/store",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -421,7 +421,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"repudiandae\",\"points\":4,\"slug\":\"aut\"}"
+                            "raw": "{\"name\":\"laudantium\",\"points\":16,\"slug\":\"alias\"}"
                         },
                         "description": "",
                         "auth": {
@@ -431,7 +431,7 @@
                     "response": []
                 },
                 {
-                    "name": "r\u00e9cup\u00e9ration de tous les levels(niveaux) r\u00e9cup\u00e9re une collection de donn\u00e9es et pas une seule donn\u00e9e",
+                    "name": "GET api\/v1\/levels",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -479,7 +479,7 @@
                     ]
                 },
                 {
-                    "name": "Remove the resource from storage.",
+                    "name": "DELETE api\/v1\/level\/destroy",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -500,7 +500,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"slug\":\"reiciendis\"}"
+                            "raw": "{\"slug\":\"sunt\"}"
                         },
                         "description": "",
                         "auth": {
@@ -510,7 +510,7 @@
                     "response": []
                 },
                 {
-                    "name": "Display a listing of the resource.",
+                    "name": "GET api\/v1\/domains",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -558,7 +558,7 @@
                     ]
                 },
                 {
-                    "name": "Store a newly created resource in storage.",
+                    "name": "POST api\/v1\/domain\/store",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -579,7 +579,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"omnis\"}"
+                            "raw": "{\"name\":\"aut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -589,7 +589,7 @@
                     "response": []
                 },
                 {
-                    "name": "Remove the specified resource from storage.",
+                    "name": "DELETE api\/v1\/domain\/delete\/{id}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -600,7 +600,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "facere",
+                                    "value": "ipsa",
                                     "description": "The ID of the delete."
                                 }
                             ]
@@ -625,7 +625,7 @@
                     "response": []
                 },
                 {
-                    "name": "Display a listing of the resource.",
+                    "name": "GET api\/v1\/questions",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -694,7 +694,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"fzatch\",\"domain_id\":16,\"level_id\":6,\"points\":12,\"answers\":[]}"
+                            "raw": "{\"title\":\"eneoxrcjw\",\"domain_id\":14,\"level_id\":2,\"points\":4,\"answers\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -702,10 +702,9 @@
                         }
                     },
                     "response": []
-
                 },
                 {
-                    "name": "Display the specified resource.",
+                    "name": "GET api\/v1\/question\/show\/{id}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -716,7 +715,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "tempora",
+                                    "value": "dolores",
                                     "description": "The ID of the show."
                                 }
                             ]
@@ -761,7 +760,7 @@
                     ]
                 },
                 {
-                    "name": "Update the specified resource in storage.",
+                    "name": "PUT api\/v1\/question\/update\/{id}",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -772,7 +771,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "facere",
+                                    "value": "laborum",
                                     "description": "The ID of the update."
                                 }
                             ]
@@ -790,7 +789,122 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"tpyuosianikmkdlmpfo\",\"domain_id\":12,\"level_id\":3,\"points\":20}"
+                            "raw": "{\"title\":\"cnavojwxwa\",\"domain_id\":17,\"level_id\":3,\"points\":19}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT api\/v1\/question\/delete\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/question\/delete\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/question\/delete\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "qui",
+                                    "description": "The ID of the delete."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET QUIZ\nr\u00e9cup\u00e9rations de tous les quiz",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/quizzes",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/quizzes"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/quiz\/store",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/quiz\/store",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/quiz\/store"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"beatae\",\"level_id\":7}"
                         },
                         "description": "",
                         "auth": {

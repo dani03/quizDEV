@@ -53,8 +53,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'POST api/v1/auth/register'
+      description: "permet de s'enregistrer"
       authenticated: false
       custom: []
     headers:
@@ -69,7 +69,7 @@ endpoints:
         name: lastname
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: lje
+        example: ywgmeatjdaaaepbr
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -78,7 +78,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: oqpglyiv
+        example: exeuamforrpmrzxwwuzeddfcs
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -87,7 +87,7 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: sit
+        example: libero
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -96,7 +96,7 @@ endpoints:
         name: role_id
         description: ''
         required: true
-        example: '3'
+        example: '2'
         type: string
         enumValues:
           - '2'
@@ -107,17 +107,17 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: murl97@example.net
+        example: pearline.krajcik@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      lastname: lje
-      name: oqpglyiv
-      password: sit
+      lastname: ywgmeatjdaaaepbr
+      name: exeuamforrpmrzxwwuzeddfcs
+      password: libero
       role_id: '2'
-      email: murl97@example.net
+      email: pearline.krajcik@example.org
     fileParameters: []
     responses: []
     responseFields: []
@@ -151,7 +151,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: bryana94@example.net
+        example: ona75@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -160,14 +160,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: dignissimos
+        example: sit
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: bryana94@example.net
-      password: dignissimos
+      email: ona75@example.com
+      password: sit
     fileParameters: []
     responses: []
     responseFields: []
@@ -240,7 +240,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: gene.jast@example.org
+        example: eldred.schneider@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -249,7 +249,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: dolores
+        example: dolore
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -258,15 +258,15 @@ endpoints:
         name: lastname
         description: ''
         required: true
-        example: quia
+        example: non
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: gene.jast@example.org
-      name: dolores
-      lastname: quia
+      email: eldred.schneider@example.org
+      name: dolore
+      lastname: non
     fileParameters: []
     responses: []
     responseFields: []
@@ -300,7 +300,7 @@ endpoints:
         name: current_password
         description: ''
         required: true
-        example: aliquam
+        example: necessitatibus
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -309,14 +309,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: quia
+        example: perferendis
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      current_password: aliquam
-      password: quia
+      current_password: necessitatibus
+      password: perferendis
     fileParameters: []
     responses: []
     responseFields: []
@@ -472,7 +472,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store the newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -488,7 +488,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: repudiandae
+        example: laudantium
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -497,7 +497,7 @@ endpoints:
         name: points
         description: ''
         required: false
-        example: 4
+        example: 16
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -506,15 +506,15 @@ endpoints:
         name: slug
         description: ''
         required: false
-        example: aut
+        example: alias
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: repudiandae
-      points: 4
-      slug: aut
+      name: laudantium
+      points: 16
+      slug: alias
     fileParameters: []
     responses: []
     responseFields: []
@@ -532,7 +532,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'récupération de tous les levels(niveaux) récupére une collection de données et pas une seule donnée'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -571,7 +571,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove the resource from storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -587,13 +587,13 @@ endpoints:
         name: slug
         description: ''
         required: true
-        example: reiciendis
+        example: sunt
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      slug: reiciendis
+      slug: sunt
     fileParameters: []
     responses: []
     responseFields: []
@@ -611,7 +611,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -650,7 +650,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -666,13 +666,13 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: omnis
+        example: aut
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: omnis
+      name: aut
     fileParameters: []
     responses: []
     responseFields: []
@@ -690,7 +690,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -702,13 +702,13 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: facere
+        example: ipsa
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: facere
+      id: ipsa
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -730,7 +730,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -785,7 +785,7 @@ endpoints:
         name: title
         description: 'Must not be greater than 150 characters.'
         required: true
-        example: fzatch
+        example: eneoxrcjw
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -794,7 +794,7 @@ endpoints:
         name: domain_id
         description: ''
         required: true
-        example: 16
+        example: 14
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -803,7 +803,7 @@ endpoints:
         name: level_id
         description: ''
         required: true
-        example: 6
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -812,7 +812,7 @@ endpoints:
         name: points
         description: ''
         required: false
-        example: 12
+        example: 4
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -827,10 +827,10 @@ endpoints:
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      title: fzatch
-      domain_id: 16
-      level_id: 6
-      points: 12
+      title: eneoxrcjw
+      domain_id: 14
+      level_id: 2
+      points: 4
       answers: []
     fileParameters: []
     responses: []
@@ -849,7 +849,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified resource.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -861,13 +861,13 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: tempora
+        example: dolores
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: tempora
+      id: dolores
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -898,7 +898,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -910,13 +910,13 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: facere
+        example: laborum
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: facere
+      id: laborum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -924,7 +924,7 @@ endpoints:
         name: title
         description: 'Must not be greater than 150 characters.'
         required: false
-        example: tpyuosianikmkdlmpfo
+        example: cnavojwxwa
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -933,7 +933,7 @@ endpoints:
         name: domain_id
         description: ''
         required: false
-        example: 12
+        example: 17
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -951,16 +951,165 @@ endpoints:
         name: points
         description: ''
         required: false
-        example: 20
+        example: 19
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      title: tpyuosianikmkdlmpfo
-      domain_id: 12
+      title: cnavojwxwa
+      domain_id: 17
       level_id: 3
-      points: 20
+      points: 19
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/question/delete/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the delete.'
+        required: true
+        example: qui
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: qui
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/quizzes
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: |-
+        GET QUIZ
+        récupérations de tous les quiz
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/quiz/store
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: ''
+        required: true
+        example: beatae
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      level_id:
+        name: level_id
+        description: ''
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      questions:
+        name: questions
+        description: 'Must have at least 1 items.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      questions_ids:
+        name: questions_ids
+        description: 'Must have at least 1 items.'
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      title: beatae
+      level_id: 7
     fileParameters: []
     responses: []
     responseFields: []
