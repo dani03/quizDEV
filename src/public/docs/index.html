@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://quizdev.test";
+        var tryItOutBaseUrl = "http://localhost:3002";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -139,7 +139,7 @@
 récupérations de tous les quiz</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-quiz-store">
-                                <a href="#endpoints-POSTapi-v1-quiz-store">POST api/v1/quiz/store</a>
+                                <a href="#endpoints-POSTapi-v1-quiz-store">Pour créer un quiz</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -152,7 +152,7 @@ récupérations de tous les quiz</a>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 13, 2024</li>
+        <li>Last updated: March 14, 2024</li>
     </ul>
 </div>
 
@@ -161,7 +161,7 @@ récupérations de tous les quiz</a>
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://quizdev.test</code>
+    <strong>Base URL</strong>: <code>http://localhost:3002</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
@@ -187,14 +187,14 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/test" \
+    --get "http://localhost:3002/api/v1/test" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/test"
+    "http://localhost:3002/api/v1/test"
 );
 
 const headers = {
@@ -311,22 +311,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://quizdev.test/api/v1/auth/register" \
+    "http://localhost:3002/api/v1/auth/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"lastname\": \"ywgmeatjdaaaepbr\",
-    \"name\": \"exeuamforrpmrzxwwuzeddfcs\",
-    \"password\": \"libero\",
-    \"role_id\": \"2\",
-    \"email\": \"pearline.krajcik@example.org\"
+    \"lastname\": \"hvsdxm\",
+    \"name\": \"doaj\",
+    \"password\": \"molestiae\",
+    \"password_confirmation\": \"br\",
+    \"role_id\": \"3\",
+    \"email\": \"nitzsche.kenna@example.com\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/auth/register"
+    "http://localhost:3002/api/v1/auth/register"
 );
 
 const headers = {
@@ -335,11 +336,12 @@ const headers = {
 };
 
 let body = {
-    "lastname": "ywgmeatjdaaaepbr",
-    "name": "exeuamforrpmrzxwwuzeddfcs",
-    "password": "libero",
-    "role_id": "2",
-    "email": "pearline.krajcik@example.org"
+    "lastname": "hvsdxm",
+    "name": "doaj",
+    "password": "molestiae",
+    "password_confirmation": "br",
+    "role_id": "3",
+    "email": "nitzsche.kenna@example.com"
 };
 
 fetch(url, {
@@ -428,10 +430,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="lastname"                data-endpoint="POSTapi-v1-auth-register"
-               value="ywgmeatjdaaaepbr"
+               value="hvsdxm"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>ywgmeatjdaaaepbr</code></p>
+<p>Must not be greater than 255 characters. Example: <code>hvsdxm</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -439,10 +441,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-auth-register"
-               value="exeuamforrpmrzxwwuzeddfcs"
+               value="doaj"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>exeuamforrpmrzxwwuzeddfcs</code></p>
+<p>Must not be greater than 255 characters. Example: <code>doaj</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -450,10 +452,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-auth-register"
-               value="libero"
+               value="molestiae"
                data-component="body">
     <br>
-<p>Example: <code>libero</code></p>
+<p>Example: <code>molestiae</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password_confirmation"                data-endpoint="POSTapi-v1-auth-register"
+               value="br"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>br</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role_id</code></b>&nbsp;&nbsp;
@@ -461,10 +474,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="role_id"                data-endpoint="POSTapi-v1-auth-register"
-               value="2"
+               value="3"
                data-component="body">
     <br>
-<p>Example: <code>2</code></p>
+<p>Example: <code>3</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>2</code></li> <li><code>3</code></li></ul>
         </div>
@@ -474,10 +487,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-auth-register"
-               value="pearline.krajcik@example.org"
+               value="nitzsche.kenna@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>pearline.krajcik@example.org</code></p>
+<p>Must be a valid email address. Example: <code>nitzsche.kenna@example.com</code></p>
         </div>
         </form>
 
@@ -494,19 +507,19 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://quizdev.test/api/v1/auth/login" \
+    "http://localhost:3002/api/v1/auth/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"ona75@example.com\",
-    \"password\": \"sit\"
+    \"email\": \"ankunding.ubaldo@example.net\",
+    \"password\": \"quisquam\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/auth/login"
+    "http://localhost:3002/api/v1/auth/login"
 );
 
 const headers = {
@@ -515,8 +528,8 @@ const headers = {
 };
 
 let body = {
-    "email": "ona75@example.com",
-    "password": "sit"
+    "email": "ankunding.ubaldo@example.net",
+    "password": "quisquam"
 };
 
 fetch(url, {
@@ -605,10 +618,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-auth-login"
-               value="ona75@example.com"
+               value="ankunding.ubaldo@example.net"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>ona75@example.com</code></p>
+<p>Must be a valid email address. Example: <code>ankunding.ubaldo@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -616,10 +629,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-auth-login"
-               value="sit"
+               value="quisquam"
                data-component="body">
     <br>
-<p>Example: <code>sit</code></p>
+<p>Example: <code>quisquam</code></p>
         </div>
         </form>
 
@@ -636,14 +649,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/profil" \
+    --get "http://localhost:3002/api/v1/profil" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/profil"
+    "http://localhost:3002/api/v1/profil"
 );
 
 const headers = {
@@ -760,20 +773,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://quizdev.test/api/v1/update/profil" \
+    "http://localhost:3002/api/v1/update/profil" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"eldred.schneider@example.org\",
-    \"name\": \"dolore\",
-    \"lastname\": \"non\"
+    \"email\": \"sporer.athena@example.org\",
+    \"name\": \"consequuntur\",
+    \"lastname\": \"qui\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/update/profil"
+    "http://localhost:3002/api/v1/update/profil"
 );
 
 const headers = {
@@ -782,9 +795,9 @@ const headers = {
 };
 
 let body = {
-    "email": "eldred.schneider@example.org",
-    "name": "dolore",
-    "lastname": "non"
+    "email": "sporer.athena@example.org",
+    "name": "consequuntur",
+    "lastname": "qui"
 };
 
 fetch(url, {
@@ -873,10 +886,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-v1-update-profil"
-               value="eldred.schneider@example.org"
+               value="sporer.athena@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>eldred.schneider@example.org</code></p>
+<p>Must be a valid email address. Example: <code>sporer.athena@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -884,10 +897,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-update-profil"
-               value="dolore"
+               value="consequuntur"
                data-component="body">
     <br>
-<p>Example: <code>dolore</code></p>
+<p>Example: <code>consequuntur</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>lastname</code></b>&nbsp;&nbsp;
@@ -895,10 +908,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="lastname"                data-endpoint="PUTapi-v1-update-profil"
-               value="non"
+               value="qui"
                data-component="body">
     <br>
-<p>Example: <code>non</code></p>
+<p>Example: <code>qui</code></p>
         </div>
         </form>
 
@@ -915,19 +928,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://quizdev.test/api/v1/update/password" \
+    "http://localhost:3002/api/v1/update/password" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"current_password\": \"necessitatibus\",
-    \"password\": \"perferendis\"
+    \"current_password\": \"consequuntur\",
+    \"password\": \"sed\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/update/password"
+    "http://localhost:3002/api/v1/update/password"
 );
 
 const headers = {
@@ -936,8 +949,8 @@ const headers = {
 };
 
 let body = {
-    "current_password": "necessitatibus",
-    "password": "perferendis"
+    "current_password": "consequuntur",
+    "password": "sed"
 };
 
 fetch(url, {
@@ -1026,10 +1039,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="current_password"                data-endpoint="PUTapi-v1-update-password"
-               value="necessitatibus"
+               value="consequuntur"
                data-component="body">
     <br>
-<p>Example: <code>necessitatibus</code></p>
+<p>Example: <code>consequuntur</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1037,10 +1050,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-v1-update-password"
-               value="perferendis"
+               value="sed"
                data-component="body">
     <br>
-<p>Example: <code>perferendis</code></p>
+<p>Example: <code>sed</code></p>
         </div>
         </form>
 
@@ -1057,14 +1070,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://quizdev.test/api/v1/logout" \
+    "http://localhost:3002/api/v1/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/logout"
+    "http://localhost:3002/api/v1/logout"
 );
 
 const headers = {
@@ -1165,14 +1178,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://quizdev.test/api/v1/delete/profil" \
+    "http://localhost:3002/api/v1/delete/profil" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/delete/profil"
+    "http://localhost:3002/api/v1/delete/profil"
 );
 
 const headers = {
@@ -1273,14 +1286,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/user/quiz" \
+    --get "http://localhost:3002/api/v1/user/quiz" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/user/quiz"
+    "http://localhost:3002/api/v1/user/quiz"
 );
 
 const headers = {
@@ -1397,14 +1410,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/entreprise/quiz" \
+    --get "http://localhost:3002/api/v1/entreprise/quiz" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/entreprise/quiz"
+    "http://localhost:3002/api/v1/entreprise/quiz"
 );
 
 const headers = {
@@ -1521,20 +1534,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://quizdev.test/api/v1/level/store" \
+    "http://localhost:3002/api/v1/level/store" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"laudantium\",
-    \"points\": 16,
-    \"slug\": \"alias\"
+    \"name\": \"tempore\",
+    \"points\": 10,
+    \"slug\": \"repellat\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/level/store"
+    "http://localhost:3002/api/v1/level/store"
 );
 
 const headers = {
@@ -1543,9 +1556,9 @@ const headers = {
 };
 
 let body = {
-    "name": "laudantium",
-    "points": 16,
-    "slug": "alias"
+    "name": "tempore",
+    "points": 10,
+    "slug": "repellat"
 };
 
 fetch(url, {
@@ -1634,10 +1647,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-level-store"
-               value="laudantium"
+               value="tempore"
                data-component="body">
     <br>
-<p>Example: <code>laudantium</code></p>
+<p>Example: <code>tempore</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>points</code></b>&nbsp;&nbsp;
@@ -1645,10 +1658,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="points"                data-endpoint="POSTapi-v1-level-store"
-               value="16"
+               value="10"
                data-component="body">
     <br>
-<p>Example: <code>16</code></p>
+<p>Example: <code>10</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>slug</code></b>&nbsp;&nbsp;
@@ -1656,10 +1669,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="slug"                data-endpoint="POSTapi-v1-level-store"
-               value="alias"
+               value="repellat"
                data-component="body">
     <br>
-<p>Example: <code>alias</code></p>
+<p>Example: <code>repellat</code></p>
         </div>
         </form>
 
@@ -1676,14 +1689,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/levels" \
+    --get "http://localhost:3002/api/v1/levels" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/levels"
+    "http://localhost:3002/api/v1/levels"
 );
 
 const headers = {
@@ -1800,18 +1813,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://quizdev.test/api/v1/level/destroy" \
+    "http://localhost:3002/api/v1/level/destroy" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"slug\": \"sunt\"
+    \"slug\": \"quos\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/level/destroy"
+    "http://localhost:3002/api/v1/level/destroy"
 );
 
 const headers = {
@@ -1820,7 +1833,7 @@ const headers = {
 };
 
 let body = {
-    "slug": "sunt"
+    "slug": "quos"
 };
 
 fetch(url, {
@@ -1909,10 +1922,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="slug"                data-endpoint="DELETEapi-v1-level-destroy"
-               value="sunt"
+               value="quos"
                data-component="body">
     <br>
-<p>Example: <code>sunt</code></p>
+<p>Example: <code>quos</code></p>
         </div>
         </form>
 
@@ -1929,14 +1942,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/domains" \
+    --get "http://localhost:3002/api/v1/domains" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/domains"
+    "http://localhost:3002/api/v1/domains"
 );
 
 const headers = {
@@ -2053,18 +2066,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://quizdev.test/api/v1/domain/store" \
+    "http://localhost:3002/api/v1/domain/store" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"aut\"
+    \"name\": \"quam\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/domain/store"
+    "http://localhost:3002/api/v1/domain/store"
 );
 
 const headers = {
@@ -2073,7 +2086,7 @@ const headers = {
 };
 
 let body = {
-    "name": "aut"
+    "name": "quam"
 };
 
 fetch(url, {
@@ -2162,10 +2175,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-domain-store"
-               value="aut"
+               value="quam"
                data-component="body">
     <br>
-<p>Example: <code>aut</code></p>
+<p>Example: <code>quam</code></p>
         </div>
         </form>
 
@@ -2182,14 +2195,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://quizdev.test/api/v1/domain/delete/ipsa" \
+    "http://localhost:3002/api/v1/domain/delete/voluptas" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/domain/delete/ipsa"
+    "http://localhost:3002/api/v1/domain/delete/voluptas"
 );
 
 const headers = {
@@ -2282,10 +2295,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="DELETEapi-v1-domain-delete--id-"
-               value="ipsa"
+               value="voluptas"
                data-component="url">
     <br>
-<p>The ID of the delete. Example: <code>ipsa</code></p>
+<p>The ID of the delete. Example: <code>voluptas</code></p>
             </div>
                     </form>
 
@@ -2302,14 +2315,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/questions" \
+    --get "http://localhost:3002/api/v1/questions" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/questions"
+    "http://localhost:3002/api/v1/questions"
 );
 
 const headers = {
@@ -2426,14 +2439,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://quizdev.test/api/v1/question/store" \
+    "http://localhost:3002/api/v1/question/store" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"title\": \"eneoxrcjw\",
-    \"domain_id\": 14,
-    \"level_id\": 2,
-    \"points\": 4,
+    \"title\": \"ghxumcbanwosv\",
+    \"domain_id\": 7,
+    \"level_id\": 16,
+    \"points\": 10,
     \"answers\": []
 }"
 </code></pre></div>
@@ -2441,7 +2454,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/question/store"
+    "http://localhost:3002/api/v1/question/store"
 );
 
 const headers = {
@@ -2450,10 +2463,10 @@ const headers = {
 };
 
 let body = {
-    "title": "eneoxrcjw",
-    "domain_id": 14,
-    "level_id": 2,
-    "points": 4,
+    "title": "ghxumcbanwosv",
+    "domain_id": 7,
+    "level_id": 16,
+    "points": 10,
     "answers": []
 };
 
@@ -2543,10 +2556,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="title"                data-endpoint="POSTapi-v1-question-store"
-               value="eneoxrcjw"
+               value="ghxumcbanwosv"
                data-component="body">
     <br>
-<p>Must not be greater than 150 characters. Example: <code>eneoxrcjw</code></p>
+<p>Must not be greater than 150 characters. Example: <code>ghxumcbanwosv</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>domain_id</code></b>&nbsp;&nbsp;
@@ -2554,10 +2567,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="domain_id"                data-endpoint="POSTapi-v1-question-store"
-               value="14"
+               value="7"
                data-component="body">
     <br>
-<p>Example: <code>14</code></p>
+<p>Example: <code>7</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>level_id</code></b>&nbsp;&nbsp;
@@ -2565,10 +2578,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="level_id"                data-endpoint="POSTapi-v1-question-store"
-               value="2"
+               value="16"
                data-component="body">
     <br>
-<p>Example: <code>2</code></p>
+<p>Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>points</code></b>&nbsp;&nbsp;
@@ -2576,10 +2589,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="points"                data-endpoint="POSTapi-v1-question-store"
-               value="4"
+               value="10"
                data-component="body">
     <br>
-<p>Example: <code>4</code></p>
+<p>Example: <code>10</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>answers</code></b>&nbsp;&nbsp;
@@ -2607,14 +2620,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/question/show/dolores" \
+    --get "http://localhost:3002/api/v1/question/show/odit" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/question/show/dolores"
+    "http://localhost:3002/api/v1/question/show/odit"
 );
 
 const headers = {
@@ -2723,10 +2736,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-v1-question-show--id-"
-               value="dolores"
+               value="odit"
                data-component="url">
     <br>
-<p>The ID of the show. Example: <code>dolores</code></p>
+<p>The ID of the show. Example: <code>odit</code></p>
             </div>
                     </form>
 
@@ -2743,21 +2756,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://quizdev.test/api/v1/question/update/laborum" \
+    "http://localhost:3002/api/v1/question/update/ab" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"title\": \"cnavojwxwa\",
-    \"domain_id\": 17,
-    \"level_id\": 3,
-    \"points\": 19
+    \"title\": \"hbvfjioqebnvxdcztuo\",
+    \"domain_id\": 1,
+    \"level_id\": 19,
+    \"points\": 5
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/question/update/laborum"
+    "http://localhost:3002/api/v1/question/update/ab"
 );
 
 const headers = {
@@ -2766,10 +2779,10 @@ const headers = {
 };
 
 let body = {
-    "title": "cnavojwxwa",
-    "domain_id": 17,
-    "level_id": 3,
-    "points": 19
+    "title": "hbvfjioqebnvxdcztuo",
+    "domain_id": 1,
+    "level_id": 19,
+    "points": 5
 };
 
 fetch(url, {
@@ -2858,10 +2871,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-v1-question-update--id-"
-               value="laborum"
+               value="ab"
                data-component="url">
     <br>
-<p>The ID of the update. Example: <code>laborum</code></p>
+<p>The ID of the update. Example: <code>ab</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -2870,10 +2883,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="title"                data-endpoint="PUTapi-v1-question-update--id-"
-               value="cnavojwxwa"
+               value="hbvfjioqebnvxdcztuo"
                data-component="body">
     <br>
-<p>Must not be greater than 150 characters. Example: <code>cnavojwxwa</code></p>
+<p>Must not be greater than 150 characters. Example: <code>hbvfjioqebnvxdcztuo</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>domain_id</code></b>&nbsp;&nbsp;
@@ -2881,10 +2894,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="domain_id"                data-endpoint="PUTapi-v1-question-update--id-"
-               value="17"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>17</code></p>
+<p>Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>level_id</code></b>&nbsp;&nbsp;
@@ -2892,10 +2905,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="level_id"                data-endpoint="PUTapi-v1-question-update--id-"
-               value="3"
+               value="19"
                data-component="body">
     <br>
-<p>Example: <code>3</code></p>
+<p>Example: <code>19</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>points</code></b>&nbsp;&nbsp;
@@ -2903,10 +2916,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="points"                data-endpoint="PUTapi-v1-question-update--id-"
-               value="19"
+               value="5"
                data-component="body">
     <br>
-<p>Example: <code>19</code></p>
+<p>Example: <code>5</code></p>
         </div>
         </form>
 
@@ -2923,14 +2936,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://quizdev.test/api/v1/question/delete/qui" \
+    "http://localhost:3002/api/v1/question/delete/amet" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/question/delete/qui"
+    "http://localhost:3002/api/v1/question/delete/amet"
 );
 
 const headers = {
@@ -3023,10 +3036,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="PUTapi-v1-question-delete--id-"
-               value="qui"
+               value="amet"
                data-component="url">
     <br>
-<p>The ID of the delete. Example: <code>qui</code></p>
+<p>The ID of the delete. Example: <code>amet</code></p>
             </div>
                     </form>
 
@@ -3044,14 +3057,14 @@ récupérations de tous les quiz</h2>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/quizzes" \
+    --get "http://localhost:3002/api/v1/quizzes" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/quizzes"
+    "http://localhost:3002/api/v1/quizzes"
 );
 
 const headers = {
@@ -3155,12 +3168,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-POSTapi-v1-quiz-store">POST api/v1/quiz/store</h2>
+                    <h2 id="endpoints-POSTapi-v1-quiz-store">Pour créer un quiz</h2>
 
 <p>
 </p>
 
-
+<p>Utiliser les paramètres ci-dessous.
+Vous pouvez ajouter à la création d'un quiz l'ajout ou des questions à ce quiz ou
+la création des questions</p>
+<p>le paramètre questions attend une liste (tableau / objet) de question comme défini dans l'onglet de création d'une
+question</p>
+<p>Le paramètre questions_ids attend un tableau d'ids de question existante.</p>
 
 <span id="example-requests-POSTapi-v1-quiz-store">
 <blockquote>Example request:</blockquote>
@@ -3168,19 +3186,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://quizdev.test/api/v1/quiz/store" \
+    "http://localhost:3002/api/v1/quiz/store" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"title\": \"beatae\",
-    \"level_id\": 7
+    \"title\": \"odio\",
+    \"level_id\": 20
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/quiz/store"
+    "http://localhost:3002/api/v1/quiz/store"
 );
 
 const headers = {
@@ -3189,8 +3207,8 @@ const headers = {
 };
 
 let body = {
-    "title": "beatae",
-    "level_id": 7
+    "title": "odio",
+    "level_id": 20
 };
 
 fetch(url, {
@@ -3279,10 +3297,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="title"                data-endpoint="POSTapi-v1-quiz-store"
-               value="beatae"
+               value="odio"
                data-component="body">
     <br>
-<p>Example: <code>beatae</code></p>
+<p>Example: <code>odio</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>level_id</code></b>&nbsp;&nbsp;
@@ -3290,10 +3308,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="level_id"                data-endpoint="POSTapi-v1-quiz-store"
-               value="7"
+               value="20"
                data-component="body">
     <br>
-<p>Example: <code>7</code></p>
+<p>Example: <code>20</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>questions</code></b>&nbsp;&nbsp;

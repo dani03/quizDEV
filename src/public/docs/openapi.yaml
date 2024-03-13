@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://quizdev.test'
+    url: 'http://localhost:3002'
 paths:
   /api/v1/test:
     get:
@@ -43,30 +43,35 @@ paths:
                 lastname:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ywgmeatjdaaaepbr
+                  example: hvsdxm
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: exeuamforrpmrzxwwuzeddfcs
+                  example: doaj
                 password:
                   type: string
                   description: ''
-                  example: libero
+                  example: molestiae
+                password_confirmation:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: br
                 role_id:
                   type: string
                   description: ''
-                  example: '2'
+                  example: '3'
                   enum:
                     - '2'
                     - '3'
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: pearline.krajcik@example.org
+                  example: nitzsche.kenna@example.com
               required:
                 - lastname
                 - name
                 - password
+                - password_confirmation
                 - role_id
                 - email
       security: []
@@ -89,11 +94,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: ona75@example.com
+                  example: ankunding.ubaldo@example.net
                 password:
                   type: string
                   description: ''
-                  example: sit
+                  example: quisquam
               required:
                 - email
                 - password
@@ -139,15 +144,15 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: eldred.schneider@example.org
+                  example: sporer.athena@example.org
                 name:
                   type: string
                   description: ''
-                  example: dolore
+                  example: consequuntur
                 lastname:
                   type: string
                   description: ''
-                  example: non
+                  example: qui
               required:
                 - email
                 - name
@@ -172,11 +177,11 @@ paths:
                 current_password:
                   type: string
                   description: ''
-                  example: necessitatibus
+                  example: consequuntur
                 password:
                   type: string
                   description: ''
-                  example: perferendis
+                  example: sed
               required:
                 - current_password
                 - password
@@ -264,15 +269,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: laudantium
+                  example: tempore
                 points:
                   type: integer
                   description: ''
-                  example: 16
+                  example: 10
                 slug:
                   type: string
                   description: ''
-                  example: alias
+                  example: repellat
               required:
                 - name
       security: []
@@ -317,7 +322,7 @@ paths:
                 slug:
                   type: string
                   description: ''
-                  example: sunt
+                  example: quos
               required:
                 - slug
       security: []
@@ -362,7 +367,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: aut
+                  example: quam
               required:
                 - name
       security: []
@@ -381,7 +386,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: ipsa
+        example: voluptas
         required: true
         schema:
           type: string
@@ -426,19 +431,19 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 150 characters.'
-                  example: eneoxrcjw
+                  example: ghxumcbanwosv
                 domain_id:
                   type: integer
                   description: ''
-                  example: 14
+                  example: 7
                 level_id:
                   type: integer
                   description: ''
-                  example: 2
+                  example: 16
                 points:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 10
                 answers:
                   type: object
                   description: 'Must have at least 2 items.'
@@ -477,7 +482,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the show.'
-        example: dolores
+        example: odit
         required: true
         schema:
           type: string
@@ -500,26 +505,26 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 150 characters.'
-                  example: cnavojwxwa
+                  example: hbvfjioqebnvxdcztuo
                 domain_id:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 1
                 level_id:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 19
                 points:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 5
       security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the update.'
-        example: laborum
+        example: ab
         required: true
         schema:
           type: string
@@ -538,7 +543,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: qui
+        example: amet
         required: true
         schema:
           type: string
@@ -566,9 +571,9 @@ paths:
       security: []
   /api/v1/quiz/store:
     post:
-      summary: ''
-      operationId: postApiV1QuizStore
-      description: ''
+      summary: 'Pour créer un quiz'
+      operationId: pourCrerUnQuiz
+      description: "Utiliser les paramètres ci-dessous.\nVous pouvez ajouter à la création d'un quiz l'ajout ou des questions à ce quiz ou\nla création des questions\n\nle paramètre questions attend une liste (tableau / objet) de question comme défini dans l'onglet de création d'une\nquestion\n\nLe paramètre questions_ids attend un tableau d'ids de question existante."
       parameters: []
       responses: {  }
       tags:
@@ -583,11 +588,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: beatae
+                  example: odio
                 level_id:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 20
                 questions:
                   type: object
                   description: 'Must have at least 1 items.'

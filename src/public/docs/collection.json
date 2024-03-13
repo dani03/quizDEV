@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/quizdev.test"
+            "value": "http:\/\/localhost:3002"
         }
     ],
     "info": {
         "name": "quizDev",
-        "_postman_id": "8a94cd69-497a-4723-a26d-4bfb1992f3cb",
+        "_postman_id": "64335dae-6a84-422e-ba8e-0581c2aa18ea",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -97,7 +97,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"lastname\":\"ywgmeatjdaaaepbr\",\"name\":\"exeuamforrpmrzxwwuzeddfcs\",\"password\":\"libero\",\"role_id\":\"2\",\"email\":\"pearline.krajcik@example.org\"}"
+                            "raw": "{\"lastname\":\"hvsdxm\",\"name\":\"doaj\",\"password\":\"molestiae\",\"password_confirmation\":\"br\",\"role_id\":\"3\",\"email\":\"nitzsche.kenna@example.com\"}"
                         },
                         "description": "permet de s'enregistrer",
                         "auth": {
@@ -128,7 +128,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"ona75@example.com\",\"password\":\"sit\"}"
+                            "raw": "{\"email\":\"ankunding.ubaldo@example.net\",\"password\":\"quisquam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -207,7 +207,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"eldred.schneider@example.org\",\"name\":\"dolore\",\"lastname\":\"non\"}"
+                            "raw": "{\"email\":\"sporer.athena@example.org\",\"name\":\"consequuntur\",\"lastname\":\"qui\"}"
                         },
                         "description": "",
                         "auth": {
@@ -238,7 +238,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"current_password\":\"necessitatibus\",\"password\":\"perferendis\"}"
+                            "raw": "{\"current_password\":\"consequuntur\",\"password\":\"sed\"}"
                         },
                         "description": "",
                         "auth": {
@@ -421,7 +421,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"laudantium\",\"points\":16,\"slug\":\"alias\"}"
+                            "raw": "{\"name\":\"tempore\",\"points\":10,\"slug\":\"repellat\"}"
                         },
                         "description": "",
                         "auth": {
@@ -500,7 +500,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"slug\":\"sunt\"}"
+                            "raw": "{\"slug\":\"quos\"}"
                         },
                         "description": "",
                         "auth": {
@@ -579,7 +579,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"aut\"}"
+                            "raw": "{\"name\":\"quam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -600,7 +600,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ipsa",
+                                    "value": "voluptas",
                                     "description": "The ID of the delete."
                                 }
                             ]
@@ -694,7 +694,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"eneoxrcjw\",\"domain_id\":14,\"level_id\":2,\"points\":4,\"answers\":[]}"
+                            "raw": "{\"title\":\"ghxumcbanwosv\",\"domain_id\":7,\"level_id\":16,\"points\":10,\"answers\":[]}"
                         },
                         "description": "",
                         "auth": {
@@ -715,7 +715,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dolores",
+                                    "value": "odit",
                                     "description": "The ID of the show."
                                 }
                             ]
@@ -771,7 +771,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "laborum",
+                                    "value": "ab",
                                     "description": "The ID of the update."
                                 }
                             ]
@@ -789,7 +789,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"cnavojwxwa\",\"domain_id\":17,\"level_id\":3,\"points\":19}"
+                            "raw": "{\"title\":\"hbvfjioqebnvxdcztuo\",\"domain_id\":1,\"level_id\":19,\"points\":5}"
                         },
                         "description": "",
                         "auth": {
@@ -810,7 +810,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "qui",
+                                    "value": "amet",
                                     "description": "The ID of the delete."
                                 }
                             ]
@@ -883,7 +883,7 @@
                     ]
                 },
                 {
-                    "name": "POST api\/v1\/quiz\/store",
+                    "name": "Pour cr\u00e9er un quiz",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -904,9 +904,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"beatae\",\"level_id\":7}"
+                            "raw": "{\"title\":\"odio\",\"level_id\":20}"
                         },
-                        "description": "",
+                        "description": "Utiliser les param\u00e8tres ci-dessous.\nVous pouvez ajouter \u00e0 la cr\u00e9ation d'un quiz l'ajout ou des questions \u00e0 ce quiz ou\nla cr\u00e9ation des questions\n\nle param\u00e8tre questions attend une liste (tableau \/ objet) de question comme d\u00e9fini dans l'onglet de cr\u00e9ation d'une\nquestion\n\nLe param\u00e8tre questions_ids attend un tableau d'ids de question existante.",
                         "auth": {
                             "type": "noauth"
                         }
