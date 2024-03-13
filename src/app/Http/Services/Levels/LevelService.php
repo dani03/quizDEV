@@ -37,4 +37,14 @@ class LevelService
     public function getAllLevels(): Collection | null {
         return $this->levelRepository->findAll();
     }
+
+
+    public function getLevelName(int $levelId): string {
+        $level = $this->levelRepository->findById($levelId);
+        if($level) {
+            return $level->name;
+        }
+        return 'Level name not exist';
+    }
+
 }

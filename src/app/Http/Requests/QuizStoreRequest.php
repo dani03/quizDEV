@@ -22,10 +22,23 @@ class QuizStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             "title" => ["string", "required"],
             "level_id" => ["integer", "required", Rule::exists('levels', 'id')],
-            "questions" => ['array']
+            "questions" => ['array', 'min:1'],
+            "questions_ids" => ['array', 'min:1', Rule::exists('questions', 'id')],
         ];
+
+
+        if ($this->has('questions')) {
+            // Si des questions existent alors ajoutons les règles de validation pour chaque question
+            $rules['questions.*.title'] = ['string', 'required'];
+            $rules['questions.*.domain_id'] = ['integer', 'required', Rule::exists('domains', 'id')];
+            $rules['questions.*.level_id'] = ['integer', 'required', Rule::exists('levels', 'id')];
+            $rules['questions.*.points'] = ['integer'];
+            $rules['questions.*.answers'] = ['array', 'min:2', 'required'];
+        }
+
+        return $rules;
     }
 }
