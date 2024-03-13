@@ -16,7 +16,13 @@ class RegisterController extends Controller
         $this->registerService = new RegisterService();
     }
 
-
+    /**
+     * POST api/v1/auth/register
+     *
+     *  permet de s'enregistrer
+     * @param RegisterRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function __invoke(RegisterRequest $request)
     {
         $userCreate = $this->registerService->addUser($request);
@@ -33,6 +39,7 @@ class RegisterController extends Controller
             'access_token' => $userCreate->createToken($device)->accessToken,
             'name' => $userCreate->name,
             'id' => $userCreate->id,
+           'user' => ProfilRessource::make($userCreate),
             ProfilRessource::make($userCreate)
         ], Response::HTTP_CREATED);
     }

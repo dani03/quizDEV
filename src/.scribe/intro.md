@@ -3,7 +3,7 @@
 
 
 <aside>
-    <strong>Base URL</strong>: <code>http://quizdev.test</code>
+    <strong>Base URL</strong>: <code>http://localhost:3002</code>
 </aside>
 
 This documentation aims to provide all the information you need to work with our API.

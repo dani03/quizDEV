@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 class DomainController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @return AnonymousResourceCollection
      */
     public function index(): AnonymousResourceCollection
     {
@@ -26,7 +26,8 @@ class DomainController extends Controller
     }
 
     /**
-     * Créer un nouveau domain.
+     * @param DomainStoreRequest $request
+     * @return JsonResponse
      */
     public function store(DomainStoreRequest $request): JsonResponse
     {
@@ -38,7 +39,9 @@ class DomainController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * @param Request $request
+     * @param string $id
+     * @return void
      */
     public function update(Request $request, string $id)
     {
@@ -46,8 +49,8 @@ class DomainController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     * @id id of a specific domain to delete
+     * @param int $id
+     * @return JsonResponse
      */
     public function destroy(int $id): JsonResponse
     {

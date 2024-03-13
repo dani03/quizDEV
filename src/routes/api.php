@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\LogoutController;
 use App\Http\Controllers\Api\V1\PasswordUpdateController;
 use App\Http\Controllers\Api\V1\Profil\ProfileController;
 use App\Http\Controllers\Api\V1\Questions\QuestionController;
+use App\Http\Controllers\Api\V1\Quiz\QuizController;
 use App\Http\Controllers\Api\V1\RegisterController;
 use App\Http\Controllers\Api\V1\Users\EntrepriseController;
 use App\Http\Controllers\Api\V1\Users\UserController;
@@ -53,10 +54,13 @@ Route::middleware(['auth:api'])->group(function () {
     Route::delete('domain/delete/{id}', [DomainController::class, 'destroy'])->middleware('is.admin');
 
     // questions
-
     Route::get('questions', [QuestionController::class, 'index']);
     Route::post('question/store', [QuestionController::class, 'store']);
     Route::get('question/show/{id}', [QuestionController::class, 'show']);
     Route::put('question/update/{id}', [QuestionController::class, 'update']);
     Route::put('question/delete/{id}', [QuestionController::class, 'destroy']);
+
+    // quiz
+    Route::get('quizzes', [QuizController::class, 'index']);
+    Route::post('quiz/store', [QuizController::class, 'store']);
 });
