@@ -283,8 +283,8 @@ paths:
       security: []
   /api/v1/levels:
     get:
-      summary: ''
-      operationId: getApiV1Levels
+      summary: 'récupération de tous les levels(niveaux) récupére une collection de données et pas une seule donnée'
+      operationId: rcuprationDeTousLesLevelsniveauxRcupreUneCollectionDeDonnesEtPasUneSeuleDonne
       description: ''
       parameters: []
       responses:

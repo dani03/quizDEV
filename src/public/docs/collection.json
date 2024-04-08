@@ -431,7 +431,7 @@
                     "response": []
                 },
                 {
-                    "name": "GET api\/v1\/levels",
+                    "name": "r\u00e9cup\u00e9ration de tous les levels(niveaux) r\u00e9cup\u00e9re une collection de donn\u00e9es et pas une seule donn\u00e9e",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
