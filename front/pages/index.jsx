@@ -2,40 +2,58 @@ import { AppContext } from "../src/components/AppContext"
 import NavBar from "../src/components/NavBar"
 import { Card, Typography } from "@material-tailwind/react"
 import { motion } from "framer-motion"
-import Link from "next/link"
-import { Button } from "@material-tailwind/react"
 import { useContext } from "react"
 import ParticlesComponent from "../src/components/ParticlesComponent"
 
 const Home = () => {
-  const { jwt, logout, user, isError } = useContext(AppContext)
+  const { jwt, logout, user, isError, role } = useContext(AppContext)
 
   return (
     <>
       <ParticlesComponent isError={isError} />
-      <div className="h-screen">
-        <NavBar jwt={jwt} logout={logout} pseudo={user || ""} />
-        <Card className="bg-transparent mt-10 px-16">
+      <div className="h-screen md:bg-normal bg-mobile">
+        <NavBar
+          jwt={jwt}
+          logout={logout}
+          pseudo={user || ""}
+          role={role ? role : 2}
+        />
+        <Card className="bg-transparent">
           <motion.ul
-            className="grid grid-cols-1 gap-4 place-content-center w-2/3"
+            className="mt-16 mx-auto"
             initial="hidden"
             animate="visible"
             variants={list}
           >
             <motion.li variants={item}>
-              <Typography variant="h1" color="white">
-                {user ? user : ""}
+              <Typography
+                className="md:text-4xl text-2xl text-center font-dancing md:-mb-12 -mb-8"
+                color="white"
+              >
+                Unlock Potential
               </Typography>
             </motion.li>
             <motion.li variants={item}>
-              <Typography variant="h5" color="white">
-                If you want to test, click on the button !
+              <Typography
+                className="md:text-5xl text-45xl text-center font-bold font-passion md:-mb-24 -mb-16"
+                color="white"
+              >
+                JOB'IN
+              </Typography>
+              <Typography
+                className="md:text-5xl text-45xl text-center font-bold font-passion md:-mb-12 -mb-8"
+                color="white"
+              >
+                QUIZ
               </Typography>
             </motion.li>
             <motion.li variants={item}>
-              <Link href="/classic-mode">
-                <Button color="white">Test questions</Button>
-              </Link>
+              <Typography
+                className="md:text-4xl text-2xl text-center font-dancing"
+                color="white"
+              >
+                Discover Talent
+              </Typography>
             </motion.li>
           </motion.ul>
         </Card>
@@ -49,7 +67,7 @@ export const list = {
     opacity: 1,
     transition: {
       when: "beforeChildren",
-      staggerChildren: 0.3,
+      staggerChildren: 0.5,
     },
   },
   hidden: { opacity: 0 },

@@ -50,7 +50,7 @@ const Register = () => {
   }
 
   return (
-    <div>
+    <div className="h-screen md:bg-normal bg-mobile">
       <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} />
       <div className="flex justify-center mt-12">

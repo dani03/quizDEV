@@ -15,7 +15,7 @@ import CreateQuestionWithAI from "../src/components/tabs/createQuestionWithAI"
 import QuestionTable from "../src/components/tabs/QuestionsTable"
 
 const CreateQuestion = () => {
-  const { jwt, logout, user, isError } = useContext(AppContext)
+  const { jwt, logout, user, isError, role } = useContext(AppContext)
   const data = [
     {
       index: 1,
@@ -35,9 +35,14 @@ const CreateQuestion = () => {
   ]
 
   return (
-    <div className="h-screen">
+    <div className="h-screen md:bg-normal bg-mobile">
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} pseudo={user || ""} />
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        pseudo={user || ""}
+        role={role ? role : 2}
+      />
       <div className="flex justify-center mt-10">
         <Card className="bg-transparent" shadow={false}>
           <Tabs value={data[0].label}>

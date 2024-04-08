@@ -12,12 +12,16 @@ module.exports = {
     extend: {
       fontFamily: {
         montserrat: ["Montserrat"],
-        lato: ["Lato"],
+        dancing: ["Dancing Script"],
+        passion: ["Passion One"],
         garamond: ["Garamond"],
         hando: ["Hando"],
       },
+      colors: {
+        bluePrimary: "#210b3a",
+      },
       backgroundImage: {
-        normal: "url('../public/background_normal.png')",
+        normal: "url('../public/background.png')",
         mobile: "url('../public/background_mobile.png')",
       },
       fontSize: {
@@ -27,7 +31,8 @@ module.exports = {
         "2xl": "1.563rem",
         "3xl": "1.953rem",
         "4xl": "2.441rem",
-        "5xl": "3.052rem",
+        "45xl": "5.441rem",
+        "5xl": "8.052rem",
       },
     },
   },

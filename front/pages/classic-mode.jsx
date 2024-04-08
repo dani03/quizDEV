@@ -9,7 +9,7 @@ import ParticlesComponent from "../src/components/ParticlesComponent"
 
 const Classic = () => {
   const questions = UseApi([{}], "get", "/classic")
-  const { jwt, logout, user, isError } = useContext(AppContext)
+  const { jwt, logout, user, isError, role } = useContext(AppContext)
   const [isFinish, setIsFinish] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [score, setScore] = useState(0)
@@ -30,9 +30,14 @@ const Classic = () => {
   }
 
   return (
-    <div className="h-screen z-1">
+    <div className="h-screen md:bg-normal bg-mobile z-1">
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} pseudo={user ? user : ""} />
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        pseudo={user ? user : ""}
+        role={role ? role : 2}
+      />
       {(isCorrect && <PopupGame msg="CORRECT" color="bg-green-500" />) ||
         (isWrong && <PopupGame msg="WRONG" color="bg-red-500" />)}
       {isFinish ? (

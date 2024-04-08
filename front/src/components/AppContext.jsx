@@ -10,6 +10,8 @@ const AppContextProvider = (props) => {
   const [user, setUser] = useState(null)
   useEffect(() => setUser(localStorage.getItem("user")), [])
   const [isError, setIsError] = useState(false)
+  const [role, setRole] = useState(null)
+  useEffect(() => setRole(localStorage.getItem("role")), [])
 
   const saveJwt = useCallback((jwt, userId) => {
     localStorage.setItem("access_token", jwt)
@@ -20,8 +22,10 @@ const AppContextProvider = (props) => {
 
   const saveUser = useCallback((user) => {
     if (user) {
-      localStorage.setItem("user", user)
-      setUser(user)
+      localStorage.setItem("user", user.name)
+      setUser(user.name)
+      localStorage.setItem("role", user.role)
+      setRole(user.role)
     } else {
       return console.error("error in user data name !")
     }
@@ -34,6 +38,7 @@ const AppContextProvider = (props) => {
     setJwt(null)
     setUserId(null)
     setUser(null)
+    setRole(null)
   }, [])
 
   const changeIsError = () => {
@@ -46,6 +51,7 @@ const AppContextProvider = (props) => {
       setJwt(localStorage.getItem("access_token"))
       setUserId(localStorage.getItem("id"))
       setUser(localStorage.getItem("user"))
+      setRole(localStorage.getItem("role"))
     }
     window.addEventListener("storage", updateContext)
     return () => window.removeEventListener("storage", updateContext)
@@ -64,6 +70,7 @@ const AppContextProvider = (props) => {
         user,
         isError,
         changeIsError,
+        role,
       }}
     />
   )

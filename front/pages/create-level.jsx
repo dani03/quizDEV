@@ -15,7 +15,7 @@ import LevelTable from "../src/components/tabs/LevelTable"
 import axios from "axios"
 
 const Login = () => {
-  const { jwt, logout, user, isError } = useContext(AppContext)
+  const { jwt, logout, user, isError, role } = useContext(AppContext)
   const [levels, setLevels] = useState([])
 
   useEffect(() => {
@@ -54,9 +54,14 @@ const Login = () => {
   ]
 
   return (
-    <div className="h-screen">
+    <div className="h-screen md:bg-normal bg-mobile">
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} pseudo={user ? user : ""} />
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        pseudo={user ? user : ""}
+        role={role ? role : 2}
+      />
       <div className="flex justify-center mt-20">
         <Card className="bg-transparent mx-auto" shadow={false}>
           <Tabs value={data[0].label}>
