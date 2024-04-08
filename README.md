@@ -52,7 +52,9 @@ voir la doc.
 
 # FRONT
 
+`cd /front`
 `npm install`
+`npm run dev`
 
 # Gitignore
 

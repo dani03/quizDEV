@@ -1,15 +1,15 @@
-import { useCallback, useContext, useState } from "react"
+import { useContext, useState } from "react"
 import NavBar from "../src/components/NavBar"
 import { AppContext } from "../src/components/AppContext"
 import UseApi from "../src/components/UseApi"
 import PopupGame from "../src/components/PopupGame"
-import { makeClient } from "../src/services/makeClient"
 import { motion } from "framer-motion"
-import { Button } from "@material-tailwind/react"
+import { Button, Card } from "@material-tailwind/react"
+import ParticlesComponent from "../src/components/ParticlesComponent"
 
 const Classic = () => {
   const questions = UseApi([{}], "get", "/classic")
-  const { jwt, logout, user, userId } = useContext(AppContext)
+  const { jwt, logout, user, isError } = useContext(AppContext)
   const [isFinish, setIsFinish] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [score, setScore] = useState(0)
@@ -28,61 +28,18 @@ const Classic = () => {
     await timeout(1000)
     setIsWrong(false)
   }
-  const addpoints = useCallback(async (id, jwt, points) => {
-    try {
-      const { data } = await makeClient({
-        headers: { authentification: jwt },
-      }).post(`/user/points/${id}`, {
-        score: points,
-      })
-    } catch (err) {
-      const { response: { data } = {} } = err
-      if (data.error) {
-        return
-      }
-      setError("Oops, something went wrong.")
-    }
-  }, [])
-  const checkAnswer = async (answerIndex) => {
-    if (answerIndex === questions[currentQuestion].good_answer) {
-      setScore(score + questions[currentQuestion].points)
-
-      if (questions[currentQuestion + 1]) {
-        winPoints()
-        setCurrentQuestion(currentQuestion + 1)
-      } else {
-        winPoints()
-        addpoints(userId, jwt, score)
-        await timeout(1000)
-        setIsFinish(true)
-      }
-    } else {
-      if (questions[currentQuestion + 1]) {
-        loosePoints()
-        setCurrentQuestion(currentQuestion + 1)
-      } else {
-        loosePoints()
-        addpoints(userId, jwt, score)
-        await timeout(1000)
-        setIsFinish(true)
-      }
-    }
-  }
 
   return (
     <div className="h-screen z-1">
-      <NavBar
-        jwt={jwt}
-        logout={logout}
-        pseudo={user ? JSON.parse(user).pseudo : null}
-      />
+      <ParticlesComponent isError={isError} />
+      <NavBar jwt={jwt} logout={logout} pseudo={user ? user : ""} />
       {(isCorrect && <PopupGame msg="CORRECT" color="bg-green-500" />) ||
         (isWrong && <PopupGame msg="WRONG" color="bg-red-500" />)}
       {isFinish ? (
         <h1>Fini votre score : {score}</h1>
       ) : (
         <>
-          <div className="flex justify-between mt-10 ml-5">
+          <Card className="flex justify-between mt-10 ml-5 bg-transparent">
             <div>
               {/* COUNTER QUESTION + SCORE */}
               <motion.div
@@ -113,9 +70,9 @@ const Classic = () => {
                 </span>
               </div>
             </motion.div>
-          </div>
+          </Card>
           {/* QUESTIONS */}
-          <div className="grid justify-items-center max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
+          <Card className="grid bg-transparent justify-items-center max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
             <motion.div
               key={currentQuestion}
               initial="hidden"
@@ -190,7 +147,7 @@ const Classic = () => {
                 </Button>
               </motion.li>
             </motion.ul>
-          </div>
+          </Card>
         </>
       )}
     </div>

@@ -51,8 +51,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'POST api/v1/auth/register'
+      description: "permet de s'enregistrer"
       authenticated: false
       custom: []
     headers:
@@ -470,7 +470,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store the newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -569,7 +569,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove the resource from storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []

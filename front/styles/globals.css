@@ -16,3 +16,8 @@ body {
 body {
   position: relative;
 }
+
+particle {
+  position: relative;
+  z-index: 1;
+}

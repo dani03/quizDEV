@@ -9,6 +9,7 @@ const AppContextProvider = (props) => {
   useEffect(() => setUserId(localStorage.getItem("id")), [])
   const [user, setUser] = useState(null)
   useEffect(() => setUser(localStorage.getItem("user")), [])
+  const [isError, setIsError] = useState(false)
 
   const saveJwt = useCallback((jwt, userId) => {
     localStorage.setItem("access_token", jwt)
@@ -18,8 +19,12 @@ const AppContextProvider = (props) => {
   }, [])
 
   const saveUser = useCallback((user) => {
-    localStorage.setItem("user", user)
-    setUser(user)
+    if (user) {
+      localStorage.setItem("user", user)
+      setUser(user)
+    } else {
+      return console.error("error in user data name !")
+    }
   }, [])
 
   const logout = useCallback(() => {
@@ -30,6 +35,10 @@ const AppContextProvider = (props) => {
     setUserId(null)
     setUser(null)
   }, [])
+
+  const changeIsError = () => {
+    setIsError(!isError)
+  }
 
   // surveiller les changements dans le localStorage et mettre à jour les valeurs du contexte en conséquence
   useEffect(() => {
@@ -45,7 +54,17 @@ const AppContextProvider = (props) => {
   return (
     <AppContext.Provider
       {...props}
-      value={{ saveJwt, setUserId, logout, jwt, userId, saveUser, user }}
+      value={{
+        saveJwt,
+        setUserId,
+        logout,
+        jwt,
+        userId,
+        saveUser,
+        user,
+        isError,
+        changeIsError,
+      }}
     />
   )
 }
