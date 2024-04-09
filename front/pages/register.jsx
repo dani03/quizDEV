@@ -50,47 +50,47 @@ const Register = () => {
   }
 
   return (
-    <div className="h-screen md:bg-normal bg-mobile">
+    <div className="h-screen md:bg-normal bg-mobile bg-cover">
       <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} />
-      <div className="flex justify-center mt-12">
-        <Card className="bg-white px-4 py-4 md:px-12 md:py-4" shadow={false}>
-          <Typography variant="h4" color="blue-gray" className="text-center">
+      <div className="flex justify-center md:mt-2">
+        <Card
+          className="bg-transparent px-4 py-4 md:px-12 md:py-4"
+          shadow={false}
+        >
+          <p className="text-white text-center font-passion text-45xl md:text-5xl -mb-8 text-shadow-lg shadow-gray-900/50">
             REGISTER
-          </Typography>
-          <Typography color="gray" className="mt-1 font-normal text-center">
+          </p>
+          <p className="mt-1 font-normal font-dancing text-2xl text-center text-white text-shadow-lg shadow-gray-900/50">
             Nice to meet you! Enter your details to login.
-          </Typography>
-          <form
-            onSubmit={handleFormSubmit}
-            className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
-          >
+          </p>
+          <form onSubmit={handleFormSubmit} className="mt-8 mb-2 ">
             <div className="mb-1 flex flex-col gap-6">
-              <Typography variant="h6" color="blue-gray" className="-mb-3">
+              <Typography variant="h6" color="white" className="-mb-3">
                 Firstname
               </Typography>
               <Input
                 size="lg"
                 name="name"
                 placeholder="firstname"
-                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
               />
-              <Typography variant="h6" color="blue-gray" className="-mb-3">
+              <Typography variant="h6" color="white" className="-mb-3">
                 Lastname
               </Typography>
               <Input
                 size="lg"
                 name="lastname"
                 placeholder="lastname"
-                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
               />
-              <Typography variant="h6" color="blue-gray" className="-mb-3">
+              <Typography variant="h6" color="white" className="-mb-3">
                 Email
               </Typography>
               <Input
@@ -98,12 +98,12 @@ const Register = () => {
                 type="email"
                 name="email"
                 placeholder="email@email.com"
-                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
               />
-              <Typography variant="h6" color="blue-gray" className="-mb-3">
+              <Typography variant="h6" color="white" className="-mb-3">
                 Password
               </Typography>
               <Input
@@ -111,12 +111,12 @@ const Register = () => {
                 size="lg"
                 name="password"
                 placeholder="********"
-                className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
               />
-              <Typography variant="h6" color="blue-gray" className="-mb-3">
+              <Typography variant="h6" color="white" className="-mb-3">
                 Password Confirmation
               </Typography>
               <Input
@@ -124,7 +124,7 @@ const Register = () => {
                 size="lg"
                 name="password_confirmation"
                 placeholder="********"
-                className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -133,9 +133,12 @@ const Register = () => {
             <Button className="mt-6 bg-yellow-400" type="submit" fullWidth>
               Login
             </Button>
-            <Typography color="gray" className="mt-4 text-center font-normal">
+            <Typography
+              color="white"
+              className="mt-4 text-center font-normal italic"
+            >
               You already have a account ?{" "}
-              <a href="/login" className="font-medium text-blue-400">
+              <a href="/login" className="font-medium text-blue-500 underline">
                 Sign in here
               </a>
             </Typography>

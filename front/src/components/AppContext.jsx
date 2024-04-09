@@ -1,3 +1,4 @@
+import axios from "axios"
 import { createContext, useCallback, useEffect, useState } from "react"
 
 export const AppContext = createContext(null)
@@ -57,6 +58,75 @@ const AppContextProvider = (props) => {
     return () => window.removeEventListener("storage", updateContext)
   }, [])
 
+  const [levels, setLevels] = useState([])
+  useEffect(() => {
+    const fetchLevels = async () => {
+      if (!jwt) return
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/v1/levels",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        setLevels(response.data)
+      } catch (error) {
+        console.error("Error fetching levels:", error)
+        setLevels([])
+      }
+    }
+
+    fetchLevels()
+  }, [jwt])
+
+  const [domains, setDomains] = useState([])
+  useEffect(() => {
+    const fetchLevels = async () => {
+      if (!jwt) return
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/v1/domains",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        setDomains(response.data)
+      } catch (error) {
+        console.error("Error fetching domains:", error)
+        setDomains([])
+      }
+    }
+
+    fetchLevels()
+  }, [jwt])
+
+  const [questions, setQuestions] = useState([])
+  useEffect(() => {
+    const fetchLevels = async () => {
+      if (!jwt) return
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/v1/questions",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        setQuestions(response.data)
+      } catch (error) {
+        console.error("Error fetching domains:", error)
+        setQuestions([])
+      }
+    }
+
+    fetchLevels()
+  }, [jwt])
+
   return (
     <AppContext.Provider
       {...props}
@@ -71,6 +141,9 @@ const AppContextProvider = (props) => {
         isError,
         changeIsError,
         role,
+        levels,
+        domains,
+        questions,
       }}
     />
   )

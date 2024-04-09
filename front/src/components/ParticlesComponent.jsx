@@ -42,9 +42,9 @@ const particlesOptions = {
       speed: 1,
       straight: false,
     },
-    number: { density: { enable: true, area: 2000 }, value: 100 },
+    number: { density: { enable: true, area: 2000 }, value: 250 },
     opacity: {
-      value: 0.3,
+      value: 0.5,
     },
     shape: {
       type: "circle",

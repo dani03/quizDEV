@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import Link from "next/link"
 import { Disclosure, Menu, Transition } from "@headlessui/react"
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { Typography, Button } from "@material-tailwind/react"
 
 const navigation = [
@@ -16,7 +16,7 @@ function classNames(...classes) {
 }
 
 const NavBar = (props) => {
-  const { jwt, logout, pseudo } = props
+  const { jwt, logout, pseudo, role } = props
 
   return (
     <Disclosure as="nav" className="bg-transparent">
@@ -71,7 +71,19 @@ const NavBar = (props) => {
                 {/* Profile dropdown */}
                 {jwt ? (
                   <Menu as="div" className="relative ml-3">
-                    <div>
+                    <div className="flex items-center">
+                      <Typography className="text-center text-white uppercase mx-2">
+                        {pseudo}
+                      </Typography>
+                      {role === "1" ? (
+                        <Typography className="uppercase text-white mr-4">
+                          (admin)
+                        </Typography>
+                      ) : (
+                        <Typography className="uppercase text-white mr-4">
+                          (user)
+                        </Typography>
+                      )}
                       <Menu.Button className="relative flex rounded-full bg-bluePrimary text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>

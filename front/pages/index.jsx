@@ -1,6 +1,6 @@
 import { AppContext } from "../src/components/AppContext"
 import NavBar from "../src/components/NavBar"
-import { Card, Typography } from "@material-tailwind/react"
+import { Card, Button } from "@material-tailwind/react"
 import { motion } from "framer-motion"
 import { useContext } from "react"
 import ParticlesComponent from "../src/components/ParticlesComponent"
@@ -11,14 +11,9 @@ const Home = () => {
   return (
     <>
       <ParticlesComponent isError={isError} />
-      <div className="h-screen md:bg-normal bg-mobile">
-        <NavBar
-          jwt={jwt}
-          logout={logout}
-          pseudo={user || ""}
-          role={role ? role : 2}
-        />
-        <Card className="bg-transparent">
+      <div className="h-screen md:bg-normal bg-mobile bg-cover">
+        <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role} />
+        <Card className="bg-transparent" shadow={false}>
           <motion.ul
             className="mt-16 mx-auto"
             initial="hidden"
@@ -26,36 +21,27 @@ const Home = () => {
             variants={list}
           >
             <motion.li variants={item}>
-              <Typography
-                className="md:text-4xl text-2xl text-center font-dancing md:-mb-12 -mb-8"
-                color="white"
-              >
+              <p className="text-white md:text-4xl text-2xl text-center font-dancing md:-mb-12 -mb-8 text-shadow-lg shadow-gray-900/50">
                 Unlock Potential
-              </Typography>
+              </p>
             </motion.li>
             <motion.li variants={item}>
-              <Typography
-                className="md:text-5xl text-45xl text-center font-bold font-passion md:-mb-24 -mb-16"
-                color="white"
-              >
+              <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-white font-bold font-passion md:-mb-32 -mb-16 text-shadow-lg shadow-gray-900/50">
                 JOB'IN
-              </Typography>
-              <Typography
-                className="md:text-5xl text-45xl text-center font-bold font-passion md:-mb-12 -mb-8"
-                color="white"
-              >
+              </p>
+              <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-white font-bold font-passion md:-mb-12 -mb-8 text-shadow-lg shadow-gray-900/50">
                 QUIZ
-              </Typography>
+              </p>
             </motion.li>
             <motion.li variants={item}>
-              <Typography
-                className="md:text-4xl text-2xl text-center font-dancing"
-                color="white"
-              >
+              <p className="text-white md:text-4xl text-2xl text-center font-dancing mx-auto  text-shadow-lg shadow-gray-900/50">
                 Discover Talent
-              </Typography>
+              </p>
             </motion.li>
           </motion.ul>
+          <Button className="mt-32 w-64 mx-auto bg-purplePrimary shadow-xl">
+            Try out now
+          </Button>
         </Card>
       </div>
     </>
@@ -73,8 +59,8 @@ export const list = {
   hidden: { opacity: 0 },
 }
 export const item = {
-  visible: { opacity: 1, y: 0 },
-  hidden: { opacity: 0, y: -100 },
+  visible: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: -100 },
   transition: {
     when: "afterChildren",
   },

@@ -1,21 +1,50 @@
-import { Button, Input, Typography } from "@material-tailwind/react"
+import { Button, Typography, Checkbox, Input } from "@material-tailwind/react"
 import axios from "axios"
 import { useState } from "react"
 
-const CreateQuestionClassic = () => {
+const CreateQuestionClassic = (props) => {
   const [error, setError] = useState("")
+  const { levels, domains, jwt } = props
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
 
+    const answers = {}
+
+    // Vérifier chaque réponse avant de l'ajouter à l'objet
+    if (event.currentTarget.answer1 && event.currentTarget.answer1.value) {
+      answers[event.currentTarget.answer1.value] =
+        event.currentTarget.answer1Checkbox.checked
+    }
+    if (event.currentTarget.answer2 && event.currentTarget.answer2.value) {
+      answers[event.currentTarget.answer2.value] =
+        event.currentTarget.answer2Checkbox.checked
+    }
+    if (event.currentTarget.answer3 && event.currentTarget.answer3.value) {
+      answers[event.currentTarget.answer3.value] =
+        event.currentTarget.answer3Checkbox.checked
+    }
+    if (event.currentTarget.answer4 && event.currentTarget.answer4.value) {
+      answers[event.currentTarget.answer4.value] =
+        event.currentTarget.answer4Checkbox.checked
+    }
+
     axios
-      .post("http://localhost:3002/api/v1/create-question", {
-        question: event.currentTarget.question.value,
-        answer1: event.currentTarget.answer1.value,
-        answer1: event.currentTarget.answer2.value,
-        answer1: event.currentTarget.answer3.value,
-        answer1: event.currentTarget.answer4.value,
-      })
+      .post(
+        "http://localhost:3002/api/v1/question/store",
+        {
+          title: event.currentTarget.question.value,
+          level_id: event.currentTarget.level.value,
+          domain_id: event.currentTarget.domain.value,
+          answers: answers,
+          points: event.currentTarget.points.value,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
       .then(function (response) {
         console.log(response)
       })
@@ -27,68 +56,136 @@ const CreateQuestionClassic = () => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <div className="mb-1 flex flex-col gap-6 w-80">
+      <div className="mb-1 flex flex-col gap-6 w-80 md:w-128 overflow-y-auto h-96 md:h-full h-[650px]">
         <Typography variant="lead" color="white">
           Question
         </Typography>
         <Input
-          size="lg"
+          type="text"
           name="question"
-          placeholder="Quelle est la capital de la France ?"
-          className="bg-white border"
-          labelProps={{
-            className: "before:content-none after:content-none",
-          }}
+          placeholder="Quelle est la capitale de la France ?"
+          className="bg-white border p-2 rounded-lg"
         />
+        <div className="flex items-center">
+          <Input
+            type="text"
+            name="answer1"
+            placeholder="answer 1"
+            className="bg-white border p-2 rounded-lg"
+          />
+          <Checkbox
+            label={
+              <Typography color="white" className="text-sm italic">
+                Good answer ?
+              </Typography>
+            }
+            name="answer1Checkbox"
+            color="yellow"
+            className="ml-2"
+          />
+        </div>
+        <div className="flex items-center">
+          <Input
+            type="text"
+            name="answer2"
+            placeholder="answer 2"
+            className="bg-white border p-2 rounded-lg"
+          />
+          <Checkbox
+            label={
+              <Typography color="white" className="text-sm italic">
+                Good answer ?
+              </Typography>
+            }
+            name="answer2Checkbox"
+            color="yellow"
+            className="ml-2"
+          />
+        </div>
+        <div className="flex items-center">
+          <Input
+            type="text"
+            name="answer3"
+            placeholder="answer 3"
+            className="bg-white border p-2 rounded-lg"
+          />
+          <Checkbox
+            label={
+              <Typography color="white" className="text-sm italic">
+                Good answer ?
+              </Typography>
+            }
+            name="answer3Checkbox"
+            color="yellow"
+            className="ml-2"
+          />
+        </div>
+        <div className="flex items-center">
+          <Input
+            type="text"
+            name="answer4"
+            placeholder="answer 4"
+            className="bg-white border p-2 rounded-lg"
+          />
+          <Checkbox
+            label={
+              <Typography color="white" className="text-sm italic">
+                Good answer ?
+              </Typography>
+            }
+            name="answer4Checkbox"
+            color="yellow"
+            className="ml-2"
+          />
+        </div>
         <Typography variant="lead" color="white">
-          Answer 1
+          Theme
+        </Typography>
+        <select
+          name="domain"
+          autoComplete="Theme"
+          className="block w-full p-2 rounded-lg"
+        >
+          {Array.isArray(domains.data) && domains.data.length > 0 ? (
+            domains.data.map((item, index) => (
+              <option key={index} value={item.id}>
+                {item.name}
+              </option>
+            ))
+          ) : (
+            <option></option>
+          )}
+        </select>
+        <Typography variant="lead" color="white">
+          Difficulty
+        </Typography>
+        <select
+          name="level"
+          autoComplete="Difficulty"
+          className="block w-full p-2 rounded-lg"
+        >
+          {Array.isArray(levels.data) && levels.data.length > 0 ? (
+            levels.data.map((item, index) => (
+              <option key={index} value={item.id}>
+                {item.name}
+              </option>
+            ))
+          ) : (
+            <option></option>
+          )}
+        </select>
+        <Typography variant="lead" color="white">
+          Points
         </Typography>
         <Input
-          size="lg"
-          name="answer1"
-          className="bg-white border"
-          labelProps={{
-            className: "before:content-none after:content-none",
-          }}
-        />
-        <Typography variant="lead" color="white">
-          Answer 2
-        </Typography>
-        <Input
-          size="lg"
-          name="answer2"
-          className="bg-white border"
-          labelProps={{
-            className: "before:content-none after:content-none",
-          }}
-        />
-        <Typography variant="lead" color="white">
-          Answer 3
-        </Typography>
-        <Input
-          size="lg"
-          name="answer3"
-          className="bg-white border"
-          labelProps={{
-            className: "before:content-none after:content-none",
-          }}
-        />
-        <Typography variant="lead" color="white">
-          Answer 4
-        </Typography>
-        <Input
-          size="lg"
-          name="answer4"
-          className="bg-white border"
-          labelProps={{
-            className: "before:content-none after:content-none",
-          }}
+          type="number"
+          name="points"
+          className="bg-white border p-2 rounded-lg"
         />
         <Button
           type="submit"
           fullWidth
-          className="mt-4 mx-auto hover:bg-yellow-600"
-          color="yellow"
+          className="mt-4 mx-auto bg-deepBrownPrimary hover:opacity-75"
         >
           Create your question
         </Button>

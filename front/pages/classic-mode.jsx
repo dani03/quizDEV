@@ -30,7 +30,7 @@ const Classic = () => {
   }
 
   return (
-    <div className="h-screen md:bg-normal bg-mobile z-1">
+    <div className="h-screen md:bg-normal bg-cover bg-mobile z-1">
       <ParticlesComponent isError={isError} />
       <NavBar
         jwt={jwt}

@@ -34,14 +34,14 @@ const CreateLevel = (props) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <div className="mb-1 flex flex-col gap-6 w-80">
+      <div className="mb-1 flex flex-col gap-6">
         <Typography variant="lead" color="white">
           Label
         </Typography>
         <Input
           size="lg"
           name="name"
-          className="bg-white border"
+          className="bg-white border border-purplePrimary"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
@@ -52,7 +52,7 @@ const CreateLevel = (props) => {
         <Input
           size="lg"
           name="points"
-          className="bg-white border"
+          className="bg-white border border-purplePrimary"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
@@ -63,7 +63,7 @@ const CreateLevel = (props) => {
         <Input
           size="lg"
           name="slug"
-          className="bg-white border"
+          className="bg-white border border-purplePrimary"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
@@ -72,8 +72,7 @@ const CreateLevel = (props) => {
         <Button
           type="submit"
           fullWidth
-          className="mt-4 mx-auto hover:bg-yellow-600"
-          color="yellow"
+          className="mt-4 mx-auto bg-deepBrownPrimary hover:opacity-75"
         >
           Create your Level
         </Button>

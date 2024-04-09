@@ -26,20 +26,21 @@ DB_CONNECTION=mysql, 'mysql' ici correspond au service (conteneur) mysql qu'on p
 
 Ensuite taper la commande `docker-compose run --rm artisan key:generate` afin de générer une clé unique pour notre application.
 
-Et pour mettre à jour les utilisateurs password, on tape la commande `docker compose run --rm artisan passport:install` afin de 
+Et pour mettre à jour les utilisateurs password, on tape la commande `docker compose run --rm artisan passport:install` afin de
 générer les utilisateurs.
 
-Si le dossier "mysql" est présent à la racine de votre projet supprimer le. 
+Si le dossier "mysql" est présent à la racine de votre projet supprimer le.
 
 Une fois la clé générée, taper la commande `docker-compose up --build -d nginx` pour lancer vos conteneurs, ensuite taper la commande `docker-compose ps` pour voir si vos conteneurs tournent bien. Vous pouvez tester l'api sur l'endpoint `http://localhost/api/v1/test. Vous devriez avoir un retour si vous êtes connecté à l'api.
 
-# RUN les migrations 
+# RUN les migrations
 
-Une fois vos conteneurs en marche, taper la commande `docker compose run --rm artisan migrate` afin de lancer les migrations vers votre base de données. 
+Une fois vos conteneurs en marche, taper la commande `docker compose run --rm artisan migrate` afin de lancer les migrations vers votre base de données.
 Après les migrations lancer les seeders afin de peupler notre base de données avec la commande `docker compose run --rm db:seed`.
+
 # PHP MY ADMIN
 
-L'accès à PHpMyadmin est sur le port 2023 et donc sur le lien : http://localhost:2023 et le port 2025 pour le SGBD adminer similaire à phpMyadmin 
+L'accès à PHpMyadmin est sur le port 2023 et donc sur le lien : http://localhost:2023 et le port 2025 pour le SGBD adminer similaire à phpMyadmin
 
 username : homestead
 password : secret
@@ -64,3 +65,8 @@ voir la doc.
 /front/node_modules
 /front/README.md
 ```
+
+# En cas de probleme de cache BDD
+
+- `docker compose run --rm artisan cache:clear`
+- `docker compose run --rm artisan config:clear`
