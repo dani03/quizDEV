@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://quizdev.test";
+        var tryItOutBaseUrl = "http://localhost:3002";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -102,13 +102,56 @@
                                 <a href="#endpoints-GETapi-v1-entreprise-quiz">GET api/v1/entreprise/quiz</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-level-store">
-                                <a href="#endpoints-POSTapi-v1-level-store">Store the newly created resource in storage.</a>
+                                <a href="#endpoints-POSTapi-v1-level-store">POST api/v1/level/store</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-levels">
                                 <a href="#endpoints-GETapi-v1-levels">récupération de tous les levels(niveaux) récupére une collection de données et pas une seule donnée</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-v1-level-destroy">
-                                <a href="#endpoints-DELETEapi-v1-level-destroy">Remove the resource from storage.</a>
+                                <a href="#endpoints-DELETEapi-v1-level-destroy">DELETE api/v1/level/destroy</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-domains">
+                                <a href="#endpoints-GETapi-v1-domains">GET api/v1/domains</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-domain-store">
+                                <a href="#endpoints-POSTapi-v1-domain-store">POST api/v1/domain/store</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-v1-domain-delete--id-">
+                                <a href="#endpoints-DELETEapi-v1-domain-delete--id-">DELETE api/v1/domain/delete/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-questions">
+                                <a href="#endpoints-GETapi-v1-questions">GET api/v1/questions</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-question-store">
+                                <a href="#endpoints-POSTapi-v1-question-store">POST api/v1/question/store</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-question-show--id-">
+                                <a href="#endpoints-GETapi-v1-question-show--id-">GET api/v1/question/show/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-v1-question-update--id-">
+                                <a href="#endpoints-PUTapi-v1-question-update--id-">PUT api/v1/question/update/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-v1-question-delete--id-">
+                                <a href="#endpoints-PUTapi-v1-question-delete--id-">PUT api/v1/question/delete/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-quizzes">
+                                <a href="#endpoints-GETapi-v1-quizzes">GET QUIZ
+récupérations de tous les quiz</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-quiz-store">
+                                <a href="#endpoints-POSTapi-v1-quiz-store">Pour créer un quiz</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-domains">
+                                <a href="#endpoints-GETapi-v1-domains">Display a listing of the resource.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-domain-store">
+                                <a href="#endpoints-POSTapi-v1-domain-store">Store a newly created resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-v1-domain-delete--id-">
+                                <a href="#endpoints-DELETEapi-v1-domain-delete--id-">Remove the specified resource from storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-question-store">
+                                <a href="#endpoints-POSTapi-v1-question-store">POST api/v1/question/store</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-domains">
                                 <a href="#endpoints-GETapi-v1-domains">Display a listing of the resource.</a>
@@ -151,7 +194,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://quizdev.test</code>
+    <strong>Base URL</strong>: <code>http://localhost:3002</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
@@ -177,14 +220,14 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/test" \
+    --get "http://localhost:3002/api/v1/test" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/test"
+    "http://localhost:3002/api/v1/test"
 );
 
 const headers = {
@@ -293,7 +336,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>
 </p>
 
-
+<p>permet de s'enregistrer</p>
 
 <span id="example-requests-POSTapi-v1-auth-register">
 <blockquote>Example request:</blockquote>
@@ -301,7 +344,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://quizdev.test/api/v1/auth/register" \
+    "http://localhost:3002/api/v1/auth/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -316,7 +359,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/auth/register"
+    "http://localhost:3002/api/v1/auth/register"
 );
 
 const headers = {
@@ -484,7 +527,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://quizdev.test/api/v1/auth/login" \
+    "http://localhost:3002/api/v1/auth/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -496,7 +539,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/auth/login"
+    "http://localhost:3002/api/v1/auth/login"
 );
 
 const headers = {
@@ -626,14 +669,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/profil" \
+    --get "http://localhost:3002/api/v1/profil" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/profil"
+    "http://localhost:3002/api/v1/profil"
 );
 
 const headers = {
@@ -750,7 +793,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://quizdev.test/api/v1/update/profil" \
+    "http://localhost:3002/api/v1/update/profil" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -763,7 +806,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/update/profil"
+    "http://localhost:3002/api/v1/update/profil"
 );
 
 const headers = {
@@ -905,7 +948,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://quizdev.test/api/v1/update/password" \
+    "http://localhost:3002/api/v1/update/password" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -917,7 +960,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/update/password"
+    "http://localhost:3002/api/v1/update/password"
 );
 
 const headers = {
@@ -1047,14 +1090,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://quizdev.test/api/v1/logout" \
+    "http://localhost:3002/api/v1/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/logout"
+    "http://localhost:3002/api/v1/logout"
 );
 
 const headers = {
@@ -1263,14 +1306,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/user/quiz" \
+    --get "http://localhost:3002/api/v1/user/quiz" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/user/quiz"
+    "http://localhost:3002/api/v1/user/quiz"
 );
 
 const headers = {
@@ -1387,14 +1430,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/entreprise/quiz" \
+    --get "http://localhost:3002/api/v1/entreprise/quiz" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/entreprise/quiz"
+    "http://localhost:3002/api/v1/entreprise/quiz"
 );
 
 const headers = {
@@ -1498,7 +1541,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-POSTapi-v1-level-store">Store the newly created resource in storage.</h2>
+                    <h2 id="endpoints-POSTapi-v1-level-store">POST api/v1/level/store</h2>
 
 <p>
 </p>
@@ -1511,7 +1554,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://quizdev.test/api/v1/level/store" \
+    "http://localhost:3002/api/v1/level/store" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1524,7 +1567,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/level/store"
+    "http://localhost:3002/api/v1/level/store"
 );
 
 const headers = {
@@ -1666,14 +1709,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://quizdev.test/api/v1/levels" \
+    --get "http://localhost:3002/api/v1/levels" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/levels"
+    "http://localhost:3002/api/v1/levels"
 );
 
 const headers = {
@@ -1777,7 +1820,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-DELETEapi-v1-level-destroy">Remove the resource from storage.</h2>
+                    <h2 id="endpoints-DELETEapi-v1-level-destroy">DELETE api/v1/level/destroy</h2>
 
 <p>
 </p>
@@ -1790,7 +1833,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://quizdev.test/api/v1/level/destroy" \
+    "http://localhost:3002/api/v1/level/destroy" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1801,7 +1844,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://quizdev.test/api/v1/level/destroy"
+    "http://localhost:3002/api/v1/level/destroy"
 );
 
 const headers = {

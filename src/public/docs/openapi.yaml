@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://quizdev.test'
+    url: 'http://localhost:3002'
 paths:
   /api/v1/test:
     get:
@@ -26,9 +26,9 @@ paths:
       security: []
   /api/v1/auth/register:
     post:
-      summary: ''
-      operationId: postApiV1AuthRegister
-      description: ''
+      summary: 'POST api/v1/auth/register'
+      operationId: pOSTApiv1authregister
+      description: "permet de s'enregistrer"
       parameters: []
       responses: {  }
       tags:
@@ -67,6 +67,7 @@ paths:
                 - lastname
                 - name
                 - password
+                - password_confirmation
                 - role_id
                 - email
       security: []
@@ -247,8 +248,8 @@ paths:
       security: []
   /api/v1/level/store:
     post:
-      summary: 'Store the newly created resource in storage.'
-      operationId: storeTheNewlyCreatedResourceInStorage
+      summary: ''
+      operationId: postApiV1LevelStore
       description: ''
       parameters: []
       responses: {  }
@@ -300,8 +301,8 @@ paths:
       security: []
   /api/v1/level/destroy:
     delete:
-      summary: 'Remove the resource from storage.'
-      operationId: removeTheResourceFromStorage
+      summary: ''
+      operationId: deleteApiV1LevelDestroy
       description: ''
       parameters: []
       responses: {  }

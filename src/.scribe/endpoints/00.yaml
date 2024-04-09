@@ -51,8 +51,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'POST api/v1/auth/register'
+      description: "permet de s'enregistrer"
       authenticated: false
       custom: []
     headers:
@@ -67,7 +67,11 @@ endpoints:
         name: lastname
         description: 'Must not be greater than 255 characters.'
         required: true
+<<<<<<< HEAD
         example: lje
+=======
+        example: xrdxiau
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -76,7 +80,11 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
+<<<<<<< HEAD
         example: oqpglyiv
+=======
+        example: bsplwirvzghjzvqpfu
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -85,7 +93,11 @@ endpoints:
         name: password
         description: ''
         required: true
+<<<<<<< HEAD
         example: sit
+=======
+        example: ullam
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -105,17 +117,29 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
+<<<<<<< HEAD
         example: murl97@example.net
+=======
+        example: nreichert@example.com
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       lastname: lje
       name: oqpglyiv
       password: sit
       role_id: '2'
       email: murl97@example.net
+=======
+      lastname: xrdxiau
+      name: bsplwirvzghjzvqpfu
+      password: ullam
+      role_id: '3'
+      email: nreichert@example.com
+>>>>>>> origin
     fileParameters: []
     responses: []
     responseFields: []
@@ -149,7 +173,11 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
+<<<<<<< HEAD
         example: bryana94@example.net
+=======
+        example: mills.dagmar@example.net
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -158,14 +186,23 @@ endpoints:
         name: password
         description: ''
         required: true
+<<<<<<< HEAD
         example: dignissimos
+=======
+        example: veniam
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       email: bryana94@example.net
       password: dignissimos
+=======
+      email: mills.dagmar@example.net
+      password: veniam
+>>>>>>> origin
     fileParameters: []
     responses: []
     responseFields: []
@@ -238,7 +275,11 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
+<<<<<<< HEAD
         example: gene.jast@example.org
+=======
+        example: jennifer.predovic@example.com
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -247,7 +288,11 @@ endpoints:
         name: name
         description: ''
         required: true
+<<<<<<< HEAD
         example: dolores
+=======
+        example: dolorem
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -256,15 +301,25 @@ endpoints:
         name: lastname
         description: ''
         required: true
+<<<<<<< HEAD
         example: quia
+=======
+        example: qui
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       email: gene.jast@example.org
       name: dolores
       lastname: quia
+=======
+      email: jennifer.predovic@example.com
+      name: dolorem
+      lastname: qui
+>>>>>>> origin
     fileParameters: []
     responses: []
     responseFields: []
@@ -298,7 +353,11 @@ endpoints:
         name: current_password
         description: ''
         required: true
+<<<<<<< HEAD
         example: aliquam
+=======
+        example: quod
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -307,14 +366,23 @@ endpoints:
         name: password
         description: ''
         required: true
+<<<<<<< HEAD
         example: quia
+=======
+        example: rem
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       current_password: aliquam
       password: quia
+=======
+      current_password: quod
+      password: rem
+>>>>>>> origin
     fileParameters: []
     responses: []
     responseFields: []
@@ -470,7 +538,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store the newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -486,7 +554,11 @@ endpoints:
         name: name
         description: ''
         required: true
+<<<<<<< HEAD
         example: repudiandae
+=======
+        example: et
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -495,7 +567,11 @@ endpoints:
         name: points
         description: ''
         required: false
+<<<<<<< HEAD
         example: 4
+=======
+        example: 3
+>>>>>>> origin
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -504,15 +580,25 @@ endpoints:
         name: slug
         description: ''
         required: false
+<<<<<<< HEAD
         example: aut
+=======
+        example: repellendus
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       name: repudiandae
       points: 4
       slug: aut
+=======
+      name: et
+      points: 3
+      slug: repellendus
+>>>>>>> origin
     fileParameters: []
     responses: []
     responseFields: []
@@ -569,7 +655,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove the resource from storage.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -585,13 +671,21 @@ endpoints:
         name: slug
         description: ''
         required: true
+<<<<<<< HEAD
         example: reiciendis
+=======
+        example: sit
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       slug: reiciendis
+=======
+      slug: sit
+>>>>>>> origin
     fileParameters: []
     responses: []
     responseFields: []
@@ -664,13 +758,21 @@ endpoints:
         name: name
         description: ''
         required: true
+<<<<<<< HEAD
         example: omnis
+=======
+        example: rem
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       name: omnis
+=======
+      name: rem
+>>>>>>> origin
     fileParameters: []
     responses: []
     responseFields: []
@@ -700,13 +802,21 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
+<<<<<<< HEAD
         example: facere
+=======
+        example: ullam
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
+<<<<<<< HEAD
       id: facere
+=======
+      id: ullam
+>>>>>>> origin
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -721,6 +831,7 @@ endpoints:
     custom: []
   -
     httpMethods:
+<<<<<<< HEAD
       - GET
     uri: api/v1/questions
     metadata:
@@ -760,6 +871,8 @@ endpoints:
     custom: []
   -
     httpMethods:
+=======
+>>>>>>> origin
       - POST
     uri: api/v1/question/store
     metadata:
@@ -783,7 +896,11 @@ endpoints:
         name: title
         description: 'Must not be greater than 150 characters.'
         required: true
+<<<<<<< HEAD
         example: fzatch
+=======
+        example: lpltvzjffuzosnoojyafljpi
+>>>>>>> origin
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -801,7 +918,11 @@ endpoints:
         name: level_id
         description: ''
         required: true
+<<<<<<< HEAD
         example: 6
+=======
+        example: 14
+>>>>>>> origin
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -810,7 +931,11 @@ endpoints:
         name: points
         description: ''
         required: false
+<<<<<<< HEAD
         example: 12
+=======
+        example: 15
+>>>>>>> origin
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -825,6 +950,7 @@ endpoints:
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       title: fzatch
       domain_id: 16
       level_id: 6
@@ -959,6 +1085,13 @@ endpoints:
       domain_id: 12
       level_id: 3
       points: 20
+=======
+      title: lpltvzjffuzosnoojyafljpi
+      domain_id: 16
+      level_id: 14
+      points: 15
+      answers: []
+>>>>>>> origin
     fileParameters: []
     responses: []
     responseFields: []
