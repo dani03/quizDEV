@@ -4,6 +4,7 @@ import { Card, Button } from "@material-tailwind/react"
 import { motion } from "framer-motion"
 import { useContext } from "react"
 import ParticlesComponent from "../src/components/ParticlesComponent"
+import Link from "next/link"
 
 const Home = () => {
   const { jwt, logout, user, isError, role } = useContext(AppContext)
@@ -39,9 +40,11 @@ const Home = () => {
               </p>
             </motion.li>
           </motion.ul>
-          <Button className="mt-32 w-64 mx-auto bg-purplePrimary shadow-xl">
-            Try out now
-          </Button>
+          <Link className="mx-auto" href="/classic-mode">
+            <Button className="mt-32 w-64 bg-purplePrimary shadow-xl">
+              Try out now
+            </Button>
+          </Link>
         </Card>
       </div>
     </>
