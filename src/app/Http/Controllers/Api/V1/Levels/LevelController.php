@@ -23,12 +23,10 @@ class LevelController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index() {
+    public function index()
+    {
         // $levels =$this->levelService->getAllLevels();
-        return response()->json(['data' => Cache::remember('levels',60*60*24, function() {
-            return LevelResource::collection($this->levelService->getAllLevels());
-        })  ], Response::HTTP_OK);
-
+        return response()->json(['data' => LevelResource::collection($this->levelService->getAllLevels())], Response::HTTP_OK);
     }
 
     /**
@@ -40,12 +38,14 @@ class LevelController extends Controller
         //on vérifie que l'utilisateur qui effectue la request est un admin
         Gate::authorize('create-level');
 
-       $storeLevel = $this->levelService->creatingLevel($request->all());
-       if(!$storeLevel) {
-           return response()->json(['message' => 'Failed to create level'], Response::HTTP_INTERNAL_SERVER_ERROR);
-       }
-        return response()->json(['message' => 'le niveau à bien été crée',
-            'level' => LevelResource::make($storeLevel)], Response::HTTP_CREATED);
+        $storeLevel = $this->levelService->creatingLevel($request->all());
+        if (!$storeLevel) {
+            return response()->json(['message' => 'Failed to create level'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        return response()->json([
+            'message' => 'le niveau à bien été crée',
+            'level' => LevelResource::make($storeLevel)
+        ], Response::HTTP_CREATED);
     }
 
     /**
@@ -82,10 +82,9 @@ class LevelController extends Controller
         $slug = $request->slug;
         $level = $this->levelService->deleteLevel($slug);
 
-       if(!$level) {
-           return response()->json(['message' => ' ce niveau n\'existe pas '], Response::HTTP_NOT_FOUND);
-       }
+        if (!$level) {
+            return response()->json(['message' => ' ce niveau n\'existe pas '], Response::HTTP_NOT_FOUND);
+        }
         return  response()->json(['message' => ' niveau supprimé '], Response::HTTP_OK);
-
     }
 }

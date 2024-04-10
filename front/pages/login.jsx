@@ -11,7 +11,7 @@ const Login = () => {
   const router = useRouter()
   const [error, setError] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
-  const { jwt, logout, saveJwt, user, saveUser, isError, changeIsError } =
+  const { jwt, logout, saveJwt, user, saveUser, isError, changeIsError, role } =
     useContext(AppContext)
   const handleOpen = () => {
     changeIsError()
@@ -34,7 +34,7 @@ const Login = () => {
         ) {
           console.log(response.data)
           saveJwt(response.data.access_token, response.data.id)
-          saveUser(response.data.name)
+          saveUser(response.data)
           setTimeout(() => router.push("/"), 1000)
         } else {
           setError("Error JWT")
@@ -47,35 +47,48 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className="h-screen md:bg-normal bg-mobile bg-cover">
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} pseudo={user ? user : ""} />
-      <div className="flex justify-center mt-12">
-        <Card className="bg-white px-4 py-2 md:px-12 md:py-4" shadow={false}>
-          <Typography variant="h4" color="blue-gray" className="text-center">
-            Login
-          </Typography>
-          <Typography color="gray" className="mt-1 font-normal text-center">
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        pseudo={user ? user : ""}
+        role={role ? role : 2}
+      />
+      <div className="flex justify-center md:mt-2">
+        <Card
+          className="bg-transparent px-4 py-2 md:px-12 md:py-4"
+          shadow={false}
+        >
+          <p className="text-white text-center font-passion text-45xl md:text-5xl -mb-8 text-shadow-lg shadow-gray-900/50">
+            LOGIN
+          </p>
+          <p className="mt-1 font-normal font-dancing text-2xl text-center text-white text-shadow-lg shadow-gray-900/50">
             Nice to meet you! Enter your details to login.
-          </Typography>
-          <form
-            onSubmit={handleFormSubmit}
-            className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
-          >
+          </p>
+          <form onSubmit={handleFormSubmit} className="mt-8 mb-2 ">
             <div className="mb-1 flex flex-col gap-6">
-              <Typography variant="h6" color="blue-gray" className="-mb-3">
+              <Typography
+                variant="h6"
+                color="white"
+                className="-mb-3 font-montserrat font-bold"
+              >
                 Your Email
               </Typography>
               <Input
                 size="lg"
                 name="email"
                 placeholder="name@mail.com"
-                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
               />
-              <Typography variant="h6" color="blue-gray" className="-mb-3">
+              <Typography
+                variant="h6"
+                color="white"
+                className="-mb-3 font-montserrat font-bold"
+              >
                 Password
               </Typography>
               <Input
@@ -83,18 +96,28 @@ const Login = () => {
                 size="lg"
                 name="password"
                 placeholder="********"
-                className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 placeholder:text-white"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
               />
             </div>
-            <Button className="mt-6 bg-yellow-400" type="submit" fullWidth>
+            <Button
+              className="mt-6 bg-deepBrownPrimary"
+              type="submit"
+              fullWidth
+            >
               Login
             </Button>
-            <Typography color="gray" className="mt-4 text-center font-normal">
+            <Typography
+              color="white"
+              className="mt-4 text-center font-normal italic"
+            >
               You don't have a account ?{" "}
-              <a href="/register" className="font-medium text-blue-400">
+              <a
+                href="/register"
+                className="font-medium text-blue-500 underline"
+              >
                 Sign up here
               </a>
             </Typography>

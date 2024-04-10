@@ -1,43 +1,50 @@
 import { AppContext } from "../src/components/AppContext"
 import NavBar from "../src/components/NavBar"
-import { Card, Typography } from "@material-tailwind/react"
+import { Card, Button } from "@material-tailwind/react"
 import { motion } from "framer-motion"
-import Link from "next/link"
-import { Button } from "@material-tailwind/react"
 import { useContext } from "react"
 import ParticlesComponent from "../src/components/ParticlesComponent"
+import Link from "next/link"
 
 const Home = () => {
-  const { jwt, logout, user, isError } = useContext(AppContext)
+  const { jwt, logout, user, isError, role } = useContext(AppContext)
 
   return (
     <>
       <ParticlesComponent isError={isError} />
-      <div className="h-screen">
-        <NavBar jwt={jwt} logout={logout} pseudo={user || ""} />
-        <Card className="bg-transparent mt-10 px-16">
+      <div className="h-screen md:bg-normal bg-mobile bg-cover">
+        <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role} />
+        <Card className="bg-transparent" shadow={false}>
           <motion.ul
-            className="grid grid-cols-1 gap-4 place-content-center w-2/3"
+            className="mt-16 mx-auto"
             initial="hidden"
             animate="visible"
             variants={list}
           >
             <motion.li variants={item}>
-              <Typography variant="h1" color="white">
-                {user ? user : ""}
-              </Typography>
+              <p className="text-white md:text-4xl text-2xl text-center font-dancing md:-mb-12 -mb-8 text-shadow-lg shadow-gray-900/50">
+                Unlock Potential
+              </p>
             </motion.li>
             <motion.li variants={item}>
-              <Typography variant="h5" color="white">
-                If you want to test, click on the button !
-              </Typography>
+              <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-white font-bold font-passion md:-mb-32 -mb-16 text-shadow-lg shadow-gray-900/50">
+                JOB'IN
+              </p>
+              <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-white font-bold font-passion md:-mb-12 -mb-8 text-shadow-lg shadow-gray-900/50">
+                QUIZ
+              </p>
             </motion.li>
             <motion.li variants={item}>
-              <Link href="/classic-mode">
-                <Button color="white">Test questions</Button>
-              </Link>
+              <p className="text-white md:text-4xl text-2xl text-center font-dancing mx-auto  text-shadow-lg shadow-gray-900/50">
+                Discover Talent
+              </p>
             </motion.li>
           </motion.ul>
+          <Link className="mx-auto" href="/classic-mode">
+            <Button className="mt-32 w-64 bg-purplePrimary shadow-xl">
+              Try out now
+            </Button>
+          </Link>
         </Card>
       </div>
     </>
@@ -49,14 +56,14 @@ export const list = {
     opacity: 1,
     transition: {
       when: "beforeChildren",
-      staggerChildren: 0.3,
+      staggerChildren: 0.5,
     },
   },
   hidden: { opacity: 0 },
 }
 export const item = {
-  visible: { opacity: 1, y: 0 },
-  hidden: { opacity: 0, y: -100 },
+  visible: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: -100 },
   transition: {
     when: "afterChildren",
   },

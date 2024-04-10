@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require("tailwindcss/plugin")
+
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
@@ -10,15 +13,27 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing: {
+        128: "32rem",
+        192: "48rem",
+      },
       fontFamily: {
         montserrat: ["Montserrat"],
-        lato: ["Lato"],
+        dancing: ["Dancing Script"],
+        passion: ["Passion One"],
         garamond: ["Garamond"],
         hando: ["Hando"],
       },
+      colors: {
+        bluePrimary: "#210b3a",
+        purplePrimary: "#44214E",
+        brownPrimary: "#AC604A",
+        deepBrownPrimary: "#77404B",
+      },
       backgroundImage: {
-        normal: "url('../public/background_normal.png')",
+        normal: "url('../public/background.png')",
         mobile: "url('../public/background_mobile.png')",
+        purple: "url('../public/background_purple.png')",
       },
       fontSize: {
         sm: "0.8rem",
@@ -27,9 +42,26 @@ module.exports = {
         "2xl": "1.563rem",
         "3xl": "1.953rem",
         "4xl": "2.441rem",
-        "5xl": "3.052rem",
+        "45xl": "6.441rem",
+        "5xl": "10.052rem",
+      },
+      textShadow: {
+        sm: "0 1px 2px var(--tw-shadow-color)",
+        DEFAULT: "0 2px 4px var(--tw-shadow-color)",
+        lg: "0 8px 16px var(--tw-shadow-color)",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          "text-shadow": (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme("textShadow") }
+      )
+    }),
+  ],
 }

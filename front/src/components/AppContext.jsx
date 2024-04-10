@@ -1,3 +1,4 @@
+import axios from "axios"
 import { createContext, useCallback, useEffect, useState } from "react"
 
 export const AppContext = createContext(null)
@@ -10,6 +11,8 @@ const AppContextProvider = (props) => {
   const [user, setUser] = useState(null)
   useEffect(() => setUser(localStorage.getItem("user")), [])
   const [isError, setIsError] = useState(false)
+  const [role, setRole] = useState(null)
+  useEffect(() => setRole(localStorage.getItem("role")), [])
 
   const saveJwt = useCallback((jwt, userId) => {
     localStorage.setItem("access_token", jwt)
@@ -20,8 +23,10 @@ const AppContextProvider = (props) => {
 
   const saveUser = useCallback((user) => {
     if (user) {
-      localStorage.setItem("user", user)
-      setUser(user)
+      localStorage.setItem("user", user.name)
+      setUser(user.name)
+      localStorage.setItem("role", user.role)
+      setRole(user.role)
     } else {
       return console.error("error in user data name !")
     }
@@ -34,6 +39,7 @@ const AppContextProvider = (props) => {
     setJwt(null)
     setUserId(null)
     setUser(null)
+    setRole(null)
   }, [])
 
   const changeIsError = () => {
@@ -46,10 +52,80 @@ const AppContextProvider = (props) => {
       setJwt(localStorage.getItem("access_token"))
       setUserId(localStorage.getItem("id"))
       setUser(localStorage.getItem("user"))
+      setRole(localStorage.getItem("role"))
     }
     window.addEventListener("storage", updateContext)
     return () => window.removeEventListener("storage", updateContext)
   }, [])
+
+  const [levels, setLevels] = useState([])
+  useEffect(() => {
+    const fetchLevels = async () => {
+      if (!jwt) return
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/v1/levels",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        setLevels(response.data)
+      } catch (error) {
+        console.error("Error fetching levels:", error)
+        setLevels([])
+      }
+    }
+
+    fetchLevels()
+  }, [jwt])
+
+  const [domains, setDomains] = useState([])
+  useEffect(() => {
+    const fetchLevels = async () => {
+      if (!jwt) return
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/v1/domains",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        setDomains(response.data)
+      } catch (error) {
+        console.error("Error fetching domains:", error)
+        setDomains([])
+      }
+    }
+
+    fetchLevels()
+  }, [jwt])
+
+  const [questions, setQuestions] = useState([])
+  useEffect(() => {
+    const fetchLevels = async () => {
+      if (!jwt) return
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/v1/questions",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        setQuestions(response.data)
+      } catch (error) {
+        console.error("Error fetching domains:", error)
+        setQuestions([])
+      }
+    }
+
+    fetchLevels()
+  }, [jwt])
 
   return (
     <AppContext.Provider
@@ -64,6 +140,10 @@ const AppContextProvider = (props) => {
         user,
         isError,
         changeIsError,
+        role,
+        levels,
+        domains,
+        questions,
       }}
     />
   )

@@ -2,16 +2,25 @@ import { Button, Input, Typography } from "@material-tailwind/react"
 import axios from "axios"
 import { useState } from "react"
 
-const CreateTheme = () => {
+const CreateTheme = (props) => {
+  const { jwt } = props
   const [error, setError] = useState("")
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
 
     axios
-      .post("http://localhost:3002/api/v1/create-theme", {
-        themeLabel: event.currentTarget.themeLabel.value,
-      })
+      .post(
+        "http://localhost:3002/api/v1/domain/store",
+        {
+          name: event.currentTarget.name.value,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
       .then(function (response) {
         console.log(response)
       })
@@ -23,14 +32,14 @@ const CreateTheme = () => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <div className="mb-1 flex flex-col gap-6 w-80">
+      <div className="mb-1 flex flex-col gap-6">
         <Typography variant="lead" color="white">
           Label
         </Typography>
         <Input
           size="lg"
-          name="themeLabel"
-          className="bg-white border"
+          name="name"
+          className="bg-white border border-purplePrimary"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
@@ -39,8 +48,7 @@ const CreateTheme = () => {
         <Button
           type="submit"
           fullWidth
-          className="mt-4 mx-auto hover:bg-yellow-600"
-          color="yellow"
+          className="mt-4 mx-auto bg-deepBrownPrimary hover:opacity-75"
         >
           Create your Theme
         </Button>
