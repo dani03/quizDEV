@@ -29,4 +29,10 @@ class LevelRepository
     public function findAll(): Collection | null {
         return Level::all();
     }
+    /*
+     * cette function récupère seulement le nom d'un level
+      */
+    public function findById(int $levelId) {
+        return Level::where('id',$levelId)->first();
+    }
 }

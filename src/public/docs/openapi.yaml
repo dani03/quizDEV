@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://quizdev.test'
+    url: 'http://localhost:3002'
 paths:
   /api/v1/test:
     get:
@@ -26,9 +26,9 @@ paths:
       security: []
   /api/v1/auth/register:
     post:
-      summary: ''
-      operationId: postApiV1AuthRegister
-      description: ''
+      summary: 'POST api/v1/auth/register'
+      operationId: pOSTApiv1authregister
+      description: "permet de s'enregistrer"
       parameters: []
       responses: {  }
       tags:
@@ -43,15 +43,19 @@ paths:
                 lastname:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: lje
+                  example: hvsdxm
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: oqpglyiv
+                  example: doaj
                 password:
                   type: string
                   description: ''
-                  example: sit
+                  example: molestiae
+                password_confirmation:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: br
                 role_id:
                   type: string
                   description: ''
@@ -62,11 +66,12 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: murl97@example.net
+                  example: nitzsche.kenna@example.com
               required:
                 - lastname
                 - name
                 - password
+                - password_confirmation
                 - role_id
                 - email
       security: []
@@ -89,11 +94,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: bryana94@example.net
+                  example: ankunding.ubaldo@example.net
                 password:
                   type: string
                   description: ''
-                  example: dignissimos
+                  example: quisquam
               required:
                 - email
                 - password
@@ -139,15 +144,15 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: gene.jast@example.org
+                  example: sporer.athena@example.org
                 name:
                   type: string
                   description: ''
-                  example: dolores
+                  example: consequuntur
                 lastname:
                   type: string
                   description: ''
-                  example: quia
+                  example: qui
               required:
                 - email
                 - name
@@ -172,11 +177,11 @@ paths:
                 current_password:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: consequuntur
                 password:
                   type: string
                   description: ''
-                  example: quia
+                  example: sed
               required:
                 - current_password
                 - password
@@ -247,8 +252,8 @@ paths:
       security: []
   /api/v1/level/store:
     post:
-      summary: 'Store the newly created resource in storage.'
-      operationId: storeTheNewlyCreatedResourceInStorage
+      summary: ''
+      operationId: postApiV1LevelStore
       description: ''
       parameters: []
       responses: {  }
@@ -264,15 +269,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: repudiandae
+                  example: tempore
                 points:
                   type: integer
                   description: ''
-                  example: 4
+                  example: 10
                 slug:
                   type: string
                   description: ''
-                  example: aut
+                  example: repellat
               required:
                 - name
       security: []
@@ -300,8 +305,8 @@ paths:
       security: []
   /api/v1/level/destroy:
     delete:
-      summary: 'Remove the resource from storage.'
-      operationId: removeTheResourceFromStorage
+      summary: ''
+      operationId: deleteApiV1LevelDestroy
       description: ''
       parameters: []
       responses: {  }
@@ -317,14 +322,14 @@ paths:
                 slug:
                   type: string
                   description: ''
-                  example: reiciendis
+                  example: quos
               required:
                 - slug
       security: []
   /api/v1/domains:
     get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
+      summary: ''
+      operationId: getApiV1Domains
       description: ''
       parameters: []
       responses:
@@ -345,8 +350,8 @@ paths:
       security: []
   /api/v1/domain/store:
     post:
-      summary: 'Store a newly created resource in storage.'
-      operationId: storeANewlyCreatedResourceInStorage
+      summary: ''
+      operationId: postApiV1DomainStore
       description: ''
       parameters: []
       responses: {  }
@@ -362,14 +367,14 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: omnis
+                  example: quam
               required:
                 - name
       security: []
   '/api/v1/domain/delete/{id}':
     delete:
-      summary: 'Remove the specified resource from storage.'
-      operationId: removeTheSpecifiedResourceFromStorage
+      summary: ''
+      operationId: deleteApiV1DomainDeleteId
       description: ''
       parameters: []
       responses: {  }
@@ -381,14 +386,14 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
-        example: facere
+        example: voluptas
         required: true
         schema:
           type: string
   /api/v1/questions:
     get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
+      summary: ''
+      operationId: getApiV1Questions
       description: ''
       parameters: []
       responses:
@@ -426,19 +431,19 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 150 characters.'
-                  example: fzatch
+                  example: ghxumcbanwosv
                 domain_id:
                   type: integer
                   description: ''
-                  example: 16
+                  example: 7
                 level_id:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 16
                 points:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 10
                 answers:
                   type: object
                   description: 'Must have at least 2 items.'
@@ -452,8 +457,8 @@ paths:
       security: []
   '/api/v1/question/show/{id}':
     get:
-      summary: 'Display the specified resource.'
-      operationId: displayTheSpecifiedResource
+      summary: ''
+      operationId: getApiV1QuestionShowId
       description: ''
       parameters: []
       responses:
@@ -477,14 +482,14 @@ paths:
         in: path
         name: id
         description: 'The ID of the show.'
-        example: tempora
+        example: odit
         required: true
         schema:
           type: string
   '/api/v1/question/update/{id}':
     put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
+      summary: ''
+      operationId: putApiV1QuestionUpdateId
       description: ''
       parameters: []
       responses: {  }
@@ -500,29 +505,108 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 150 characters.'
-                  example: tpyuosianikmkdlmpfo
+                  example: hbvfjioqebnvxdcztuo
                 domain_id:
                   type: integer
                   description: ''
-                  example: 12
+                  example: 1
                 level_id:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 19
                 points:
                   type: integer
                   description: ''
-                  example: 20
+                  example: 5
       security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the update.'
-        example: facere
+        example: ab
         required: true
         schema:
           type: string
+  '/api/v1/question/delete/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1QuestionDeleteId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the delete.'
+        example: amet
+        required: true
+        schema:
+          type: string
+  /api/v1/quizzes:
+    get:
+      summary: "GET QUIZ\nrécupérations de tous les quiz"
+      operationId: gETQUIZrcuprationsDeTousLesQuiz
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/quiz/store:
+    post:
+      summary: 'Pour créer un quiz'
+      operationId: pourCrerUnQuiz
+      description: "Utiliser les paramètres ci-dessous.\nVous pouvez ajouter à la création d'un quiz l'ajout ou des questions à ce quiz ou\nla création des questions\n\nle paramètre questions attend une liste (tableau / objet) de question comme défini dans l'onglet de création d'une\nquestion\n\nLe paramètre questions_ids attend un tableau d'ids de question existante."
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: odio
+                level_id:
+                  type: integer
+                  description: ''
+                  example: 20
+                questions:
+                  type: object
+                  description: 'Must have at least 1 items.'
+                  example: null
+                  properties: {  }
+                questions_ids:
+                  type: object
+                  description: 'Must have at least 1 items.'
+                  example: null
+                  properties: {  }
+              required:
+                - title
+                - level_id
+      security: []
 tags:
   -
     name: Endpoints

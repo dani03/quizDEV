@@ -16,7 +16,13 @@ class RegisterController extends Controller
         $this->registerService = new RegisterService();
     }
 
-
+    /**
+     * POST api/v1/auth/register
+     *
+     *  permet de s'enregistrer
+     * @param RegisterRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function __invoke(RegisterRequest $request)
     {
         $userCreate = $this->registerService->addUser($request);

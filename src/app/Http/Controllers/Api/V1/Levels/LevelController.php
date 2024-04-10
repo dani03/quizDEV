@@ -22,11 +22,6 @@ class LevelController extends Controller
 
     /**
      * @return \Illuminate\Http\JsonResponse
-     *
-
-     */
-    /**
-     *  récupération de tous les levels(niveaux) récupére une collection de données et pas une seule donnée
      */
     public function index()
     {
@@ -35,7 +30,8 @@ class LevelController extends Controller
     }
 
     /**
-     * Store the newly created resource in storage.
+     * @param LevelRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(LevelRequest $request)
     {
@@ -77,7 +73,8 @@ class LevelController extends Controller
     }
 
     /**
-     * Remove the resource from storage.
+     * @param LevelDestroyRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(LevelDestroyRequest $request)
     {
