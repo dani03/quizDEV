@@ -32,11 +32,11 @@ module.exports = {
         redPrimary: "#931621",
       },
       backgroundImage: {
-        normal: "url('../public/background.png')",
-        mobile: "url('../public/background_mobile.png')",
-        error: "url('../public/error_background.png')",
-        error_mobile: "url('../public/error_background _mobile.png')",
-        pricing: "url('../public/background_pricing.png')",
+        normal: "url('/background.png')",
+        mobile: "url('/background_mobile.png')",
+        error: "url('/error_background.png')",
+        error_mobile: "url('/error_background _mobile.png')",
+        pricing: "url('/background_pricing.png')",
       },
       fontSize: {
         sm: "0.8rem",
