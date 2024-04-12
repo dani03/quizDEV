@@ -28,7 +28,11 @@ const CreateThemePage = () => {
   }
 
   return (
-    <div className="h-screen md:bg-normal bg-mobile bg-cover">
+    <div
+      className={`h-screen bg-cover ${
+        !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
+      }`}
+    >
       <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role || 2} />
       <div className="flex justify-center mt-16 md:mt-32">
