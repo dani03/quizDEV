@@ -32,6 +32,18 @@ Route::get('test', TestConnexionController::class);
 Route::post('auth/register', RegisterController::class)->name('register');
 Route::post('auth/login', LoginController::class)->name('login');
 
+//levels
+Route::get('levels', [LevelController::class, 'index']);
+
+//domains
+Route::get('domains', [DomainController::class, 'index']);
+
+//questions
+Route::get('questions', [QuestionController::class, 'index']);
+
+//quiz
+Route::get('quizzes', [QuizController::class, 'index']);
+
 // les routes ci-dessous ont besoin d'être authentifié avant d'être atteinte
 Route::middleware(['auth:api'])->group(function () {
     Route::get('profil', [ProfileController::class, 'show'])->name('profil.show');
@@ -45,22 +57,22 @@ Route::middleware(['auth:api'])->group(function () {
 
     //level les nivaux
     Route::post('level/store', [LevelController::class, 'store']);
-    Route::get('levels', [LevelController::class, 'index']);
+
     Route::delete('level/destroy', [LevelController::class, 'destroy']);
 
     // domain
-    Route::get('domains', [DomainController::class, 'index']);
+
     Route::post('domain/store', [DomainController::class, 'store'])->middleware('is.admin');
     Route::delete('domain/delete/{id}', [DomainController::class, 'destroy'])->middleware('is.admin');
 
     // questions
-    Route::get('questions', [QuestionController::class, 'index']);
+
     Route::post('question/store', [QuestionController::class, 'store']);
     Route::get('question/show/{id}', [QuestionController::class, 'show']);
     Route::put('question/update/{id}', [QuestionController::class, 'update']);
     Route::put('question/delete/{id}', [QuestionController::class, 'destroy']);
 
     // quiz
-    Route::get('quizzes', [QuizController::class, 'index']);
+
     Route::post('quiz/store', [QuizController::class, 'store']);
 });

@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/test', [\App\Http\Controllers\TestController::class, 'test']);
+
+
