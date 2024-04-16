@@ -14,10 +14,11 @@
         "laravel/passport": "^11.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "predis/predis": "^2.2",
-        "treblle/treblle-laravel": "^4.4"
+        "predis/predis": "^2.2"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest"
+        ,
         "fakerphp/faker": "^1.9.1",
         "knuckleswtf/scribe": "^4.26",
         "laravel/pint": "^1.0",
