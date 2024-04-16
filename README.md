@@ -31,12 +31,12 @@ générer les utilisateurs.
 
 Si le dossier "mysql" est présent à la racine de votre projet supprimer le.
 
-Une fois la clé générée, taper la commande `docker-compose up --build -d nginx` pour lancer vos conteneurs, ensuite taper la commande `docker-compose ps` pour voir si vos conteneurs tournent bien. Vous pouvez tester l'api sur l'endpoint `http://localhost/api/v1/test. Vous devriez avoir un retour si vous êtes connecté à l'api.
+Une fois la clé générée, taper la commande `docker-compose up --build -d nginx` pour lancer vos conteneurs pour l'api et si vous voulez lancez aussi l'application front lancez la commande `docker-compose up --build -d nginx nextjs`, ensuite taper la commande `docker-compose ps` pour voir si vos conteneurs tournent bien. Vous pouvez tester l'api sur l'endpoint `http://localhost/api/v1/test. Vous devriez avoir un retour si vous êtes connecté à l'api.
 
 # RUN les migrations
 
 Une fois vos conteneurs en marche, taper la commande `docker compose run --rm artisan migrate` afin de lancer les migrations vers votre base de données.
-Après les migrations lancer les seeders afin de peupler notre base de données avec la commande `docker compose run --rm db:seed`.
+Après les migrations lancer les seeders afin de peupler notre base de données avec la commande `docker compose run --rm artisan db:seed`.
 
 # PHP MY ADMIN
 
