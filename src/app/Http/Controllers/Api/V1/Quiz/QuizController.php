@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\Quiz;
 
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Questions\QuestionRepository;
+use App\Http\Requests\QuizReponseRequest;
 use App\Http\Requests\QuizStoreRequest;
 use App\Http\Resources\QuizResource;
 use App\Http\Services\Questions\QuestionService;
@@ -65,5 +66,17 @@ class QuizController extends Controller
         }
 
         return response()->json(['message' => "quiz crée avec succès"], Response::HTTP_CREATED);
+    }
+
+
+    /**
+     * Permet de répondre à un quiz
+     *
+     */
+    public function answerQuiz(QuizReponseRequest $request) {
+
+        return $request->all();
+
+
     }
 }

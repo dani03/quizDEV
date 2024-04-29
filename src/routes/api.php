@@ -56,8 +56,8 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('entreprise/quiz', [EntrepriseController::class, 'index']);
 
     //level les nivaux
+    Route::put('level/update/{id}', [LevelController::class, 'update']);
     Route::post('level/store', [LevelController::class, 'store']);
-
     Route::delete('level/destroy', [LevelController::class, 'destroy']);
 
     // domain
@@ -75,4 +75,5 @@ Route::middleware(['auth:api'])->group(function () {
     // quiz
 
     Route::post('quiz/store', [QuizController::class, 'store']);
+    Route::post('quiz/user/answer', [QuizController::class, 'answerQuiz']);
 });

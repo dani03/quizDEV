@@ -67,9 +67,16 @@ class LevelController extends Controller
     /**
      * Update the resource in storage.
      */
-    public function update(Request $request)
+    public function update(LevelRequest $request, int $levelId)
     {
-        //
+        Gate::authorize('create-level');
+        $level = $this->levelService->updateLevel($levelId, $request);
+        if($level->wasChanged()) {
+            return response()->json(['message' => ' le niveau a été mis à jour'], Response::HTTP_OK);
+        }
+        return response()->json(['message' => 'aucun changement effectué'], Response::HTTP_NOT_MODIFIED);
+
+
     }
 
     /**
