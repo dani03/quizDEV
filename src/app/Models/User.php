@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -24,6 +25,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'points',
         'lastname',
         'password',
         'role_id'
@@ -56,5 +58,9 @@ class User extends Authenticatable
 
     public function questions(): HasMany {
         return $this->hasMany(Question::class);
+    }
+
+    public function quizzes(): BelongsToMany {
+        return $this->BelongsToMany(Quiz::class);
     }
 }

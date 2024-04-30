@@ -3,6 +3,7 @@
 namespace App\Http\Services\Profils;
 
 use App\Http\Repositories\Users\UserRepository;
+use App\Models\User;
 
 class ProfilService
 {
@@ -16,6 +17,11 @@ class ProfilService
 
     public function deleteProfile() {
 
+    }
+
+    public function updateProfile(User $user , array $data): bool
+    {
+       return $this->userRepository->update($user, $data);
     }
 
 

@@ -21,4 +21,8 @@ class QuizRepository
         return Quiz::with('questions')->get();
     }
 
+    public function getQuiz(int $quizId): null|Object  {
+        return Quiz::with('questions')->where('id', $quizId)->first();
+    }
+
 }

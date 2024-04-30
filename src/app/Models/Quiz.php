@@ -36,5 +36,14 @@ class Quiz extends Model
         return $this->hasOne(Level::class);
     }
 
+    /**
+     * @return BelongsToMany
+     * Cette methode définit qu'un quiz peut être répondu par plusieurs user
+     * d'où la relation belongsToMany
+     */
+    public function users(): BelongsToMany {
+        return $this->belongsToMany(User::class);
+    }
+
 
 }

@@ -75,5 +75,5 @@ Route::middleware(['auth:api'])->group(function () {
     // quiz
 
     Route::post('quiz/store', [QuizController::class, 'store']);
-    Route::post('quiz/user/answer', [QuizController::class, 'answerQuiz']);
+    Route::post('quiz/user/answer/{id}', [QuizController::class, 'answerQuiz']);
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class QuizReponseRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class QuizReponseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +23,8 @@ class QuizReponseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "quiz_id" => ["integer", "required"],
-            "questions_answers.*" => ["array", "required"]
+
+            "questions_answers.*" => ["array", "required", Rule::exists('answers', 'id')]
         ];
     }
 }

@@ -20,6 +20,7 @@ class ProfilRessource extends JsonResource
             'name' => $this->name,
             'lastname' => $this->lastname,
             'email' => $this->email,
+            'quiz_answers' => $this->quizzes,
             'created_at' =>  Carbon::make($this->created_at)->diffForHumans(),
             'updated_at' => Carbon::make($this->updated_at)->diffForHumans(),
         ];

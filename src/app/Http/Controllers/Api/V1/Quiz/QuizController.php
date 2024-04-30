@@ -4,12 +4,18 @@ namespace App\Http\Controllers\Api\V1\Quiz;
 
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Questions\QuestionRepository;
+use App\Http\Repositories\Users\UserRepository;
 use App\Http\Requests\QuizReponseRequest;
 use App\Http\Requests\QuizStoreRequest;
 use App\Http\Resources\QuizResource;
+use App\Http\Services\Profils\ProfilService;
 use App\Http\Services\Questions\QuestionService;
 use App\Http\Services\Quiz\QuizService;
+use App\Http\Resources\QuestionResource;
+use App\Http\Resources\AnswerResource;
 use App\Models\Question;
+use App\Models\Quiz;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,10 +79,32 @@ class QuizController extends Controller
      * Permet de répondre à un quiz
      *
      */
-    public function answerQuiz(QuizReponseRequest $request) {
-
-        return $request->all();
-
-
+    public function answerQuiz(QuizReponseRequest $request,int  $quizId) {
+        //vérification si le quiz est bien present en BDD
+        $userAnswers = $request->questions_answer;
+        $quiz = $this->quizService->getQuiz($quizId);
+        if(!$quiz) {
+            return response()->json(['message' => "Impossible de trouver le quiz."], Response::HTTP_NOT_FOUND);
+        }
+        $quizzes = QuizResource::make($quiz);
+        // recupération des questions et réponses
+        $questionsOfQuiz = QuestionResource::collection($quizzes->questions);
+        //récupération de l'utilisateur connecté
+        $user = (new ProfilService(new UserRepository()))->getProfile(auth()->user()->id);
+        if(!$user) {
+            return response()->json(['message' => "utilisateur non trouvé."], Response::HTTP_NOT_FOUND);
+        }
+        $responseOfUser =  $this->quizService->userAnswerToQuiz($userAnswers, $questionsOfQuiz);
+        //on associe le user au quiz afin de le comptabiliser comme quiz effectué par l'utilisateur
+        if(!$quiz->users()->where('user_id', $user->id)->where('quiz_id', $quiz->id)->exists()) {
+            $user->quizzes()->attach($quizId);
+        }
+        //updated points user
+        $data = ['points' => $user->points + $responseOfUser['points']];
+        (new ProfilService(new UserRepository()))->updateProfile($user,$data);
+        return response()->json([
+            'message' => "Vous avez obtenu {$responseOfUser["points"]} point.s sur ce quiz. total de points: {$user->points}",
+            'results' => $responseOfUser['results'],
+        ], Response::HTTP_OK);
     }
 }
