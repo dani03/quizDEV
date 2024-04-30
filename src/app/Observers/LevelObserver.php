@@ -21,7 +21,7 @@ class LevelObserver
      */
     public function updated(Level $level): void
     {
-        //
+        Cache::forget('levels');
     }
 
     /**
@@ -37,7 +37,7 @@ class LevelObserver
      */
     public function restored(Level $level): void
     {
-        //
+        Cache::forget('levels');
     }
 
     /**
@@ -45,6 +45,6 @@ class LevelObserver
      */
     public function forceDeleted(Level $level): void
     {
-        //
+        Cache::forget('levels');
     }
 }

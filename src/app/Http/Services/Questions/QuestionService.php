@@ -57,7 +57,7 @@ class QuestionService
             if(!$answerAdded) {
                 return response()->json(['message' => 'impossible d\'ajouter des réponses à ses questions '], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
-            $questionCreated?->quizzes()->attach($quizId);
+            $questionCreated->quizzes()->attach($quizId);
         }
 
         return true;

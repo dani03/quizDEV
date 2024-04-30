@@ -25,6 +25,7 @@ class LevelRepository
         return Level::where('slug', $levelSlug)->first();
     }
 
+
     //renvoi tous les levels
     public function findAll(): Collection | null {
         return Level::all();
@@ -34,5 +35,9 @@ class LevelRepository
       */
     public function findById(int $levelId) {
         return Level::where('id',$levelId)->first();
+    }
+
+    public function update(Level $level, $data) {
+        return $level->update($data);
     }
 }
