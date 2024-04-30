@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\Domain\DomainController;
 use App\Http\Controllers\Api\V1\Levels\LevelController;
+use App\Http\Controllers\Api\V1\Links\LinkController;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\LogoutController;
 use App\Http\Controllers\Api\V1\PasswordUpdateController;
@@ -73,6 +74,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::delete('question/delete/{id}', [QuestionController::class, 'destroy']);
 
     // quiz
+    Route::post('quiz/generate/link/{slug}', [LinkController::class, 'store']);
 
     Route::post('quiz/store', [QuizController::class, 'store']);
     Route::post('quiz/user/answer/{id}', [QuizController::class, 'answerQuiz']);
