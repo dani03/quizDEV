@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Models\Question;
 use App\Models\Role;
 use App\Policies\QuestionPolicy;
+use App\Policies\QuizPolicy;
 use Carbon\Carbon;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -40,5 +41,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('create-question', [QuestionPolicy::class, 'create']);
         Gate::define('update-question',  [QuestionPolicy::class, 'update']);
+        Gate::define('delete-quiz',  [QuizPolicy::class, 'delete']);
+        Gate::define('create-quiz',  [QuizPolicy::class, 'create']);
     }
 }

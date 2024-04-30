@@ -70,10 +70,11 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('question/store', [QuestionController::class, 'store']);
     Route::get('question/show/{id}', [QuestionController::class, 'show']);
     Route::put('question/update/{id}', [QuestionController::class, 'update']);
-    Route::put('question/delete/{id}', [QuestionController::class, 'destroy']);
+    Route::delete('question/delete/{id}', [QuestionController::class, 'destroy']);
 
     // quiz
 
     Route::post('quiz/store', [QuizController::class, 'store']);
     Route::post('quiz/user/answer/{id}', [QuizController::class, 'answerQuiz']);
+    Route::delete('quiz/delete/{id}', [QuizController::class, 'destroy']);
 });

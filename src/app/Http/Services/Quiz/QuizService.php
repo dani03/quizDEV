@@ -16,7 +16,9 @@ class QuizService
     public function createQuiz(QuizStoreRequest $request) {
         $data = [
             'title' => $request->title,
-            'level_id' => $request->level_id
+            'level_id' => $request->level_id,
+            'user_id' => auth()->user()->id
+
         ];
         return $this->quizRepository->create($data);
 

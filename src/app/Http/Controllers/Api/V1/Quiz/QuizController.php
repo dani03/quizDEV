@@ -59,7 +59,7 @@ class QuizController extends Controller
      */
     public function store(QuizStoreRequest $request): JsonResponse
     {
-        if ($request->user()->cannot('create-question', Question::class)) {
+        if ($request->user()->cannot('create-quiz', Quiz::class)) {
             return response()->json(['message' => 'vous n\'avez pas les droits requis pour effectuer cette action.'], Response::HTTP_FORBIDDEN);
         }
         $quiz = $this->quizService->createQuiz($request);
@@ -106,5 +106,16 @@ class QuizController extends Controller
             'message' => "Vous avez obtenu {$responseOfUser["points"]} point.s sur ce quiz. total de points: {$user->points}",
             'results' => $responseOfUser['results'],
         ], Response::HTTP_OK);
+    }
+
+
+    public function destroy(int $quizId) {
+       $quiz = $this->quizService->getQuiz($quizId);
+       if(!$quiz) {
+           return response()->json(['message' => "le quiz n'existe pas."], Response::HTTP_NOT_FOUND);
+       }
+        $this->authorize('delete-quiz', $quiz);
+       $quiz->delete();
+        return response()->json(['message' => "le quiz a été supprimé."], Response::HTTP_OK);
     }
 }

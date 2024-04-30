@@ -11,6 +11,7 @@ class QuizRepository
         return Quiz::create([
             'title' => $data['title'],
             'level_id' => $data['level_id'],
+            'user_id' => $data['user_id'],
         ]);
     }
 
