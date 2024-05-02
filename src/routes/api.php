@@ -29,24 +29,29 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::get('test', TestConnexionController::class);
-Route::post('auth/register', RegisterController::class)->name('register');
-Route::post('auth/login', LoginController::class)->name('login');
 
-//levels
-Route::get('levels', [LevelController::class, 'index']);
+Route::prefix('api/v1')->group(function () {
+    Route::get('test', TestConnexionController::class);
+    Route::post('auth/register', RegisterController::class)->name('register');
+    Route::post('auth/login', LoginController::class)->name('login');
 
-//domains
-Route::get('domains', [DomainController::class, 'index']);
+    //levels
+    Route::get('levels', [LevelController::class, 'index']);
 
-//questions
-Route::get('questions', [QuestionController::class, 'index']);
+    //domains
+    Route::get('domains', [DomainController::class, 'index']);
 
-//quiz
-Route::get('quizzes', [QuizController::class, 'index']);
+    //questions
+    Route::get('questions', [QuestionController::class, 'index']);
+
+    //quiz
+    Route::get('quizzes', [QuizController::class, 'index']);
+
+});
 
 // les routes ci-dessous ont besoin d'être authentifié avant d'être atteinte
 Route::middleware(['auth:api'])->group(function () {
+ Route::prefix('api/v1')->group(function () {
     Route::get('profil', [ProfileController::class, 'show'])->name('profil.show');
     Route::put('update/profil', [ProfileController::class, 'update'])->name('profil.update');
     Route::put('update/password', PasswordUpdateController::class);
@@ -74,9 +79,11 @@ Route::middleware(['auth:api'])->group(function () {
     Route::delete('question/delete/{id}', [QuestionController::class, 'destroy']);
 
     // quiz
-    Route::post('quiz/generate/link/{slug}', [LinkController::class, 'store']);
+    Route::post('quiz/generate/link', [LinkController::class, 'store']);
 
     Route::post('quiz/store', [QuizController::class, 'store']);
     Route::post('quiz/user/answer/{id}', [QuizController::class, 'answerQuiz']);
     Route::delete('quiz/delete/{id}', [QuizController::class, 'destroy']);
+  });
+ Route::get('invitation-link', [LinkController::class, 'show']);
 });
