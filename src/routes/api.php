@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Answers\AnswerController;
 use App\Http\Controllers\Api\V1\Domain\DomainController;
 use App\Http\Controllers\Api\V1\Levels\LevelController;
 use App\Http\Controllers\Api\V1\Links\LinkController;
@@ -30,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+//les routes qui n'ont pas besoin d'authentification
 Route::prefix('api/v1')->group(function () {
     Route::get('test', TestConnexionController::class);
     Route::post('auth/register', RegisterController::class)->name('register');
@@ -46,6 +48,10 @@ Route::prefix('api/v1')->group(function () {
 
     //quiz
     Route::get('quizzes', [QuizController::class, 'index']);
+    Route::get('answers/{questionId}', [AnswerController::class, 'index']);
+
+
+
 
 });
 
@@ -84,6 +90,10 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('quiz/store', [QuizController::class, 'store']);
     Route::post('quiz/user/answer/{id}', [QuizController::class, 'answerQuiz']);
     Route::delete('quiz/delete/{id}', [QuizController::class, 'destroy']);
-  });
+
+     Route::get('answer/{answerId}', [AnswerController::class, 'show']);
+     Route::delete('delete/answer/{answerId}', [AnswerController::class, 'destroy']);
+
+ });
  Route::get('invitation-link', [LinkController::class, 'show']);
 });
