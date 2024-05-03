@@ -55,6 +55,18 @@ Route::prefix('api/v1')->group(function () {
 
 });
 
+//levels
+Route::get('levels', [LevelController::class, 'index']);
+
+//domains
+Route::get('domains', [DomainController::class, 'index']);
+
+//questions
+Route::get('questions', [QuestionController::class, 'index']);
+
+//quiz
+Route::get('quizzes', [QuizController::class, 'index']);
+
 // les routes ci-dessous ont besoin d'être authentifié avant d'être atteinte
 Route::middleware(['auth:api'])->group(function () {
  Route::prefix('api/v1')->group(function () {
