@@ -29,4 +29,18 @@ class AnswerService
         }
         return true;
     }
+
+
+    public function updatingAnswer(Answer $Answer, $data) {
+
+    }
+
+
+    public function getAnswers(int $questionId) {
+        return $this->answerRepository->getAnswers($questionId);
+    }
+
+    public function getAnswer(int $idAnswer) {
+    return $this->answerRepository->getAnswer($idAnswer);
+    }
 }
