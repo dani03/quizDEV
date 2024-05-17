@@ -29,6 +29,7 @@ module.exports = {
         purplePrimary: "#44214E",
         brownPrimary: "#AC604A",
         deepBrownPrimary: "#77404B",
+<<<<<<< HEAD
         redPrimary: "#931621",
       },
       backgroundImage: {
@@ -37,6 +38,13 @@ module.exports = {
         error: "url('/error_background.png')",
         error_mobile: "url('/error_background _mobile.png')",
         pricing: "url('/background_pricing.png')",
+=======
+      },
+      backgroundImage: {
+        normal: "url('../public/background.png')",
+        mobile: "url('../public/background_mobile.png')",
+        purple: "url('../public/background_purple.png')",
+>>>>>>> develop
       },
       fontSize: {
         sm: "0.8rem",

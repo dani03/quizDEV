@@ -5,6 +5,7 @@ import Popup from "../Popup"
 
 const CreateQuestionClassic = (props) => {
   const [error, setError] = useState("")
+<<<<<<< HEAD
   const [openPopup, setOpenPopup] = useState(false)
   const { levels, domains, jwt, changeIsError } = props
 
@@ -12,6 +13,9 @@ const CreateQuestionClassic = (props) => {
     changeIsError()
     setOpenPopup(!openPopup)
   }
+=======
+  const { levels, domains, jwt } = props
+>>>>>>> develop
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -65,18 +69,32 @@ const CreateQuestionClassic = (props) => {
   return (
     <form onSubmit={handleFormSubmit}>
       <div className="mb-1 flex flex-col gap-6 w-80 md:w-128 overflow-y-auto h-96 md:h-full h-[650px]">
+<<<<<<< HEAD
+=======
+        <Typography variant="lead" color="white">
+          Question
+        </Typography>
+>>>>>>> develop
         <Input
           type="text"
           name="question"
           placeholder="Quelle est la capitale de la France ?"
+<<<<<<< HEAD
           className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
+=======
+          className="bg-white border p-2 rounded-lg"
+>>>>>>> develop
         />
         <div className="flex items-center">
           <Input
             type="text"
             name="answer1"
             placeholder="answer 1"
+<<<<<<< HEAD
             className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
+=======
+            className="bg-white border p-2 rounded-lg"
+>>>>>>> develop
           />
           <Checkbox
             label={
@@ -94,7 +112,11 @@ const CreateQuestionClassic = (props) => {
             type="text"
             name="answer2"
             placeholder="answer 2"
+<<<<<<< HEAD
             className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
+=======
+            className="bg-white border p-2 rounded-lg"
+>>>>>>> develop
           />
           <Checkbox
             label={
@@ -112,7 +134,11 @@ const CreateQuestionClassic = (props) => {
             type="text"
             name="answer3"
             placeholder="answer 3"
+<<<<<<< HEAD
             className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
+=======
+            className="bg-white border p-2 rounded-lg"
+>>>>>>> develop
           />
           <Checkbox
             label={
@@ -130,7 +156,11 @@ const CreateQuestionClassic = (props) => {
             type="text"
             name="answer4"
             placeholder="answer 4"
+<<<<<<< HEAD
             className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
+=======
+            className="bg-white border p-2 rounded-lg"
+>>>>>>> develop
           />
           <Checkbox
             label={
@@ -149,7 +179,11 @@ const CreateQuestionClassic = (props) => {
         <select
           name="domain"
           autoComplete="Theme"
+<<<<<<< HEAD
           className="block w-full p-2 rounded-lg bg-transparent border border-2 text-gray-900"
+=======
+          className="block w-full p-2 rounded-lg"
+>>>>>>> develop
         >
           {Array.isArray(domains.data) && domains.data.length > 0 ? (
             domains.data.map((item, index) => (
@@ -167,7 +201,11 @@ const CreateQuestionClassic = (props) => {
         <select
           name="level"
           autoComplete="Difficulty"
+<<<<<<< HEAD
           className="block w-full p-2 rounded-lg bg-transparent border border-2 text-gray-900"
+=======
+          className="block w-full p-2 rounded-lg"
+>>>>>>> develop
         >
           {Array.isArray(levels.data) && levels.data.length > 0 ? (
             levels.data.map((item, index) => (
@@ -185,7 +223,11 @@ const CreateQuestionClassic = (props) => {
         <Input
           type="number"
           name="points"
+<<<<<<< HEAD
           className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
+=======
+          className="bg-white border p-2 rounded-lg"
+>>>>>>> develop
         />
         <Button
           type="submit"

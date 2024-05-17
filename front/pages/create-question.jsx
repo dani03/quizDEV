@@ -8,6 +8,7 @@ import CreateQuestionWithAI from "../src/components/tabs/createQuestionWithAI"
 import QuestionTable from "../src/components/tabs/QuestionsTable"
 
 const CreateQuestion = () => {
+<<<<<<< HEAD
   const {
     jwt,
     logout,
@@ -19,6 +20,10 @@ const CreateQuestion = () => {
     questions,
     changeIsError,
   } = useContext(AppContext)
+=======
+  const { jwt, logout, user, isError, role, levels, domains, questions } =
+    useContext(AppContext)
+>>>>>>> develop
   const [openTab, setOpenTab] = useState(1)
 
   const handleTabChange = (tab) => {
@@ -29,12 +34,16 @@ const CreateQuestion = () => {
       id: 1,
       name: "Create Question",
       content: (
+<<<<<<< HEAD
         <CreateQuestionClassic
           jwt={jwt}
           levels={levels}
           domains={domains}
           changeIsError={changeIsError}
         />
+=======
+        <CreateQuestionClassic jwt={jwt} levels={levels} domains={domains} />
+>>>>>>> develop
       ),
     },
     {
@@ -50,11 +59,15 @@ const CreateQuestion = () => {
   ]
 
   return (
+<<<<<<< HEAD
     <div
       className={`h-screen bg-cover ${
         !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
       }`}
     >
+=======
+    <div className="h-screen md:bg-normal bg-mobile bg-cover">
+>>>>>>> develop
       <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role} />
       <div className="flex justify-center mt-4">

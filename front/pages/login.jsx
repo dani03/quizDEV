@@ -47,11 +47,15 @@ const Login = () => {
   }
 
   return (
+<<<<<<< HEAD
     <div
       className={`h-screen bg-cover ${
         !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
       }`}
     >
+=======
+    <div className="h-screen md:bg-normal bg-mobile bg-cover">
+>>>>>>> develop
       <ParticlesComponent isError={isError} />
       <NavBar
         jwt={jwt}

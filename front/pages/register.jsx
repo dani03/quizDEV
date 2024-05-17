@@ -50,6 +50,7 @@ const Register = () => {
   }
 
   return (
+<<<<<<< HEAD
     <div
       className={`h-screen bg-cover ${
         !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
@@ -60,13 +61,28 @@ const Register = () => {
       <div className="flex justify-center md:mt-2">
         <Card className="bg-transparent px-4 md:px-8 md:py-2" shadow={false}>
           <p className="text-white text-center font-passion text-45xl md:text-5xl -mb-4 text-shadow-lg shadow-gray-900/50">
+=======
+    <div className="h-screen md:bg-normal bg-mobile bg-cover">
+      <ParticlesComponent isError={isError} />
+      <NavBar jwt={jwt} logout={logout} />
+      <div className="flex justify-center md:mt-2">
+        <Card
+          className="bg-transparent px-4 py-4 md:px-12 md:py-4"
+          shadow={false}
+        >
+          <p className="text-white text-center font-passion text-45xl md:text-5xl -mb-8 text-shadow-lg shadow-gray-900/50">
+>>>>>>> develop
             REGISTER
           </p>
           <p className="mt-1 font-normal font-dancing text-2xl text-center text-white text-shadow-lg shadow-gray-900/50">
             Nice to meet you! Enter your details to login.
           </p>
           <form onSubmit={handleFormSubmit} className="mt-8 mb-2 ">
+<<<<<<< HEAD
             <div className="mb-1 flex flex-col gap-6 overflow-y-auto max-h-96 ">
+=======
+            <div className="mb-1 flex flex-col gap-6">
+>>>>>>> develop
               <Typography variant="h6" color="white" className="-mb-3">
                 Firstname
               </Typography>

@@ -77,7 +77,11 @@ const AppContextProvider = (props) => {
         setLevels(response.data)
       } catch (error) {
         console.error("Error fetching levels:", error)
+<<<<<<< HEAD
         setLevels(fakeLevels)
+=======
+        setLevels([])
+>>>>>>> develop
       }
     }
 
@@ -100,7 +104,11 @@ const AppContextProvider = (props) => {
         setDomains(response.data)
       } catch (error) {
         console.error("Error fetching domains:", error)
+<<<<<<< HEAD
         setDomains(fakeTheme)
+=======
+        setDomains([])
+>>>>>>> develop
       }
     }
 
@@ -123,7 +131,11 @@ const AppContextProvider = (props) => {
         setQuestions(response.data)
       } catch (error) {
         console.error("Error fetching domains:", error)
+<<<<<<< HEAD
         setQuestions(fakeQuestion)
+=======
+        setQuestions([])
+>>>>>>> develop
       }
     }
 

@@ -42,15 +42,23 @@ const particlesOptions = {
       speed: 1,
       straight: false,
     },
+<<<<<<< HEAD
     number: { density: { enable: true, area: 2000 }, value: 50 },
+=======
+    number: { density: { enable: true, area: 2000 }, value: 250 },
+>>>>>>> develop
     opacity: {
-      value: 0.1,
+      value: 0.5,
     },
     shape: {
       type: "circle",
     },
     size: {
+<<<<<<< HEAD
       value: { min: 50, max: 100 },
+=======
+      value: { min: 1, max: 5 },
+>>>>>>> develop
     },
     zIndex: 0,
   },
