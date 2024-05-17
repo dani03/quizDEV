@@ -65,9 +65,6 @@ const CreateQuestionClassic = (props) => {
   return (
     <form onSubmit={handleFormSubmit}>
       <div className="mb-1 flex flex-col gap-6 w-80 md:w-128 overflow-y-auto h-96 md:h-full h-[650px]">
-        <Typography variant="lead" color="white">
-          Question
-        </Typography>
         <Input
           type="text"
           name="question"

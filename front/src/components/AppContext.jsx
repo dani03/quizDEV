@@ -1,5 +1,8 @@
 import axios from "axios"
 import { createContext, useCallback, useEffect, useState } from "react"
+import { fakeLevels } from "../data/fakeData"
+import { fakeQuestion } from "../data/fakeData"
+import { fakeTheme } from "../data/fakeData"
 
 export const AppContext = createContext(null)
 
@@ -74,7 +77,7 @@ const AppContextProvider = (props) => {
         setLevels(response.data)
       } catch (error) {
         console.error("Error fetching levels:", error)
-        setLevels([])
+        setLevels(fakeLevels)
       }
     }
 
@@ -97,7 +100,7 @@ const AppContextProvider = (props) => {
         setDomains(response.data)
       } catch (error) {
         console.error("Error fetching domains:", error)
-        setDomains([])
+        setDomains(fakeTheme)
       }
     }
 
@@ -120,7 +123,7 @@ const AppContextProvider = (props) => {
         setQuestions(response.data)
       } catch (error) {
         console.error("Error fetching domains:", error)
-        setQuestions([])
+        setQuestions(fakeQuestion)
       }
     }
 

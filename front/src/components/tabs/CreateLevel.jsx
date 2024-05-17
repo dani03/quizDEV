@@ -41,7 +41,7 @@ const CreateLevel = (props) => {
         <Input
           size="lg"
           name="name"
-          className="bg-white border border-purplePrimary"
+          className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
@@ -52,7 +52,7 @@ const CreateLevel = (props) => {
         <Input
           size="lg"
           name="points"
-          className="bg-white border border-purplePrimary"
+          className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
@@ -63,7 +63,7 @@ const CreateLevel = (props) => {
         <Input
           size="lg"
           name="slug"
-          className="bg-white border border-purplePrimary"
+          className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
