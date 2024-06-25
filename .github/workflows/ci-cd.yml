@@ -44,7 +44,7 @@ jobs:
         run: wget -qO- $JMETER_DOWNLOAD_URL | tar xvz -C /tmp
       
       - name: Running JMeter performance tests
-        run: /tmp/apache-jmeter-5.4.1/bin/jmeter -n -t path/to/your/performance-test.jmx -l results.jtl
+        run: /tmp/apache-jmeter-5.4.1/bin/jmeter -n -t jmeter-scripts/performance-test.jmx -l results.jtl
 
       - name: Upload JMeter results
         uses: actions/upload-artifact@v2
