@@ -29,18 +29,14 @@ jobs:
         env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
-          docker tag your_project_name_nginx ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_nginx:latest
-          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_nginx:latest
+          docker tag artisan ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
           
-          docker tag your_project_name_php ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_php:latest
-          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_php:latest
+          docker tag php ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
           
-          docker tag your_project_name_mysql ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_mysql:latest
-          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_mysql:latest
-          
-          docker tag your_project_name_phpmyadmin ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_phpmyadmin:latest
-          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_phpmyadmin:latest
-          
+          docker tag ngnix ghcr.io/${GITHUB_REPOSITORY_OWNER}/ngnix:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/ngnix:latest
   
   performance:
     runs-on: ubuntu-latest
