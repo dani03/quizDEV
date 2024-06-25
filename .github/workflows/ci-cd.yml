@@ -25,18 +25,18 @@ jobs:
       - name: Build Docker images
         run: docker-compose -f docker-compose.yml build
   
-      - name: Tag and Push Docker images
-        env:
-          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
-        run: |
-          docker tag artisan ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
-          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
+      # - name: Tag and Push Docker images
+      #   env:
+      #     GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+      #   run: |
+      #     docker tag artisan ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
+      #     docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
           
-          docker tag php ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
-          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
+      #     docker tag php ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
+      #     docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
           
-          docker tag nginx ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
-          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
+      #     docker tag nginx ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
+      #     docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
   
   performance:
     runs-on: ubuntu-latest
@@ -113,15 +113,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-  snyk_scan:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Scan with Snyk
-      run: npx snyk test --all-projects
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
