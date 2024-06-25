@@ -1,10 +1,13 @@
 name: CI/CD Workflow
 
+env:
+  JMETER_DOWNLOAD_URL: "https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz"
+
 on:
   push:
     branches:
       - Quentin
-
+      
 jobs:
   build_and_push_image:
     runs-on: ubuntu-latest
@@ -30,6 +33,24 @@ jobs:
       - name: Push Docker image to GitHub Container Registry
         run: docker push ghcr.io/${{ github.repository_owner }}/your_image_name:latest
   
+  performance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Downloading Apache JMeter
+        run: wget -qO- $JMETER_DOWNLOAD_URL | tar xvz -C /tmp
+      
+      - name: Running JMeter performance tests
+        run: /tmp/apache-jmeter-5.4.1/bin/jmeter -n -t path/to/your/performance-test.jmx -l results.jtl
+
+      - name: Upload JMeter results
+        uses: actions/upload-artifact@v2
+        with:
+          name: jmeter-results
+          path: results.jtl
 
   php_tests:
     runs-on: ubuntu-latest
