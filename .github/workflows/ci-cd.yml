@@ -100,12 +100,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0
 
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '11'  # Version Java recommandée pour SonarCloud
+          java-version: '11'
+          distribution: 'adopt'
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
