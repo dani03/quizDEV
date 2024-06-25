@@ -35,8 +35,8 @@ jobs:
           docker tag php ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
           docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
           
-          docker tag ngnix ghcr.io/${GITHUB_REPOSITORY_OWNER}/ngnix:latest
-          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/ngnix:latest
+          docker tag nginx ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
   
   performance:
     runs-on: ubuntu-latest

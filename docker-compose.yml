@@ -9,6 +9,7 @@ services:
     build:
       context: .
       dockerfile: nginx.dockerfile
+    image: nginx:latest
     container_name: nginx
     ports:
       - 3002:80
@@ -26,6 +27,7 @@ services:
     build:
       context: .
       dockerfile: php.dockerfile
+    image: php:latest
     container_name: php
     volumes:
       - ./src:/var/www/html
@@ -51,6 +53,7 @@ services:
     build:
       context: .
       dockerfile: php.dockerfile
+    image: artisan:latest
     container_name: artisan
     volumes:
       - ./src:/var/www/html
