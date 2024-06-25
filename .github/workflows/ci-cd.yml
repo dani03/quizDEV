@@ -22,16 +22,25 @@ jobs:
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.repository_owner }}" --password-stdin
   
-      - name: Build Docker image
-        run: |
-          docker-compose -f docker-compose.yml build
-          docker-compose -f docker-compose.yml images  # Print the list of images to check the correct name
-
-      - name: Tag Docker image
-        run: docker tag your_image_name ghcr.io/${{ github.repository_owner }}/your_image_name:latest
+      - name: Build Docker images
+        run: docker-compose -f docker-compose.yml build
   
-      - name: Push Docker image to GitHub Container Registry
-        run: docker push ghcr.io/${{ github.repository_owner }}/your_image_name:latest
+      - name: Tag and Push Docker images
+        env:
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+        run: |
+          docker tag your_project_name_nginx ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_nginx:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_nginx:latest
+          
+          docker tag your_project_name_php ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_php:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_php:latest
+          
+          docker tag your_project_name_mysql ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_mysql:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_mysql:latest
+          
+          docker tag your_project_name_phpmyadmin ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_phpmyadmin:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/your_project_name_phpmyadmin:latest
+          
   
   performance:
     runs-on: ubuntu-latest
