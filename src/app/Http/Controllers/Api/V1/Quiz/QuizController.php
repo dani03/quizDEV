@@ -17,13 +17,14 @@ use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
 class QuizController extends Controller
 {
-    public function __construct(private QuizService $quizService) {
-
+    public function __construct(private QuizService $quizService)
+    {
     }
 
 
@@ -35,10 +36,9 @@ class QuizController extends Controller
     public function index(): JsonResponse
     {
 
-        return response()->json(['data' => Cache::remember('quizzes', 60*60*24, function() {
-           return  QuizResource::collection($this->quizService->getQuizzes());
-        })], Response::HTTP_OK );
-
+        return response()->json(['data' => Cache::remember('quizzes', 60 * 60 * 24, function () {
+            return  QuizResource::collection($this->quizService->getQuizzes());
+        })], Response::HTTP_OK);
     }
 
     /**
@@ -63,11 +63,11 @@ class QuizController extends Controller
             return response()->json(['message' => 'vous n\'avez pas les droits requis pour effectuer cette action.'], Response::HTTP_FORBIDDEN);
         }
         $quiz = $this->quizService->createQuiz($request);
-        if($request->has('questions')){
+        if ($request->has('questions')) {
             //on vérifie si l'utilisateur à l'autorisation pour effectuer cette action
             (new QuestionService(new QuestionRepository()))->createQuestions($request->questions, $quiz->id);
         }
-        if($request->has('questions_ids')) {
+        if ($request->has('questions_ids')) {
             $quiz->questions()->attach($request->questions_ids);
         }
 
@@ -79,11 +79,12 @@ class QuizController extends Controller
      * Permet de répondre à un quiz
      *
      */
-    public function answerQuiz(QuizReponseRequest $request,int  $quizId) {
+    public function answerQuiz(QuizReponseRequest $request, int  $quizId)
+    {
         //vérification si le quiz est bien present en BDD
         $userAnswers = $request->questions_answer;
         $quiz = $this->quizService->getQuiz($quizId);
-        if(!$quiz) {
+        if (!$quiz) {
             return response()->json(['message' => "Impossible de trouver le quiz."], Response::HTTP_NOT_FOUND);
         }
         $quizzes = QuizResource::make($quiz);
@@ -91,31 +92,42 @@ class QuizController extends Controller
         $questionsOfQuiz = QuestionResource::collection($quizzes->questions);
         //récupération de l'utilisateur connecté
         $user = (new ProfilService(new UserRepository()))->getProfile(auth()->user()->id);
-        if(!$user) {
+        if (!$user) {
             return response()->json(['message' => "utilisateur non trouvé."], Response::HTTP_NOT_FOUND);
         }
         $responseOfUser =  $this->quizService->userAnswerToQuiz($userAnswers, $questionsOfQuiz);
         //on associe le user au quiz afin de le comptabiliser comme quiz effectué par l'utilisateur
-        if(!$quiz->users()->where('user_id', $user->id)->where('quiz_id', $quiz->id)->exists()) {
+        if (!$quiz->users()->where('user_id', $user->id)->where('quiz_id', $quiz->id)->exists()) {
             $user->quizzes()->attach($quizId);
         }
         //updated points user
         $data = ['points' => $user->points + $responseOfUser['points']];
-        (new ProfilService(new UserRepository()))->updateProfile($user,$data);
+        (new ProfilService(new UserRepository()))->updateProfile($user, $data);
         return response()->json([
             'message' => "Vous avez obtenu {$responseOfUser["points"]} point.s sur ce quiz. total de points: {$user->points}",
             'results' => $responseOfUser['results'],
         ], Response::HTTP_OK);
     }
 
+    public function show(Request $request, int $quizId)
+    {
+        return "$quizId, $request";
+        $quiz = $this->quizService->getQuiz($quizId);
+        if (!$quiz) {
+            return response()->json(['message' => "le quiz n'a pas été trouvé."], Response::HTTP_NOT_FOUND);
+        }
+        return response()->json(QuizResource::make($quiz), Response::HTTP_NOT_FOUND);
+    }
 
-    public function destroy(int $quizId) {
-       $quiz = $this->quizService->getQuiz($quizId);
-       if(!$quiz) {
-           return response()->json(['message' => "le quiz n'existe pas."], Response::HTTP_NOT_FOUND);
-       }
+
+    public function destroy(int $quizId)
+    {
+        $quiz = $this->quizService->getQuiz($quizId);
+        if (!$quiz) {
+            return response()->json(['message' => "le quiz n'existe pas."], Response::HTTP_NOT_FOUND);
+        }
         $this->authorize('delete-quiz', $quiz);
-       $quiz->delete();
+        $quiz->delete();
         return response()->json(['message' => "le quiz a été supprimé."], Response::HTTP_OK);
     }
 }

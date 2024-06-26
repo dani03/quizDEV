@@ -100,6 +100,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('quiz/generate/link', [LinkController::class, 'store']);
 
     Route::post('quiz/store', [QuizController::class, 'store']);
+    Route::get('quiz/{id}', [QuizController::class, 'show']);
     Route::post('quiz/user/answer/{id}', [QuizController::class, 'answerQuiz']);
     Route::delete('quiz/delete/{id}', [QuizController::class, 'destroy']);
 
