@@ -133,6 +133,14 @@ class QuizController extends Controller
         return response()->json(['message' => "le quiz a été supprimé."], Response::HTTP_OK);
     }
 
+    /**
+     * générer un quiz à l'aide d'open ai
+     *
+     * Si vous avez des questions ou souhaitez créer un quiz, n'hésitez pas à les poser ici ! Des questions et réponses seront générées, et vous pourrez les intégrer.
+     * @param OpenAiRequest $request
+     * @return array|mixed
+     *
+     */
     public function generateQuizByOpenAi(OpenAiRequest $request)
     {
         // on fait appel à la clé de notre compte openai
