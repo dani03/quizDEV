@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Profil;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfilImageRequest;
 use App\Http\Requests\ProfilUpdateRequest;
 use App\Http\Resources\ProfilRessource;
 use App\Http\Services\Cache\RedisCacheService;
@@ -20,9 +21,20 @@ class ProfileController extends Controller
     {
     }
 
+    public function addProfilePicture(ProfilImageRequest $request)
+    {
+
+      $imageAdd =  $this->profilService->createImage($request);
+
+      if($imageAdd) {
+          return Response()->json(['message' => 'image ajouté avec succès', 'data' => new ProfilRessource(auth()->user())], ResponseAlias::HTTP_CREATED);
+      }
+      return  Response()->json(['message' => 'impossible d\'ajouté cette image.'], ResponseAlias::HTTP_OK);
+    }
+
     public function show(Request $request): JsonResponse
     {
-        return Response()->json(['data' => new ProfilRessource($request->user())], Response::HTTP_OK);
+        return Response()->json(['data' => new ProfilRessource($request->user())], ResponseAlias::HTTP_OK);
     }
 
     public function update(ProfilUpdateRequest $request): JsonResponse
@@ -34,30 +46,31 @@ class ProfileController extends Controller
         $user->update($request->all());
         //on vérifie si une clé soit name, lastname, email à changer
         $valuesHasChanged = $user->wasChanged(['name', 'lastname', 'email']);
-        if($valuesHasChanged) {
-        $data = [
-            "data" => $request->all(),
-            "message" => "profil mis à jour",
-        ];
+        if ($valuesHasChanged) {
+            $data = [
+                "data" => $request->all(),
+                "message" => "profil mis à jour",
+            ];
         } else {
             $data = [
                 "data" => $request->all(),
                 "message" => "pas de changements effectués",
-                ];
+            ];
             $fromCache = (new RedisCacheService())->updateCache($cacheKey, $data);
         }
         return response()->json([$cacheKey => $data, "from cache" => $fromCache], ResponseAlias::HTTP_ACCEPTED);
     }
 
-    public function destroy() {
+    public function destroy()
+    {
         $id = auth()->user()->id;
         $userToDelete = $this->profilService->getProfile($id);
-        if(!$userToDelete) {
+        if (!$userToDelete) {
             return response()->json('cet utilisateur n\'existe pas.. ', ResponseAlias::HTTP_NOT_FOUND);
         }
-       if (User::destroy($userToDelete->id)) {
-           return response()->json('compte supprimé avec succès', ResponseAlias::HTTP_NO_CONTENT);
-       }
+        if (User::destroy($userToDelete->id)) {
+            return response()->json('compte supprimé avec succès', ResponseAlias::HTTP_NO_CONTENT);
+        }
 
         return response()->json('Une erreur est survenue impossible de supprimer le compte', ResponseAlias::HTTP_BAD_REQUEST);
     }

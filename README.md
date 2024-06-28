@@ -14,7 +14,7 @@ Dans le fichier.env.exemple copier et coller le block suivant dans le fichier .e
 
 ```
 DB_CONNECTION=mysql
-DB_HOST=mysql$
+DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=quizdevbdd
 DB_USERNAME=homestead
