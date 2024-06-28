@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Quiz;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Questions\QuestionRepository;
 use App\Http\Repositories\Users\UserRepository;
+use App\Http\Requests\OpenAiRequest;
 use App\Http\Requests\QuizReponseRequest;
 use App\Http\Requests\QuizStoreRequest;
 use App\Http\Resources\QuizResource;
@@ -19,6 +20,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response;
 
 class QuizController extends Controller
@@ -37,7 +39,7 @@ class QuizController extends Controller
     {
 
         return response()->json(['data' => Cache::remember('quizzes', 60 * 60 * 24, function () {
-            return  QuizResource::collection($this->quizService->getQuizzes());
+            return QuizResource::collection($this->quizService->getQuizzes());
         })], Response::HTTP_OK);
     }
 
@@ -79,7 +81,7 @@ class QuizController extends Controller
      * Permet de répondre à un quiz
      *
      */
-    public function answerQuiz(QuizReponseRequest $request, int  $quizId)
+    public function answerQuiz(QuizReponseRequest $request, int $quizId)
     {
         //vérification si le quiz est bien present en BDD
         $userAnswers = $request->questions_answer;
@@ -95,7 +97,7 @@ class QuizController extends Controller
         if (!$user) {
             return response()->json(['message' => "utilisateur non trouvé."], Response::HTTP_NOT_FOUND);
         }
-        $responseOfUser =  $this->quizService->userAnswerToQuiz($userAnswers, $questionsOfQuiz);
+        $responseOfUser = $this->quizService->userAnswerToQuiz($userAnswers, $questionsOfQuiz);
         //on associe le user au quiz afin de le comptabiliser comme quiz effectué par l'utilisateur
         if (!$quiz->users()->where('user_id', $user->id)->where('quiz_id', $quiz->id)->exists()) {
             $user->quizzes()->attach($quizId);
@@ -131,4 +133,24 @@ class QuizController extends Controller
         return response()->json(['message' => "le quiz a été supprimé."], Response::HTTP_OK);
     }
 
+    public function generateQuizByOpenAi(OpenAiRequest $request)
+    {
+        // on fait appel à la clé de notre compte openai
+        $responseAi = Http::withToken(config('services.openai.secret'))->post("https://api.openai.com/v1/chat/completions",
+            [
+                "model" => "gpt-3.5-turbo",
+                "messages" => [
+                    [
+                        "role" => "system",
+                        "content" => "You are an artificial intelligence that generates multiple-choice questions in the field of computer science."
+                    ],
+                    [
+                        "role" => "user",
+                        "content" => $request->get('text') ?? "Bonjour peux tu me donner une question a choix multiple sur le domaine de l'informatique ? (met une étoile sur la bonne réponse)"
+                    ]
+                ]
+            ])->json();
+
+        return $responseAi;
+    }
 }
