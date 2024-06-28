@@ -111,7 +111,7 @@ class QuizController extends Controller
 
     public function show(Request $request, int $quizId)
     {
-        return "$quizId, $request";
+
         $quiz = $this->quizService->getQuiz($quizId);
         if (!$quiz) {
             return response()->json(['message' => "le quiz n'a pas été trouvé."], Response::HTTP_NOT_FOUND);
