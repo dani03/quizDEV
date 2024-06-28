@@ -69,6 +69,10 @@ ou enencore <a href="http://localhost:3002/docs/api#/"> Documentation  API SCRAM
 /front/README.md
 ```
 
+# Générer des questions avec open ai 
+Afin de générer des questions avec open ai, dans votre fichier `.env` ajouter une clé `OPENAI_API_KEY` et renseigner votre clé d'api (api key) 
+open ai. Vous pouvez créer une clé open ai sur la plateforme <a href="https://platform.openai.com/"> plateforme open ai</a>.
+
 # En cas de probleme de cache BDD
 
 - `docker compose run --rm artisan cache:clear`
