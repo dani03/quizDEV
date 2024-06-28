@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\V1\RegisterController;
 use App\Http\Controllers\Api\V1\Users\EntrepriseController;
 use App\Http\Controllers\Api\V1\Users\UserController;
 use App\Http\Controllers\TestConnexionController;
+use App\Models\Quiz;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,8 +52,6 @@ Route::prefix('api/v1')->group(function () {
     Route::get('answers/{questionId}', [AnswerController::class, 'index']);
 
 
-
-
 });
 
 //levels
@@ -69,45 +68,50 @@ Route::get('quizzes', [QuizController::class, 'index']);
 
 // les routes ci-dessous ont besoin d'être authentifié avant d'être atteinte
 Route::middleware(['auth:api'])->group(function () {
- Route::prefix('api/v1')->group(function () {
-    Route::get('profil', [ProfileController::class, 'show'])->name('profil.show');
-    Route::put('update/profil', [ProfileController::class, 'update'])->name('profil.update');
-    Route::put('update/password', PasswordUpdateController::class);
-    Route::post('logout', LogoutController::class);
-    Route::delete('delete/profil', [ProfileController::class, 'destroy']);
-    Route::post("add/profil-picture", [ProfileController::class, 'addProfilePicture']);
+    Route::prefix('api/v1')->group(function () {
+        Route::get('profil', [ProfileController::class, 'show'])->name('profil.show');
+        Route::put('update/profil', [ProfileController::class, 'update'])->name('profil.update');
+        Route::put('update/password', PasswordUpdateController::class);
+        Route::post('logout', LogoutController::class);
+        Route::delete('delete/profil', [ProfileController::class, 'destroy']);
+        Route::post("add/profil-picture", [ProfileController::class, 'addProfilePicture']);
 
-    Route::get('user/quiz', [UserController::class, 'index']);
-    Route::get('entreprise/quiz', [EntrepriseController::class, 'index']);
+        Route::get('user/quiz', [UserController::class, 'index']);
+        Route::get('entreprise/quiz', [EntrepriseController::class, 'index']);
 
-    //level les nivaux
-    Route::put('level/update/{id}', [LevelController::class, 'update']);
-    Route::post('level/store', [LevelController::class, 'store']);
-    Route::delete('level/destroy', [LevelController::class, 'destroy']);
+        //level les nivaux
+        Route::put('level/update/{id}', [LevelController::class, 'update']);
+        Route::post('level/store', [LevelController::class, 'store']);
+        Route::delete('level/destroy', [LevelController::class, 'destroy']);
 
-    // domain
+        // domain
 
-    Route::post('domain/store', [DomainController::class, 'store'])->middleware('is.admin');
-    Route::delete('domain/delete/{id}', [DomainController::class, 'destroy'])->middleware('is.admin');
+        Route::post('domain/store', [DomainController::class, 'store'])->middleware('is.admin');
+        Route::delete('domain/delete/{id}', [DomainController::class, 'destroy'])->middleware('is.admin');
 
-    // questions
+        // questions
 
-    Route::post('question/store', [QuestionController::class, 'store']);
-    Route::get('question/show/{id}', [QuestionController::class, 'show']);
-    Route::put('question/update/{id}', [QuestionController::class, 'update']);
-    Route::delete('question/delete/{id}', [QuestionController::class, 'destroy']);
+        Route::post('question/store', [QuestionController::class, 'store']);
+        Route::get('question/show/{id}', [QuestionController::class, 'show']);
+        Route::put('question/update/{id}', [QuestionController::class, 'update']);
+        Route::delete('question/delete/{id}', [QuestionController::class, 'destroy']);
 
-    // quiz
-    Route::post('quiz/generate/link', [LinkController::class, 'store']);
+        // générer un qui avec open Ai
+        Route::post('quiz/openai/generate', [QuizController::class, 'generateQuizByOpenAi']);
 
-    Route::post('quiz/store', [QuizController::class, 'store']);
-    Route::get('quiz/{id}', [QuizController::class, 'show']);
-    Route::post('quiz/user/answer/{id}', [QuizController::class, 'answerQuiz']);
-    Route::delete('quiz/delete/{id}', [QuizController::class, 'destroy']);
+        // quiz
 
-     Route::get('answer/{answerId}', [AnswerController::class, 'show']);
-     Route::delete('delete/answer/{answerId}', [AnswerController::class, 'destroy']);
+        Route::post('quiz/generate/link', [LinkController::class, 'store']);
 
- });
- Route::get('invitation-link', [LinkController::class, 'show']);
+        Route::post('quiz/store', [QuizController::class, 'store']);
+        Route::get('quiz/{id}', [QuizController::class, 'show']);
+        Route::post('quiz/user/answer/{id}', [QuizController::class, 'answerQuiz']);
+        Route::delete('quiz/delete/{id}', [QuizController::class, 'destroy']);
+
+        Route::get('answer/{answerId}', [AnswerController::class, 'show']);
+        Route::delete('delete/answer/{answerId}', [AnswerController::class, 'destroy']);
+
+
+    });
+    Route::get('invitation-link', [LinkController::class, 'show']);
 });

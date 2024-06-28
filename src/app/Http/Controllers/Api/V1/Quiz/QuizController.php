@@ -130,4 +130,5 @@ class QuizController extends Controller
         $quiz->delete();
         return response()->json(['message' => "le quiz a été supprimé."], Response::HTTP_OK);
     }
+
 }
