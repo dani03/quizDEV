@@ -4,6 +4,7 @@ namespace App\Http\Repositories\Users;
 
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository
@@ -39,5 +40,10 @@ class UserRepository
 
   public function update(User $user, $data) {
      return $user->update($data);
+  }
+
+  public function addProfilePicture(User $user , $profil): bool
+  {
+      return $user->update($profil);
   }
 }

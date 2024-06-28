@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('lastname');
+            $table->string('profil_picture')->nullable()->default(null);
             $table->integer('points')->default(0);
             $table->string('email')->unique();
             $table->foreignIdFor(Role::class);
