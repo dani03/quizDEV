@@ -1,5 +1,8 @@
 import axios from "axios"
 import { createContext, useCallback, useEffect, useState } from "react"
+import { fakeLevels } from "../data/fakeData"
+import { fakeQuestion } from "../data/fakeData"
+import { fakeTheme } from "../data/fakeData"
 
 export const AppContext = createContext(null)
 
@@ -36,6 +39,7 @@ const AppContextProvider = (props) => {
     localStorage.removeItem("access_token")
     localStorage.removeItem("id")
     localStorage.removeItem("user")
+    localStorage.removeItem("role")
     setJwt(null)
     setUserId(null)
     setUser(null)
@@ -46,7 +50,6 @@ const AppContextProvider = (props) => {
     setIsError(!isError)
   }
 
-  // surveiller les changements dans le localStorage et mettre à jour les valeurs du contexte en conséquence
   useEffect(() => {
     const updateContext = () => {
       setJwt(localStorage.getItem("access_token"))
@@ -74,7 +77,7 @@ const AppContextProvider = (props) => {
         setLevels(response.data)
       } catch (error) {
         console.error("Error fetching levels:", error)
-        setLevels([])
+        setLevels(fakeLevels)
       }
     }
 
@@ -97,7 +100,7 @@ const AppContextProvider = (props) => {
         setDomains(response.data)
       } catch (error) {
         console.error("Error fetching domains:", error)
-        setDomains([])
+        setDomains(fakeTheme)
       }
     }
 
@@ -120,7 +123,29 @@ const AppContextProvider = (props) => {
         setQuestions(response.data)
       } catch (error) {
         console.error("Error fetching domains:", error)
-        setQuestions([])
+        setQuestions(fakeQuestion)
+      }
+    }
+
+    fetchLevels()
+  }, [jwt])
+
+  const [quiz, setQuiz] = useState([])
+  useEffect(() => {
+    const fetchLevels = async () => {
+      if (!jwt) return
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/v1/quizzes",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        setQuiz(response.data)
+      } catch (error) {
+        console.error("Error fetching domains:", error)
       }
     }
 
@@ -144,6 +169,7 @@ const AppContextProvider = (props) => {
         levels,
         domains,
         questions,
+        quiz,
       }}
     />
   )

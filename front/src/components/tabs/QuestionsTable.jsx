@@ -25,7 +25,9 @@ const QuestionTable = (props) => {
 
   return (
     <Card className="shadow-xl">
-      <DataTable columns={columns} data={questions.data} />
+      <div className="max-w-full max-h-[620px] overflow-auto py-2 px-4">
+        <DataTable columns={columns} data={questions.data} />
+      </div>
     </Card>
   )
 }

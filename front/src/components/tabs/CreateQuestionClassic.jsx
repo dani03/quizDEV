@@ -1,10 +1,17 @@
 import { Button, Typography, Checkbox, Input } from "@material-tailwind/react"
 import axios from "axios"
 import { useState } from "react"
+import Popup from "../Popup"
 
 const CreateQuestionClassic = (props) => {
   const [error, setError] = useState("")
-  const { levels, domains, jwt } = props
+  const [openPopup, setOpenPopup] = useState(false)
+  const { levels, domains, jwt, changeIsError } = props
+
+  const handleOpen = () => {
+    changeIsError()
+    setOpenPopup(!openPopup)
+  }
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -45,11 +52,12 @@ const CreateQuestionClassic = (props) => {
           },
         }
       )
-      .then(function (response) {
-        console.log(response)
+      .then(function () {
+        setTimeout(() => window.location.reload(), 2000)
       })
       .catch(function (error) {
-        console.log(error)
+        setOpenPopup(true)
+        changeIsError()
         setError(error?.response?.data?.message || "Error 403")
       })
   }
@@ -57,21 +65,18 @@ const CreateQuestionClassic = (props) => {
   return (
     <form onSubmit={handleFormSubmit}>
       <div className="mb-1 flex flex-col gap-6 w-80 md:w-128 overflow-y-auto h-96 md:h-full h-[650px]">
-        <Typography variant="lead" color="white">
-          Question
-        </Typography>
         <Input
           type="text"
           name="question"
           placeholder="Quelle est la capitale de la France ?"
-          className="bg-white border p-2 rounded-lg"
+          className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
         />
         <div className="flex items-center">
           <Input
             type="text"
             name="answer1"
             placeholder="answer 1"
-            className="bg-white border p-2 rounded-lg"
+            className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
           />
           <Checkbox
             label={
@@ -89,7 +94,7 @@ const CreateQuestionClassic = (props) => {
             type="text"
             name="answer2"
             placeholder="answer 2"
-            className="bg-white border p-2 rounded-lg"
+            className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
           />
           <Checkbox
             label={
@@ -107,7 +112,7 @@ const CreateQuestionClassic = (props) => {
             type="text"
             name="answer3"
             placeholder="answer 3"
-            className="bg-white border p-2 rounded-lg"
+            className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
           />
           <Checkbox
             label={
@@ -125,7 +130,7 @@ const CreateQuestionClassic = (props) => {
             type="text"
             name="answer4"
             placeholder="answer 4"
-            className="bg-white border p-2 rounded-lg"
+            className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
           />
           <Checkbox
             label={
@@ -144,7 +149,7 @@ const CreateQuestionClassic = (props) => {
         <select
           name="domain"
           autoComplete="Theme"
-          className="block w-full p-2 rounded-lg"
+          className="block w-full p-2 rounded-lg bg-transparent border border-2 text-gray-900"
         >
           {Array.isArray(domains.data) && domains.data.length > 0 ? (
             domains.data.map((item, index) => (
@@ -162,7 +167,7 @@ const CreateQuestionClassic = (props) => {
         <select
           name="level"
           autoComplete="Difficulty"
-          className="block w-full p-2 rounded-lg"
+          className="block w-full p-2 rounded-lg bg-transparent border border-2 text-gray-900"
         >
           {Array.isArray(levels.data) && levels.data.length > 0 ? (
             levels.data.map((item, index) => (
@@ -180,7 +185,7 @@ const CreateQuestionClassic = (props) => {
         <Input
           type="number"
           name="points"
-          className="bg-white border p-2 rounded-lg"
+          className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
         />
         <Button
           type="submit"
@@ -190,6 +195,7 @@ const CreateQuestionClassic = (props) => {
           Create your question
         </Button>
       </div>
+      <Popup msg={error} open={openPopup} handleOpen={handleOpen} />
     </form>
   )
 }

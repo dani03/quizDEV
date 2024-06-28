@@ -5,10 +5,11 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { Typography, Button } from "@material-tailwind/react"
 
 const navigation = [
+  { name: "Quiz", href: "/create-quiz", current: false },
   { name: "Questions", href: "/create-question", current: false },
   { name: "Levels", href: "/create-level", current: false },
   { name: "Themes", href: "/create-theme", current: false },
-  { name: "Mode random", href: "#", current: false },
+  { name: "Mode random", href: "/classic-mode", current: false },
 ]
 
 function classNames(...classes) {

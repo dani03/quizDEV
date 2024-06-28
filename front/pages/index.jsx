@@ -12,7 +12,11 @@ const Home = () => {
   return (
     <>
       <ParticlesComponent isError={isError} />
-      <div className="h-screen md:bg-normal bg-mobile bg-cover">
+      <div
+        className={`h-screen bg-cover ${
+          !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
+        }`}
+      >
         <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role} />
         <Card className="bg-transparent" shadow={false}>
           <motion.ul
@@ -40,7 +44,7 @@ const Home = () => {
               </p>
             </motion.li>
           </motion.ul>
-          <Link className="mx-auto" href="/classic-mode">
+          <Link className="mx-auto" href="/pricing">
             <Button className="mt-32 w-64 bg-purplePrimary shadow-xl">
               Try out now
             </Button>

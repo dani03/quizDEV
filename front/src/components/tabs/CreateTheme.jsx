@@ -1,10 +1,17 @@
 import { Button, Input, Typography } from "@material-tailwind/react"
 import axios from "axios"
 import { useState } from "react"
+import Popup from "../Popup"
 
 const CreateTheme = (props) => {
   const { jwt } = props
   const [error, setError] = useState("")
+  const [openPopup, setOpenPopup] = useState(false)
+  const [positivPopup, setPositivPopup] = useState(false)
+
+  const handleOpen = () => {
+    setOpenPopup(!openPopup)
+  }
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -22,11 +29,15 @@ const CreateTheme = (props) => {
         }
       )
       .then(function (response) {
-        console.log(response)
+        setPositivPopup(true)
+        setError(`Le Theme < ${response.data.data.name} > a bien été ajouté !`)
+        setOpenPopup(!openPopup)
+        setTimeout(() => window.location.reload(), 2000)
       })
       .catch(function (error) {
-        console.log(error)
+        setPositivPopup(false)
         setError(error?.response?.data?.message || "Error 403")
+        setOpenPopup(!openPopup)
       })
   }
 
@@ -39,7 +50,7 @@ const CreateTheme = (props) => {
         <Input
           size="lg"
           name="name"
-          className="bg-white border border-purplePrimary"
+          className="border border-2 border-white"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
@@ -53,6 +64,12 @@ const CreateTheme = (props) => {
           Create your Theme
         </Button>
       </div>
+      <Popup
+        msg={error}
+        open={openPopup}
+        handleOpen={handleOpen}
+        positive={positivPopup}
+      />
     </form>
   )
 }
