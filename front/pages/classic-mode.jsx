@@ -4,6 +4,7 @@ import ParticlesComponent from "../src/components/ParticlesComponent"
 import { useContext, useState } from "react"
 import { AppContext } from "../src/components/AppContext"
 import PopupGame from "../src/components/PopupGame"
+import axios from "axios"
 
 const Classic = () => {
   const { jwt, logout, user, isError, role } = useContext(AppContext)
@@ -318,7 +319,10 @@ const Classic = () => {
   }
 
   const handleAnswerSubmit = (answer) => {
-    listOfAnswerIds.push(answer.id)
+    listOfAnswerIds.push({
+      [answer.question_id.toString()]: answer.id.toString(),
+    })
+
     setSelectedAnswer(answer)
     if (answer.correct_answer) {
       setIsCorrect(true)
@@ -331,6 +335,27 @@ const Classic = () => {
       setSelectedAnswer(null)
       setCurrentQuestionIndex(currentQuestionIndex + 1)
     }, 500)
+  }
+
+  const getResult = () => {
+    axios
+      .post(
+        "http://localhost:3002/api/v1/quiz/user/answer/1",
+        {
+          questions_answers: [listOfAnswerIds],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
+      .then(function (response) {
+        console.log("response : ", response)
+      })
+      .catch(function (error) {
+        console.log("error : ", error)
+      })
   }
 
   const currentQuestion = quiz.questions[currentQuestionIndex]
@@ -372,7 +397,7 @@ const Classic = () => {
             </div>
           ) : (
             <Typography className="text-white text-lg">
-              Quiz terminé ! Merci pour votre participation. {listOfAnswerIds}
+              Quiz terminé ! Merci pour votre participation. {getResult()}
             </Typography>
           )}
         </Card>

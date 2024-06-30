@@ -152,6 +152,28 @@ const AppContextProvider = (props) => {
     fetchLevels()
   }, [jwt])
 
+  const [myProfile, setMyProfile] = useState([])
+  useEffect(() => {
+    const fetchLevels = async () => {
+      if (!jwt) return
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/v1/profil",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        setMyProfile(response.data)
+      } catch (error) {
+        console.error("Error fetching myProfile:", error)
+      }
+    }
+
+    fetchLevels()
+  }, [jwt])
+
   return (
     <AppContext.Provider
       {...props}
@@ -170,6 +192,7 @@ const AppContextProvider = (props) => {
         domains,
         questions,
         quiz,
+        myProfile,
       }}
     />
   )

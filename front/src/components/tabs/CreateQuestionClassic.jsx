@@ -52,9 +52,7 @@ const CreateQuestionClassic = (props) => {
           },
         }
       )
-      .then(function () {
-        setTimeout(() => window.location.reload(), 2000)
-      })
+      .then(function () {})
       .catch(function (error) {
         setOpenPopup(true)
         changeIsError()

@@ -50,7 +50,7 @@ const CreateTheme = (props) => {
         <Input
           size="lg"
           name="name"
-          className="border border-2 border-white"
+          className="border border-2 border-white text-white"
           labelProps={{
             className: "before:content-none after:content-none",
           }}

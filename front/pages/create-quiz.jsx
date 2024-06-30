@@ -1,35 +1,49 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { AppContext } from "../src/components/AppContext"
 import ParticlesComponent from "../src/components/ParticlesComponent"
 import NavBar from "../src/components/NavBar"
-import { Button, Card, Input, Typography } from "@material-tailwind/react"
+import {
+  Button,
+  Card,
+  Checkbox,
+  Input,
+  Typography,
+} from "@material-tailwind/react"
 import Popup from "../src/components/Popup"
-import Select from "react-select"
 import axios from "axios"
-import QuizTable from "../src/components/tabs/QuizTable"
+import DataTable from "react-data-table-component"
 
 const CreateQuiz = () => {
-  const { jwt, logout, user, isError, role, questions, quiz, levels } =
+  const { jwt, logout, user, isError, role, questions, levels } =
     useContext(AppContext)
   const [error, setError] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
   const [positivPopup, setPositivPopup] = useState(false)
-  const [selectedOptions, setSelectedOptions] = useState([])
-  const [isClient, setIsClient] = useState(false)
+  const [selectedQuestionIds, setSelectedQuestionIds] = useState([])
 
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
+  const columns = [
+    {
+      name: "Choose questions : ",
+      cell: (row) => (
+        <div className="flex">
+          <Checkbox
+            onClick={() => selectNewQuestion(row.id)}
+            index={row.id}
+          ></Checkbox>
+          <Typography className="font-bold mx-4">{row.title}</Typography>
+        </div>
+      ),
+    },
+  ]
 
-  const options = Array.isArray(questions.data)
-    ? questions.data.map((question) => ({
-        value: question.id,
-        label: question.title,
-      }))
-    : []
-
-  const handleSelectChange = (selectedOptions) => {
-    setSelectedOptions(selectedOptions)
+  const selectNewQuestion = (questionIdSelected) => {
+    setSelectedQuestionIds((prevSelectedQuestionIds) => {
+      if (prevSelectedQuestionIds.includes(questionIdSelected)) {
+        return prevSelectedQuestionIds.filter((id) => id !== questionIdSelected)
+      } else {
+        return [...prevSelectedQuestionIds, questionIdSelected]
+      }
+    })
   }
 
   const handleOpen = () => {
@@ -45,9 +59,7 @@ const CreateQuiz = () => {
         {
           title: event.currentTarget.title.value,
           level_id: event.currentTarget.level.value,
-          questions_ids: selectedOptions.map(
-            (selectedQuestion) => selectedQuestion.value
-          ),
+          questions_ids: selectedQuestionIds,
         },
         {
           headers: {
@@ -117,16 +129,9 @@ const CreateQuiz = () => {
                 <Typography className="text-xl font-bold text-white">
                   Select your questions
                 </Typography>
-                {isClient && (
-                  <Select
-                    isMulti
-                    options={options}
-                    onChange={handleSelectChange}
-                    className="basic-multi-select rounded-xl"
-                    classNamePrefix="select"
-                  />
-                )}
-
+                <div className="rounded-xl h-96 overflow-auto">
+                  <DataTable columns={columns} data={questions.data} />
+                </div>
                 <Button
                   type="submit"
                   fullWidth
@@ -144,10 +149,6 @@ const CreateQuiz = () => {
             </form>
           </div>
         </Card>
-      </div>
-      <hr className="text-xl font-bold" />
-      <div className="mx-auto">
-        <QuizTable quiz={quiz} />
       </div>
     </div>
   )
