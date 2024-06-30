@@ -74,4 +74,7 @@ class ProfileController extends Controller
 
         return response()->json('Une erreur est survenue impossible de supprimer le compte', ResponseAlias::HTTP_BAD_REQUEST);
     }
+
+
+
 }
