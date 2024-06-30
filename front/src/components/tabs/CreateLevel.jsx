@@ -1,10 +1,17 @@
 import { Button, Input, Typography } from "@material-tailwind/react"
 import axios from "axios"
 import { useState } from "react"
+import Popup from "../Popup"
 
 const CreateLevel = (props) => {
   const { jwt } = props
   const [error, setError] = useState("")
+  const [openPopup, setOpenPopup] = useState(false)
+  const [positivPopup, setPositivPopup] = useState(false)
+
+  const handleOpen = () => {
+    setOpenPopup(!openPopup)
+  }
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -24,11 +31,15 @@ const CreateLevel = (props) => {
         }
       )
       .then(function (response) {
-        console.log(response)
+        setPositivPopup(true)
+        setError(`Le level < ${response.data.level.name} > a bien été ajouté !`)
+        setOpenPopup(!openPopup)
+        setTimeout(() => window.location.reload(), 2000)
       })
       .catch(function (error) {
-        console.log(error)
+        setPositivPopup(false)
         setError(error?.response?.data?.message || "Error 403")
+        setOpenPopup(!openPopup)
       })
   }
 
@@ -41,7 +52,7 @@ const CreateLevel = (props) => {
         <Input
           size="lg"
           name="name"
-          className="bg-white border border-purplePrimary"
+          className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
@@ -52,7 +63,7 @@ const CreateLevel = (props) => {
         <Input
           size="lg"
           name="points"
-          className="bg-white border border-purplePrimary"
+          className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
@@ -63,7 +74,7 @@ const CreateLevel = (props) => {
         <Input
           size="lg"
           name="slug"
-          className="bg-white border border-purplePrimary"
+          className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
@@ -77,6 +88,12 @@ const CreateLevel = (props) => {
           Create your Level
         </Button>
       </div>
+      <Popup
+        msg={error}
+        open={openPopup}
+        handleOpen={handleOpen}
+        positive={positivPopup}
+      />
     </form>
   )
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import { Typography } from "@material-tailwind/react"
 
 const PopupGame = (props) => {
   let [isOpen, setIsOpen] = useState(true)
@@ -23,7 +24,9 @@ const PopupGame = (props) => {
             initial={popVariant.hidden}
             animate={popVariant.visible}
           >
-            <h1>{msg}</h1>
+            <Typography className="text-white text-xl font-bold">
+              {msg}
+            </Typography>
           </motion.div>
         </div>
       </div>

@@ -1,22 +1,23 @@
 import { useContext, useState } from "react"
 import NavBar from "../src/components/NavBar"
 import { AppContext } from "../src/components/AppContext"
-import {
-  Card,
-  Tab,
-  TabPanel,
-  Tabs,
-  TabsBody,
-  TabsHeader,
-} from "@material-tailwind/react"
+import { Card } from "@material-tailwind/react"
 import ParticlesComponent from "../src/components/ParticlesComponent"
 import CreateQuestionClassic from "../src/components/tabs/CreateQuestionClassic"
-import CreateQuestionWithAI from "../src/components/tabs/createQuestionWithAI"
 import QuestionTable from "../src/components/tabs/QuestionsTable"
 
 const CreateQuestion = () => {
-  const { jwt, logout, user, isError, role, levels, domains, questions } =
-    useContext(AppContext)
+  const {
+    jwt,
+    logout,
+    user,
+    isError,
+    role,
+    levels,
+    domains,
+    questions,
+    changeIsError,
+  } = useContext(AppContext)
   const [openTab, setOpenTab] = useState(1)
 
   const handleTabChange = (tab) => {
@@ -27,13 +28,13 @@ const CreateQuestion = () => {
       id: 1,
       name: "Create Question",
       content: (
-        <CreateQuestionClassic jwt={jwt} levels={levels} domains={domains} />
+        <CreateQuestionClassic
+          jwt={jwt}
+          levels={levels}
+          domains={domains}
+          changeIsError={changeIsError}
+        />
       ),
-    },
-    {
-      id: 2,
-      name: "Create AI",
-      content: <CreateQuestionWithAI />,
     },
     {
       id: 3,
@@ -43,7 +44,11 @@ const CreateQuestion = () => {
   ]
 
   return (
-    <div className="h-screen md:bg-normal bg-mobile bg-cover">
+    <div
+      className={`h-screen bg-cover ${
+        !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
+      }`}
+    >
       <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role} />
       <div className="flex justify-center mt-4">
