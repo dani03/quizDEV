@@ -17,6 +17,7 @@ use App\Http\Resources\AnswerResource;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\User;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -150,7 +151,7 @@ class QuizController extends Controller
                 "messages" => [
                     [
                         "role" => "system",
-                        "content" => "You are an artificial intelligence that generates multiple-choice questions in the field of computer science."
+                        "content" => "You are an artificial intelligence that generates multiple-choice questions with only one correct answer in the field of computer science."
                     ],
                     [
                         "role" => "user",
@@ -158,7 +159,7 @@ class QuizController extends Controller
                     ]
                 ]
             ])->json();
-
-        return $responseAi;
+       // return $responseAi;
+        return $responseAi['choices'][0]['message']['content'];
     }
 }
