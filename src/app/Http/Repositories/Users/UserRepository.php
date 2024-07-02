@@ -42,8 +42,8 @@ class UserRepository
      return $user->update($data);
   }
 
-  public function addProfilePicture(User $user , $profil): bool
+  public function addProfilePicture(User $user , $data): bool
   {
-      return $user->update($profil);
+      return $user->update($data);
   }
 }

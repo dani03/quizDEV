@@ -25,11 +25,11 @@ class ProfileController extends Controller
     {
 
       $imageAdd =  $this->profilService->createImage($request);
-
+      return $imageAdd;
       if($imageAdd) {
           return Response()->json(['message' => 'image ajouté avec succès', 'data' => new ProfilRessource(auth()->user())], ResponseAlias::HTTP_CREATED);
       }
-      return  Response()->json(['message' => 'impossible d\'ajouté cette image.'], ResponseAlias::HTTP_OK);
+      return  Response()->json(['message' => 'impossible d\'ajouté cette image. le format n\'est doit être en base 64' ], ResponseAlias::HTTP_BAD_REQUEST);
     }
 
     public function show(Request $request): JsonResponse
