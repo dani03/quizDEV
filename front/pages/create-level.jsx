@@ -7,7 +7,7 @@ import CreateLevel from "../src/components/tabs/CreateLevel"
 import LevelTable from "../src/components/tabs/LevelTable"
 
 const CreateLevelPage = () => {
-  const { jwt, logout, user, isError, role, levels } = useContext(AppContext)
+  const { jwt, logout, isError, levels, myProfile } = useContext(AppContext)
   const [openTab, setOpenTab] = useState(1)
 
   const tabContents = [
@@ -34,7 +34,7 @@ const CreateLevelPage = () => {
       }`}
     >
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role || 2} />
+      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
       <div className="flex justify-center mt-8 md:mt-16">
         <Card className="bg-transparent mx-auto" shadow={false}>
           <div className="flex justify-center mb-4 w-80 md:w-192 p-2 bg-transparent rounded-lg mx-auto">

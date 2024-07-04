@@ -1,10 +1,20 @@
-import { Fragment } from "react"
+import { Fragment, useEffect, useState } from "react"
 import Link from "next/link"
 import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { Typography, Button } from "@material-tailwind/react"
 
-const navigation = [
+const navigationUser = [
+  { name: "Mode random", href: "/classic-mode", current: false },
+]
+
+const navigationCompany = [
+  { name: "Quiz", href: "/create-quiz", current: false },
+  { name: "Questions", href: "/create-question", current: false },
+  { name: "Mode random", href: "/classic-mode", current: false },
+]
+
+const navigationAdmin = [
   { name: "Quiz", href: "/create-quiz", current: false },
   { name: "Questions", href: "/create-question", current: false },
   { name: "Levels", href: "/create-level", current: false },
@@ -17,7 +27,29 @@ function classNames(...classes) {
 }
 
 const NavBar = (props) => {
-  const { jwt, logout, pseudo, role } = props
+  const { jwt, logout, myProfile } = props
+  const [navigation, setNavigation] = useState([])
+  const [displayedRole, setDisplayedRole] = useState("")
+
+  useEffect(() => {
+    switch (myProfile?.role || "1") {
+      case "1":
+        setNavigation(navigationAdmin)
+        setDisplayedRole("ADMIN")
+        break
+      case "2":
+        setNavigation(navigationCompany)
+        setDisplayedRole("COMPANY")
+        break
+      case "3":
+        setNavigation(navigationUser)
+        setDisplayedRole("USER")
+        break
+      default:
+        setNavigation(navigationUser)
+        setDisplayedRole("USER")
+    }
+  }, [myProfile?.role || "1"])
 
   return (
     <Disclosure as="nav" className="bg-transparent">
@@ -73,18 +105,12 @@ const NavBar = (props) => {
                 {jwt ? (
                   <Menu as="div" className="relative ml-3">
                     <div className="flex items-center">
-                      <Typography className="text-center text-white uppercase mx-2">
-                        {pseudo}
+                      <Typography className="text-center text-white uppercase mx-2 font-bold">
+                        {myProfile?.name}
                       </Typography>
-                      {role === "1" ? (
-                        <Typography className="uppercase text-white mr-4">
-                          (admin)
-                        </Typography>
-                      ) : (
-                        <Typography className="uppercase text-white mr-4">
-                          (user)
-                        </Typography>
-                      )}
+                      <Typography className="italic text-white mx-2 text-sm">
+                        ({displayedRole})
+                      </Typography>
                       <Menu.Button className="relative flex rounded-full bg-bluePrimary text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
@@ -120,24 +146,11 @@ const NavBar = (props) => {
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <Link
-                              href="/setting"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              Settings
-                            </Link>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
                             <Typography
                               onClick={logout}
                               className={classNames(
                                 active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
+                                "block px-4 py-2 text-sm text-red-500 font-bold"
                               )}
                             >
                               Sign out

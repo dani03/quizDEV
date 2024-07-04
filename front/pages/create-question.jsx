@@ -10,13 +10,12 @@ const CreateQuestion = () => {
   const {
     jwt,
     logout,
-    user,
     isError,
-    role,
     levels,
     domains,
     questions,
     changeIsError,
+    myProfile,
   } = useContext(AppContext)
   const [openTab, setOpenTab] = useState(1)
 
@@ -50,7 +49,7 @@ const CreateQuestion = () => {
       }`}
     >
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role} />
+      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
       <div className="flex justify-center mt-4">
         <Card className="bg-transparent mx-auto" shadow={false}>
           <div className="flex justify-center mb-4 w-80 md:w-192 p-2 bg-transparent rounded-lg mx-auto">

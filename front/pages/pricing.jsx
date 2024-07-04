@@ -58,12 +58,12 @@ const planList = [
 ]
 
 const Pricing = () => {
-  const { jwt, logout, user, role } = useContext(AppContext)
+  const { jwt, logout, myProfile } = useContext(AppContext)
   const isMediumOrSmallScreen = useMediaQuery("(max-width: 1024px)")
 
   return (
     <div className="h-screen bg-cover md:bg-normal bg-mobile">
-      <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role} />
+      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
       <Card className="bg-transparent mt-8" shadow={false}>
         <h1 className="md:text-45xl text-4xl text-center text-white font-bold font-passion text-shadow-lg shadow-gray-900/50">
           Our pricing & plan

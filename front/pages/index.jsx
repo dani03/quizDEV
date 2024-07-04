@@ -7,7 +7,7 @@ import ParticlesComponent from "../src/components/ParticlesComponent"
 import Link from "next/link"
 
 const Home = () => {
-  const { jwt, logout, user, isError, role } = useContext(AppContext)
+  const { jwt, logout, isError, myProfile } = useContext(AppContext)
 
   return (
     <>
@@ -17,7 +17,7 @@ const Home = () => {
           !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
         }`}
       >
-        <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role} />
+        <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
         <Card className="bg-transparent" shadow={false}>
           <motion.ul
             className="mt-16 mx-auto"
