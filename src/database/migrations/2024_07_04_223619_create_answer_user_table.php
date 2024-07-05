@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\Domain;
-use App\Models\Level;
+use App\Models\Answer;
+use App\Models\Question;
+use App\Models\Quiz;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,14 +15,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('quizzes', function (Blueprint $table) {
+        Schema::create('answer_user', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug');
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Level::class);
-            $table->foreignIdFor(Domain::class)->nullable();
-            $table->softDeletes();
+            $table->foreignIdFor(Quiz::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Question::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Answer::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('quizzes');
+        Schema::dropIfExists('answer_user');
     }
 };

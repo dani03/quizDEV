@@ -6,6 +6,7 @@ use App\Http\Repositories\Quiz\QuizRepository;
 use App\Http\Requests\QuizStoreRequest;
 use App\Http\Resources\AnswerResource;
 use App\Http\Resources\QuestionResource;
+use Illuminate\Support\Facades\DB;
 
 class QuizService
 {
@@ -32,8 +33,9 @@ class QuizService
        return $this->quizRepository->getQuiz($quizId);
     }
 
-    public function userAnswerToQuiz($userAnswers,  $questionsQuiz): array {
+    public function userAnswerToQuiz($userAnswers,  $questionsQuiz, int $quizId): array {
         $responseOfUser = [];
+
         $points = 0;
         foreach ($userAnswers as $questionIdUser => $answerIdUser) {
             foreach ($questionsQuiz as $question) {
@@ -53,8 +55,12 @@ class QuizService
                                 'user_answer' => $answer->answer
                             ];
 
+
+
                             $responseOfUser[] = $responseUser;
                         }
+
+
                     }
                     // si aucune réponse n'a été trouvée c'est à dire si la réponse est fausse
                     if(!$findAnswer) {
@@ -71,10 +77,26 @@ class QuizService
                 }
             }
 
+            //stoke la réponse de l'utilisateur en base
+            $data = [
+                'user_id' => auth()->user()->id,
+                'quiz_id' => $quizId,
+                'question_id' => $questionIdUser,
+                'answer_id' => $answerIdUser,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+            //si on a pas reussi a inserer les données du quiz
+            if(!$this->quizRepository->insertUserAnswer($data)) {
+                return [false];
+            }
         }
 
 
         return ["results" => $responseOfUser, 'points' => $points];
     }
 
+
+
 }
+
