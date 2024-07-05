@@ -45,6 +45,10 @@ L'accès à PHpMyadmin est sur le port 2023 et donc sur le lien : http://localh
 username : homestead
 password : secret
 
+# Rafraichir la base de données 
+
+Pour faciliter le developpement après une modification de la base de données vous pouvez taper la commande  `docker compose run --rm artisan migrate:refresh"` cette commande rafraichis la base de données supprime et recréer les tables et colonnes vide, et ensuite la commande `docker compose run  --rm artisan passport:install` et la commande `docker compose run --rm artisan db:seed` pour ajouter les fauses données faux quiz fausses questions et faux users 
+
 # La documentation des endpoints de l'API
 
 Pour voir les routes (endpoints) que vous pouvez utiliser, vous pouvez avoir accès si vos conteneurs sont en marche sur le lien : <a href="http://localhost:3002/docs/index.html">
