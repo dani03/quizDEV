@@ -32,16 +32,16 @@ const NavBar = (props) => {
   const [displayedRole, setDisplayedRole] = useState("")
 
   useEffect(() => {
-    switch (myProfile?.role || "1") {
-      case "1":
+    switch (myProfile?.role_id) {
+      case 1:
         setNavigation(navigationAdmin)
         setDisplayedRole("ADMIN")
         break
-      case "2":
+      case 2:
         setNavigation(navigationCompany)
         setDisplayedRole("COMPANY")
         break
-      case "3":
+      case 3:
         setNavigation(navigationUser)
         setDisplayedRole("USER")
         break
@@ -49,7 +49,7 @@ const NavBar = (props) => {
         setNavigation(navigationUser)
         setDisplayedRole("USER")
     }
-  }, [myProfile?.role || "1"])
+  }, [myProfile?.role_id])
 
   return (
     <Disclosure as="nav" className="bg-transparent">
