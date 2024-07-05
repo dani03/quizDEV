@@ -16,8 +16,10 @@ class DomainFactory extends Factory
      */
     public function definition(): array
     {
+        $domains = ['Web', 'IOT', "Réseau", "AI", "Hacking"];
+        $domain = $this->faker->unique()->randomElement($domains);
         return [
-            //
+            'name' => $domain,
         ];
     }
 }

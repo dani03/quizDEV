@@ -162,6 +162,8 @@
       <path value="$PROJECT_DIR$/src/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/src/vendor/doctrine/event-manager" />
       <path value="$PROJECT_DIR$/src/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/src/vendor/laravel/socialite" />
+      <path value="$PROJECT_DIR$/src/vendor/league/oauth1-client" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

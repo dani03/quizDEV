@@ -23,6 +23,7 @@ class QuizResource extends JsonResource
             'slug' => $this->slug,
             'level_id' => $this->level_id,
             'level_name' => (new LevelService(new LevelRepository()))->getLevelName($this->level_id),
+            'domaine_name' => (new LevelService(new LevelRepository()))->getLevelName($this->level_id),
             'created_at' =>  Carbon::make($this->created_at)->diffForHumans(),
             'updated_at' => Carbon::make($this->updated_at)->diffForHumans(),
             'questions' => QuestionResource::collection($this->questions),

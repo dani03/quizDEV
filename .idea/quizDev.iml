@@ -153,6 +153,8 @@
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/doctrine/deprecations" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/doctrine/event-manager" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/src/vendor/laravel/socialite" />
+      <excludeFolder url="file://$MODULE_DIR$/src/vendor/league/oauth1-client" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

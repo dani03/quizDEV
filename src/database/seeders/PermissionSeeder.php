@@ -18,7 +18,7 @@ class PermissionSeeder extends Seeder
 
         $permissions = [
             'basic-user' => [Role::ROLE_USER],
-            'entreprise-user' => [Role::ROLE_USER],
+            'entreprise-user' => [Role::ROLE_ENTREPRISE],
         ];
 
         foreach ($permissions as $key => $roles) {
