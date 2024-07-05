@@ -24,6 +24,7 @@ class ProfilRessource extends JsonResource
             'role_id' => $this->role_id,
             'company_name' => $this->company_name,
             'photo' => $this->profil_picture,
+            'points' => $this->points,
             'quiz_answers' => $this->quizzes,
             'created_at' =>  Carbon::make($this->created_at)->diffForHumans(),
             'updated_at' => Carbon::make($this->updated_at)->diffForHumans(),
