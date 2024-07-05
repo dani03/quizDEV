@@ -47,7 +47,16 @@ password : secret
 
 # Rafraichir la base de données 
 
-Pour faciliter le developpement après une modification de la base de données vous pouvez taper la commande  `docker compose run --rm artisan migrate:refresh"` cette commande rafraichis la base de données supprime et recréer les tables et colonnes vide, et ensuite la commande `docker compose run  --rm artisan passport:install` et la commande `docker compose run --rm artisan db:seed` pour ajouter les fauses données faux quiz fausses questions et faux users 
+Pour simplifier le développement après une modification de la base de données, vous pouvez exécuter la commande suivante :
+
+`docker compose run --rm artisan migrate:refresh`
+Cette commande rafraîchit la base de données en supprimant et recréant toutes les tables et colonnes vides. Ensuite, exécutez les commandes suivantes pour configurer votre environnement :
+
+
+`docker compose run --rm artisan passport:install`
+et 
+`docker compose run --rm artisan db:seed`
+La première commande installe Laravel Passport pour la gestion des API, tandis que la seconde commande ajoute des données factices, y compris des quiz, des questions et des utilisateurs simulés.
 
 # La documentation des endpoints de l'API
 
