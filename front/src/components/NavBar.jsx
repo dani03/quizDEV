@@ -57,8 +57,8 @@ const NavBar = (props) => {
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
+              {/* Mobile menu button */}
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-bluePrimary hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
@@ -69,6 +69,8 @@ const NavBar = (props) => {
                   )}
                 </Disclosure.Button>
               </div>
+
+              {/* Logo and main navigation */}
               <div className="max-lg:hidden flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <Link href="/">
@@ -100,8 +102,9 @@ const NavBar = (props) => {
                   </div>
                 </div>
               </div>
+
+              {/* Profile dropdown */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {/* Profile dropdown */}
                 {jwt ? (
                   <Menu as="div" className="relative ml-3">
                     <div className="flex items-center">
@@ -178,6 +181,7 @@ const NavBar = (props) => {
             </div>
           </div>
 
+          {/* Mobile menu panel */}
           <Disclosure.Panel className="sm:hidden bg-bluePrimary">
             <div className="space-y-1 px-2 pb-3 pt-2">
               <Disclosure.Button
@@ -204,19 +208,10 @@ const NavBar = (props) => {
                 </Disclosure.Button>
               ))}
             </div>
-          ) : (
-            <div className="rounded-xl bg-transparent mx-2">
-              <Link href="/login">
-                <Button className="hover:scale-105 mx-2">LOGIN</Button>
-              </Link>
-              <Link href="/register">
-                <Button className="hover:scale-105 mx-2">REGISTER</Button>
-              </Link>
-            </div>
-          )}
-        </div>
-      </div>
-    </>
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
   )
 }
 
