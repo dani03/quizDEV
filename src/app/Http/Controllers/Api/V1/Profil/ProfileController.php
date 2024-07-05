@@ -25,7 +25,7 @@ class ProfileController extends Controller
     {
 
       $imageAdd =  $this->profilService->createImage($request);
-
+      return $imageAdd;
       if($imageAdd) {
           return Response()->json(['message' => 'image ajouté avec succès', 'data' => new ProfilRessource(auth()->user())], ResponseAlias::HTTP_CREATED);
       }

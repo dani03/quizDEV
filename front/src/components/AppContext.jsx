@@ -8,42 +8,37 @@ export const AppContext = createContext(null)
 
 const AppContextProvider = (props) => {
   const [jwt, setJwt] = useState(null)
-  useEffect(() => setJwt(localStorage.getItem("access_token")), [])
-  const [userId, setUserId] = useState(null)
-  useEffect(() => setUserId(localStorage.getItem("id")), [])
-  const [user, setUser] = useState(null)
-  useEffect(() => setUser(localStorage.getItem("user")), [])
   const [isError, setIsError] = useState(false)
-  const [role, setRole] = useState(null)
-  useEffect(() => setRole(localStorage.getItem("role")), [])
+  const [userData, setUserData] = useState(null)
+  useEffect(() => setJwt(localStorage.getItem("access_token")), [])
 
-  const saveJwt = useCallback((jwt, userId) => {
+  const saveJwt = useCallback((jwt) => {
     localStorage.setItem("access_token", jwt)
-    localStorage.setItem("id", userId)
     setJwt(jwt)
-    setUserId(userId)
-  }, [])
-
-  const saveUser = useCallback((user) => {
-    if (user) {
-      localStorage.setItem("user", user.name)
-      setUser(user.name)
-      localStorage.setItem("role", user.role)
-      setRole(user.role)
-    } else {
-      return console.error("error in user data name !")
+    if (jwt) {
+      const fetchUserData = async () => {
+        try {
+          const response = await axios.get(
+            "http://localhost:3002/api/v1/profil",
+            {
+              headers: {
+                Authorization: `Bearer ${jwt}`,
+              },
+            }
+          )
+          setMyProfile(response.data.data)
+        } catch (error) {
+          console.error("Error fetching myProfile:", error)
+        }
+      }
+      fetchUserData()
     }
   }, [])
 
   const logout = useCallback(() => {
     localStorage.removeItem("access_token")
-    localStorage.removeItem("id")
-    localStorage.removeItem("user")
-    localStorage.removeItem("role")
     setJwt(null)
-    setUserId(null)
-    setUser(null)
-    setRole(null)
+    setUserData(null)
   }, [])
 
   const changeIsError = () => {
@@ -53,9 +48,6 @@ const AppContextProvider = (props) => {
   useEffect(() => {
     const updateContext = () => {
       setJwt(localStorage.getItem("access_token"))
-      setUserId(localStorage.getItem("id"))
-      setUser(localStorage.getItem("user"))
-      setRole(localStorage.getItem("role"))
     }
     window.addEventListener("storage", updateContext)
     return () => window.removeEventListener("storage", updateContext)
@@ -152,24 +144,42 @@ const AppContextProvider = (props) => {
     fetchLevels()
   }, [jwt])
 
+  const [myProfile, setMyProfile] = useState([])
+  useEffect(() => {
+    const fetchLevels = async () => {
+      if (!jwt) return
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/v1/profil",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        setMyProfile(response.data.data)
+      } catch (error) {
+        console.error("Error fetching myProfile:", error)
+      }
+    }
+
+    fetchLevels()
+  }, [jwt])
+
   return (
     <AppContext.Provider
       {...props}
       value={{
         saveJwt,
-        setUserId,
         logout,
         jwt,
-        userId,
-        saveUser,
-        user,
         isError,
         changeIsError,
-        role,
         levels,
         domains,
         questions,
         quiz,
+        myProfile,
       }}
     />
   )

@@ -7,7 +7,7 @@ import CreateTheme from "../src/components/tabs/CreateTheme"
 import ThemeTable from "../src/components/tabs/ThemeTable"
 
 const CreateThemePage = () => {
-  const { jwt, logout, user, isError, role, domains } = useContext(AppContext)
+  const { jwt, logout, isError, domains, myProfile } = useContext(AppContext)
   const [openTab, setOpenTab] = useState(1)
 
   const tabContents = [
@@ -34,7 +34,7 @@ const CreateThemePage = () => {
       }`}
     >
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role || 2} />
+      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
       <div className="flex justify-center mt-8 md:mt-16">
         <Card className="bg-transparent mx-auto" shadow={false}>
           <div className="flex justify-center mb-4 w-80 md:w-192 p-2 bg-transparent rounded-lg mx-auto">

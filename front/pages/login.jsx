@@ -11,7 +11,7 @@ const Login = () => {
   const router = useRouter()
   const [error, setError] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
-  const { jwt, logout, saveJwt, user, saveUser, isError, changeIsError, role } =
+  const { jwt, logout, saveJwt, saveUser, isError, changeIsError, myProfile } =
     useContext(AppContext)
   const handleOpen = () => {
     changeIsError()
@@ -27,14 +27,8 @@ const Login = () => {
         password: event.currentTarget.password.value,
       })
       .then(function (response) {
-        if (
-          response.data.access_token &&
-          response.data.name &&
-          response.data.id
-        ) {
-          console.log(response.data)
-          saveJwt(response.data.access_token, response.data.id)
-          saveUser(response.data)
+        if (response.data.access_token) {
+          saveJwt(response.data.access_token)
           setTimeout(() => router.push("/"), 1000)
         } else {
           setError("Error JWT")
@@ -53,12 +47,7 @@ const Login = () => {
       }`}
     >
       <ParticlesComponent isError={isError} />
-      <NavBar
-        jwt={jwt}
-        logout={logout}
-        pseudo={user ? user : ""}
-        role={role ? role : 2}
-      />
+      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
       <div className="flex justify-center md:mt-2">
         <Card
           className="bg-transparent px-4 py-2 md:px-12 md:py-4"

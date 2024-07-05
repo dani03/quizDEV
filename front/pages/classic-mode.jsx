@@ -4,9 +4,10 @@ import ParticlesComponent from "../src/components/ParticlesComponent"
 import { useContext, useState } from "react"
 import { AppContext } from "../src/components/AppContext"
 import PopupGame from "../src/components/PopupGame"
+import axios from "axios"
 
 const Classic = () => {
-  const { jwt, logout, user, isError, role } = useContext(AppContext)
+  const { jwt, logout, isError, myProfile } = useContext(AppContext)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [isCorrect, setIsCorrect] = useState(false)
@@ -318,7 +319,10 @@ const Classic = () => {
   }
 
   const handleAnswerSubmit = (answer) => {
-    listOfAnswerIds.push(answer.id)
+    listOfAnswerIds.push({
+      [answer.question_id.toString()]: answer.id.toString(),
+    })
+
     setSelectedAnswer(answer)
     if (answer.correct_answer) {
       setIsCorrect(true)
@@ -333,6 +337,27 @@ const Classic = () => {
     }, 500)
   }
 
+  const getResult = () => {
+    axios
+      .post(
+        "http://localhost:3002/api/v1/quiz/user/answer/1",
+        {
+          questions_answers: [listOfAnswerIds],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
+      .then(function (response) {
+        console.log("response : ", response)
+      })
+      .catch(function (error) {
+        console.log("error : ", error)
+      })
+  }
+
   const currentQuestion = quiz.questions[currentQuestionIndex]
 
   return (
@@ -342,15 +367,23 @@ const Classic = () => {
       }`}
     >
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} pseudo={user || ""} role={role || 2} />
+      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
       <div className="flex justify-center mt-4 md:mt-8">
-        <Card className="bg-transparent mx-auto" shadow={false}>
-          <Typography className="text-white text-sm mb-16 text-center italic">
-            {quiz.title}
-          </Typography>
+        <Card className="bg-transparent mx-auto w-192 h-192" shadow={false}>
+          <div className="flex justify-between mx-4 my-4">
+            <Typography className="text-white text-sm mb-16 text-center underline">
+              {quiz.level_name}
+            </Typography>
+            <Typography className="text-white text-sm mb-16 text-center italic">
+              {quiz.title}
+            </Typography>
+            <Typography className="text-xl text-white font-bold py-2 px-2 w-16">
+              {currentQuestionIndex}/{quiz.questions.length}
+            </Typography>
+          </div>
           {currentQuestion ? (
-            <div>
-              <Typography className="text-white text-xl md:text-3xl font-bold mt-4 mb-16 text-center">
+            <div className="rounded-xl mx-4 px-4 py-16 ">
+              <Typography className="text-white text-xl md:text-3xl font-bold mb-16 text-center h-48">
                 {currentQuestion.title}
               </Typography>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -372,7 +405,7 @@ const Classic = () => {
             </div>
           ) : (
             <Typography className="text-white text-lg">
-              Quiz terminé ! Merci pour votre participation. {listOfAnswerIds}
+              Quiz terminé ! Merci pour votre participation. {getResult()}
             </Typography>
           )}
         </Card>
