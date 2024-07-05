@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('lastname');
+            $table->string('company_name')->nullable();
             $table->string('profil_picture', 2000)->nullable()->default(null);
             $table->integer('points')->default(0);
             $table->string('email')->unique();

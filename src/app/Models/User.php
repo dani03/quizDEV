@@ -27,6 +27,7 @@ class User extends Authenticatable
         'email',
         'points',
         'profil_picture',
+        'company_name',
         'lastname',
         'password',
         'role_id'
@@ -52,9 +53,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function Role()
+    public function role()
     {
-        return $this->hasOne(Role::class);
+        return $this->belongsTo(Role::class);
     }
 
     public function questions(): HasMany {

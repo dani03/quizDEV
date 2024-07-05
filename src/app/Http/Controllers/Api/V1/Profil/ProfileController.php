@@ -40,6 +40,9 @@ class ProfileController extends Controller
     public function update(ProfilUpdateRequest $request): JsonResponse
     {
         $user = auth()->user();
+        if(!$user) {
+            return Response()->json(['data' => "aucun utilisateur"], ResponseAlias::HTTP_NOT_FOUND);
+        }
         $cacheKey = 'user:' . $user->id;
         $fromCache = false;
         # on met à jour
