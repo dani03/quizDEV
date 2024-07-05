@@ -19,6 +19,7 @@ class UserRepository
         'name' => $request->name,
         'lastname' => $request->lastname,
         'email' => $request->email,
+        'company_name' => $request->company_name,
         'password' => Hash::make($request->password),
         'role_id' => $request->role_id,
       ]
