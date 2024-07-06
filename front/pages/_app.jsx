@@ -9,11 +9,17 @@ const MyApp = ({ Component, pageProps }) => {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
-          .register("/service-worker.js")
+          .register("/sw.js")
           .then((registration) => {
+            console.log(
+              "-------------------------------------------------------------------"
+            )
             console.log(
               "Service Worker registered with scope:",
               registration.scope
+            )
+            console.log(
+              "-------------------------------------------------------------------"
             )
           })
           .catch((err) => {
@@ -38,10 +44,20 @@ const MyApp = ({ Component, pageProps }) => {
             />
             <title>Job'in quiz</title>
             <meta name="description" content="Job'in quiz" />
+            <meta name="mobile-web-app-capable" content="yes" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta
+              name="apple-mobile-web-app-status-bar-style"
+              content="black-translucent"
+            />
+            <meta
+              name="viewport"
+              content="width=device-width; initial-scale=1; viewport-fit=cover"
+            />
             <link rel="shortcut icon" href="/favicon.ico" />
             <link rel="mask-icon" href="/icons/mask-icon.svg" color="#FFFFFF" />
-            <meta name="theme-color" content="#ffffff" />
-            <link rel="apple-touch-icon" href="/icons/logo-192.png" />
+            <meta name="theme-color" content="#FF914D" />
+            <link rel="apple-touch-icon" href="/icons/logo-256.png" />
             <link
               rel="apple-touch-icon"
               sizes="192x192"

@@ -58,3 +58,11 @@ input:-webkit-autofill:active {
   font-weight: bold;
   color: #fff;
 }
+
+@media screen and (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
