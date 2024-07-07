@@ -1,57 +1,28 @@
-import { Card, Typography } from "@material-tailwind/react"
+import React from "react"
+import { Card } from "@material-tailwind/react"
+import DataTable from "react-data-table-component"
 
-const TABLE_HEAD = ["Label"]
-
-const TABLE_ROWS = [
-  { label: "IT" },
-  { label: "Math" },
-  { label: "Cinema" },
-  { label: "Music" },
+const columns = [
+  {
+    name: "Name",
+    selector: (row) => row.name,
+    sortable: true,
+  },
+  {
+    name: "Created at",
+    selector: (row) => row.created_at,
+    sortable: true,
+  },
 ]
 
-const ThemeTable = () => {
-  return (
-    <Card className="overflow-scroll w-full">
-      <table className="w-full min-w-max table-auto text-left">
-        <thead>
-          <tr>
-            {TABLE_HEAD.map((head) => (
-              <th
-                key={head}
-                className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
-              >
-                <Typography
-                  variant="small"
-                  color="blue-gray"
-                  className="font-normal leading-none font-bold"
-                >
-                  {head}
-                </Typography>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {TABLE_ROWS.map(({ label }, index) => {
-            const isLast = index === TABLE_ROWS.length - 1
-            const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50"
+const ThemeTable = (props) => {
+  const { domains } = props
 
-            return (
-              <tr key={label}>
-                <td className={classes}>
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    {label}
-                  </Typography>
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+  return (
+    <Card className="shadow-xl">
+      <div className="max-w-full max-h-[620px] overflow-auto py-2 px-4">
+        <DataTable columns={columns} data={domains.data} />
+      </div>
     </Card>
   )
 }

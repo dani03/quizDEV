@@ -3,6 +3,7 @@
 namespace App\Http\Services\Levels;
 
 use App\Http\Repositories\Levels\LevelRepository;
+use App\Http\Requests\LevelRequest;
 use Illuminate\Database\Eloquent\Collection;
 
 class LevelService
@@ -21,6 +22,11 @@ class LevelService
     public function getLevel(string $levelSlug) {
        return  $this->levelRepository->find($levelSlug);
     }
+    public function getLevelById(int $id) {
+       return  $this->levelRepository->findById($id);
+    }
+
+
 
     /**
      * suppréssion d'un niveau (level)
@@ -46,6 +52,13 @@ class LevelService
             return $level->name;
         }
         return 'Level name not exist';
+    }
+
+    public function updateLevel(int $levelId, $request) {
+       $level = $this->getLevelById($levelId);
+        $this->levelRepository->update($level, $request->all());
+        return $level;
+
     }
 
 }

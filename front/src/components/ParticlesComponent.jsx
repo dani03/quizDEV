@@ -33,7 +33,7 @@ const ParticlesComponent = (props) => {
 const particlesOptions = {
   fpsLimit: 120,
   particles: {
-    color: { value: "#0099FF" },
+    color: { value: "#B4ACAC" },
     move: {
       direction: "none",
       enable: true,
@@ -42,7 +42,7 @@ const particlesOptions = {
       speed: 1,
       straight: false,
     },
-    number: { density: { enable: true, area: 2000 }, value: 40 },
+    number: { density: { enable: true, area: 2000 }, value: 50 },
     opacity: {
       value: 0.1,
     },
@@ -50,7 +50,7 @@ const particlesOptions = {
       type: "circle",
     },
     size: {
-      value: { min: 10, max: 200 },
+      value: { min: 50, max: 100 },
     },
     zIndex: 0,
   },

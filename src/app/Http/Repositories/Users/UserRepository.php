@@ -4,6 +4,7 @@ namespace App\Http\Repositories\Users;
 
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository
@@ -18,6 +19,7 @@ class UserRepository
         'name' => $request->name,
         'lastname' => $request->lastname,
         'email' => $request->email,
+        'company_name' => $request->company_name,
         'password' => Hash::make($request->password),
         'role_id' => $request->role_id,
       ]
@@ -35,5 +37,14 @@ class UserRepository
 
   public function delete( User $user): bool|null {
       return $user->delete();
+  }
+
+  public function update(User $user, $data) {
+     return $user->update($data);
+  }
+
+  public function addProfilePicture(User $user , $data): bool
+  {
+      return $user->update($data);
   }
 }

@@ -1,225 +1,417 @@
-import { useContext, useState } from "react"
+import { Button, Card, Typography } from "@material-tailwind/react"
 import NavBar from "../src/components/NavBar"
-import { AppContext } from "../src/components/AppContext"
-import UseApi from "../src/components/UseApi"
-import PopupGame from "../src/components/PopupGame"
-import { motion } from "framer-motion"
-import { Button, Card } from "@material-tailwind/react"
 import ParticlesComponent from "../src/components/ParticlesComponent"
+import { useContext, useState } from "react"
+import { AppContext } from "../src/components/AppContext"
+import PopupGame from "../src/components/PopupGame"
+import axios from "axios"
 
 const Classic = () => {
-  const questions = UseApi([{}], "get", "/classic")
-  const { jwt, logout, user, isError } = useContext(AppContext)
-  const [isFinish, setIsFinish] = useState(false)
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [score, setScore] = useState(0)
+  const { jwt, logout, isError, myProfile } = useContext(AppContext)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+  const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [isCorrect, setIsCorrect] = useState(false)
   const [isWrong, setIsWrong] = useState(false)
-  const timeout = (delay) => {
-    return new Promise((res) => setTimeout(res, delay))
+  const [listOfAnswerIds, setListOfAnswerIds] = useState([])
+
+  const quiz = {
+    id: 2,
+    title: "Quiz Mbappé",
+    slug: "quiz-mbappe",
+    level_id: 2,
+    level_name: "Medium",
+    created_at: "il y a 2 minutes",
+    updated_at: "il y a 2 minutes",
+    questions: [
+      {
+        id: 4,
+        title:
+          "Kylian Mbappé a marqué un doublé contre le Brésil en quart de final de la Coupe du Monde 2018.",
+        points: 300,
+        level_id: 2,
+        domain_id: 2,
+        created_at: "il y a 5 minutes",
+        updated_at: "il y a 5 minutes",
+        user: {
+          id: 2,
+          name: "nadir",
+          lastname: "Mansouri",
+          email: "nadirbtssio@gmail.com",
+          quiz_answers: [],
+          created_at: "il y a 19 heures",
+          updated_at: "il y a 19 heures",
+        },
+        answers: [
+          {
+            id: 9,
+            answer: "VRAI",
+            correct_answer: false,
+            question_id: 4,
+            created_at: "il y a 5 minutes",
+            updated_at: "il y a 5 minutes",
+          },
+          {
+            id: 10,
+            answer: "FAUX",
+            correct_answer: true,
+            question_id: 4,
+            created_at: "il y a 5 minutes",
+            updated_at: "il y a 5 minutes",
+          },
+        ],
+      },
+      {
+        id: 5,
+        title: "Kylian Mbappé a gagné le Ballon d’Or en 2019 et en 2020.",
+        points: 300,
+        level_id: 1,
+        domain_id: 1,
+        created_at: "il y a 5 minutes",
+        updated_at: "il y a 5 minutes",
+        user: {
+          id: 2,
+          name: "nadir",
+          lastname: "Mansouri",
+          email: "nadirbtssio@gmail.com",
+          quiz_answers: [],
+          created_at: "il y a 19 heures",
+          updated_at: "il y a 19 heures",
+        },
+        answers: [
+          {
+            id: 11,
+            answer: "VRAI",
+            correct_answer: false,
+            question_id: 5,
+            created_at: "il y a 5 minutes",
+            updated_at: "il y a 5 minutes",
+          },
+          {
+            id: 12,
+            answer: "FAUX",
+            correct_answer: true,
+            question_id: 5,
+            created_at: "il y a 5 minutes",
+            updated_at: "il y a 5 minutes",
+          },
+        ],
+      },
+      {
+        id: 6,
+        title: "Son nom complet est Kylian Mbappé Lottin.",
+        points: 300,
+        level_id: 1,
+        domain_id: 1,
+        created_at: "il y a 5 minutes",
+        updated_at: "il y a 5 minutes",
+        user: {
+          id: 2,
+          name: "nadir",
+          lastname: "Mansouri",
+          email: "nadirbtssio@gmail.com",
+          quiz_answers: [],
+          created_at: "il y a 19 heures",
+          updated_at: "il y a 19 heures",
+        },
+        answers: [
+          {
+            id: 13,
+            answer: "VRAI",
+            correct_answer: true,
+            question_id: 6,
+            created_at: "il y a 5 minutes",
+            updated_at: "il y a 5 minutes",
+          },
+          {
+            id: 14,
+            answer: "FAUX",
+            correct_answer: false,
+            question_id: 6,
+            created_at: "il y a 5 minutes",
+            updated_at: "il y a 5 minutes",
+          },
+        ],
+      },
+      {
+        id: 7,
+        title:
+          "Mbappé a débuté au PSG en 2017 contre son gré. Il aurait préféré le Real Madrid.",
+        points: 300,
+        level_id: 1,
+        domain_id: 1,
+        created_at: "il y a 4 minutes",
+        updated_at: "il y a 4 minutes",
+        user: {
+          id: 2,
+          name: "nadir",
+          lastname: "Mansouri",
+          email: "nadirbtssio@gmail.com",
+          quiz_answers: [],
+          created_at: "il y a 19 heures",
+          updated_at: "il y a 19 heures",
+        },
+        answers: [
+          {
+            id: 15,
+            answer: "VRAI",
+            correct_answer: false,
+            question_id: 7,
+            created_at: "il y a 4 minutes",
+            updated_at: "il y a 4 minutes",
+          },
+          {
+            id: 16,
+            answer: "FAUX",
+            correct_answer: true,
+            question_id: 7,
+            created_at: "il y a 4 minutes",
+            updated_at: "il y a 4 minutes",
+          },
+        ],
+      },
+      {
+        id: 8,
+        title:
+          "Son père était footballeur et sa mère a joué professionnellement au handball.",
+        points: 100,
+        level_id: 1,
+        domain_id: 1,
+        created_at: "il y a 4 minutes",
+        updated_at: "il y a 4 minutes",
+        user: {
+          id: 2,
+          name: "nadir",
+          lastname: "Mansouri",
+          email: "nadirbtssio@gmail.com",
+          quiz_answers: [],
+          created_at: "il y a 19 heures",
+          updated_at: "il y a 19 heures",
+        },
+        answers: [
+          {
+            id: 17,
+            answer: "VRAI",
+            correct_answer: true,
+            question_id: 8,
+            created_at: "il y a 4 minutes",
+            updated_at: "il y a 4 minutes",
+          },
+          {
+            id: 18,
+            answer: "FAUX",
+            correct_answer: false,
+            question_id: 8,
+            created_at: "il y a 4 minutes",
+            updated_at: "il y a 4 minutes",
+          },
+        ],
+      },
+      {
+        id: 9,
+        title:
+          "Il est entré dans l’histoire grâce à un coup du chapeau contre Barcelone en coupe de l’UEFA en février 2021.",
+        points: 300,
+        level_id: 1,
+        domain_id: 1,
+        created_at: "il y a 3 minutes",
+        updated_at: "il y a 3 minutes",
+        user: {
+          id: 2,
+          name: "nadir",
+          lastname: "Mansouri",
+          email: "nadirbtssio@gmail.com",
+          quiz_answers: [],
+          created_at: "il y a 19 heures",
+          updated_at: "il y a 19 heures",
+        },
+        answers: [
+          {
+            id: 19,
+            answer: "VRAI",
+            correct_answer: true,
+            question_id: 9,
+            created_at: "il y a 3 minutes",
+            updated_at: "il y a 3 minutes",
+          },
+          {
+            id: 20,
+            answer: "FAUX",
+            correct_answer: false,
+            question_id: 9,
+            created_at: "il y a 3 minutes",
+            updated_at: "il y a 3 minutes",
+          },
+        ],
+      },
+      {
+        id: 10,
+        title: "Mbappé a fait ses débuts en Ligue 1 au Paris Saint-Germain.",
+        points: 100,
+        level_id: 1,
+        domain_id: 2,
+        created_at: "il y a 3 minutes",
+        updated_at: "il y a 3 minutes",
+        user: {
+          id: 2,
+          name: "nadir",
+          lastname: "Mansouri",
+          email: "nadirbtssio@gmail.com",
+          quiz_answers: [],
+          created_at: "il y a 19 heures",
+          updated_at: "il y a 19 heures",
+        },
+        answers: [
+          {
+            id: 21,
+            answer: "VRAI",
+            correct_answer: false,
+            question_id: 10,
+            created_at: "il y a 3 minutes",
+            updated_at: "il y a 3 minutes",
+          },
+          {
+            id: 22,
+            answer: "FAUX",
+            correct_answer: true,
+            question_id: 10,
+            created_at: "il y a 3 minutes",
+            updated_at: "il y a 3 minutes",
+          },
+        ],
+      },
+      {
+        id: 11,
+        title: "Kylian Mbappé a gagné le Golden Boy en 2017.",
+        points: 300,
+        level_id: 1,
+        domain_id: 1,
+        created_at: "il y a 3 minutes",
+        updated_at: "il y a 3 minutes",
+        user: {
+          id: 2,
+          name: "nadir",
+          lastname: "Mansouri",
+          email: "nadirbtssio@gmail.com",
+          quiz_answers: [],
+          created_at: "il y a 19 heures",
+          updated_at: "il y a 19 heures",
+        },
+        answers: [
+          {
+            id: 23,
+            answer: "VRAI",
+            correct_answer: true,
+            question_id: 11,
+            created_at: "il y a 3 minutes",
+            updated_at: "il y a 3 minutes",
+          },
+          {
+            id: 24,
+            answer: "FAUX",
+            correct_answer: false,
+            question_id: 11,
+            created_at: "il y a 3 minutes",
+            updated_at: "il y a 3 minutes",
+          },
+        ],
+      },
+    ],
   }
-  const winPoints = async () => {
-    setIsCorrect(true)
-    await timeout(1000)
-    setIsCorrect(false)
+
+  const handleAnswerSubmit = (answer) => {
+    listOfAnswerIds.push({
+      [answer.question_id.toString()]: answer.id.toString(),
+    })
+
+    setSelectedAnswer(answer)
+    if (answer.correct_answer) {
+      setIsCorrect(true)
+    } else {
+      setIsWrong(true)
+    }
+    setTimeout(() => {
+      setIsCorrect(false)
+      setIsWrong(false)
+      setSelectedAnswer(null)
+      setCurrentQuestionIndex(currentQuestionIndex + 1)
+    }, 500)
   }
-  const loosePoints = async () => {
-    setIsWrong(true)
-    await timeout(1000)
-    setIsWrong(false)
+
+  const getResult = () => {
+    axios
+      .post(
+        "http://localhost:3002/api/v1/quiz/user/answer/1",
+        {
+          questions_answers: [listOfAnswerIds],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
+      .then(function (response) {
+        console.log("response : ", response)
+      })
+      .catch(function (error) {
+        console.log("error : ", error)
+      })
   }
+
+  const currentQuestion = quiz.questions[currentQuestionIndex]
 
   return (
-    <div className="h-screen z-1">
+    <div
+      className={`h-screen bg-cover ${
+        !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
+      }`}
+    >
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} pseudo={user ? user : ""} />
-      {(isCorrect && <PopupGame msg="CORRECT" color="bg-green-500" />) ||
-        (isWrong && <PopupGame msg="WRONG" color="bg-red-500" />)}
-      {isFinish ? (
-        <h1>Fini votre score : {score}</h1>
-      ) : (
-        <>
-          <Card className="flex justify-between mt-10 ml-5 bg-transparent">
-            <div>
-              {/* COUNTER QUESTION + SCORE */}
-              <motion.div
-                key={currentQuestion}
-                initial="initial"
-                animate="visible"
-                transition={{
-                  duration: 0.5,
-                  delay: 0.5,
-                }}
-                variants={counterQuestion}
-              >
-                <h1 className=" text-xl">
-                  {currentQuestion} <span className="text-yellow-400">|</span>{" "}
-                  {questions.length}
-                </h1>
-              </motion.div>
-            </div>
-            <motion.div
-              key={score}
-              initial="normal"
-              animate="change"
-              variants={scoreVariant}
-            >
-              <div>
-                <span className=" text-neutral-800 mr-5 p-5 text-2xl font-bold text-yellow-400">
-                  {score}
-                </span>
+      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
+      <div className="flex justify-center mt-4 md:mt-8">
+        <Card className="bg-transparent mx-auto w-192 h-192" shadow={false}>
+          <div className="flex justify-between mx-4 my-4">
+            <Typography className="text-white text-sm mb-16 text-center underline">
+              {quiz.level_name}
+            </Typography>
+            <Typography className="text-white text-sm mb-16 text-center italic">
+              {quiz.title}
+            </Typography>
+            <Typography className="text-xl text-white font-bold py-2 px-2 w-16">
+              {currentQuestionIndex}/{quiz.questions.length}
+            </Typography>
+          </div>
+          {currentQuestion ? (
+            <div className="rounded-xl mx-4 px-4 py-16 ">
+              <Typography className="text-white text-xl md:text-3xl font-bold mb-16 text-center h-48">
+                {currentQuestion.title}
+              </Typography>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {currentQuestion.answers.map((answer) => (
+                  <Button
+                    key={answer.id}
+                    onClick={() => handleAnswerSubmit(answer)}
+                    className="mb-2 mx-auto bg-purplePrimary hover:scale-105 w-72"
+                    fullWidth
+                  >
+                    {answer.answer}
+                  </Button>
+                ))}
               </div>
-            </motion.div>
-          </Card>
-          {/* QUESTIONS */}
-          <Card className="grid bg-transparent justify-items-center max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
-            <motion.div
-              key={currentQuestion}
-              initial="hidden"
-              animate="visible"
-              transition={{
-                duration: 0.5,
-                delay: 0.5,
-              }}
-              variants={interrogationVariant}
-            >
-              <h1 className="text-center text-xl underline font-bold mb-8 uppercase">
-                {questions[currentQuestion].interrogation}
-              </h1>
-            </motion.div>
-            {/* LIST ANSWERS */}
-            <motion.ul
-              initial="hidden"
-              animate="visible"
-              variants={listAnswers}
-              className="grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-4 sm:gap-x-10"
-            >
-              <motion.li
-                whileHover={answerVariant.whileHover}
-                whileTap={answerVariant.whileTap}
-                transition={answerVariant.transition}
-                variants={answerVariant}
-              >
-                <Button
-                  className="bg-zinc-100 text-gray-900 rounded-full shadow-lg w-64 sm:w-96 h-16 text-md md:text-lg"
-                  onClick={() => checkAnswer(1)}
-                >
-                  A.&nbsp;&nbsp;{questions[currentQuestion].first_answer}
-                </Button>
-              </motion.li>
-              <motion.li
-                whileHover={answerVariant.whileHover}
-                whileTap={answerVariant.whileTap}
-                transition={answerVariant.transition}
-                variants={answerVariant}
-              >
-                <Button
-                  className="bg-zinc-100 text-gray-900 rounded-full shadow-lg w-64 sm:w-96 h-16 text-md md:text-lg"
-                  onClick={() => checkAnswer(2)}
-                >
-                  B.&nbsp;&nbsp;{questions[currentQuestion].second_answer}
-                </Button>
-              </motion.li>
-              <motion.li
-                whileHover={answerVariant.whileHover}
-                whileTap={answerVariant.whileTap}
-                transition={answerVariant.transition}
-                variants={answerVariant}
-              >
-                <Button
-                  className="bg-zinc-100 text-gray-900 rounded-full shadow-lg w-64 sm:w-96 h-16 text-md md:text-lg"
-                  onClick={() => checkAnswer(3)}
-                >
-                  C.&nbsp;&nbsp;{questions[currentQuestion].third_answer}
-                </Button>
-              </motion.li>
-              <motion.li
-                whileHover={answerVariant.whileHover}
-                whileTap={answerVariant.whileTap}
-                transition={answerVariant.transition}
-                variants={answerVariant}
-              >
-                <Button
-                  className="bg-zinc-100 text-gray-900 rounded-full shadow-lg w-64 sm:w-96 h-16 text-md md:text-lg"
-                  onClick={() => checkAnswer(4)}
-                >
-                  D.&nbsp;&nbsp;{questions[currentQuestion].fourth_answer}
-                </Button>
-              </motion.li>
-            </motion.ul>
-          </Card>
-        </>
-      )}
+              {(isCorrect && (
+                <PopupGame msg="CORRECT" color="bg-green-500" />
+              )) ||
+                (isWrong && <PopupGame msg="WRONG" color="bg-red-500" />)}
+            </div>
+          ) : (
+            <Typography className="text-white text-lg">
+              Quiz terminé ! Merci pour votre participation. {getResult()}
+            </Typography>
+          )}
+        </Card>
+      </div>
     </div>
   )
-}
-
-export const scoreVariant = {
-  normal: {
-    opacity: 1,
-    scale: 0.5,
-  },
-  change: {
-    opacity: 1,
-    borderRadius: 50,
-    scale: 1,
-  },
-  scale: {
-    type: "spring",
-    damping: 5,
-    stiffness: 100,
-    restDelta: 0.001,
-  },
-}
-export const counterQuestion = {
-  initial: {
-    opacity: 0,
-    x: -100,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-  },
-}
-export const interrogationVariant = {
-  hidden: {
-    opacity: 0,
-    scale: 0.5,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-  },
-  scale: {
-    type: "spring",
-    damping: 2,
-    stiffness: 100,
-    restDelta: 0.001,
-  },
-}
-export const answerVariant = {
-  whileHover: {
-    scale: 1.2,
-    color: "#fcba03",
-  },
-  whileTap: { scale: 0.8 },
-  transition: {
-    type: "spring",
-    stiffness: 100,
-    damping: 10,
-  },
-  visible: { opacity: 1, x: 0 },
-  hidden: { opacity: 0, x: -100 },
-}
-export const listAnswers = {
-  visible: {
-    opacity: 1,
-    transition: {
-      when: "beforeChildren",
-      staggerChildren: 0.3,
-    },
-  },
-  hidden: { opacity: 0 },
 }
 
 export default Classic

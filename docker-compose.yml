@@ -1,4 +1,4 @@
-version: "3.8"
+#version: "3.8"
 
 networks:
   laravel_network:
@@ -23,6 +23,7 @@ services:
       - phpmyadmin
       - redis
       - adminer
+
     #  - react
 
   php:
@@ -72,7 +73,7 @@ services:
       - laravel_network
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin
     container_name: phpmyadmin
     ports:
       - 2023:80
@@ -89,6 +90,20 @@ services:
       - 6379:6379
     networks:
       - laravel_network
+  nextjs:
+    build:
+      context: .  # chemin vers lequel se trouve notre dossier dockerfile pour next
+      dockerfile: nextJS.dockerfile
+    container_name: next-js
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./front:/front
+    networks:
+      - laravel_network
+    depends_on:
+      - nginx
+  # service adminer gestionnaire de base de donnée
   adminer:
     image: adminer:latest
     container_name: adminer
@@ -104,15 +119,3 @@ services:
       MYSQL_ROOT_PASSWORD: secret
     networks:
       - laravel_network
-
- # react:
- #  build:
- #    context: ./front
-  #    dockerfile: react.Dockerfile
-  #  container_name: react
-   # volumes:
-   #   - ./front:/app
-   # ports:
-   #   - 3000:3000
-   # networks:
-   #   - laravel_network

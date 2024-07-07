@@ -35,6 +35,7 @@ class LoginController extends Controller
             'expires_at' => $expireDate,
             'name' => $user->name,
             'id' => $user->id,
+            'role' => $user->role_id,
 
         ], Response::HTTP_CREATED);
     }
