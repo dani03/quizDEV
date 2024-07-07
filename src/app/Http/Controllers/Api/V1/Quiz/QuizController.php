@@ -174,7 +174,8 @@ class QuizController extends Controller
     /*
      * Récupération des réponses d'un utilisateur à un quiz
      *
-     * en paramètre cette méthode attend l'id du quiz et en 2nd paramètre l'id du user
+     * en paramètre cette méthode attend l'id du quiz comme premier paramètre et en 2nd paramètre l'id du user
+     * et en resultat on objet quiz avec les questions les réponses et la réponse de l'utilisateur (user_answer)
      *  */
 
     public function resultUser(int $quizId, int $userId)
@@ -209,7 +210,6 @@ class QuizController extends Controller
 
         // Utiliser la ressource pour formater les résultats
         $userResult = QuizResultResource::collection($answersOfUser);
-        return $userResult;
 
         return response()->json(["data" => $userResult], Response::HTTP_OK);
     }

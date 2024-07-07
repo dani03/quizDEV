@@ -33,7 +33,8 @@ class QuizResultResource extends JsonResource
             'question' => $question->title,
             'answers' => AnswerResource::collection($question->answers),
             'correct_answer' => $correctAnswer ? $correctAnswer->answer : null,
-            'user_answer' => $userAnswer ? $userAnswer->answer : "aucune réponse",
+            //on vérifie si il y a une réponse et on l'affiche
+            'user_answer' => $userAnswer?->answer ?? "aucune réponse",
         ];
     }
 }
