@@ -62,11 +62,20 @@ class User extends Authenticatable
         return $this->hasMany(Question::class);
     }
 
-    public function quizzes_user(): HasMany {
+    public function entrepriseQuizzes(): HasMany {
         return $this->HasMany(Quiz::class);
     }
 
     public function quizzes(): BelongsToMany {
         return $this->BelongsToMany(Quiz::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     * Cette méthode récupère les quiz auxquels un utilisateur a participé
+     */
+    public function quizzesParticipated(): BelongsToMany {
+        return $this->belongsToMany(Quiz::class, 'answer_user')
+            ->withTimestamps();
     }
 }
