@@ -26,20 +26,20 @@ const Home = () => {
             variants={list}
           >
             <motion.li variants={item}>
-              <p className="text-white md:text-4xl text-2xl text-center font-dancing md:-mb-12 -mb-8 text-shadow-lg shadow-gray-900/50">
+              <p className="text-zinc-900 md:text-4xl text-2xl text-center font-dancing md:-mb-12 -mb-8 text-shadow-lg shadow-gray-900/50">
                 Unlock Potential
               </p>
             </motion.li>
             <motion.li variants={item}>
-              <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-white font-bold font-passion md:-mb-32 -mb-16 text-shadow-lg shadow-gray-900/50">
+              <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-zinc-100 font-bold font-passion md:-mb-32 -mb-16 text-shadow-lg shadow-gray-900/50">
                 JOB'IN
               </p>
-              <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-white font-bold font-passion md:-mb-12 -mb-8 text-shadow-lg shadow-gray-900/50">
+              <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-zinc-100 font-bold font-passion md:-mb-12 -mb-8 text-shadow-lg shadow-gray-900/50">
                 QUIZ
               </p>
             </motion.li>
             <motion.li variants={item}>
-              <p className="text-white md:text-4xl text-2xl text-center font-dancing mx-auto  text-shadow-lg shadow-gray-900/50">
+              <p className="text-zinc-900 md:text-4xl text-2xl text-center font-dancing mx-auto  text-shadow-lg shadow-gray-900/50">
                 Discover Talent
               </p>
             </motion.li>

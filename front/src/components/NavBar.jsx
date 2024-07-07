@@ -42,15 +42,15 @@ const NavBar = (props) => {
         setDisplayedRole("ADMIN")
         break
       case 2:
-        setNavigation(navigationCompany)
+        setNavigation(navigationAdmin)
         setDisplayedRole("COMPANY")
         break
       case 3:
-        setNavigation(navigationUser)
+        setNavigation(navigationAdmin)
         setDisplayedRole("USER")
         break
       default:
-        setNavigation(navigationUser)
+        setNavigation(navigationAdmin)
         setDisplayedRole("USER")
     }
   }, [myProfile?.role_id])
@@ -59,7 +59,7 @@ const NavBar = (props) => {
     <>
       <div as="nav" className="bg-transparent">
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 navbar">
             <div className="relative flex h-16 items-center justify-between">
               {/* Logo and main navigation */}
               <div className="flex flex-1 items-center justify-between sm:items-stretch sm:justify-start">
@@ -68,12 +68,9 @@ const NavBar = (props) => {
                     <Bars3Icon className="h-8 w-8 font-bold" />
                   </Button>
                 </div>
-                <div className="flex flex-shrink-0 items-center hidden">
+                <div className="flex flex-shrink-0 items-center">
                   <Link href="/">
-                    <h1
-                      className="text-3xl text-center font-bold hover:scale-110 font-passion mr-6"
-                      color="white"
-                    >
+                    <h1 className="text-3xl text-center font-bold hover:scale-110 font-passion mr-6 text-zinc-100 hidden sm:block">
                       JOB'IN QUIZ
                     </h1>
                   </Link>
@@ -86,8 +83,8 @@ const NavBar = (props) => {
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-white text-xl font-montserrat hover:scale-110 hover:text-white",
+                            ? "bg-gray-900 text-zinc-100"
+                            : "text-zinc-100 text-xl font-montserrat hover:scale-110 hover:text-zinc-100",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -104,10 +101,10 @@ const NavBar = (props) => {
                 {jwt ? (
                   <Menu as="div" className="relative ml-3">
                     <div className="flex items-center">
-                      <h1 className="text-center text-white uppercase mx-2 font-bold">
+                      <h1 className="text-center text-zinc-100 uppercase mx-2 font-bold">
                         {myProfile?.name}
                       </h1>
-                      <h1 className="italic text-white mx-2 text-sm">
+                      <h1 className="italic text-zinc-100 mx-2 text-sm">
                         ({displayedRole})
                       </h1>
                       <Menu.Button className="relative flex rounded-full bg-bluePrimary text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -182,7 +179,7 @@ const NavBar = (props) => {
       <Drawer
         open={open}
         onClose={closeDrawer}
-        className="inset-0 z-50 bg-white"
+        className="inset-0 z-50 bg-white navbar"
       >
         <div className="flex items-center justify-between p-4 z-50">
           <Link href="/">
@@ -198,7 +195,7 @@ const NavBar = (props) => {
           <ListItem
             key={item.name}
             className={classNames(
-              item.current ? "bg-gray-900 text-white" : "text-gray-900",
+              item.current ? "bg-gray-900 text-zinc-100" : "text-gray-900",
               " rounded-md font-bold text-xl ml-4 py-2"
             )}
             aria-current={item.current ? "page" : undefined}
