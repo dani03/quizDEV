@@ -258,7 +258,7 @@ endpoints:
         name: lastname
         description: ''
         required: true
-        example: cupiditate
+
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -498,6 +498,7 @@ endpoints:
         description: ''
         required: false
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: 10
 =======
 <<<<<<< HEAD
@@ -511,6 +512,12 @@ endpoints:
 >>>>>>> cc29799 (Feature/profile (#18))
 >>>>>>> 0e4525c (false conflict 2)
         type: integer
+=======
+
+        example: 10
+
+
+>>>>>>> 9d2aad5 (false conflict 3)
         enumValues: []
         exampleWasSpecified: false
         custom: []
@@ -518,8 +525,9 @@ endpoints:
         name: slug
         description: ''
         required: false
-<<<<<<< HEAD
+
         example: repellat
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -527,15 +535,18 @@ endpoints:
         example: ut
 >>>>>>> main
 >>>>>>> 0e4525c (false conflict 2)
+=======
+
+>>>>>>> 9d2aad5 (false conflict 3)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-<<<<<<< HEAD
       name: tempore
       points: 10
       slug: repellat
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -545,6 +556,8 @@ endpoints:
       slug: ut
 >>>>>>> main
 >>>>>>> 0e4525c (false conflict 2)
+=======
+>>>>>>> 9d2aad5 (false conflict 3)
     fileParameters: []
     responses: []
     responseFields: []
@@ -618,6 +631,7 @@ endpoints:
         description: ''
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         example: aspernatur
 =======
 <<<<<<< HEAD
@@ -626,11 +640,15 @@ endpoints:
         example: aspernatur
 >>>>>>> main
 >>>>>>> 0e4525c (false conflict 2)
+=======
+        example: quos
+>>>>>>> 9d2aad5 (false conflict 3)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
 <<<<<<< HEAD
       slug: aspernatur
 =======
@@ -640,6 +658,9 @@ endpoints:
       slug: aspernatur
 >>>>>>> main
 >>>>>>> 0e4525c (false conflict 2)
+=======
+      slug: quos
+>>>>>>> 9d2aad5 (false conflict 3)
     fileParameters: []
     responses: []
     responseFields: []
@@ -657,11 +678,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-<<<<<<< HEAD
       title: ''
-=======
-      title: 'Display a listing of the resource.'
->>>>>>> main
       description: ''
       authenticated: false
       custom: []
@@ -700,11 +717,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-<<<<<<< HEAD
       title: ''
-=======
-      title: 'Store a newly created resource in storage.'
->>>>>>> main
       description: ''
       authenticated: false
       custom: []
@@ -720,8 +733,8 @@ endpoints:
         name: name
         description: ''
         required: true
-<<<<<<< HEAD
         example: quam
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -729,12 +742,23 @@ endpoints:
         example: quidem
 >>>>>>> main
 >>>>>>> 0e4525c (false conflict 2)
+=======
+>>>>>>> 9d2aad5 (false conflict 3)
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
+<<<<<<< HEAD
 
       name: quam
+=======
+    cleanBodyParameters:
+
+      name: quam
+
+
+
+>>>>>>> 9d2aad5 (false conflict 3)
     fileParameters: []
     responses: []
     responseFields: []
@@ -765,25 +789,28 @@ endpoints:
         description: 'The ID of the delete.'
         required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+
+>>>>>>> 9d2aad5 (false conflict 3)
         example: voluptas
-=======
 
-        example: adipisci
 
->>>>>>> main
-=======
-        example: adipisci
->>>>>>> cc29799 (Feature/profile (#18))
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
+<<<<<<< HEAD
 >>>>>>> 0e4525c (false conflict 2)
+=======
+
+>>>>>>> 9d2aad5 (false conflict 3)
       id: voluptas
+
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -796,10 +823,10 @@ endpoints:
     method: null
     route: null
     custom: []
-<<<<<<< HEAD
+
   -
     httpMethods:
-<<<<<<< HEAD
+
       - GET
     uri: api/v1/questions
     metadata:
@@ -840,11 +867,15 @@ endpoints:
   -
     httpMethods:
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 =======
 >>>>>>> main
 >>>>>>> 0e4525c (false conflict 2)
+=======
+
+>>>>>>> 9d2aad5 (false conflict 3)
       - POST
     uri: api/v1/question/store
     metadata:
@@ -868,8 +899,9 @@ endpoints:
         name: title
         description: 'Must not be greater than 150 characters.'
         required: true
-<<<<<<< HEAD
+
         example: ghxumcbanwosv
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -877,6 +909,9 @@ endpoints:
         example: lpltvzjffuzosnoojyafljpi
 >>>>>>> main
 >>>>>>> 0e4525c (false conflict 2)
+=======
+
+>>>>>>> 9d2aad5 (false conflict 3)
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -885,8 +920,10 @@ endpoints:
         name: domain_id
         description: ''
         required: true
-<<<<<<< HEAD
+
+
         example: 7
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -894,6 +931,9 @@ endpoints:
         example: 16
 >>>>>>> main
 >>>>>>> 0e4525c (false conflict 2)
+=======
+
+>>>>>>> 9d2aad5 (false conflict 3)
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -902,8 +942,9 @@ endpoints:
         name: level_id
         description: ''
         required: true
-<<<<<<< HEAD
+
         example: 16
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -911,6 +952,9 @@ endpoints:
         example: 14
 >>>>>>> main
 >>>>>>> 0e4525c (false conflict 2)
+=======
+
+>>>>>>> 9d2aad5 (false conflict 3)
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -919,14 +963,17 @@ endpoints:
         name: points
         description: ''
         required: false
-<<<<<<< HEAD
+
         example: 10
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
 =======
         example: 15
 >>>>>>> main
+=======
+>>>>>>> 9d2aad5 (false conflict 3)
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -942,7 +989,11 @@ endpoints:
         custom: []
     cleanBodyParameters:
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0e4525c (false conflict 2)
+=======
+
+>>>>>>> 9d2aad5 (false conflict 3)
       title: ghxumcbanwosv
       domain_id: 7
       level_id: 16
@@ -1234,13 +1285,13 @@ endpoints:
     cleanBodyParameters:
       title: odio
       level_id: 20
-=======
+
       title: lpltvzjffuzosnoojyafljpi
       domain_id: 16
       level_id: 14
       points: 15
       answers: []
->>>>>>> main
+
     fileParameters: []
     responses: []
     responseFields: []
@@ -1249,5 +1300,3 @@ endpoints:
     method: null
     route: null
     custom: []
-=======
->>>>>>> cc29799 (Feature/profile (#18))
