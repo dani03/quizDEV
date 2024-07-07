@@ -55,7 +55,7 @@ paths:
                 role_id:
                   type: string
                   description: ''
-                  example: '2'
+                  example: '3'
                   enum:
                     - '2'
                     - '3'
