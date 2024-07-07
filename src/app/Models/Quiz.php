@@ -54,6 +54,15 @@ class Quiz extends Model
         return $this->belongsToMany(User::class);
     }
 
+    /**
+     * @return BelongsToMany
+     * Cette méthode récupère les utilisateurs qui ont participé à ce quiz
+     */
+    public function participants(): BelongsToMany {
+        return $this->belongsToMany(User::class, 'answer_user')
+            ->withTimestamps();
+    }
+
 
 
 

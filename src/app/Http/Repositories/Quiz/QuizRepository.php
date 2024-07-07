@@ -29,11 +29,13 @@ class QuizRepository
 
     public function insertUserAnswer(array $data): bool
     {
-        return DB::table('user_answers')->insert([
+        return DB::table('answer_user')->insert([
             'user_id' => auth()->user()->id,
-            'quiz_id' => $data['quizId'],
-            'question_id' => $data['questionIdUser'],
-            'answer_id' => $data['answerIdUser'],
+            'quiz_id' => $data['quiz_id'],
+            'question_id' => $data['question_id'],
+            'answer_id' => $data['answer_id'],
+            "created_at" => now(),
+            "updated_at" => now(),
         ]);
     }
 

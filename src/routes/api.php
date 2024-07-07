@@ -104,6 +104,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('quiz/{id}', [QuizController::class, 'show']);
         Route::post('quiz/user/answer/{id}', [QuizController::class, 'answerQuiz']);
         Route::delete('quiz/delete/{id}', [QuizController::class, 'destroy']);
+        Route::get('quiz/results/{quiz:id}/{user:id}', [QuizController::class, 'resultUser']);
 
         Route::get('answer/{answerId}', [AnswerController::class, 'show']);
         Route::delete('delete/answer/{answerId}', [AnswerController::class, 'destroy']);

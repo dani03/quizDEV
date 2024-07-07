@@ -40,6 +40,7 @@ class QuestionFactory extends Factory
             'title' => $questionTitle,
             'slug' => Str::slug($questionTitle),
             'user_id' => User::factory(),
+            'points' => random_int(1, 3),
             'domain_id' => Domain::factory(),
             'level_id' => Level::factory(),
             'created_at' => now(),
