@@ -268,7 +268,7 @@ endpoints:
         name: lastname
         description: ''
         required: true
-        example: cupiditate
+        example: qui
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -508,9 +508,6 @@ endpoints:
         description: ''
         required: false
 <<<<<<< HEAD
-        example: 10
-=======
-<<<<<<< HEAD
 <<<<<<< HEAD
         example: 10
 =======
@@ -519,7 +516,6 @@ endpoints:
 =======
         example: 18
 >>>>>>> cc29799 (Feature/profile (#18))
->>>>>>> 36036ae (Feature/profile (#18))
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -528,15 +524,25 @@ endpoints:
         name: slug
         description: ''
         required: false
+<<<<<<< HEAD
         example: repellat
+=======
+        example: ut
+>>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       name: tempore
       points: 10
       slug: repellat
+=======
+      name: necessitatibus
+      points: 18
+      slug: ut
+>>>>>>> main
     fileParameters: []
     responses: []
     responseFields: []
@@ -609,13 +615,21 @@ endpoints:
         name: slug
         description: ''
         required: true
+<<<<<<< HEAD
         example: quos
+=======
+        example: aspernatur
+>>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       slug: quos
+=======
+      slug: aspernatur
+>>>>>>> main
     fileParameters: []
     responses: []
     responseFields: []
@@ -633,7 +647,11 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
+<<<<<<< HEAD
       title: ''
+=======
+      title: 'Display a listing of the resource.'
+>>>>>>> main
       description: ''
       authenticated: false
       custom: []
@@ -672,7 +690,11 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
+<<<<<<< HEAD
       title: ''
+=======
+      title: 'Store a newly created resource in storage.'
+>>>>>>> main
       description: ''
       authenticated: false
       custom: []
@@ -688,7 +710,11 @@ endpoints:
         name: name
         description: ''
         required: true
+<<<<<<< HEAD
         example: quam
+=======
+        example: quidem
+>>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -735,9 +761,6 @@ endpoints:
         description: 'The ID of the delete.'
         required: true
 <<<<<<< HEAD
-        example: voluptas
-=======
-<<<<<<< HEAD
 <<<<<<< HEAD
         example: voluptas
 =======
@@ -748,7 +771,6 @@ endpoints:
 =======
         example: adipisci
 >>>>>>> cc29799 (Feature/profile (#18))
->>>>>>> 36036ae (Feature/profile (#18))
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -770,6 +792,7 @@ endpoints:
 <<<<<<< HEAD
   -
     httpMethods:
+<<<<<<< HEAD
       - GET
     uri: api/v1/questions
     metadata:
@@ -809,6 +832,8 @@ endpoints:
     custom: []
   -
     httpMethods:
+=======
+>>>>>>> main
       - POST
     uri: api/v1/question/store
     metadata:
@@ -832,7 +857,11 @@ endpoints:
         name: title
         description: 'Must not be greater than 150 characters.'
         required: true
+<<<<<<< HEAD
         example: ghxumcbanwosv
+=======
+        example: lpltvzjffuzosnoojyafljpi
+>>>>>>> main
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -841,7 +870,11 @@ endpoints:
         name: domain_id
         description: ''
         required: true
+<<<<<<< HEAD
         example: 7
+=======
+        example: 16
+>>>>>>> main
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -850,7 +883,11 @@ endpoints:
         name: level_id
         description: ''
         required: true
+<<<<<<< HEAD
         example: 16
+=======
+        example: 14
+>>>>>>> main
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -859,7 +896,11 @@ endpoints:
         name: points
         description: ''
         required: false
+<<<<<<< HEAD
         example: 10
+=======
+        example: 15
+>>>>>>> main
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -874,6 +915,7 @@ endpoints:
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
+<<<<<<< HEAD
       title: ghxumcbanwosv
       domain_id: 7
       level_id: 16
@@ -1165,6 +1207,13 @@ endpoints:
     cleanBodyParameters:
       title: odio
       level_id: 20
+=======
+      title: lpltvzjffuzosnoojyafljpi
+      domain_id: 16
+      level_id: 14
+      points: 15
+      answers: []
+>>>>>>> main
     fileParameters: []
     responses: []
     responseFields: []
@@ -1173,4 +1222,5 @@ endpoints:
     method: null
     route: null
     custom: []
-
+=======
+>>>>>>> cc29799 (Feature/profile (#18))
