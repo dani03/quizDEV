@@ -26,8 +26,7 @@ class DomainController extends Controller
     }
 
     /**
-     * @param DomainStoreRequest $request
-     * @return JsonResponse
+     * Créer un nouveau domain.
      */
     public function store(DomainStoreRequest $request): JsonResponse
     {
