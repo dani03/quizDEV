@@ -33,21 +33,29 @@ class QuizService
        return $this->quizRepository->getQuiz($quizId);
     }
 
-    public function userAnswerToQuiz($userAnswers,  $questionsQuiz, int $quizId): array {
+    public function userAnswerToQuiz($userAnswers,  $questionsQuiz, int $quizId) {
         $responseOfUser = [];
 
         $points = 0;
         foreach ($userAnswers as $questionIdUser => $answerIdUser) {
+
             foreach ($questionsQuiz as $question) {
                 $findAnswer = false;
                 $questionIdUser = (int) $questionIdUser;
+
                 //on récupère les 2 questions égales
                 if($questionIdUser === $question->id) {
+
+                    //recuperations de toutes les reponses associer a cette question
                     $answers =  AnswerResource::collection($question->answers);
                     foreach ($answers as $answer) {
+
+                        // si l'id de la reponse est egale à la réponse de l'utilisateur
                         if($answer->id === (int) $answerIdUser) {
                             $findAnswer = true;
                             $points += $answer->correct_answer ? $question->points : 0;
+
+
                             $responseUser = [
                                 'question' => $question->title,
                                 'answers' => AnswerResource::collection($question->answers),
@@ -91,7 +99,6 @@ class QuizService
                 return [false];
             }
         }
-
 
         return ["results" => $responseOfUser, 'points' => $points];
     }

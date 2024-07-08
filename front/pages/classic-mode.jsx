@@ -371,19 +371,19 @@ const Classic = () => {
       <div className="flex justify-center mt-4 md:mt-8">
         <Card className="bg-transparent mx-auto w-192 h-192" shadow={false}>
           <div className="flex justify-between mx-4 my-4">
-            <Typography className="text-white text-sm mb-16 text-center underline">
+            <Typography className="text-zinc-100 text-sm mb-16 text-center underline">
               {quiz.level_name}
             </Typography>
-            <Typography className="text-white text-sm mb-16 text-center italic">
+            <Typography className="text-zinc-100 text-sm mb-16 text-center italic">
               {quiz.title}
             </Typography>
-            <Typography className="text-xl text-white font-bold py-2 px-2 w-16">
+            <Typography className="text-xl text-zinc-100 font-bold py-2 px-2 w-16">
               {currentQuestionIndex}/{quiz.questions.length}
             </Typography>
           </div>
           {currentQuestion ? (
             <div className="rounded-xl mx-4 px-4 py-16 ">
-              <Typography className="text-white text-xl md:text-3xl font-bold mb-16 text-center h-48">
+              <Typography className="text-zinc-100 text-xl md:text-3xl font-bold mb-16 text-center h-48">
                 {currentQuestion.title}
               </Typography>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -404,7 +404,7 @@ const Classic = () => {
                 (isWrong && <PopupGame msg="WRONG" color="bg-red-500" />)}
             </div>
           ) : (
-            <Typography className="text-white text-lg">
+            <Typography className="text-zinc-100 text-lg">
               Quiz terminé ! Merci pour votre participation. {getResult()}
             </Typography>
           )}

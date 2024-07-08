@@ -103,14 +103,20 @@ const Register = () => {
       <ParticlesComponent isError={isError} />
       <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
       <div className="flex justify-center md:mt-2">
-        <Card className="bg-transparent px-4 md:px-8 md:py-2" shadow={false}>
-          <p className="text-white text-center font-passion text-45xl md:text-5xl -mb-4 text-shadow-lg shadow-gray-900/50">
+        <Card
+          className="bg-transparent w-192 px-4 md:px-8 md:py-2"
+          shadow={false}
+        >
+          <p className="text-zinc-100 text-center font-passion text-45xl md:text-5xl -mb-8 text-shadow-lg shadow-gray-900/50">
             REGISTER
           </p>
-          <p className="font-normal font-dancing text-2xl text-center text-white text-shadow-lg shadow-gray-900/50">
+          <p className="font-normal font-dancing text-2xl text-center text-zinc-100 text-shadow-lg shadow-gray-900/50">
             Nice to meet you! Enter your details to login.
           </p>
-          <Button className="mt-8 mb-4" onClick={() => regsiterWithGoogle()}>
+          <Button
+            className="mt-4 mb-2 w-72 mx-auto text-sm bg-deepBrownPrimary"
+            onClick={() => regsiterWithGoogle()}
+          >
             Register with Google
           </Button>
           <form onSubmit={handleFormSubmit} className="mt-8 mb-2 ">
@@ -124,7 +130,7 @@ const Register = () => {
                 onChange={addPicture}
                 placeholder="add your profile picture"
                 type="file"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -145,7 +151,7 @@ const Register = () => {
                 size="lg"
                 name="name"
                 placeholder="firstname"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -157,7 +163,7 @@ const Register = () => {
                 size="lg"
                 name="lastname"
                 placeholder="lastname"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -170,7 +176,7 @@ const Register = () => {
                 type="email"
                 name="email"
                 placeholder="email@email.com"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -183,7 +189,7 @@ const Register = () => {
                 size="lg"
                 name="password"
                 placeholder="********"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -196,7 +202,7 @@ const Register = () => {
                 size="lg"
                 name="password_confirmation"
                 placeholder="********"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}

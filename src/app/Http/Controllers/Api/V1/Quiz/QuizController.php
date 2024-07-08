@@ -9,24 +9,22 @@ use App\Http\Requests\OpenAiRequest;
 use App\Http\Requests\QuizReponseRequest;
 use App\Http\Requests\QuizStoreRequest;
 use App\Http\Resources\QuizResource;
+use App\Http\Resources\QuizResultResource;
 use App\Http\Services\Profils\ProfilService;
 use App\Http\Services\Questions\QuestionService;
 use App\Http\Services\Quiz\QuizService;
 use App\Http\Resources\QuestionResource;
-use App\Http\Resources\AnswerResource;
-use App\Models\Question;
 use App\Models\Quiz;
-use App\Models\User;
-use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response;
 
 class QuizController extends Controller
 {
-    public function __construct(private QuizService $quizService)
+    public function __construct(private readonly QuizService $quizService)
     {
     }
 
@@ -82,14 +80,17 @@ class QuizController extends Controller
      * Permet de répondre à un quiz
      *
      */
-    public function answerQuiz(QuizReponseRequest $request, int $quizId)
+    public function answerQuiz(QuizReponseRequest $request, int $quizId): JsonResponse
     {
         //vérification si le quiz est bien present en BDD
+
         $userAnswers = $request->questions_answer;
         $quiz = $this->quizService->getQuiz($quizId);
         if (!$quiz) {
             return response()->json(['message' => "Impossible de trouver le quiz."], Response::HTTP_NOT_FOUND);
         }
+
+
         $quizzes = QuizResource::make($quiz);
         // recupération des questions et réponses
         $questionsOfQuiz = QuestionResource::collection($quizzes->questions);
@@ -108,8 +109,10 @@ class QuizController extends Controller
         $data = ['points' => $user->points + $responseOfUser['points']];
         (new ProfilService(new UserRepository()))->updateProfile($user, $data);
         return response()->json([
+
             'message' => "Vous avez obtenu {$responseOfUser["points"]} point.s sur ce quiz. total de points: {$user->points}",
             'results' => $responseOfUser['results'],
+            'quiz' => QuizResource::make($quiz),
         ], Response::HTTP_OK);
     }
 
@@ -160,7 +163,61 @@ class QuizController extends Controller
                     ]
                 ]
             ])->json();
-       // return $responseAi;
+        // return $responseAi;
         return $responseAi['choices'][0]['message']['content'];
+    }
+
+
+    /*
+     * Récupération des réponses d'un utilisateur à un quiz
+     *
+     * en paramètre cette méthode attend l'id du quiz comme premier paramètre et en 2nd paramètre l'id du user
+     * et en resultat on objet quiz avec les questions les réponses et la réponse de l'utilisateur (user_answer)
+     *  */
+
+
+    /**
+     * Récupération des réponses d'un utilisateur à un quiz
+     *
+     * en paramètre cette méthode attend l'id du quiz comme premier paramètre et en 2nd paramètre l'id du user
+     *  et en resultat un objet quiz avec les questions, les réponses possible, la bonne réponse (correct_answer) et la réponse de l'utilisateur (user_answer)
+     * @param int $quizId
+     * @param int $userId
+     * @return JsonResponse
+     */
+    public function resultUser(int $quizId, int $userId): JsonResponse
+    {
+        $user = (new ProfilService(new UserRepository()))->getProfile($userId);
+        if (!$user) {
+            return response()->json(['message' => "utilisateur n'existe pas"], Response::HTTP_NOT_FOUND);
+
+        }
+        $quiz = $this->quizService->getQuiz($quizId);
+
+        if (!$quiz) {
+            return response()->json(['message' => "le quiz a n'existe pas."], Response::HTTP_NOT_FOUND);
+
+        }
+
+        $answersOfUser = $quiz->questions->map(function ($question) use ($userId, $quiz) {
+            $answerUserId = DB::table('answer_user')
+                ->where('user_id', 5)
+                ->where('quiz_id', 3)
+                ->where('question_id',4)
+                ->value('answer_id');
+
+            return [
+                'quiz' => $quiz,
+                'question' => $question,
+                'user_answer_id' => $answerUserId,
+            ];
+        });
+
+
+
+        // Utiliser la ressource pour formater les résultats
+        $userResult = QuizResultResource::collection($answersOfUser);
+
+        return response()->json(["data" => $userResult], Response::HTTP_OK);
     }
 }

@@ -16,7 +16,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('answer_user', function (Blueprint $table) {
-            $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Quiz::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Question::class)->constrained()->cascadeOnDelete();

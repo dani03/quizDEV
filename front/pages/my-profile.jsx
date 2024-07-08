@@ -75,7 +75,7 @@ const MyProfile = () => {
             {profileData ? (
               <div className="max-h-[600px] md:max-h-[800px] overflow-auto px-2">
                 <div>
-                  <Typography className="text-2xl text-white uppercase my-16 text-center">
+                  <Typography className="text-2xl text-zinc-100 uppercase my-16 text-center">
                     {profileData.name} {profileData.lastname}
                   </Typography>
                   {profileData.photo ? (
@@ -95,7 +95,7 @@ const MyProfile = () => {
                       className="mx-auto mb-4"
                     />
                   )}
-                  <Typography className="text-xl text-white uppercase my-16 text-center">
+                  <Typography className="text-xl text-zinc-100 uppercase my-16 text-center">
                     {profileData.email}
                   </Typography>
                 </div>
@@ -119,7 +119,7 @@ const MyProfile = () => {
                       onChange={addPicture}
                       placeholder="add your profile picture"
                       type="file"
-                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
@@ -139,7 +139,7 @@ const MyProfile = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="firstname"
-                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
@@ -150,7 +150,7 @@ const MyProfile = () => {
                       value={lastname}
                       onChange={(e) => setLastname(e.target.value)}
                       placeholder="lastname"
-                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
@@ -162,7 +162,7 @@ const MyProfile = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       name="email"
                       placeholder="email@email.com"
-                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}

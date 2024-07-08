@@ -50,17 +50,17 @@ const Login = () => {
       <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
       <div className="flex justify-center md:mt-2">
         <Card
-          className="bg-transparent px-4 py-2 md:px-12 md:py-4"
+          className="bg-transparent w-192 px-4 py-2 md:px-12 md:py-4"
           shadow={false}
         >
-          <p className="text-white text-center font-passion text-45xl md:text-5xl -mb-8 text-shadow-lg shadow-gray-900/50">
+          <p className="text-zinc-100 text-center font-passion text-45xl md:text-5xl -mb-8 text-shadow-lg shadow-gray-900/50">
             LOGIN
           </p>
-          <p className="mt-1 font-normal font-dancing text-2xl text-center text-white text-shadow-lg shadow-gray-900/50">
+          <p className="mt-1 font-normal font-dancing text-2xl text-center text-zinc-100 text-shadow-lg shadow-gray-900/50">
             Nice to meet you! Enter your details to login.
           </p>
           <form onSubmit={handleFormSubmit} className="mt-8 mb-2 ">
-            <div className="mb-1 flex flex-col gap-6">
+            <div className="mb-1 flex flex-col gap-6 overflow-y-auto max-h-96">
               <Typography
                 variant="h6"
                 color="white"
@@ -72,7 +72,7 @@ const Login = () => {
                 size="lg"
                 name="email"
                 placeholder="name@mail.com"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -89,7 +89,7 @@ const Login = () => {
                 size="lg"
                 name="password"
                 placeholder="********"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}

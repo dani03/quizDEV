@@ -65,7 +65,7 @@ const Pricing = () => {
     <div className="h-screen bg-cover md:bg-normal bg-mobile">
       <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
       <Card className="bg-transparent mt-8" shadow={false}>
-        <h1 className="md:text-45xl text-4xl text-center text-white font-bold font-passion text-shadow-lg shadow-gray-900/50">
+        <h1 className="md:text-45xl text-4xl text-center text-zinc-100 font-bold font-passion text-shadow-lg shadow-gray-900/50">
           Our pricing & plan
         </h1>
         {isMediumOrSmallScreen ? (

@@ -121,128 +121,130 @@ const CreateQuestionClassic = (props) => {
           >
             no idea ?
           </Button>
-          <Input
-            type="text"
-            name="question"
-            placeholder="Quelle est la capitale de la France ?"
-            className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
-          />
-          <div className="flex items-center">
+          <div className="overflow-y-auto max-h-128 grid grid-cols-1 gap-4">
             <Input
               type="text"
-              name="answer1"
-              placeholder="answer 1"
+              name="question"
+              placeholder="Quelle est la capitale de la France ?"
               className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
             />
-            <Checkbox
-              label={
-                <Typography color="white" className="text-sm italic">
-                  Good answer ?
-                </Typography>
-              }
-              name="answer1Checkbox"
-              color="yellow"
-              className="ml-2"
-            />
-          </div>
-          <div className="flex items-center">
+            <div className="flex items-center">
+              <Input
+                type="text"
+                name="answer1"
+                placeholder="answer 1"
+                className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
+              />
+              <Checkbox
+                label={
+                  <Typography color="white" className="text-sm italic">
+                    Good answer ?
+                  </Typography>
+                }
+                name="answer1Checkbox"
+                color="yellow"
+                className="ml-2"
+              />
+            </div>
+            <div className="flex items-center">
+              <Input
+                type="text"
+                name="answer2"
+                placeholder="answer 2"
+                className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
+              />
+              <Checkbox
+                label={
+                  <Typography color="white" className="text-sm italic">
+                    Good answer ?
+                  </Typography>
+                }
+                name="answer2Checkbox"
+                color="yellow"
+                className="ml-2"
+              />
+            </div>
+            <div className="flex items-center">
+              <Input
+                type="text"
+                name="answer3"
+                placeholder="answer 3"
+                className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
+              />
+              <Checkbox
+                label={
+                  <Typography color="white" className="text-sm italic">
+                    Good answer ?
+                  </Typography>
+                }
+                name="answer3Checkbox"
+                color="yellow"
+                className="ml-2"
+              />
+            </div>
+            <div className="flex items-center">
+              <Input
+                type="text"
+                name="answer4"
+                placeholder="answer 4"
+                className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
+              />
+              <Checkbox
+                label={
+                  <Typography color="white" className="text-sm italic">
+                    Good answer ?
+                  </Typography>
+                }
+                name="answer4Checkbox"
+                color="yellow"
+                className="ml-2"
+              />
+            </div>
+            <Typography variant="lead" color="white">
+              Theme
+            </Typography>
+            <select
+              name="domain"
+              autoComplete="Theme"
+              className="block w-full p-2 rounded-lg bg-transparent border border-2 text-gray-900"
+            >
+              {Array.isArray(domains.data) && domains.data.length > 0 ? (
+                domains.data.map((item, index) => (
+                  <option key={index} value={item.id}>
+                    {item.name}
+                  </option>
+                ))
+              ) : (
+                <option></option>
+              )}
+            </select>
+            <Typography variant="lead" color="white">
+              Difficulty
+            </Typography>
+            <select
+              name="level"
+              autoComplete="Difficulty"
+              className="block w-full p-2 rounded-lg bg-transparent border border-2 text-gray-900"
+            >
+              {Array.isArray(levels.data) && levels.data.length > 0 ? (
+                levels.data.map((item, index) => (
+                  <option key={index} value={item.id}>
+                    {item.name}
+                  </option>
+                ))
+              ) : (
+                <option></option>
+              )}
+            </select>
+            <Typography variant="lead" color="white">
+              Points
+            </Typography>
             <Input
-              type="text"
-              name="answer2"
-              placeholder="answer 2"
+              type="number"
+              name="points"
               className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
             />
-            <Checkbox
-              label={
-                <Typography color="white" className="text-sm italic">
-                  Good answer ?
-                </Typography>
-              }
-              name="answer2Checkbox"
-              color="yellow"
-              className="ml-2"
-            />
           </div>
-          <div className="flex items-center">
-            <Input
-              type="text"
-              name="answer3"
-              placeholder="answer 3"
-              className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
-            />
-            <Checkbox
-              label={
-                <Typography color="white" className="text-sm italic">
-                  Good answer ?
-                </Typography>
-              }
-              name="answer3Checkbox"
-              color="yellow"
-              className="ml-2"
-            />
-          </div>
-          <div className="flex items-center">
-            <Input
-              type="text"
-              name="answer4"
-              placeholder="answer 4"
-              className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
-            />
-            <Checkbox
-              label={
-                <Typography color="white" className="text-sm italic">
-                  Good answer ?
-                </Typography>
-              }
-              name="answer4Checkbox"
-              color="yellow"
-              className="ml-2"
-            />
-          </div>
-          <Typography variant="lead" color="white">
-            Theme
-          </Typography>
-          <select
-            name="domain"
-            autoComplete="Theme"
-            className="block w-full p-2 rounded-lg bg-transparent border border-2 text-gray-900"
-          >
-            {Array.isArray(domains.data) && domains.data.length > 0 ? (
-              domains.data.map((item, index) => (
-                <option key={index} value={item.id}>
-                  {item.name}
-                </option>
-              ))
-            ) : (
-              <option></option>
-            )}
-          </select>
-          <Typography variant="lead" color="white">
-            Difficulty
-          </Typography>
-          <select
-            name="level"
-            autoComplete="Difficulty"
-            className="block w-full p-2 rounded-lg bg-transparent border border-2 text-gray-900"
-          >
-            {Array.isArray(levels.data) && levels.data.length > 0 ? (
-              levels.data.map((item, index) => (
-                <option key={index} value={item.id}>
-                  {item.name}
-                </option>
-              ))
-            ) : (
-              <option></option>
-            )}
-          </select>
-          <Typography variant="lead" color="white">
-            Points
-          </Typography>
-          <Input
-            type="number"
-            name="points"
-            className="text-white placeholder:text-white border border-2 p-2 rounded-lg"
-          />
           <Button
             type="submit"
             fullWidth

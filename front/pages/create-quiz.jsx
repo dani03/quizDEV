@@ -93,44 +93,46 @@ const CreateQuiz = () => {
           <div className="flex justify-center mb-4 w-80 md:w-192 p-2 bg-transparent rounded-lg mx-auto">
             <form onSubmit={handleFormSubmit}>
               <div className="mb-1 flex flex-col gap-6">
-                <Typography className="text-4xl text-white font-bold mb-4 text-center">
+                <Typography className="text-4xl text-zinc-100 font-bold mb-4 text-center">
                   Create your custom quiz
                 </Typography>
-                <Typography className="text-xl font-bold text-white">
-                  Select your questions
-                </Typography>
-                <Input
-                  size="lg"
-                  name="title"
-                  className="border border-2 border-white placeholder:text-white text-white font-bold py-4 px-3"
-                  placeholder="Title"
-                  labelProps={{
-                    className: "before:content-none after:content-none",
-                  }}
-                />
-                <Typography className="text-xl font-bold text-white">
-                  Difficulty
-                </Typography>
-                <select
-                  name="level"
-                  autoComplete="Difficulty"
-                  className="block w-full py-2 px-3 rounded-lg bg-transparent border border-2 text-white font-bold"
-                >
-                  {Array.isArray(levels.data) && levels.data.length > 0 ? (
-                    levels.data.map((item, index) => (
-                      <option key={index} value={item.id}>
-                        {item.name}
-                      </option>
-                    ))
-                  ) : (
-                    <option></option>
-                  )}
-                </select>
-                <Typography className="text-xl font-bold text-white">
-                  Select your questions
-                </Typography>
-                <div className="rounded-xl h-96 overflow-auto">
-                  <DataTable columns={columns} data={questions.data} />
+                <div className="overflow-y-auto max-h-128 grid grid-cols-1 gap-6">
+                  <Typography className="text-xl font-bold text-zinc-100">
+                    Select your questions
+                  </Typography>
+                  <Input
+                    size="lg"
+                    name="title"
+                    className="border border-2 border-white placeholder:text-zinc-100 text-zinc-100 font-bold py-2 px-1.5"
+                    placeholder="Title"
+                    labelProps={{
+                      className: "before:content-none after:content-none",
+                    }}
+                  />
+                  <Typography className="text-xl font-bold text-zinc-100">
+                    Difficulty
+                  </Typography>
+                  <select
+                    name="level"
+                    autoComplete="Difficulty"
+                    className="block w-full py-2 px-3 rounded-lg bg-transparent border border-2 text-zinc-100 font-bold"
+                  >
+                    {Array.isArray(levels.data) && levels.data.length > 0 ? (
+                      levels.data.map((item, index) => (
+                        <option key={index} value={item.id}>
+                          {item.name}
+                        </option>
+                      ))
+                    ) : (
+                      <option></option>
+                    )}
+                  </select>
+                  <Typography className="text-xl font-bold text-zinc-100">
+                    Select your questions
+                  </Typography>
+                  <div className="rounded-xl h-96 overflow-auto">
+                    <DataTable columns={columns} data={questions.data} />
+                  </div>
                 </div>
                 <Button
                   type="submit"

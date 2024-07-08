@@ -17,6 +17,8 @@ class QuizResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $uniqueParticipants = $this->participants->unique('id');
+
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -27,6 +29,7 @@ class QuizResource extends JsonResource
             'created_at' =>  Carbon::make($this->created_at)->diffForHumans(),
             'updated_at' => Carbon::make($this->updated_at)->diffForHumans(),
             'questions' => QuestionResource::collection($this->questions),
+            'candidats_list' => ProfilRessource::collection($uniqueParticipants),
         ];
     }
 }

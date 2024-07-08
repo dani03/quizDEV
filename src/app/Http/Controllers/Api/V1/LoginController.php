@@ -36,6 +36,7 @@ class LoginController extends Controller
             'name' => $user->name,
             'id' => $user->id,
             'role' => $user->role_id,
+            'role_name' => $user->role->name,
 
         ], Response::HTTP_CREATED);
     }
