@@ -1,17 +1,23 @@
 import { Fragment, useEffect, useState } from "react"
 import Link from "next/link"
 import { Menu, Transition } from "@headlessui/react"
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
+import {
+  Bars3Icon,
+  XMarkIcon,
+  MoonIcon,
+  SunIcon,
+} from "@heroicons/react/24/outline"
 import { Button, Drawer, ListItem } from "@material-tailwind/react"
 
 const navigationUser = [
-  { name: "Mode random", href: "/classic-mode", current: false },
+  { name: "Random", href: "/classic-mode", current: false },
 ]
 
 const navigationCompany = [
   { name: "Quiz", href: "/create-quiz", current: false },
   { name: "Questions", href: "/create-question", current: false },
-  { name: "Mode random", href: "/classic-mode", current: false },
+  { name: "My candidates", href: "/candidates", current: false },
+  { name: "Random", href: "/classic-mode", current: false },
 ]
 
 const navigationAdmin = [
@@ -19,7 +25,7 @@ const navigationAdmin = [
   { name: "Questions", href: "/create-question", current: false },
   { name: "Levels", href: "/create-level", current: false },
   { name: "Themes", href: "/create-theme", current: false },
-  { name: "Mode random", href: "/classic-mode", current: false },
+  { name: "Random", href: "/classic-mode", current: false },
 ]
 
 function classNames(...classes) {
@@ -27,7 +33,7 @@ function classNames(...classes) {
 }
 
 const NavBar = (props) => {
-  const { jwt, logout, myProfile } = props
+  const { jwt, logout, myProfile, isLightMode, toggleLightMode } = props
   const [navigation, setNavigation] = useState([])
   const [open, setOpen] = useState(false)
   const [displayedRole, setDisplayedRole] = useState("")
@@ -42,15 +48,15 @@ const NavBar = (props) => {
         setDisplayedRole("ADMIN")
         break
       case 2:
-        setNavigation(navigationAdmin)
+        setNavigation(navigationCompany)
         setDisplayedRole("COMPANY")
         break
       case 3:
-        setNavigation(navigationAdmin)
+        setNavigation(navigationUser)
         setDisplayedRole("USER")
         break
       default:
-        setNavigation(navigationAdmin)
+        setNavigation(navigationUser)
         setDisplayedRole("USER")
     }
   }, [myProfile?.role_id])
@@ -76,7 +82,7 @@ const NavBar = (props) => {
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-4 border rounded-xl shadow-xl py-1">
                     {navigation.map((item) => (
                       <a
                         key={item.name}
@@ -104,9 +110,6 @@ const NavBar = (props) => {
                       <h1 className="text-center text-zinc-100 uppercase mx-2 font-bold">
                         {myProfile?.name}
                       </h1>
-                      <h1 className="italic text-zinc-100 mx-2 text-sm">
-                        ({displayedRole})
-                      </h1>
                       <Menu.Button className="relative flex rounded-full bg-bluePrimary text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
@@ -116,6 +119,21 @@ const NavBar = (props) => {
                           alt=""
                         />
                       </Menu.Button>
+                      {isLightMode ? (
+                        <Button
+                          className="bg-transparent"
+                          onClick={toggleLightMode}
+                        >
+                          <MoonIcon className="text-zinc-100 h-8 w-8" />
+                        </Button>
+                      ) : (
+                        <Button
+                          className="bg-transparent"
+                          onClick={toggleLightMode}
+                        >
+                          <SunIcon className="text-zinc-100 h-8 w-8" />
+                        </Button>
+                      )}
                     </div>
                     <Transition
                       as={Fragment}
@@ -157,9 +175,9 @@ const NavBar = (props) => {
                     </Transition>
                   </Menu>
                 ) : (
-                  <>
+                  <div className="border rounded-xl shadow-xl">
                     <Link href="/login">
-                      <Button className="bg-transparent hover:scale-110">
+                      <Button className="bg-transparent hover:scale-110 text-md md:text-lg">
                         Sign in
                       </Button>
                     </Link>
@@ -168,7 +186,22 @@ const NavBar = (props) => {
                         Register
                       </Button>
                     </Link>
-                  </>
+                    {isLightMode ? (
+                      <Button
+                        className="bg-transparent"
+                        onClick={toggleLightMode}
+                      >
+                        <MoonIcon className="text-zinc-100 h-4 w-4 py-auto font-bold" />
+                      </Button>
+                    ) : (
+                      <Button
+                        className="bg-transparent"
+                        onClick={toggleLightMode}
+                      >
+                        <SunIcon className="text-zinc-100 h-4 w-4 font-bold" />
+                      </Button>
+                    )}
+                  </div>
                 )}
               </div>
             </div>

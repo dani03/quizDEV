@@ -6,8 +6,8 @@ import NavBar from "../src/components/NavBar"
 import { AppContext } from "../src/components/AppContext"
 import { useContext } from "react"
 import { Card } from "@material-tailwind/react"
-import { useMediaQuery } from "@mui/material"
 import PricingCard from "../src/components/PricingCard"
+import UseMediaQuery from "../src/components/UseMediaService"
 
 const planList = [
   {
@@ -58,40 +58,49 @@ const planList = [
 ]
 
 const Pricing = () => {
-  const { jwt, logout, myProfile } = useContext(AppContext)
-  const isMediumOrSmallScreen = useMediaQuery("(max-width: 1024px)")
+  const { jwt, logout, myProfile, isLightMode, isError, toggleLightMode } =
+    useContext(AppContext)
+  const isMediumOrSmallScreen = UseMediaQuery("(max-width: 1024px)")
 
   return (
-    <div className="h-screen bg-cover md:bg-normal bg-mobile">
-      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
+    <div
+      className={`h-screen bg-cover ${
+        !isError
+          ? `${
+              isLightMode
+                ? "md:bg-normal bg-mobile"
+                : "md:bg-normal2 bg-mobile2"
+            }`
+          : "md:bg-error bg-error_mobile"
+      }`}
+    >
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        myProfile={myProfile}
+        isLightMode={isLightMode}
+        toggleLightMode={toggleLightMode}
+      />
       <Card className="bg-transparent mt-8" shadow={false}>
         <h1 className="md:text-45xl text-4xl text-center text-zinc-100 font-bold font-passion text-shadow-lg shadow-gray-900/50">
           Our pricing & plan
         </h1>
-        {isMediumOrSmallScreen ? (
-          <Swiper
-            effect={"cards"}
-            grabCursor={true}
-            modules={[EffectCards]}
-            className="mySwiper mt-16"
-          >
-            <SwiperSlide className="bg-pricing bg-cover">
-              <PricingCard planData={planList[0]} />
-            </SwiperSlide>
-            <SwiperSlide className="bg-normal bg-cover">
-              <PricingCard planData={planList[1]} />
-            </SwiperSlide>
-            <SwiperSlide className="bg-error bg-cover">
-              <PricingCard planData={planList[2]} />
-            </SwiperSlide>
-          </Swiper>
-        ) : (
-          <div className="grid grid-cols-3 grid-gap-2 mt-16">
+        <Swiper
+          effect={"cards"}
+          grabCursor={true}
+          modules={[EffectCards]}
+          className="mySwiper mt-16"
+        >
+          <SwiperSlide className="bg-pricing bg-cover">
             <PricingCard planData={planList[0]} />
+          </SwiperSlide>
+          <SwiperSlide className="bg-normal bg-cover">
             <PricingCard planData={planList[1]} />
+          </SwiperSlide>
+          <SwiperSlide className="bg-error bg-cover">
             <PricingCard planData={planList[2]} />
-          </div>
-        )}
+          </SwiperSlide>
+        </Swiper>
       </Card>
     </div>
   )

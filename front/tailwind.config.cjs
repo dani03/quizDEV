@@ -15,6 +15,7 @@ module.exports = {
     extend: {
       spacing: {
         128: "32rem",
+        150: "40rem",
         192: "48rem",
       },
       fontFamily: {
@@ -34,6 +35,10 @@ module.exports = {
       backgroundImage: {
         normal: "url('/background.png')",
         mobile: "url('/background_mobile.png')",
+        normal2: "url('/background_2.png')",
+        mobile2: "url('/background_2_mobile.png')",
+        win: "url('/background_win.png')",
+        win_mobile: "url('/background_win_mobile.png')",
         error: "url('/error_background.png')",
         error_mobile: "url('/error_background _mobile.png')",
         pricing: "url('/background_pricing.png')",
@@ -45,6 +50,7 @@ module.exports = {
         "2xl": "1.563rem",
         "3xl": "1.953rem",
         "4xl": "2.441rem",
+        "43xl": "3.600rem",
         "45xl": "6.441rem",
         "5xl": "10.052rem",
       },

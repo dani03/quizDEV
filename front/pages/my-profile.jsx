@@ -1,13 +1,13 @@
 import { useContext, useState, useEffect } from "react"
 import { AppContext } from "../src/components/AppContext"
-import ParticlesComponent from "../src/components/ParticlesComponent"
 import NavBar from "../src/components/NavBar"
 import { Button, Card, Input, Typography } from "@material-tailwind/react"
 import axios from "axios"
 import { DefaultSkeleton } from "../src/components/DefaultSkeleton"
 
 const MyProfile = () => {
-  const { jwt, logout, isError, myProfile } = useContext(AppContext)
+  const { jwt, logout, isError, myProfile, isLightMode, toggleLightMode } =
+    useContext(AppContext)
   const [profileData, setProfileData] = useState(null)
   const [base64, setBase64] = useState(null)
   const [name, setName] = useState("")
@@ -65,10 +65,22 @@ const MyProfile = () => {
   return (
     <div
       className={`h-screen bg-cover ${
-        !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
+        !isError
+          ? `${
+              isLightMode
+                ? "md:bg-normal bg-mobile"
+                : "md:bg-normal2 bg-mobile2"
+            }`
+          : "md:bg-error bg-error_mobile"
       }`}
     >
-      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        myProfile={myProfile}
+        isLightMode={isLightMode}
+        toggleLightMode={toggleLightMode}
+      />
       <div className="flex justify-center mt-4 md:mt-8">
         <Card className="bg-transparent md:w-192" shadow={false}>
           <div className="grid grid-cols-1">

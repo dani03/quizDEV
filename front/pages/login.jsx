@@ -11,8 +11,17 @@ const Login = () => {
   const router = useRouter()
   const [error, setError] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
-  const { jwt, logout, saveJwt, saveUser, isError, changeIsError, myProfile } =
-    useContext(AppContext)
+  const {
+    jwt,
+    logout,
+    saveJwt,
+    saveUser,
+    isError,
+    changeIsError,
+    myProfile,
+    isLightMode,
+    toggleLightMode,
+  } = useContext(AppContext)
   const handleOpen = () => {
     changeIsError()
     setOpenPopup(!openPopup)
@@ -40,14 +49,38 @@ const Login = () => {
       })
   }
 
+  const loginWithGoogle = () => {
+    axios
+      .get("http://localhost:3002/api/v1/authenticate/google")
+      .then(function (response) {
+        console.log(response.data.url)
+        //router.push(response.data.url)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
+
   return (
     <div
       className={`h-screen bg-cover ${
-        !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
+        !isError
+          ? `${
+              isLightMode
+                ? "md:bg-normal bg-mobile"
+                : "md:bg-normal2 bg-mobile2"
+            }`
+          : "md:bg-error bg-error_mobile"
       }`}
     >
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        myProfile={myProfile}
+        isLightMode={isLightMode}
+        toggleLightMode={toggleLightMode}
+      />
       <div className="flex justify-center md:mt-2">
         <Card
           className="bg-transparent w-192 px-4 py-2 md:px-12 md:py-4"
@@ -59,8 +92,15 @@ const Login = () => {
           <p className="mt-1 font-normal font-dancing text-2xl text-center text-zinc-100 text-shadow-lg shadow-gray-900/50">
             Nice to meet you! Enter your details to login.
           </p>
+          <Button
+            size="sm"
+            className="mt-4 mb-2 w-72 mx-auto text-sm bg-deepBrownPrimary"
+            onClick={() => loginWithGoogle()}
+          >
+            Register with Google
+          </Button>
           <form onSubmit={handleFormSubmit} className="mt-8 mb-2 ">
-            <div className="mb-1 flex flex-col gap-6 overflow-y-auto max-h-96">
+            <div className="mb-1 flex flex-col gap-6 overflow-y-auto h-96 max-h-96">
               <Typography
                 variant="h6"
                 color="white"

@@ -1,15 +1,18 @@
 import axios from "axios"
 import { createContext, useCallback, useEffect, useState } from "react"
-import { fakeLevels } from "../data/fakeData"
-import { fakeQuestion } from "../data/fakeData"
-import { fakeTheme } from "../data/fakeData"
 
 export const AppContext = createContext(null)
 
 const AppContextProvider = (props) => {
   const [jwt, setJwt] = useState(null)
   const [isError, setIsError] = useState(false)
-  const [userData, setUserData] = useState(null)
+  const [levels, setLevels] = useState([])
+  const [domains, setDomains] = useState([])
+  const [questions, setQuestions] = useState([])
+  const [quiz, setQuiz] = useState([])
+  const [myProfile, setMyProfile] = useState([])
+  const [isLightMode, setIsLightMode] = useState(false)
+  const [isInitialized, setIsInitialized] = useState(false)
   useEffect(() => setJwt(localStorage.getItem("access_token")), [])
 
   const saveJwt = useCallback((jwt) => {
@@ -38,7 +41,6 @@ const AppContextProvider = (props) => {
   const logout = useCallback(() => {
     localStorage.removeItem("access_token")
     setJwt(null)
-    setUserData(null)
   }, [])
 
   const changeIsError = () => {
@@ -53,118 +55,74 @@ const AppContextProvider = (props) => {
     return () => window.removeEventListener("storage", updateContext)
   }, [])
 
-  const [levels, setLevels] = useState([])
+  // ----------------------------------------------------------------
+
   useEffect(() => {
-    const fetchLevels = async () => {
-      if (!jwt) return
+    if (!jwt) return
+
+    const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3002/api/v1/levels",
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        )
-        setLevels(response.data)
+        const [
+          levelsResponse,
+          domainsResponse,
+          questionsResponse,
+          quizResponse,
+          profileResponse,
+        ] = await Promise.all([
+          axios.get("http://localhost:3002/api/v1/levels", {
+            headers: { Authorization: `Bearer ${jwt}` },
+          }),
+          axios.get("http://localhost:3002/api/v1/domains", {
+            headers: { Authorization: `Bearer ${jwt}` },
+          }),
+          axios.get("http://localhost:3002/api/v1/questions", {
+            headers: { Authorization: `Bearer ${jwt}` },
+          }),
+          axios.get("http://localhost:3002/api/v1/quizzes", {
+            headers: { Authorization: `Bearer ${jwt}` },
+          }),
+          axios.get("http://localhost:3002/api/v1/profil", {
+            headers: { Authorization: `Bearer ${jwt}` },
+          }),
+        ])
+
+        setLevels(levelsResponse.data)
+        setDomains(domainsResponse.data)
+        setQuestions(questionsResponse.data)
+        setQuiz(quizResponse.data)
+        setMyProfile(profileResponse.data.data)
       } catch (error) {
-        console.error("Error fetching levels:", error)
-        setLevels(fakeLevels)
+        console.error("Error fetching data:", error)
       }
     }
 
-    fetchLevels()
+    fetchData()
   }, [jwt])
 
-  const [domains, setDomains] = useState([])
+  // ----------------------------------------------------------------
+
   useEffect(() => {
-    const fetchLevels = async () => {
-      if (!jwt) return
-      try {
-        const response = await axios.get(
-          "http://localhost:3002/api/v1/domains",
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        )
-        setDomains(response.data)
-      } catch (error) {
-        console.error("Error fetching domains:", error)
-        setDomains(fakeTheme)
+    if (typeof window !== "undefined") {
+      const storedTheme = localStorage.getItem("isLightMode")
+      if (storedTheme !== null) {
+        setIsLightMode(JSON.parse(storedTheme))
+      } else {
+        const prefersLightMode = window.matchMedia(
+          "(prefers-color-scheme: light)"
+        ).matches
+        setIsLightMode(prefersLightMode)
       }
+      setIsInitialized(true)
     }
+  }, [])
 
-    fetchLevels()
-  }, [jwt])
-
-  const [questions, setQuestions] = useState([])
   useEffect(() => {
-    const fetchLevels = async () => {
-      if (!jwt) return
-      try {
-        const response = await axios.get(
-          "http://localhost:3002/api/v1/questions",
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        )
-        setQuestions(response.data)
-      } catch (error) {
-        console.error("Error fetching domains:", error)
-        setQuestions(fakeQuestion)
-      }
+    if (isInitialized) {
+      localStorage.setItem("isLightMode", JSON.stringify(isLightMode))
     }
+  }, [isLightMode, isInitialized])
 
-    fetchLevels()
-  }, [jwt])
-
-  const [quiz, setQuiz] = useState([])
-  useEffect(() => {
-    const fetchLevels = async () => {
-      if (!jwt) return
-      try {
-        const response = await axios.get(
-          "http://localhost:3002/api/v1/quizzes",
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        )
-        setQuiz(response.data)
-      } catch (error) {
-        console.error("Error fetching domains:", error)
-      }
-    }
-
-    fetchLevels()
-  }, [jwt])
-
-  const [myProfile, setMyProfile] = useState([])
-  useEffect(() => {
-    const fetchLevels = async () => {
-      if (!jwt) return
-      try {
-        const response = await axios.get(
-          "http://localhost:3002/api/v1/profil",
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        )
-        setMyProfile(response.data.data)
-      } catch (error) {
-        console.error("Error fetching myProfile:", error)
-      }
-    }
-
-    fetchLevels()
-  }, [jwt])
+  const toggleLightMode = () => setIsLightMode(!isLightMode)
 
   return (
     <AppContext.Provider
@@ -180,6 +138,8 @@ const AppContextProvider = (props) => {
         questions,
         quiz,
         myProfile,
+        isLightMode,
+        toggleLightMode,
       }}
     />
   )
