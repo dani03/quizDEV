@@ -15,7 +15,6 @@ const Login = () => {
     jwt,
     logout,
     saveJwt,
-    saveUser,
     isError,
     changeIsError,
     myProfile,

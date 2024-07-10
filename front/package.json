@@ -15,6 +15,7 @@
     "@headlessui/react": "^1.7.12",
     "@heroicons/react": "^2.1.4",
     "@material-tailwind/react": "^2.1.9",
+    "@react-spring/web": "^9.7.3",
     "axios": "^1.3.4",
     "buffer": "^6.0.3",
     "classnames": "^2.3.2",
@@ -46,14 +47,14 @@
   "devDependencies": {
     "@swc/cli": "^0.1.63",
     "@swc/core": "^1.3.101",
-    "autoprefixer": "^10.4.13",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8.35.0",
     "eslint-config-next": "13.2.1",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.39",
     "prettier": "^2.8.4",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.4.4"
   }
 }

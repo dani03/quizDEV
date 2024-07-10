@@ -12,6 +12,7 @@ import {
 import Popup from "../src/components/Popup"
 import axios from "axios"
 import DataTable from "react-data-table-component"
+import GenerateLink from "../src/components/GenerateLink"
 
 const CreateQuiz = () => {
   const {
@@ -23,6 +24,7 @@ const CreateQuiz = () => {
     myProfile,
     isLightMode,
     toggleLightMode,
+    quiz,
   } = useContext(AppContext)
   const [error, setError] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
@@ -159,7 +161,7 @@ const CreateQuiz = () => {
                   fullWidth
                   className="mt-4 mx-auto bg-deepBrownPrimary hover:opacity-75"
                 >
-                  Create your Theme
+                  Create your Quiz
                 </Button>
               </div>
               <Popup

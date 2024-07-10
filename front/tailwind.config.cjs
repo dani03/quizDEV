@@ -13,10 +13,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      maxHeight: {
+        "3/4-screen": "85vh",
+      },
       spacing: {
         128: "32rem",
         150: "40rem",
         192: "48rem",
+        200: "56rem",
       },
       fontFamily: {
         montserrat: ["Montserrat"],
@@ -31,6 +35,7 @@ module.exports = {
         brownPrimary: "#AC604A",
         deepBrownPrimary: "#77404B",
         redPrimary: "#931621",
+        orangePrimary: "#FF914D",
       },
       backgroundImage: {
         normal: "url('/background.png')",
@@ -49,6 +54,7 @@ module.exports = {
         xl: "1.25rem",
         "2xl": "1.563rem",
         "3xl": "1.953rem",
+        "35xl": "2.200rem",
         "4xl": "2.441rem",
         "43xl": "3.600rem",
         "45xl": "6.441rem",

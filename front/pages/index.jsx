@@ -1,14 +1,20 @@
 import { AppContext } from "../src/components/AppContext"
 import NavBar from "../src/components/NavBar"
-import { Card, Button } from "@material-tailwind/react"
+import { Card } from "@material-tailwind/react"
 import { motion } from "framer-motion"
 import ParticlesComponent from "../src/components/ParticlesComponent"
-import Link from "next/link"
-import { useContext } from "react"
+import { useContext, useState } from "react"
+import InfoJobinquiz from "../src/components/InfoJobinquiz"
+import { ChevronDoubleDownIcon } from "@heroicons/react/24/solid"
 
 const Home = () => {
   const { jwt, logout, isError, myProfile, isLightMode, toggleLightMode } =
     useContext(AppContext)
+  const [openInfo, setOpenInfo] = useState(false)
+
+  const scrollDown = () => {
+    setOpenInfo(!openInfo)
+  }
 
   return (
     <>
@@ -31,7 +37,10 @@ const Home = () => {
           isLightMode={isLightMode}
           toggleLightMode={toggleLightMode}
         />
-        <Card className="bg-transparent" shadow={false}>
+        <Card
+          className="bg-transparent overflow-auto max-h-3/4-screen"
+          shadow={false}
+        >
           <motion.ul
             className="mt-16 mx-auto"
             initial="hidden"
@@ -57,11 +66,16 @@ const Home = () => {
               </p>
             </motion.li>
           </motion.ul>
-          <Link className="mx-auto" href="/pricing">
-            <Button className="mt-32 w-64 bg-purplePrimary shadow-xl">
-              Try out now
-            </Button>
-          </Link>
+          <h1 className="mt-16 text-zinc-100 mx-auto font-bold uppercase">
+            Read more
+          </h1>
+          <h1
+            onClick={scrollDown}
+            className="mx-auto text-zinc-100 font-bold my-2 cursor-pointer"
+          >
+            <ChevronDoubleDownIcon className="h-10 w-10" />
+          </h1>
+          <InfoJobinquiz openInfo={openInfo} />
         </Card>
       </div>
     </>
