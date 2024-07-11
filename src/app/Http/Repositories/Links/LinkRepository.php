@@ -14,7 +14,8 @@ class LinkRepository
        return  Link::create([
             "hash_token" => Hash('sha256', Str::random(32)),
             "expires_at" => Carbon::now()->addHours($expireTime),
-            'quiz_id' => $quizId
+            'quiz_id' => $quizId,
+            'user_id' => $quizId,
         ]);
     }
 

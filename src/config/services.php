@@ -38,7 +38,7 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'http://localhost/api/v1/oauth/google/callback-url',
+        'redirect' => 'http://localhost:3002/api/v1/oauth/google/call-back',
     ],
 
 ];
