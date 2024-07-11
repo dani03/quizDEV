@@ -54,15 +54,15 @@ const NavBar = (props) => {
         setDisplayedRole("ADMIN")
         break
       case 2:
-        setNavigation(navigationCompany)
+        setNavigation(navigationAdmin)
         setDisplayedRole("COMPANY")
         break
       case 3:
-        setNavigation(navigationUser)
+        setNavigation(navigationAdmin)
         setDisplayedRole("USER")
         break
       default:
-        setNavigation(navigationUser)
+        setNavigation(navigationAdmin)
         setDisplayedRole("USER")
     }
   }, [myProfile?.role_id])
@@ -123,6 +123,12 @@ const NavBar = (props) => {
                       <h1 className="text-center text-zinc-100 uppercase mx-2 font-bold">
                         {myProfile?.name}
                       </h1>
+<<<<<<< HEAD
+=======
+                      <h1 className="italic text-zinc-100 mx-2 text-sm">
+                        ({displayedRole})
+                      </h1>
+>>>>>>> main
                       <Menu.Button className="relative flex rounded-full bg-bluePrimary text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
@@ -233,7 +239,11 @@ const NavBar = (props) => {
       <Drawer
         open={open}
         onClose={closeDrawer}
+<<<<<<< HEAD
         className="inset-0 z-50 bg-white navbar flex flex-col"
+=======
+        className="inset-0 z-50 bg-white navbar"
+>>>>>>> main
       >
         <div className="flex items-center justify-between p-4 z-50">
           <Link href="/">
@@ -250,7 +260,11 @@ const NavBar = (props) => {
             key={item.name}
             className={classNames(
               item.current ? "bg-gray-900 text-zinc-100" : "text-gray-900",
+<<<<<<< HEAD
               "rounded-md font-bold text-xl ml-4 py-2"
+=======
+              " rounded-md font-bold text-xl ml-4 py-2"
+>>>>>>> main
             )}
             aria-current={item.current ? "page" : undefined}
           >
