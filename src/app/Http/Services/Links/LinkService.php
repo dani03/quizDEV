@@ -15,7 +15,7 @@ class LinkService
 
     public function creatingLink($quiz, $user, int $expireTime = 48) {
 
-       return $this->linkRepository->create($quiz->id, $expireTime);
+       return $this->linkRepository->create($quiz->id, $user->id, $expireTime);
     }
 
     public function getLink(string $token) {

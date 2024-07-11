@@ -9,13 +9,13 @@ use Illuminate\Support\Str;
 class LinkRepository
 {
 
-    public function create(int $quizId, int $expireTime = 2) {
+    public function create(int $quizId, $user, int $expireTime) {
 
        return  Link::create([
             "hash_token" => Hash('sha256', Str::random(32)),
             "expires_at" => Carbon::now()->addHours($expireTime),
             'quiz_id' => $quizId,
-            'user_id' => $quizId,
+            'user_id' => $user->id,
         ]);
     }
 

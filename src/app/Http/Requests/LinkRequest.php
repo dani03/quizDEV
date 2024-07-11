@@ -26,7 +26,7 @@ class LinkRequest extends FormRequest
         return [
             'quiz_id' => ['required', 'integer', Rule::exists('quizzes', 'id')],
             'user_id' => ['required', 'integer', Rule::exists('users', 'id'), new UserHasEntrepriseRole()],
-            'nombre_heure_valide' => ['integer'],
+            'validite' => ['integer'],
         ];
     }
 }
