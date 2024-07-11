@@ -34,6 +34,7 @@ class LinkController extends Controller
     public function store(LinkRequest $request): JsonResponse
     {
         $this->authorize('create-quiz');
+
         //recupération du quiz
         $quiz_id = $request->quiz_id;
         $quiz = (new QuizService(new QuizRepository()))->getQuiz($quiz_id);
@@ -45,8 +46,8 @@ class LinkController extends Controller
         if(!$user) {
             return response()->json(['message' => "l'utilisateur n'existe pas"],ResponseSm::HTTP_NOT_FOUND);
         }
-
-        $link = $this->linkService->creatingLink($quiz, $user);
+        $nombresHeureValid = $request->validite;
+        $link = $this->linkService->creatingLink($quiz, $user, $nombresHeureValid);
         $appURL = env('APP_URL');
         $customLink = "$appURL/invitation-link?token=$link->hash_token";
         return response()->json(['message' => "votre lien a été crée.",'link' => $customLink],ResponseSm::HTTP_OK);
