@@ -101,7 +101,6 @@ class QuizController extends Controller
         }
 
         $responseOfUser = $this->quizService->userAnswerToQuiz($userAnswers, $questionsOfQuiz, $quizId);
-
         //on associe le user au quiz afin de le comptabiliser comme quiz effectué par l'utilisateur
         if (!$quiz->users()->where('user_id', $user->id)->where('quiz_id', $quiz->id)->exists()) {
             $user->quizzes()->attach($quizId);

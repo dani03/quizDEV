@@ -50,7 +50,7 @@ const particlesOptions = {
       type: "circle",
     },
     size: {
-      value: { min: 50, max: 100 },
+      value: { min: 50, max: 60 },
     },
     zIndex: 0,
   },

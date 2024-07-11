@@ -2,17 +2,34 @@ import NavBar from "../src/components/NavBar"
 import { useContext, useState } from "react"
 import { AppContext } from "../src/components/AppContext"
 import Popup from "../src/components/Popup"
-import { Card, Input, Button, Typography } from "@material-tailwind/react"
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+  Checkbox,
+} from "@material-tailwind/react"
 import axios from "axios"
 import { useRouter } from "next/router"
 import ParticlesComponent from "../src/components/ParticlesComponent"
+import Resizer from "react-image-file-resizer"
 
 const Register = () => {
-  const { jwt, logout, saveJwt, saveUser, isError, changeIsError, myProfile } =
-    useContext(AppContext)
+  const {
+    jwt,
+    logout,
+    saveJwt,
+    isError,
+    changeIsError,
+    myProfile,
+    isLightMode,
+    toggleLightMode,
+  } = useContext(AppContext)
   const [error, setError] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
   const [base64, setBase64] = useState(null)
+  const [openCollapse, setOpenCollapse] = useState(false)
+  const toggleOpen = () => setOpenCollapse((cur) => !cur)
 
   const handleOpen = () => {
     changeIsError()
@@ -23,21 +40,30 @@ const Register = () => {
   const handleFormSubmit = (event) => {
     event.preventDefault()
 
+    let body = {
+      name: event.currentTarget.name.value,
+      lastname: event.currentTarget.lastname.value,
+      email: event.currentTarget.email.value,
+      password: event.currentTarget.password.value,
+      password_confirmation: event.currentTarget.password_confirmation.value,
+      role_id: 2,
+    }
+
+    if (
+      event.currentTarget.name.value &&
+      event.currentTarget.name.value !== "" &&
+      openCollapse
+    ) {
+      Object.assign(body, { company_name: event.currentTarget.name.value })
+      Object.assign(body, { role_id: 2 })
+    } else {
+      Object.assign(body, { company_name: null })
+      Object.assign(body, { role_id: 3 })
+    }
     axios
-      .post("http://localhost:3002/api/v1/auth/register", {
-        name: event.currentTarget.name.value,
-        lastname: event.currentTarget.lastname.value,
-        email: event.currentTarget.email.value,
-        password: event.currentTarget.password.value,
-        password_confirmation: event.currentTarget.password_confirmation.value,
-        role_id: 2,
-      })
+      .post("http://localhost:3002/api/v1/auth/register", body)
       .then(function (response) {
-        if (
-          response.data.access_token &&
-          response.data.name &&
-          response.data.id
-        ) {
+        if (response.data.access_token) {
           saveJwt(response.data.access_token)
           axios
             .post(
@@ -71,14 +97,21 @@ const Register = () => {
 
   const addPicture = (event) => {
     const file = event.target.files[0]
-    const reader = new FileReader()
-
-    reader.onloadend = () => {
-      setBase64(reader.result)
-    }
 
     if (file) {
-      reader.readAsDataURL(file)
+      Resizer.imageFileResizer(
+        file,
+        150,
+        150,
+        "PNG",
+        25,
+        0,
+        (uri) => {
+          setBase64(uri)
+          console.log(uri)
+        },
+        "base64"
+      )
     }
   }
 
@@ -87,7 +120,7 @@ const Register = () => {
       .get("http://localhost:3002/api/v1/authenticate/google")
       .then(function (response) {
         console.log(response.data.url)
-        router.push(response.data.url)
+        //router.push(response.data.url)
       })
       .catch(function (error) {
         console.log(error)
@@ -97,24 +130,63 @@ const Register = () => {
   return (
     <div
       className={`h-screen bg-cover ${
-        !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
+        !isError
+          ? `${
+              isLightMode
+                ? "md:bg-normal bg-mobile"
+                : "md:bg-normal2 bg-mobile2"
+            }`
+          : "md:bg-error bg-error_mobile"
       }`}
     >
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        myProfile={myProfile}
+        isLightMode={isLightMode}
+        toggleLightMode={toggleLightMode}
+      />
       <div className="flex justify-center md:mt-2">
-        <Card className="bg-transparent px-4 md:px-8 md:py-2" shadow={false}>
-          <p className="text-white text-center font-passion text-45xl md:text-5xl -mb-4 text-shadow-lg shadow-gray-900/50">
+        <Card
+          className="bg-transparent w-192 px-4 md:px-8 md:py-2"
+          shadow={false}
+        >
+          <p className="text-zinc-100 text-center font-passion text-45xl md:text-5xl -mb-8 text-shadow-lg shadow-gray-900/50">
             REGISTER
           </p>
-          <p className="font-normal font-dancing text-2xl text-center text-white text-shadow-lg shadow-gray-900/50">
+          <p className="font-normal font-dancing text-2xl text-center text-zinc-100 text-shadow-lg shadow-gray-900/50">
             Nice to meet you! Enter your details to login.
           </p>
-          <Button className="mt-8 mb-4" onClick={() => regsiterWithGoogle()}>
+          <Button
+            size="sm"
+            className="mt-4 mb-2 w-72 mx-auto text-sm bg-deepBrownPrimary"
+            onClick={() => regsiterWithGoogle()}
+          >
             Register with Google
           </Button>
           <form onSubmit={handleFormSubmit} className="mt-8 mb-2 ">
             <div className="mb-1 flex flex-col gap-6 overflow-y-auto max-h-96 ">
+              <Checkbox
+                onClick={toggleOpen}
+                label={
+                  <Typography className="text-zinc-100 text-xl">
+                    Are you a company ?
+                  </Typography>
+                }
+              />
+              <Input
+                size="lg"
+                name="company_name"
+                placeholder="Your company name"
+                type="text"
+                className={`border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100 ${
+                  !openCollapse ? "hidden" : ""
+                }`}
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
+              />
               <Typography variant="h6" color="white" className="-mb-3">
                 Profile Picture
               </Typography>
@@ -124,7 +196,7 @@ const Register = () => {
                 onChange={addPicture}
                 placeholder="add your profile picture"
                 type="file"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -145,7 +217,7 @@ const Register = () => {
                 size="lg"
                 name="name"
                 placeholder="firstname"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -157,7 +229,7 @@ const Register = () => {
                 size="lg"
                 name="lastname"
                 placeholder="lastname"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -170,7 +242,7 @@ const Register = () => {
                 type="email"
                 name="email"
                 placeholder="email@email.com"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -183,7 +255,7 @@ const Register = () => {
                 size="lg"
                 name="password"
                 placeholder="********"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -196,7 +268,7 @@ const Register = () => {
                 size="lg"
                 name="password_confirmation"
                 placeholder="********"
-                className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                className="border-4 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -207,7 +279,7 @@ const Register = () => {
               type="submit"
               fullWidth
             >
-              Login
+              REGISTER
             </Button>
             <Typography
               color="white"

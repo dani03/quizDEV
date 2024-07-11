@@ -10,7 +10,7 @@ const PricingCard = (props) => {
 
   return (
     <div className="flex flex-col">
-      <h1 className="mt-4 text-2xl text-center text-white font-bold font-passion text-shadow-lg shadow-gray-900/50">
+      <h1 className="mt-4 text-4xl text-center text-white font-bold font-passion text-shadow-lg shadow-gray-900/50">
         {planData.title}
       </h1>
       <p className="text-center text-sm">{planData.description}</p>
@@ -19,8 +19,8 @@ const PricingCard = (props) => {
       </h1>
       <List>
         {planData.advantages.map((item, index) => (
-          <ListItem key={index} className="text-sm">
-            <ListItemPrefix>
+          <ListItem key={index} className="text-sm -my-1">
+            <ListItemPrefix className="mx-2">
               {item.isChecked === "true" ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

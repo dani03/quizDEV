@@ -45,7 +45,6 @@ const MyApp = ({ Component, pageProps }) => {
             <title>Job'in quiz</title>
             <meta name="description" content="Job'in quiz" />
             <meta name="mobile-web-app-capable" content="yes" />
-            <meta name="apple-mobile-web-app-capable" content="yes" />
             <meta
               name="apple-mobile-web-app-status-bar-style"
               content="black-translucent"
@@ -64,6 +63,16 @@ const MyApp = ({ Component, pageProps }) => {
               href="/icons/logo-192.png"
             />
             <link rel="manifest" href="/manifest.json" />
+
+            <meta
+              name="viewport"
+              content="initial-scale=1, viewport-fit=cover, width=device-width"
+            ></meta>
+            <meta name="apple-mobile-web-app-capable" content="yes"></meta>
+            <meta
+              name="apple-mobile-web-app-status-bar-style"
+              content="black-translucent"
+            ></meta>
           </Head>
           <Component {...pageProps} />
         </motion.div>

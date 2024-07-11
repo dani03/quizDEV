@@ -1,19 +1,60 @@
 import { useContext, useState, useEffect } from "react"
 import { AppContext } from "../src/components/AppContext"
-import ParticlesComponent from "../src/components/ParticlesComponent"
 import NavBar from "../src/components/NavBar"
 import { Button, Card, Input, Typography } from "@material-tailwind/react"
 import axios from "axios"
 import { DefaultSkeleton } from "../src/components/DefaultSkeleton"
+import Resizer from "react-image-file-resizer"
 
 const MyProfile = () => {
-  const { jwt, logout, isError, myProfile } = useContext(AppContext)
+  const {
+    jwt,
+    logout,
+    isError,
+    myProfile,
+    isLightMode,
+    toggleLightMode,
+    quiz,
+  } = useContext(AppContext)
   const [profileData, setProfileData] = useState(null)
   const [base64, setBase64] = useState(null)
   const [name, setName] = useState("")
   const [lastname, setLastname] = useState("")
   const [email, setEmail] = useState("")
   const [hide, setHide] = useState(true)
+  const api = axios.create({
+    baseURL: "http://localhost:3002/api/v1",
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  })
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault()
+
+    try {
+      const updateProfile = api.put("/update/profil", {
+        name,
+        lastname,
+        email,
+      })
+
+      const addProfilePicture = api.post("/add/profil-picture", {
+        image: base64,
+      })
+
+      const [updateResponse, addResponse] = await Promise.all([
+        updateProfile,
+        addProfilePicture,
+      ])
+
+      console.log(addResponse)
+
+      window.location.reload()
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     if (myProfile) {
@@ -24,58 +65,53 @@ const MyProfile = () => {
     }
   }, [myProfile])
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault()
-
-    axios
-      .put(
-        "http://localhost:3002/api/v1/update/profil",
-        {
-          name,
-          lastname,
-          email,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      )
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
-
   const addPicture = (event) => {
     const file = event.target.files[0]
-    const reader = new FileReader()
-
-    reader.onloadend = () => {
-      setBase64(reader.result)
-    }
 
     if (file) {
-      reader.readAsDataURL(file)
+      Resizer.imageFileResizer(
+        file,
+        150,
+        150,
+        "PNG",
+        25,
+        0,
+        (uri) => {
+          setBase64(uri)
+          console.log(uri)
+        },
+        "base64"
+      )
     }
   }
 
   return (
     <div
       className={`h-screen bg-cover ${
-        !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
+        !isError
+          ? `${
+              isLightMode
+                ? "md:bg-normal bg-mobile"
+                : "md:bg-normal2 bg-mobile2"
+            }`
+          : "md:bg-error bg-error_mobile"
       }`}
     >
-      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        myProfile={myProfile}
+        isLightMode={isLightMode}
+        toggleLightMode={toggleLightMode}
+        quiz={quiz}
+      />
       <div className="flex justify-center mt-4 md:mt-8">
         <Card className="bg-transparent md:w-192" shadow={false}>
           <div className="grid grid-cols-1">
             {profileData ? (
               <div className="max-h-[600px] md:max-h-[800px] overflow-auto px-2">
                 <div>
-                  <Typography className="text-2xl text-white uppercase my-16 text-center">
+                  <Typography className="text-2xl text-zinc-100 uppercase my-16 text-center">
                     {profileData.name} {profileData.lastname}
                   </Typography>
                   {profileData.photo ? (
@@ -84,7 +120,7 @@ const MyProfile = () => {
                       src={profileData.photo}
                       height={150}
                       width={150}
-                      className="mx-auto mb-4"
+                      className="mx-auto mb-4 rounded-full border border-2 shadow-xl"
                     />
                   ) : (
                     <img
@@ -95,7 +131,7 @@ const MyProfile = () => {
                       className="mx-auto mb-4"
                     />
                   )}
-                  <Typography className="text-xl text-white uppercase my-16 text-center">
+                  <Typography className="text-xl text-zinc-100 uppercase my-16 text-center">
                     {profileData.email}
                   </Typography>
                 </div>
@@ -119,7 +155,7 @@ const MyProfile = () => {
                       onChange={addPicture}
                       placeholder="add your profile picture"
                       type="file"
-                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
@@ -139,7 +175,7 @@ const MyProfile = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="firstname"
-                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
@@ -150,7 +186,7 @@ const MyProfile = () => {
                       value={lastname}
                       onChange={(e) => setLastname(e.target.value)}
                       placeholder="lastname"
-                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}
@@ -162,7 +198,7 @@ const MyProfile = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       name="email"
                       placeholder="email@email.com"
-                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-white placeholder:text-white"
+                      className="border-2 !border-t-blue-gray-200 focus:!border-t-gray-900 text-zinc-100 placeholder:text-zinc-100"
                       labelProps={{
                         className: "before:content-none after:content-none",
                       }}

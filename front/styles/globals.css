@@ -3,6 +3,20 @@
 @tailwind components;
 @tailwind utilities;
 
+.navbar {
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+@supports (padding: env(safe-area-inset-top)) {
+  .navbar {
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -45,8 +59,8 @@ input:-webkit-autofill:active {
 }
 
 .swiper {
-  width: 290px;
-  height: 450px;
+  width: 350px;
+  height: 500px;
 }
 
 .swiper-slide {

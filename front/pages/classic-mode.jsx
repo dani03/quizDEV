@@ -7,14 +7,24 @@ import PopupGame from "../src/components/PopupGame"
 import axios from "axios"
 
 const Classic = () => {
-  const { jwt, logout, isError, myProfile } = useContext(AppContext)
+  const {
+    jwt,
+    logout,
+    isError,
+    myProfile,
+    isLightMode,
+    toggleLightMode,
+    quiz,
+  } = useContext(AppContext)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [isCorrect, setIsCorrect] = useState(false)
   const [isWrong, setIsWrong] = useState(false)
   const [listOfAnswerIds, setListOfAnswerIds] = useState([])
+  const [win, setWin] = useState(false)
+  const [loose, setLoose] = useState(false)
 
-  const quiz = {
+  const quizFakeData = {
     id: 2,
     title: "Quiz Mbappé",
     slug: "quiz-mbappe",
@@ -358,55 +368,75 @@ const Classic = () => {
       })
   }
 
-  const currentQuestion = quiz.questions[currentQuestionIndex]
+  const currentQuestion = quizFakeData.questions[currentQuestionIndex]
 
   return (
     <div
       className={`h-screen bg-cover ${
-        !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
+        !win
+          ? `${
+              isLightMode
+                ? "md:bg-normal bg-mobile"
+                : "md:bg-normal2 bg-mobile2"
+            }`
+          : "md:win bg-win_mobile"
       }`}
     >
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        myProfile={myProfile}
+        isLightMode={isLightMode}
+        toggleLightMode={toggleLightMode}
+        quiz={quiz}
+      />
       <div className="flex justify-center mt-4 md:mt-8">
         <Card className="bg-transparent mx-auto w-192 h-192" shadow={false}>
-          <div className="flex justify-between mx-4 my-4">
-            <Typography className="text-white text-sm mb-16 text-center underline">
-              {quiz.level_name}
-            </Typography>
-            <Typography className="text-white text-sm mb-16 text-center italic">
-              {quiz.title}
-            </Typography>
-            <Typography className="text-xl text-white font-bold py-2 px-2 w-16">
-              {currentQuestionIndex}/{quiz.questions.length}
-            </Typography>
-          </div>
           {currentQuestion ? (
-            <div className="rounded-xl mx-4 px-4 py-16 ">
-              <Typography className="text-white text-xl md:text-3xl font-bold mb-16 text-center h-48">
-                {currentQuestion.title}
-              </Typography>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {currentQuestion.answers.map((answer) => (
-                  <Button
-                    key={answer.id}
-                    onClick={() => handleAnswerSubmit(answer)}
-                    className="mb-2 mx-auto bg-purplePrimary hover:scale-105 w-72"
-                    fullWidth
-                  >
-                    {answer.answer}
-                  </Button>
-                ))}
+            <>
+              <div className="flex justify-between mx-4 my-4">
+                <Typography className="text-zinc-100 text-sm mb-16 text-center underline">
+                  {quizFakeData.level_name}
+                </Typography>
+                <Typography className="text-zinc-100 text-sm mb-16 text-center italic">
+                  {quizFakeData.title}
+                </Typography>
+                <Typography className="text-xl text-zinc-100 font-bold py-2 px-2 w-16">
+                  {currentQuestionIndex}/{quizFakeData.questions.length}
+                </Typography>
               </div>
-              {(isCorrect && (
-                <PopupGame msg="CORRECT" color="bg-green-500" />
-              )) ||
-                (isWrong && <PopupGame msg="WRONG" color="bg-red-500" />)}
-            </div>
+              <div className="rounded-xl mx-4 px-4 py-16 ">
+                <Typography className="text-zinc-100 text-xl md:text-3xl font-bold mb-16 text-center h-48">
+                  {currentQuestion.title}
+                </Typography>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {currentQuestion.answers.map((answer) => (
+                    <Button
+                      key={answer.id}
+                      onClick={() => handleAnswerSubmit(answer)}
+                      className="mb-2 mx-auto bg-purplePrimary hover:scale-105 w-72"
+                      fullWidth
+                    >
+                      {answer.answer}
+                    </Button>
+                  ))}
+                </div>
+                {(isCorrect && (
+                  <PopupGame msg="CORRECT" color="bg-green-500" />
+                )) ||
+                  (isWrong && <PopupGame msg="WRONG" color="bg-red-500" />)}
+              </div>
+            </>
           ) : (
-            <Typography className="text-white text-lg">
-              Quiz terminé ! Merci pour votre participation. {getResult()}
-            </Typography>
+            <>
+              <Typography className="mt-8 text-zinc-100 text-4xl md:text-45xl font-passion text-center">
+                Congratulations !!
+              </Typography>
+              <Typography className="mt-8 text-zinc-100 text-3xl md:text-43xl font-passion text-center">
+                Votre score est de
+              </Typography>
+            </>
           )}
         </Card>
       </div>
