@@ -30,6 +30,7 @@
     "react-data-table-component": "^7.6.2",
     "react-dom": "18.2.0",
     "react-image-file-resizer": "^0.4.8",
+    "react-parallax-tilt": "^1.7.232",
     "react-select": "^5.8.0",
     "react-text-particles": "^2.5.1",
     "react-tsparticles": "^2.0.5",

@@ -7,8 +7,15 @@ import PopupGame from "../src/components/PopupGame"
 import axios from "axios"
 
 const Classic = () => {
-  const { jwt, logout, isError, myProfile, isLightMode, toggleLightMode } =
-    useContext(AppContext)
+  const {
+    jwt,
+    logout,
+    isError,
+    myProfile,
+    isLightMode,
+    toggleLightMode,
+    quiz,
+  } = useContext(AppContext)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [isCorrect, setIsCorrect] = useState(false)
@@ -17,7 +24,7 @@ const Classic = () => {
   const [win, setWin] = useState(false)
   const [loose, setLoose] = useState(false)
 
-  const quiz = {
+  const quizFakeData = {
     id: 2,
     title: "Quiz Mbappé",
     slug: "quiz-mbappe",
@@ -361,7 +368,7 @@ const Classic = () => {
       })
   }
 
-  const currentQuestion = quiz.questions[currentQuestionIndex]
+  const currentQuestion = quizFakeData.questions[currentQuestionIndex]
 
   return (
     <div
@@ -382,6 +389,7 @@ const Classic = () => {
         myProfile={myProfile}
         isLightMode={isLightMode}
         toggleLightMode={toggleLightMode}
+        quiz={quiz}
       />
       <div className="flex justify-center mt-4 md:mt-8">
         <Card className="bg-transparent mx-auto w-192 h-192" shadow={false}>
@@ -389,13 +397,13 @@ const Classic = () => {
             <>
               <div className="flex justify-between mx-4 my-4">
                 <Typography className="text-zinc-100 text-sm mb-16 text-center underline">
-                  {quiz.level_name}
+                  {quizFakeData.level_name}
                 </Typography>
                 <Typography className="text-zinc-100 text-sm mb-16 text-center italic">
-                  {quiz.title}
+                  {quizFakeData.title}
                 </Typography>
                 <Typography className="text-xl text-zinc-100 font-bold py-2 px-2 w-16">
-                  {currentQuestionIndex}/{quiz.questions.length}
+                  {currentQuestionIndex}/{quizFakeData.questions.length}
                 </Typography>
               </div>
               <div className="rounded-xl mx-4 px-4 py-16 ">

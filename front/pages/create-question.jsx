@@ -18,6 +18,7 @@ const CreateQuestion = () => {
     myProfile,
     isLightMode,
     toggleLightMode,
+    quiz,
   } = useContext(AppContext)
   const [openTab, setOpenTab] = useState(1)
 
@@ -63,6 +64,7 @@ const CreateQuestion = () => {
         myProfile={myProfile}
         isLightMode={isLightMode}
         toggleLightMode={toggleLightMode}
+        quiz={quiz}
       />
       <div className="flex justify-center mt-4">
         <Card className="bg-transparent mx-auto" shadow={false}>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { Button, Card } from "@material-tailwind/react"
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/solid"
+import Link from "next/link"
 
 const InfoJobinquiz = (props) => {
   const { openInfo } = props
@@ -14,31 +15,37 @@ const InfoJobinquiz = (props) => {
     >
       <Card className="bg-transparent m-2">
         <div className="ml-4 md:ml-32 w-72">
-          <h1 className="text-zinc-100 text-3xl md:text-35xl w-96 py-4 text-pretty">
-            With naturally fluid animations you will elevate your UI &
-            interactions. Bringing your apps to life has never been simpler.
+          <h1 className="text-zinc-100 text-2xl md:text-35xl w-96 md:w-150 py-4 text-pretty">
+            Discover "Job'in Quiz" – streamline your hiring with customizable
+            quizzes. Create an account, generate quiz links, and get instant
+            candidate results. Simplify recruitment now!
           </h1>
-          <Button className="flex items-center justify-center bg-transparent border border-2 w-72">
-            Go to register
-            <span>
-              <ArrowRightEndOnRectangleIcon className="h-10 w-10 mx-4" />
-            </span>
-          </Button>
+          <Link href="/register">
+            <Button className="flex items-center justify-center bg-transparent border border-2 w-72">
+              Go to register
+              <span>
+                <ArrowRightEndOnRectangleIcon className="h-10 w-10 mx-4" />
+              </span>
+            </Button>
+          </Link>
         </div>
         <div className="ml-4 md:ml-32">
           <h1 className="text-zinc-100 text-4xl font-bold mt-48">
-            Why Springs?{" "}
+            Why Job'in quiz?{" "}
           </h1>
-          <h1 className="text-zinc-100 text-3xl md:text-35xl md:w-192 py-4 text-pretty">
-            We think of animation in terms of time and curves, but that causes
-            most of the struggle we face when trying to make elements on the
-            screen move naturally, because nothing in the real world moves like
-            that. Springs don’t have a defined curve or a set duration.
+          <h1 className="text-zinc-100 text-2xl md:text-35xl w-96 md:w-150 py-4 text-pretty">
+            Traditional hiring methods are often rigid and inefficient. Job'in
+            Quiz offers dynamic, customizable quizzes that adapt to real-world
+            skills and scenarios, providing accurate candidate assessments.
+            Simplify your recruitment process and find the perfect fit for your
+            team with Job'in Quiz.
           </h1>
-          <Button className="flex items-center justify-center bg-transparent border border-2 w-72">
-            Try now
-            <span className="mx-4 font-bold ">$</span>
-          </Button>
+          <Link href="/pricing">
+            <Button className="flex items-center justify-center bg-transparent border border-2 w-72">
+              Try now
+              <span className="mx-4 font-bold ">$</span>
+            </Button>
+          </Link>
         </div>
       </Card>
     </motion.div>

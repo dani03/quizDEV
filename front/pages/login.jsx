@@ -96,7 +96,7 @@ const Login = () => {
             className="mt-4 mb-2 w-72 mx-auto text-sm bg-deepBrownPrimary"
             onClick={() => loginWithGoogle()}
           >
-            Register with Google
+            Login with Google
           </Button>
           <form onSubmit={handleFormSubmit} className="mt-8 mb-2 ">
             <div className="mb-1 flex flex-col gap-6 overflow-y-auto h-96 max-h-96">

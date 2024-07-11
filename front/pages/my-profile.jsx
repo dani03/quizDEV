@@ -4,7 +4,6 @@ import NavBar from "../src/components/NavBar"
 import { Button, Card, Input, Typography } from "@material-tailwind/react"
 import axios from "axios"
 import { DefaultSkeleton } from "../src/components/DefaultSkeleton"
-import GenerateLink from "../src/components/GenerateLink"
 
 const MyProfile = () => {
   const {
@@ -22,11 +21,6 @@ const MyProfile = () => {
   const [lastname, setLastname] = useState("")
   const [email, setEmail] = useState("")
   const [hide, setHide] = useState(true)
-  const [openGenerateDialog, setOpenGenerateDialog] = useState(false)
-
-  const handleOpen2 = () => {
-    setOpenGenerateDialog(!openGenerateDialog)
-  }
 
   useEffect(() => {
     if (myProfile) {
@@ -93,6 +87,7 @@ const MyProfile = () => {
         myProfile={myProfile}
         isLightMode={isLightMode}
         toggleLightMode={toggleLightMode}
+        quiz={quiz}
       />
       <div className="flex justify-center mt-4 md:mt-8">
         <Card className="bg-transparent md:w-192" shadow={false}>
@@ -209,21 +204,9 @@ const MyProfile = () => {
                 <DefaultSkeleton />
               </div>
             )}
-            <Button
-              onClick={() => setOpenGenerateDialog(!openGenerateDialog)}
-              className="mt-8 w-full bg-orange-600 shadow-xl"
-            >
-              Generate link
-            </Button>
           </div>
         </Card>
       </div>
-      <GenerateLink
-        open={openGenerateDialog}
-        quiz={quiz}
-        myProfile={myProfile}
-        handleOpen={handleOpen2}
-      />
     </div>
   )
 }

@@ -8,6 +8,7 @@ import {
   SunIcon,
 } from "@heroicons/react/24/outline"
 import { Button, Drawer, ListItem } from "@material-tailwind/react"
+import GenerateLink from "../components/GenerateLink"
 
 const navigationUser = [
   { name: "Random", href: "/classic-mode", current: false },
@@ -33,10 +34,15 @@ function classNames(...classes) {
 }
 
 const NavBar = (props) => {
-  const { jwt, logout, myProfile, isLightMode, toggleLightMode } = props
+  const { jwt, logout, myProfile, isLightMode, toggleLightMode, quiz } = props
   const [navigation, setNavigation] = useState([])
   const [open, setOpen] = useState(false)
   const [displayedRole, setDisplayedRole] = useState("")
+  const [openGenerateDialog, setOpenGenerateDialog] = useState(false)
+
+  const handleOpen2 = () => {
+    setOpenGenerateDialog(!openGenerateDialog)
+  }
 
   const openDrawer = () => setOpen(true)
   const closeDrawer = () => setOpen(false)
@@ -98,6 +104,13 @@ const NavBar = (props) => {
                         {item.name}
                       </a>
                     ))}
+                    <Button
+                      hidden={displayedRole != "COMPANY"}
+                      onClick={() => setOpenGenerateDialog(!openGenerateDialog)}
+                      className="text-zinc-100 text-xl font-montserrat hover:text-zinc-100 px-3 py-2 text-sm font-medium bg-transparent"
+                    >
+                      Generate link
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -207,12 +220,18 @@ const NavBar = (props) => {
             </div>
           </div>
         </>
+        <GenerateLink
+          open={openGenerateDialog}
+          quiz={quiz}
+          myProfile={myProfile}
+          handleOpen={handleOpen2}
+        />
       </div>
       {/* Mobile menu panel */}
       <Drawer
         open={open}
         onClose={closeDrawer}
-        className="inset-0 z-50 bg-white navbar"
+        className="inset-0 z-50 bg-white navbar flex flex-col"
       >
         <div className="flex items-center justify-between p-4 z-50">
           <Link href="/">
@@ -229,13 +248,21 @@ const NavBar = (props) => {
             key={item.name}
             className={classNames(
               item.current ? "bg-gray-900 text-zinc-100" : "text-gray-900",
-              " rounded-md font-bold text-xl ml-4 py-2"
+              "rounded-md font-bold text-xl ml-4 py-2"
             )}
             aria-current={item.current ? "page" : undefined}
           >
             <Link href={item.href}>{item.name}</Link>
           </ListItem>
         ))}
+        <div className="mt-auto p-4">
+          <Button
+            onClick={() => setOpenGenerateDialog(!openGenerateDialog)}
+            className="text-gray-900 rounded-md font-bold text-xl ml-4 py-2 bg-transparent "
+          >
+            Generate link
+          </Button>
+        </div>
       </Drawer>
     </>
   )

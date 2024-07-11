@@ -58,8 +58,6 @@ const AppContextProvider = (props) => {
   // ----------------------------------------------------------------
 
   useEffect(() => {
-    if (!jwt) return
-
     const fetchData = async () => {
       try {
         const [
@@ -69,34 +67,43 @@ const AppContextProvider = (props) => {
           quizResponse,
           profileResponse,
         ] = await Promise.all([
-          axios.get("http://localhost:3002/api/v1/levels", {
-            headers: { Authorization: `Bearer ${jwt}` },
-          }),
-          axios.get("http://localhost:3002/api/v1/domains", {
-            headers: { Authorization: `Bearer ${jwt}` },
-          }),
-          axios.get("http://localhost:3002/api/v1/questions", {
-            headers: { Authorization: `Bearer ${jwt}` },
-          }),
-          axios.get("http://localhost:3002/api/v1/quizzes", {
-            headers: { Authorization: `Bearer ${jwt}` },
-          }),
-          axios.get("http://localhost:3002/api/v1/profil", {
-            headers: { Authorization: `Bearer ${jwt}` },
-          }),
+          axios.get("http://localhost:3002/api/v1/levels"),
+          axios.get("http://localhost:3002/api/v1/domains"),
+          axios.get("http://localhost:3002/api/v1/questions"),
+          axios.get("http://localhost:3002/api/v1/quizzes"),
         ])
 
         setLevels(levelsResponse.data)
         setDomains(domainsResponse.data)
         setQuestions(questionsResponse.data)
         setQuiz(quizResponse.data)
-        setMyProfile(profileResponse.data.data)
       } catch (error) {
         console.error("Error fetching data:", error)
       }
     }
 
     fetchData()
+  }, [])
+
+  useEffect(() => {
+    const fetchLevels = async () => {
+      if (!jwt) return
+      try {
+        const response = await axios.get(
+          "http://localhost:3002/api/v1/profil",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        setMyProfile(response.data.data)
+      } catch (error) {
+        console.error("Error fetching myProfile:", error)
+      }
+    }
+
+    fetchLevels()
   }, [jwt])
 
   // ----------------------------------------------------------------

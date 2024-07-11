@@ -6,11 +6,20 @@ import ParticlesComponent from "../src/components/ParticlesComponent"
 import { useContext, useState } from "react"
 import InfoJobinquiz from "../src/components/InfoJobinquiz"
 import { ChevronDoubleDownIcon } from "@heroicons/react/24/solid"
+import Tilt from "react-parallax-tilt"
 
 const Home = () => {
-  const { jwt, logout, isError, myProfile, isLightMode, toggleLightMode } =
-    useContext(AppContext)
+  const {
+    jwt,
+    logout,
+    isError,
+    myProfile,
+    isLightMode,
+    toggleLightMode,
+    quiz,
+  } = useContext(AppContext)
   const [openInfo, setOpenInfo] = useState(false)
+  const [scale, setScale] = useState(1.15)
 
   const scrollDown = () => {
     setOpenInfo(!openInfo)
@@ -36,6 +45,7 @@ const Home = () => {
           myProfile={myProfile}
           isLightMode={isLightMode}
           toggleLightMode={toggleLightMode}
+          quiz={quiz}
         />
         <Card
           className="bg-transparent overflow-auto max-h-3/4-screen"
@@ -53,12 +63,14 @@ const Home = () => {
               </p>
             </motion.li>
             <motion.li variants={item}>
-              <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-zinc-100 font-bold font-passion md:-mb-32 -mb-16 text-shadow-lg shadow-gray-900/50">
-                JOB'IN
-              </p>
-              <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-zinc-100 font-bold font-passion md:-mb-12 -mb-8 text-shadow-lg shadow-gray-900/50">
-                QUIZ
-              </p>
+              <Tilt scale={scale} transitionSpeed={2500}>
+                <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-zinc-100 font-bold font-passion md:-mb-32 -mb-16 text-shadow-lg shadow-gray-900/50">
+                  JOB'IN
+                </p>
+                <p className="md:text-5xl whitespace-nowrap text-45xl text-center text-zinc-100 font-bold font-passion md:-mb-12 -mb-8 text-shadow-lg shadow-gray-900/50">
+                  QUIZ
+                </p>
+              </Tilt>
             </motion.li>
             <motion.li variants={item}>
               <p className="text-zinc-100 md:text-4xl text-2xl text-center font-dancing mx-auto  text-shadow-lg shadow-gray-900/50">

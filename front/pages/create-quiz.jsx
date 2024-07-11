@@ -12,7 +12,6 @@ import {
 import Popup from "../src/components/Popup"
 import axios from "axios"
 import DataTable from "react-data-table-component"
-import GenerateLink from "../src/components/GenerateLink"
 
 const CreateQuiz = () => {
   const {
@@ -109,6 +108,7 @@ const CreateQuiz = () => {
         myProfile={myProfile}
         isLightMode={isLightMode}
         toggleLightMode={toggleLightMode}
+        quiz={quiz}
       />
       <div className="flex justify-center mt-8 md:mt-16">
         <Card className="bg-transparent mx-auto" shadow={false}>

@@ -15,6 +15,7 @@ const CreateThemePage = () => {
     myProfile,
     isLightMode,
     toggleLightMode,
+    quiz
   } = useContext(AppContext)
   const [openTab, setOpenTab] = useState(1)
 
@@ -54,6 +55,7 @@ const CreateThemePage = () => {
         myProfile={myProfile}
         isLightMode={isLightMode}
         toggleLightMode={toggleLightMode}
+        quiz={quiz}
       />
       <div className="flex justify-center mt-8 md:mt-16">
         <Card className="bg-transparent mx-auto" shadow={false}>

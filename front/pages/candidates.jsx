@@ -45,8 +45,15 @@ const candidates = [
 ]
 
 const Candidates = () => {
-  const { jwt, logout, isError, myProfile, isLightMode, toggleLightMode } =
-    useContext(AppContext)
+  const {
+    jwt,
+    logout,
+    isError,
+    myProfile,
+    isLightMode,
+    toggleLightMode,
+    quiz,
+  } = useContext(AppContext)
   const smallScreen = UseMediaQuery("(max-width: 768px)")
 
   return (
@@ -68,6 +75,7 @@ const Candidates = () => {
         myProfile={myProfile}
         isLightMode={isLightMode}
         toggleLightMode={toggleLightMode}
+        quiz={quiz}
       />
       <div className="flex justify-center md:mt-2 ">
         <Card className="bg-transparent mt-4 md:mt-12" shadow={false}>
