@@ -9,11 +9,11 @@ use Carbon\Carbon;
 
 class LinkService
 {
-    public function __construct(private LinkRepository $linkRepository)
+    public function __construct(private readonly LinkRepository $linkRepository)
     {
     }
 
-    public function creatingLink($quiz, $expireTime = 2) {
+    public function creatingLink($quiz, $user, int $expireTime = 48) {
 
        return $this->linkRepository->create($quiz->id, $expireTime);
     }

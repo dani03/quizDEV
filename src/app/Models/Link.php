@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Link extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['hash_token', 'expires_at', 'quiz_id'];
+    protected $fillable = ['hash_token','user_id', 'expires_at', 'quiz_id'];
 }
