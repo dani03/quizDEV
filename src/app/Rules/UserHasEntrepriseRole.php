@@ -12,8 +12,10 @@ class UserHasEntrepriseRole implements ValidationRule
 
     public function passes($attribute, $value): bool
     {
+
         $user = User::find($value);
-        return $user && $user->role === Role::ROLE_ENTREPRISE;
+
+        return  $user->role_id === Role::ROLE_ENTREPRISE;
     }
 
     public function message()
@@ -28,6 +30,7 @@ class UserHasEntrepriseRole implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (!$this->passes($attribute, $value)) {
+           
             $fail($this->message());
         }
     }

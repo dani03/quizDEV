@@ -29,7 +29,7 @@ class LinkController extends Controller
      *
      * Pour la création d'un nouveau l'id de l'entreprise est requis, l'id du quiz est requis, et la durée de validation
      * en heure est optionnel la durée par défaut est de 48H
-     * @throws AuthorizationException
+
      */
     public function store(LinkRequest $request): JsonResponse
     {
@@ -46,7 +46,8 @@ class LinkController extends Controller
         if(!$user) {
             return response()->json(['message' => "l'utilisateur n'existe pas"],ResponseSm::HTTP_NOT_FOUND);
         }
-        $nombresHeureValid = $request->validite;
+        $nombresHeureValid = $request->validite ?? 48;
+
         $link = $this->linkService->creatingLink($quiz, $user, $nombresHeureValid);
         $appURL = env('APP_URL');
         $customLink = "$appURL/invitation-link?token=$link->hash_token";

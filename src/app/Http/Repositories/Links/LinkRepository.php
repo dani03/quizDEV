@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class LinkRepository
 {
 
-    public function create(int $quizId, $user, int $expireTime) {
+    public function create(int $quizId, $user, $expireTime) {
 
        return  Link::create([
             "hash_token" => Hash('sha256', Str::random(32)),
