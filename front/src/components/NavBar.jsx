@@ -127,8 +127,10 @@ const NavBar = (props) => {
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
                         <img
-                          className="h-12 w-12 rounded-full border border-gray-900 border-2"
-                          src="/profile.png"
+                          className="h-12 w-12 rounded-full border border-zinc-100 border-2 shadow-xl"
+                          src={
+                            myProfile.photo ? myProfile.photo : "/profile.png"
+                          }
                           alt=""
                         />
                       </Menu.Button>

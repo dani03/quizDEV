@@ -63,11 +63,7 @@ const Register = () => {
     axios
       .post("http://localhost:3002/api/v1/auth/register", body)
       .then(function (response) {
-        if (
-          response.data.access_token &&
-          response.data.name &&
-          response.data.id
-        ) {
+        if (response.data.access_token) {
           saveJwt(response.data.access_token)
           axios
             .post(

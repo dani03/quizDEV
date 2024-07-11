@@ -4,6 +4,7 @@ import NavBar from "../src/components/NavBar"
 import { Button, Card, Input, Typography } from "@material-tailwind/react"
 import axios from "axios"
 import { DefaultSkeleton } from "../src/components/DefaultSkeleton"
+import Resizer from "react-image-file-resizer"
 
 const MyProfile = () => {
   const {
@@ -21,6 +22,39 @@ const MyProfile = () => {
   const [lastname, setLastname] = useState("")
   const [email, setEmail] = useState("")
   const [hide, setHide] = useState(true)
+  const api = axios.create({
+    baseURL: "http://localhost:3002/api/v1",
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  })
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault()
+
+    try {
+      const updateProfile = api.put("/update/profil", {
+        name,
+        lastname,
+        email,
+      })
+
+      const addProfilePicture = api.post("/add/profil-picture", {
+        image: base64,
+      })
+
+      const [updateResponse, addResponse] = await Promise.all([
+        updateProfile,
+        addProfilePicture,
+      ])
+
+      console.log(addResponse)
+
+      window.location.reload()
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     if (myProfile) {
@@ -31,41 +65,23 @@ const MyProfile = () => {
     }
   }, [myProfile])
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault()
-
-    axios
-      .put(
-        "http://localhost:3002/api/v1/update/profil",
-        {
-          name,
-          lastname,
-          email,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      )
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-  }
-
   const addPicture = (event) => {
     const file = event.target.files[0]
-    const reader = new FileReader()
-
-    reader.onloadend = () => {
-      setBase64(reader.result)
-    }
 
     if (file) {
-      reader.readAsDataURL(file)
+      Resizer.imageFileResizer(
+        file,
+        150,
+        150,
+        "PNG",
+        25,
+        0,
+        (uri) => {
+          setBase64(uri)
+          console.log(uri)
+        },
+        "base64"
+      )
     }
   }
 
@@ -104,7 +120,7 @@ const MyProfile = () => {
                       src={profileData.photo}
                       height={150}
                       width={150}
-                      className="mx-auto mb-4"
+                      className="mx-auto mb-4 rounded-full border border-2 shadow-xl"
                     />
                   ) : (
                     <img
