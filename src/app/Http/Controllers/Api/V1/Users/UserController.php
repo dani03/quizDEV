@@ -52,8 +52,8 @@ class UserController extends Controller
 
             if (!$user) {
                 $user = User::create([
-                    'name' => $googleUser->getName(),
-                    'lastname' => $googleUser->getNickname(),
+                    'name' => $googleUser->getName() ?? '',
+                    'lastname' => $googleUser->getNickname() ?? '',
                     'email' => $googleUser->getEmail(),
                     'password' => null,
                     'google_id' => $googleUser->getId(),
