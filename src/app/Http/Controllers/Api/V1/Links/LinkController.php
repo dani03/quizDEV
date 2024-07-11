@@ -46,8 +46,12 @@ class LinkController extends Controller
         if(!$user) {
             return response()->json(['message' => "l'utilisateur n'existe pas"],ResponseSm::HTTP_NOT_FOUND);
         }
+<<<<<<< HEAD
         $nombresHeureValid = $request->validite ?? 48;
 
+=======
+        $nombresHeureValid = $request->validite;
+>>>>>>> develop
         $link = $this->linkService->creatingLink($quiz, $user, $nombresHeureValid);
         $appURL = env('APP_URL');
         $customLink = "$appURL/invitation-link?token=$link->hash_token";
