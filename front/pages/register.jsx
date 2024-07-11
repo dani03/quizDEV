@@ -120,7 +120,7 @@ const Register = () => {
       .get("http://localhost:3002/api/v1/authenticate/google")
       .then(function (response) {
         console.log(response.data.url)
-        //router.push(response.data.url)
+        router.push(response.data.url)
       })
       .catch(function (error) {
         console.log(error)
@@ -206,7 +206,7 @@ const Register = () => {
                   src={base64}
                   height={100}
                   width={100}
-                  className="rounded-xl mx-auto"
+                  className="rounded-full border border-2 border-zinc-100 mx-auto"
                   alt="Uploaded profile"
                 />
               )}

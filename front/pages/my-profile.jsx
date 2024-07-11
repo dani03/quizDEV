@@ -120,7 +120,7 @@ const MyProfile = () => {
                       src={profileData.photo}
                       height={150}
                       width={150}
-                      className="mx-auto mb-4 rounded-full border border-2 shadow-xl"
+                      className="rounded-full border border-2 border-zinc-100 mx-auto"
                     />
                   ) : (
                     <img
@@ -128,7 +128,7 @@ const MyProfile = () => {
                       src="/profile.png"
                       height={150}
                       width={150}
-                      className="mx-auto mb-4"
+                      className="rounded-full border border-2 border-zinc-100 mx-auto"
                     />
                   )}
                   <Typography className="text-xl text-zinc-100 uppercase my-16 text-center">
