@@ -160,10 +160,11 @@ const Register = () => {
           </p>
           <Button
             size="sm"
-            className="mt-4 mb-2 w-72 mx-auto text-sm bg-deepBrownPrimary"
+            className="flex items-center justify-between mt-4 mb-2 w-64 mx-auto text-sm bg-deepBrownPrimary"
             onClick={() => regsiterWithGoogle()}
           >
             Register with Google
+            <img src="/logo_google.png" height={25} width={25} />
           </Button>
           <form onSubmit={handleFormSubmit} className="mt-8 mb-2 ">
             <div className="mb-1 flex flex-col gap-6 overflow-y-auto max-h-96 ">
