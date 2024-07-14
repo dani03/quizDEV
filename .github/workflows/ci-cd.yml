@@ -1,7 +1,7 @@
 name: CI/CD Workflow
 
 env:
-  JMETER_DOWNLOAD_URL: "https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz"
+  JMETER_DOWNLOAD_URL: "https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.5.tgz"
 
 on:
   push:
@@ -9,35 +9,6 @@ on:
       - Quentin
 
 jobs:
-  build_and_push_image:
-    runs-on: ubuntu-latest
-  
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-  
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-  
-      - name: Log in to GitHub Container Registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.repository_owner }}" --password-stdin
-  
-      - name: Build Docker images
-        run: docker-compose -f docker-compose.yml build
-  
-      - name: Tag and Push Docker images
-        env:
-          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
-        run: |
-          docker tag artisan ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
-          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
-          
-          docker tag php ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
-          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
-          
-          docker tag nginx ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
-          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
-  
   performance:
     runs-on: ubuntu-latest
 
@@ -48,20 +19,17 @@ jobs:
       - name: Downloading Apache JMeter
         run: wget -qO- $JMETER_DOWNLOAD_URL | tar xvz -C /tmp
       
+      - name: Verify JMX file
+        run: ls -l jmeter-scripts/performance-test.jmx
+      
       - name: Running JMeter performance tests
-        run: /tmp/apache-jmeter-5.4.1/bin/jmeter -n -t jmeter-scripts/performance-test.jmx -l results.jtl
+        run: /tmp/apache-jmeter-5.5/bin/jmeter -n -t jmeter-scripts/performance-test.jmx -l results.jtl -j jmeter.log || (cat jmeter.log && exit 1)
 
       - name: Upload JMeter results
         uses: actions/upload-artifact@v2
         with:
           name: jmeter-results
           path: results.jtl
-
-      - name: Upload JMeter logs
-        uses: actions/upload-artifact@v2
-        with:
-          name: jmeter-logs
-          path: /tmp/apache-jmeter-5.4.1/bin/jmeter.log
 
   php_tests:
     runs-on: ubuntu-latest
