@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - Quentin
-      
+
 jobs:
   build_and_push_image:
     runs-on: ubuntu-latest
@@ -25,18 +25,18 @@ jobs:
       - name: Build Docker images
         run: docker-compose -f docker-compose.yml build
   
-      # - name: Tag and Push Docker images
-      #   env:
-      #     GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
-      #   run: |
-      #     docker tag artisan ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
-      #     docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
+      - name: Tag and Push Docker images
+        env:
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+        run: |
+          docker tag artisan ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/artisan:latest
           
-      #     docker tag php ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
-      #     docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
+          docker tag php ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/php:latest
           
-      #     docker tag nginx ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
-      #     docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
+          docker tag nginx ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
+          docker push ghcr.io/${GITHUB_REPOSITORY_OWNER}/nginx:latest
   
   performance:
     runs-on: ubuntu-latest
@@ -57,41 +57,44 @@ jobs:
           name: jmeter-results
           path: results.jtl
 
+      - name: Upload JMeter logs
+        uses: actions/upload-artifact@v2
+        with:
+          name: jmeter-logs
+          path: /tmp/apache-jmeter-5.4.1/bin/jmeter.log
+
   php_tests:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        extensions: mbstring, pdo_sqlite
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo_sqlite
 
-    - name: Copy .env
-      run: php -r "file_exists('src/.env') || copy('src/.env.example', 'src/.env');"
+      - name: Copy .env
+        run: php -r "file_exists('src/.env') || copy('src/.env.example', 'src/.env');"
 
-    - name: Update Dependencies
-      run: composer update --working-dir=src
+      - name: Install Dependencies
+        run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --working-dir=src
 
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --working-dir=src
+      - name: Directory Permissions
+        run: chmod -R 777 src/storage src/bootstrap/cache
 
-    - name: Directory Permissions
-      run: chmod -R 777 src/storage src/bootstrap/cache
+      - name: Create Database
+        run: |
+          mkdir -p src/database
+          touch src/database/database.sqlite
 
-    - name: Create Database
-      run: |
-        mkdir -p src/database
-        touch src/database/database.sqlite
-
-    - name: Execute PHPUnit Tests
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: src/database/database.sqlite
-      run: src/vendor/bin/phpunit
+      - name: Execute PHPUnit Tests
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: src/database/database.sqlite
+        run: src/vendor/bin/phpunit
 
   sonarcloud:
     name: SonarCloud
