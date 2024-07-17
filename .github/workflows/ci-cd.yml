@@ -6,10 +6,10 @@ env:
 on:
   push:
     branches:
-      - develop
+      - Quentin
 
 jobs:
-  php-tests:
+  unit-tests:
     runs-on: ubuntu-latest
 
     services:
@@ -30,8 +30,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
           php-version: '8.2'  # Specify the PHP version you need
 
@@ -71,11 +71,11 @@ jobs:
 #         with:
 #           node-version: '16'
 
-#       - name: Install dependencies
-#         run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-#       - name: Run unit tests
-#         run: npm test
+      - name: Run unit tests
+        run: npm test
 
   performance:
     runs-on: ubuntu-latest
