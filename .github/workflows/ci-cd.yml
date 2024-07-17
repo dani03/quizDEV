@@ -22,7 +22,9 @@ jobs:
           php-version: '8.0'  # Specify the PHP version you need
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: |
+            cd src
+            composer install --prefer-dist --no-progress
 
       - name: Set up .env file
         run: cp .env.example .env
