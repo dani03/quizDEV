@@ -22,26 +22,28 @@ jobs:
           php-version: '8.2'  # Specify the PHP version you need
 
       - name: Install Composer dependencies
-        run: |
-            cd src
-            composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress
+        working-directory: src
 
       - name: Set up .env file
-        run: |
-            cd src
-            cp .env.example .env
+        run: cp .env.example .env
+        working-directory: src
 
       - name: Generate application key
         run: php artisan key:generate
+        working-directory: src
 
       - name: Run database migrations
         run: php artisan migrate --env=testing --no-interaction
+        working-directory: src
 
       - name: Install Passport
         run: php artisan passport:install --no-interaction
+        working-directory: src
 
       - name: Run PHPUnit tests
         run: vendor/bin/phpunit --testdox
+        working-directory: src
 
 #   unit-tests:
 #     runs-on: ubuntu-latest
