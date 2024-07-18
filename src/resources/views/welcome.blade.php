@@ -17,7 +17,7 @@
     </head>
     <body class="antialiased">
     <div class="text-center uppercase text-3xl">
-    <h1> documentation de l'api  Job 'in QUIZ</h1>
+    <h1 class="text-4xl"> documentation de l'api  Job 'in QUIZ the API</h1>
 
     </div>
     </body>
