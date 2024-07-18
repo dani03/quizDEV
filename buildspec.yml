@@ -6,7 +6,7 @@ phases:
     runtime-versions:
       php: 8.2
     commands:
-      - echo "installed successfully" 
+      - echo "installed successfully in production" 
   pre_build:
     on-failure: ABORT
     commands:
