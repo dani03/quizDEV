@@ -1,6 +1,6 @@
-FROM 975050020416.dkr.ecr.us-east-2.amazonaws.com/prod-laravel-api-base-image:latest as php
+FROM php:8.2-fpm-alpine as php
 
-ADD ./src/ var/www/html
+ADD ./src var/www/html
 
 
 
@@ -22,8 +22,10 @@ RUN mkdir -p ./src/storage/framework/bootstrap
 RUN mkdir -p ./src/storage/framework/bootstrap/cache
 
 # Adjust user permission & group.
+RUN apk --no-cache add shadow
 RUN usermod --uid 1000 www-data
 RUN groupmod --gid 1000  www-data
 
+
 # Run the entrypoint file.
-ENTRYPOINT [ "docker/entrypoint.sh" ]
+ENTRYPOINT [ "sh", "docker/entrypoint.sh" ]

@@ -17,7 +17,7 @@ phases:
     commands:
       - echo "build the image" 
       - cp src/.env.production .env
-      - docker build -t $IMAGE .
+      - docker build -t $IMAGE ./src
       - docker tag $IMAGE:$IMAGE_TAG $REPOSITORY/$IMAGE:$IMAGE_TAG
   post_build:
     on-failure: ABORT
