@@ -6,11 +6,25 @@ env:
 on:
   push:
     branches:
-      - Quentin
+      - develop
 
 jobs:
-  unit-tests:
+  php-tests:
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_DATABASE: laravel
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes  # Permet un mot de passe vide
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1"
+          --health-interval=30s
+          --health-timeout=5s
+          --health-retries=3
 
     services:
       mysql:
@@ -30,8 +44,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'  # Specify the PHP version you need
 
@@ -70,12 +84,49 @@ jobs:
 #         uses: actions/setup-node@v3
 #         with:
 #           node-version: '16'
+          php-version: '8.2'  # Specify the PHP version you need
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress
+        working-directory: src
 
-      - name: Run unit tests
-        run: npm test
+      - name: Set up .env file
+        run: cp .env.example .env
+        working-directory: src
+
+      - name: Generate application key
+        run: php artisan key:generate
+        working-directory: src
+
+      - name: Run database migrations
+        run: php artisan migrate --env=testing --no-interaction
+        working-directory: src
+
+      - name: Install Passport
+        run: php artisan passport:install --no-interaction
+        working-directory: src
+
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit --testdox
+        working-directory: src
+
+#   unit-tests:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
+
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: '16'
+
+#       - name: Install dependencies
+#         run: npm ci
+
+#       - name: Run unit tests
+#         run: npm test
 
   performance:
     runs-on: ubuntu-latest
