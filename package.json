@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "react-particle-effect-button": "^1.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }

@@ -44,7 +44,8 @@
     "tsparticles-updater-color": "^2.0.5",
     "tsparticles-updater-opacity": "^2.0.5",
     "tsparticles-updater-out-modes": "^2.0.5",
-    "tsparticles-updater-size": "^2.0.5"
+    "tsparticles-updater-size": "^2.0.5",
+    "jest": "^27.5.1"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.63",
