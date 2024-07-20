@@ -43,6 +43,11 @@ paths:
                 lastname:
                   type: string
                   description: 'Must not be greater than 255 characters.'
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> main
                   example: xrdxiau
                 name:
                   type: string
@@ -52,6 +57,27 @@ paths:
                   type: string
                   description: ''
                   example: ullam
+<<<<<<< HEAD
+=======
+=======
+                  example: lje
+=======
+                  example: xrdxiau
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: bsplwirvzghjzvqpfu
+                password:
+                  type: string
+                  description: ''
+<<<<<<< HEAD
+                  example: sit
+>>>>>>> cbcb4e8 (fix 2)
+=======
+                  example: ullam
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
                 role_id:
                   type: string
                   description: ''
@@ -62,7 +88,19 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
+<<<<<<< HEAD
                   example: nreichert@example.com
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                  example: nreichert@example.com
+=======
+                  example: murl97@example.net
+>>>>>>> cbcb4e8 (fix 2)
+=======
+                  example: nreichert@example.com
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
               required:
                 - lastname
                 - name
@@ -90,11 +128,33 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> main
                   example: mills.dagmar@example.net
                 password:
                   type: string
                   description: ''
                   example: veniam
+<<<<<<< HEAD
+=======
+=======
+                  example: bryana94@example.net
+                password:
+                  type: string
+                  description: ''
+                  example: dignissimos
+>>>>>>> cbcb4e8 (fix 2)
+=======
+                  example: mills.dagmar@example.net
+                password:
+                  type: string
+                  description: ''
+                  example: veniam
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
               required:
                 - email
                 - password
@@ -140,11 +200,33 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> main
                   example: jennifer.predovic@example.com
                 name:
                   type: string
                   description: ''
                   example: dolorem
+<<<<<<< HEAD
+=======
+=======
+                  example: gene.jast@example.org
+                name:
+                  type: string
+                  description: ''
+                  example: dolores
+>>>>>>> cbcb4e8 (fix 2)
+=======
+                  example: jennifer.predovic@example.com
+                name:
+                  type: string
+                  description: ''
+                  example: dolorem
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
                 lastname:
                   type: string
                   description: ''
@@ -173,11 +255,33 @@ paths:
                 current_password:
                   type: string
                   description: ''
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> main
                   example: quod
                 password:
                   type: string
                   description: ''
                   example: rem
+<<<<<<< HEAD
+=======
+=======
+                  example: aliquam
+                password:
+                  type: string
+                  description: ''
+                  example: quia
+>>>>>>> cbcb4e8 (fix 2)
+=======
+                  example: quod
+                password:
+                  type: string
+                  description: ''
+                  example: rem
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
               required:
                 - current_password
                 - password
@@ -265,6 +369,11 @@ paths:
                 name:
                   type: string
                   description: ''
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> main
                   example: et
                 points:
                   type: integer
@@ -274,6 +383,27 @@ paths:
                   type: string
                   description: ''
                   example: repellendus
+<<<<<<< HEAD
+=======
+=======
+                  example: repudiandae
+=======
+                  example: et
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+                points:
+                  type: integer
+                  description: ''
+                  example: 3
+                slug:
+                  type: string
+                  description: ''
+<<<<<<< HEAD
+                  example: aut
+>>>>>>> cbcb4e8 (fix 2)
+=======
+                  example: repellendus
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
               required:
                 - name
       security: []
@@ -318,7 +448,19 @@ paths:
                 slug:
                   type: string
                   description: ''
+<<<<<<< HEAD
                   example: sit
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                  example: sit
+=======
+                  example: reiciendis
+>>>>>>> cbcb4e8 (fix 2)
+=======
+                  example: sit
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
               required:
                 - slug
       security: []
@@ -363,7 +505,19 @@ paths:
                 name:
                   type: string
                   description: ''
+<<<<<<< HEAD
                   example: rem
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                  example: rem
+=======
+                  example: omnis
+>>>>>>> cbcb4e8 (fix 2)
+=======
+                  example: rem
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
               required:
                 - name
       security: []
@@ -382,10 +536,53 @@ paths:
         in: path
         name: id
         description: 'The ID of the delete.'
+<<<<<<< HEAD
         example: ullam
         required: true
         schema:
           type: string
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        example: ullam
+        required: true
+        schema:
+          type: string
+=======
+        example: facere
+        required: true
+        schema:
+          type: string
+  /api/v1/questions:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+>>>>>>> cbcb4e8 (fix 2)
+=======
+        example: ullam
+        required: true
+        schema:
+          type: string
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
   /api/v1/question/store:
     post:
       summary: ''
@@ -405,7 +602,19 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 150 characters.'
+<<<<<<< HEAD
                   example: lpltvzjffuzosnoojyafljpi
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                  example: lpltvzjffuzosnoojyafljpi
+=======
+                  example: fzatch
+>>>>>>> cbcb4e8 (fix 2)
+=======
+                  example: lpltvzjffuzosnoojyafljpi
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
                 domain_id:
                   type: integer
                   description: ''
@@ -413,11 +622,33 @@ paths:
                 level_id:
                   type: integer
                   description: ''
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> main
                   example: 14
                 points:
                   type: integer
                   description: ''
                   example: 15
+<<<<<<< HEAD
+=======
+=======
+                  example: 6
+                points:
+                  type: integer
+                  description: ''
+                  example: 12
+>>>>>>> cbcb4e8 (fix 2)
+=======
+                  example: 14
+                points:
+                  type: integer
+                  description: ''
+                  example: 15
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
                 answers:
                   type: object
                   description: 'Must have at least 2 items.'
@@ -429,6 +660,88 @@ paths:
                 - level_id
                 - answers
       security: []
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  '/api/v1/question/show/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the show.'
+        example: tempora
+        required: true
+        schema:
+          type: string
+  '/api/v1/question/update/{id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Must not be greater than 150 characters.'
+                  example: tpyuosianikmkdlmpfo
+                domain_id:
+                  type: integer
+                  description: ''
+                  example: 12
+                level_id:
+                  type: integer
+                  description: ''
+                  example: 3
+                points:
+                  type: integer
+                  description: ''
+                  example: 20
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the update.'
+        example: facere
+        required: true
+        schema:
+          type: string
+>>>>>>> cbcb4e8 (fix 2)
+=======
+>>>>>>> 3c2d6e5 (Feature/profile (#17))
+>>>>>>> main
 tags:
   -
     name: Endpoints

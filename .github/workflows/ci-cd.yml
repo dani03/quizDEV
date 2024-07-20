@@ -1,0 +1,123 @@
+name: CI/CD Workflow
+
+env:
+  JMETER_DOWNLOAD_URL: "https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.5.tgz"
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  php-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_DATABASE: laravel
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes  # Permet un mot de passe vide
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1"
+          --health-interval=30s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress
+        working-directory: src
+
+      - name: Set up .env file
+        run: cp .env.example .env
+        working-directory: src
+
+      - name: Generate application key
+        run: php artisan key:generate
+        working-directory: src
+
+      - name: Run database migrations
+        run: php artisan migrate --env=testing --no-interaction
+        working-directory: src
+
+      - name: Install Passport
+        run: php artisan passport:install --no-interaction
+        working-directory: src
+
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit --testdox
+        working-directory: src
+
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: front
+
+      - name: Run unit tests
+        run: npm test
+        working-directory: front  
+
+  performance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Downloading Apache JMeter
+        run: wget -qO- $JMETER_DOWNLOAD_URL | tar xvz -C /tmp
+      
+      - name: Verify JMX file
+        run: ls -l jmeter-scripts/performance-test.jmx
+      
+      - name: Running JMeter performance tests
+        run: /tmp/apache-jmeter-5.5/bin/jmeter -n -t jmeter-scripts/performance-test.jmx -l results.jtl -j jmeter.log || (cat jmeter.log && exit 1)
+
+      - name: Upload JMeter results
+        uses: actions/upload-artifact@v4
+        with:
+          name: jmeter-results
+          path: results.jtl
+
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
