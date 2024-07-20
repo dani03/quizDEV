@@ -55,10 +55,10 @@ const Register = () => {
       openCollapse
     ) {
       Object.assign(body, { company_name: event.currentTarget.name.value })
-      Object.assign(body, { role_id: 2 })
+      Object.assign(body, { role_id: 3 })
     } else {
       Object.assign(body, { company_name: null })
-      Object.assign(body, { role_id: 3 })
+      Object.assign(body, { role_id: 2 })
     }
     axios
       .post("http://localhost:3002/api/v1/auth/register", body)
@@ -119,7 +119,6 @@ const Register = () => {
     axios
       .get("http://localhost:3002/api/v1/authenticate/google")
       .then(function (response) {
-        console.log(response.data.url)
         router.push(response.data.url)
       })
       .catch(function (error) {

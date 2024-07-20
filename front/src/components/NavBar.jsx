@@ -54,15 +54,15 @@ const NavBar = (props) => {
         setDisplayedRole("ADMIN")
         break
       case 2:
-        setNavigation(navigationAdmin)
-        setDisplayedRole("COMPANY")
-        break
-      case 3:
-        setNavigation(navigationAdmin)
+        setNavigation(navigationUser)
         setDisplayedRole("USER")
         break
+      case 3:
+        setNavigation(navigationCompany)
+        setDisplayedRole("COMPANY")
+        break
       default:
-        setNavigation(navigationAdmin)
+        setNavigation(navigationUser)
         setDisplayedRole("USER")
     }
   }, [myProfile?.role_id])
@@ -120,15 +120,9 @@ const NavBar = (props) => {
                 {jwt ? (
                   <Menu as="div" className="relative ml-3">
                     <div className="flex items-center">
-                      <h1 className="text-center text-zinc-100 uppercase mx-2 font-bold">
+                      <h1 className="text-center text-sm text-zinc-100 uppercase font-bold w-40 truncate">
                         {myProfile?.name}
                       </h1>
-<<<<<<< HEAD
-=======
-                      <h1 className="italic text-zinc-100 mx-2 text-sm">
-                        ({displayedRole})
-                      </h1>
->>>>>>> main
                       <Menu.Button className="relative flex rounded-full bg-bluePrimary text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
@@ -166,6 +160,11 @@ const NavBar = (props) => {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Item>
+                          <h1 className="block px-4 py-2 text-sm text-gray-700 italic">
+                            ({displayedRole})
+                          </h1>
+                        </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
                             <Link
@@ -239,11 +238,7 @@ const NavBar = (props) => {
       <Drawer
         open={open}
         onClose={closeDrawer}
-<<<<<<< HEAD
         className="inset-0 z-50 bg-white navbar flex flex-col"
-=======
-        className="inset-0 z-50 bg-white navbar"
->>>>>>> main
       >
         <div className="flex items-center justify-between p-4 z-50">
           <Link href="/">
@@ -260,11 +255,7 @@ const NavBar = (props) => {
             key={item.name}
             className={classNames(
               item.current ? "bg-gray-900 text-zinc-100" : "text-gray-900",
-<<<<<<< HEAD
               "rounded-md font-bold text-xl ml-4 py-2"
-=======
-              " rounded-md font-bold text-xl ml-4 py-2"
->>>>>>> main
             )}
             aria-current={item.current ? "page" : undefined}
           >
@@ -273,6 +264,7 @@ const NavBar = (props) => {
         ))}
         <div className="mt-auto p-4">
           <Button
+            hidden={displayedRole != "COMPANY"}
             onClick={() => setOpenGenerateDialog(!openGenerateDialog)}
             className="text-gray-900 rounded-md font-bold text-xl ml-4 py-2 bg-transparent "
           >
