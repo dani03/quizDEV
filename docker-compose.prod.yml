@@ -13,8 +13,6 @@ services:
     ports:
       - 80:80
       - 443:443
-    volumes:
-      - ./src:/var/www/html:delegated
     networks:
       - laravel_network
     depends_on:
@@ -31,8 +29,6 @@ services:
       context: .
       dockerfile: php.prod.dockerfile
     container_name: php
-    volumes:
-      - ./src:/var/www/html:delegated
     networks:
       - laravel_network
 
