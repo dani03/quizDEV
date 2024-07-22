@@ -102,7 +102,11 @@ const Quiz = () => {
   }, [searchParams, quiz])
 
   const handleAnswerSubmit = (answer) => {
-    setListOfAnswerIds((prev) => [...prev, { [answer.question_id]: answer.id }])
+    setListOfAnswerIds((prev) => {
+      const newIndex = prev.length + 1
+      return [...prev, { [`questions_answer[${newIndex}]`]: answer.id }]
+    })
+
     setSelectedAnswer(answer)
     setFeedback(answer.correct_answer ? "CORRECT" : "WRONG")
 
@@ -117,7 +121,14 @@ const Quiz = () => {
     axios
       .post(
         `http://localhost:3002/api/v1/quiz/user/answer/${currentQuiz.quiz_id}`,
-        { questions_answers: listOfAnswerIds },
+        [
+          {
+            "questions_answer[1]": 14,
+          },
+          {
+            "questions_answer[2]": 10,
+          },
+        ],
         { headers: { Authorization: `Bearer ${jwtData}` } }
       )
       .then((response) => console.log("response : ", response))
