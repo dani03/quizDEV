@@ -23,8 +23,41 @@ class QuizReponseRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'questions_answer' => ['required', 'array'],
+            'questions_answer.*' => [
+                'integer',
+                Rule::exists('answers', 'id'),
+            ],
+        ];
+    }
 
-            "questions_answers.*" => ["array", "required", Rule::exists('answers', 'id')]
+    protected function prepareForValidation()
+    {
+        if (is_array($this->questions_answer)) {
+            foreach ($this->questions_answer as $key => $value) {
+                $this->merge(["questions_answer_key_{$key}" => $key]);
+            }
+        }
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            foreach ($this->questions_answer as $key => $value) {
+                if (!\DB::table('questions')->where('id', $key)->exists()) {
+                    $validator->errors()->add("questions_answer_key_{$key}", "La question $key n'existe pas.");
+                }
+            }
+        });
+    }
+
+    public function messages(): array
+    {
+        return [
+            'questions_answer.required' => 'Le champ questions_answer est requis.',
+            'questions_answer.array' => 'Le champ questions_answer doit être un tableau.',
+            'questions_answer.*.integer' => 'Chaque réponse doit être un entier.',
+            'questions_answer.*.exists' => 'Chaque réponse doit exister dans la base de données.',
         ];
     }
 }

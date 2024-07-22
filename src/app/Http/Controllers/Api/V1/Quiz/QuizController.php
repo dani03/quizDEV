@@ -80,11 +80,12 @@ class QuizController extends Controller
      * Permet de répondre à un quiz
      *
      */
-    public function answerQuiz(QuizReponseRequest $request, int $quizId): JsonResponse
+    public function answerQuiz(QuizReponseRequest $request, int $quizId)
     {
         //vérification si le quiz est bien present en BDD
 
         $userAnswers = $request->questions_answer;
+
         $quiz = $this->quizService->getQuiz($quizId);
         if (!$quiz) {
             return response()->json(['message' => "Impossible de trouver le quiz."], Response::HTTP_NOT_FOUND);
