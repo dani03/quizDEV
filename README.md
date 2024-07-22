@@ -33,6 +33,10 @@
    docker-compose run --rm artisan key:generate
    ```
 5. **Installez Passport**
+
+   ```bash
+   docker-compose run --rm artisan migrate
+   ```
    ```bash
    docker-compose run --rm artisan passport:install
    ```
