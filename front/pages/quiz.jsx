@@ -1,4 +1,10 @@
-import { Button, Card, Input, Typography } from "@material-tailwind/react"
+import {
+  Button,
+  Card,
+  CardBody,
+  Input,
+  Typography,
+} from "@material-tailwind/react"
 import NavBar from "../src/components/NavBar"
 import ParticlesComponent from "../src/components/ParticlesComponent"
 import { useContext, useEffect, useState } from "react"
@@ -7,6 +13,7 @@ import PopupGame from "../src/components/PopupGame"
 import axios from "axios"
 import { useSearchParams } from "next/navigation"
 import DefaultDisplay from "../src/components/DefaultDisplay"
+import Link from "next/link"
 
 const Quiz = () => {
   const {
@@ -31,6 +38,8 @@ const Quiz = () => {
   const [base64, setBase64] = useState(null)
   const [openPopup, setOpenPopup] = useState(false)
   const [isWait, setIsWait] = useState(false)
+  const [openResultDialog, setopenResultDialog] = useState(false)
+  const [results, setResults] = useState(null)
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -102,10 +111,7 @@ const Quiz = () => {
   }, [searchParams, quiz])
 
   const handleAnswerSubmit = (answer) => {
-    setListOfAnswerIds((prev) => {
-      const newIndex = prev.length + 1
-      return [...prev, { [`questions_answer[${newIndex}]`]: answer.id }]
-    })
+    setListOfAnswerIds((prev) => [...prev, { [answer.question_id]: answer.id }])
 
     setSelectedAnswer(answer)
     setFeedback(answer.correct_answer ? "CORRECT" : "WRONG")
@@ -117,21 +123,27 @@ const Quiz = () => {
     }, 500)
   }
 
+  const transformAnswers = (answersArray) => {
+    return answersArray.reduce((acc, answerObj) => {
+      const [questionId, answerId] = Object.entries(answerObj)[0]
+      acc[questionId] = answerId
+      return acc
+    }, {})
+  }
+
   const getResult = (jwtData) => {
+    const transformedAnswers = transformAnswers(listOfAnswerIds)
+
     axios
       .post(
         `http://localhost:3002/api/v1/quiz/user/answer/${currentQuiz.quiz_id}`,
-        [
-          {
-            "questions_answer[1]": 14,
-          },
-          {
-            "questions_answer[2]": 10,
-          },
-        ],
+        { questions_answer: transformedAnswers },
         { headers: { Authorization: `Bearer ${jwtData}` } }
       )
-      .then((response) => console.log("response : ", response))
+      .then((response) => {
+        setResults(response.data)
+        setopenResultDialog(true)
+      })
       .catch((error) => console.log("error : ", error))
   }
 
@@ -322,6 +334,21 @@ const Quiz = () => {
           <DefaultDisplay />
         )}
       </div>
+      {results && openResultDialog ? (
+        <Card className="fixed inset-0 flex items-center justify-center z-50 mb-32 h-screen bg-transparent backdrop-blur-sm">
+          <CardBody className="grid grid-cols-1 bg-brownPrimary h-48 w-96 md:w-128 rounded-xl">
+            <h1 className="text-center text-xl md:text-2xl font-bold text-zinc-100 py-6">
+              Your result is {results.point_obtenus}pts on{" "}
+              {results.points_possible}pts{" "}
+            </h1>
+            <Link className="mx-auto" href="/">
+              <Button className="mx-auto my-6">Please go back</Button>
+            </Link>
+          </CardBody>
+        </Card>
+      ) : (
+        <div></div>
+      )}
     </div>
   )
 }
