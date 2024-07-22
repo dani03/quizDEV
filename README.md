@@ -8,7 +8,14 @@
    ```bash
    git clone https://github.com/dani03/quizDEV.git
    cd quizDEV
+ 
    ```
+
+1.bis **Si vous avez la version `docker compose` et pas `docker-compose` Lancer toutes les commandes ci-dessous avec la commande** 
+   ```bash
+      make build-start
+   ```
+
 2. **Installez les dépendances**
    ```bash
    docker-compose run --rm composer install

@@ -15,8 +15,9 @@ class UserController extends Controller
 {
 
 
-    public function index() {
-       return $this->authorize('basic-user');
+    public function index()
+    {
+        return $this->authorize('basic-user');
     }
 
     /**
@@ -40,7 +41,7 @@ class UserController extends Controller
      *
      * cette route est directement appelé par google pour la redirection sur la plateforme après l'authentification
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * 
      */
     public function authWithGoogle(Request $request)
     {
@@ -56,26 +57,28 @@ class UserController extends Controller
                     'lastname' => $googleUser->getNickname() ?? 'no lastname',
                     'email' => $googleUser->getEmail(),
                     'password' => null,
-                    'google_id' => $googleUser->getId(),
+                    'google_id' => $googleUser->id,
                     'role_id' => 2,
                 ]);
             }
 
-
+           
             Auth::login($user);
 
             $device = substr($request->userAgent() ?? '', 0, 30);
             $expireDate = $request->remember ? null : now()->addMinutes(config('session.lifetime'));
 
-            return response()->json([
-                "access_token" => $user->createToken($device)->accessToken,
-                'token_type' => 'Bearer',
-                'expires_at' => $expireDate,
-                'name' => $user->name,
-                'id' => $user->id,
-                'role' => $user->role_id,
-            ], Response::HTTP_OK);
+            $token = $user->createToken($device)->accessToken;
 
+            return redirect()->to('http://localhost:3001/token=' . $token);
+            // return response()->json([
+            //     "access_token" => $user->createToken($device)->accessToken,
+            //     'token_type' => 'Bearer',
+            //     'expires_at' => $expireDate,
+            //     'name' => $user->name,
+            //     'id' => $user->id,
+            //     'role' => $user->role_id,
+            // ], Response::HTTP_OK);
         } catch (Throwable $err) {
             return response()->json([
                 "message" => "An error occurred",
@@ -83,5 +86,4 @@ class UserController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-
 }

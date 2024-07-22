@@ -101,8 +101,6 @@ services:
       - ./front:/front
     networks:
       - laravel_network
-    depends_on:
-      - nginx
   # service adminer gestionnaire de base de donnée
   adminer:
     image: adminer:latest
