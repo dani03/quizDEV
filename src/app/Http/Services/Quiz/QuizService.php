@@ -37,11 +37,14 @@ class QuizService
         $responseOfUser = [];
 
         $points = 0;
+        $possible_points = 0;
         foreach ($userAnswers as $questionIdUser => $answerIdUser) {
 
             foreach ($questionsQuiz as $question) {
+                $possible_points += $question->points;
                 $findAnswer = false;
                 $questionIdUser = (int) $questionIdUser;
+
 
                 //on récupère les 2 questions égales
                 if($questionIdUser === $question->id) {
@@ -102,7 +105,7 @@ class QuizService
             }
         }
 
-        return ["results" => $responseOfUser, 'points' => $points];
+        return ["results" => $responseOfUser, 'points' => $points, 'point_possible' => $possible_points];
     }
 
 
