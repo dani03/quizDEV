@@ -41,7 +41,7 @@ const Quiz = () => {
       email: event.currentTarget.email.value,
       password: event.currentTarget.password.value,
       password_confirmation: event.currentTarget.password_confirmation.value,
-      role_id: 3,
+      role_id: 2,
     }
     axios
       .post("http://localhost:3002/api/v1/auth/register", body)
@@ -49,7 +49,7 @@ const Quiz = () => {
         if (response.data.access_token) {
           saveJwt(response.data.access_token)
           setTimeout(() => {
-            // ici getResult()
+            getResult(response.data.access_token)
             setIsWait(true)
           }, 3000)
           setIsWait(false)
@@ -102,7 +102,11 @@ const Quiz = () => {
   }, [searchParams, quiz])
 
   const handleAnswerSubmit = (answer) => {
-    setListOfAnswerIds((prev) => [...prev, { [answer.question_id]: answer.id }])
+    setListOfAnswerIds((prev) => {
+      const newIndex = prev.length + 1
+      return [...prev, { [`questions_answer[${newIndex}]`]: answer.id }]
+    })
+
     setSelectedAnswer(answer)
     setFeedback(answer.correct_answer ? "CORRECT" : "WRONG")
 
@@ -113,12 +117,19 @@ const Quiz = () => {
     }, 500)
   }
 
-  const getResult = () => {
+  const getResult = (jwtData) => {
     axios
       .post(
         `http://localhost:3002/api/v1/quiz/user/answer/${currentQuiz.quiz_id}`,
-        { questions_answers: listOfAnswerIds },
-        { headers: { Authorization: `Bearer ${jwt}` } }
+        [
+          {
+            "questions_answer[1]": 14,
+          },
+          {
+            "questions_answer[2]": 10,
+          },
+        ],
+        { headers: { Authorization: `Bearer ${jwtData}` } }
       )
       .then((response) => console.log("response : ", response))
       .catch((error) => console.log("error : ", error))

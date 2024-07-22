@@ -54,12 +54,12 @@ const NavBar = (props) => {
         setDisplayedRole("ADMIN")
         break
       case 2:
-        setNavigation(navigationCompany)
-        setDisplayedRole("COMPANY")
-        break
-      case 3:
         setNavigation(navigationUser)
         setDisplayedRole("USER")
+        break
+      case 3:
+        setNavigation(navigationCompany)
+        setDisplayedRole("COMPANY")
         break
       default:
         setNavigation(navigationUser)
@@ -120,7 +120,7 @@ const NavBar = (props) => {
                 {jwt ? (
                   <Menu as="div" className="relative ml-3">
                     <div className="flex items-center">
-                      <h1 className="text-center text-zinc-100 uppercase mx-2 font-bold">
+                      <h1 className="text-center text-sm text-zinc-100 uppercase font-bold w-40 truncate">
                         {myProfile?.name}
                       </h1>
                       <Menu.Button className="relative flex rounded-full bg-bluePrimary text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -160,6 +160,11 @@ const NavBar = (props) => {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Item>
+                          <h1 className="block px-4 py-2 text-sm text-gray-700 italic">
+                            ({displayedRole})
+                          </h1>
+                        </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
                             <Link
@@ -259,6 +264,7 @@ const NavBar = (props) => {
         ))}
         <div className="mt-auto p-4">
           <Button
+            hidden={displayedRole != "COMPANY"}
             onClick={() => setOpenGenerateDialog(!openGenerateDialog)}
             className="text-gray-900 rounded-md font-bold text-xl ml-4 py-2 bg-transparent "
           >

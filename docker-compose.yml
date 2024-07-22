@@ -90,19 +90,19 @@ services:
       - 6379:6379
     networks:
       - laravel_network
-  nextjs:
-    build:
-      context: .  # chemin vers lequel se trouve notre dossier dockerfile pour next
-      dockerfile: nextJS.dockerfile
-    container_name: next-js
-    ports:
-      - "3001:3001"
-    volumes:
-      - ./front:/front
-    networks:
-      - laravel_network
-    depends_on:
-      - nginx
+  # nextjs:
+  #   build:
+  #     context: .  # chemin vers lequel se trouve notre dossier dockerfile pour next
+  #     dockerfile: nextJS.dockerfile
+  #   container_name: next-js
+  #   ports:
+  #     - "3001:3001"
+  #   volumes:
+  #     - ./front:/front
+  #   networks:
+  #     - laravel_network
+  #   depends_on:
+  #     - nginx
   # service adminer gestionnaire de base de donnée
   adminer:
     image: adminer:latest

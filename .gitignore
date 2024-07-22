@@ -5,7 +5,14 @@ mysql/
 ./front/.next
 ./front/node_modules
 ./front/README.md
+./front/public/sw.js
+./front/public/sw.js.map
 .DS_Store
 .vscode
 .idea
 Thumbs.dbs
+./front/public/workbox-*.js
+./front/public/sw.js
+./front/public/sw.js.map
+./front/public/worker-*.js
+./front/public/worker-*.js.map
