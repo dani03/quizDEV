@@ -73,11 +73,12 @@ class QuizService
                     // si aucune réponse n'a été trouvée c'est à dire si la réponse est fausse
                     if(!$findAnswer) {
                         //return $question->answers;
+                        $answer = $question->answers->firstWhere('correct_answer', true);
                         $reponseUser = $question->answers->firstWhere('id', $answerIdUser)->answer ?? 'votre réponse n\'est pas un choix possible pour cette question.';
                         $responseUser = [
                             'question' => $question->title,
                             'answers' => AnswerResource::collection($question->answers),
-                            'correct_answer' => $question->answers->firstWhere('correct_answer', true)->answer,
+                            'correct_answer' =>$answer ?? 'pas de réponse possible ',
                             'user_answer' => $reponseUser
                         ];
                         $responseOfUser[] = $responseUser;
