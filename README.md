@@ -89,7 +89,7 @@ Pour rafraîchir la base de données après une modification :
 
 ## Documentation des endpoints de l'API
 
-- Accédez à la documentation des endpoints : Documentation API SCRAMBLE.
+- Accédez à la documentation des endpoints : <a href="localhost:3002/docs/api#/">Documentation API avec SCRAMBLE.</a>
 
 ## Front
 
