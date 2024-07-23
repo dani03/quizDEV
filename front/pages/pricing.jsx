@@ -64,7 +64,7 @@ const Pricing = () => {
 
   return (
     <div
-      className={`h-screen bg-cover ${
+      className={`bg-cover bg-center min-h-screen  ${
         !isError
           ? `${
               isLightMode

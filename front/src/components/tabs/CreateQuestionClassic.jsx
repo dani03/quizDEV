@@ -13,11 +13,10 @@ import {
   CheckIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid"
-import { config } from "dotenv"
-import path from "path"
 
 const CreateQuestionClassic = (props) => {
   const [error, setError] = useState("")
+  const [msg, setMsg] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
   const [openAiDialog, setOpenAiDialog] = useState(false)
   const { levels, domains, jwt, changeIsError } = props
@@ -25,7 +24,7 @@ const CreateQuestionClassic = (props) => {
   const [responseAi, setResponseAi] = useState("")
   const [themeSelected, setThemeSelected] = useState("hasard")
   const [levelSelected, setLevelSelected] = useState("hasard")
-  console.log(process.env)
+  const [positivPopup, setPositivPopup] = useState(false)
 
   const handleChangeTheme = (event) => {
     setThemeSelected(event.target.value)
@@ -36,7 +35,7 @@ const CreateQuestionClassic = (props) => {
   }
 
   const handleOpen = () => {
-    changeIsError()
+    if (!positivPopup) changeIsError()
     setOpenPopup(!openPopup)
   }
 
@@ -79,8 +78,14 @@ const CreateQuestionClassic = (props) => {
           },
         }
       )
-      .then(function () {})
+      .then(function (response) {
+        setMsg(response.data.message)
+        setOpenPopup(true)
+        setPositivPopup(true)
+      })
       .catch(function (error) {
+        setMsg(error.response.data.message)
+        setPositivPopup(false)
         setOpenPopup(true)
         changeIsError()
         setError(error?.response?.data?.message || "Error 403")
@@ -256,7 +261,12 @@ const CreateQuestionClassic = (props) => {
             Create your question
           </Button>
         </div>
-        <Popup msg={error} open={openPopup} handleOpen={handleOpen} />
+        <Popup
+          msg={msg}
+          open={openPopup}
+          handleOpen={handleOpen}
+          positive={positivPopup}
+        />
       </form>
       {openAiDialog ? (
         <Card className="fixed inset-0 flex items-center justify-center z-50 mb-32 h-screen bg-transparent backdrop-blur-sm">
