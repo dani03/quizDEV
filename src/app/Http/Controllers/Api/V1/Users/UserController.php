@@ -70,7 +70,7 @@ class UserController extends Controller
 
             $token = $user->createToken($device)->accessToken;
 
-            return redirect()->to('http://localhost:3001/token=' . $token);
+            return redirect()->to('http://localhost:3001/?token=' . $token);
             // return response()->json([
             //     "access_token" => $user->createToken($device)->accessToken,
             //     'token_type' => 'Bearer',

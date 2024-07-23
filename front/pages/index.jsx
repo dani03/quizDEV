@@ -3,10 +3,11 @@ import NavBar from "../src/components/NavBar"
 import { Card } from "@material-tailwind/react"
 import { motion } from "framer-motion"
 import ParticlesComponent from "../src/components/ParticlesComponent"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import InfoJobinquiz from "../src/components/InfoJobinquiz"
 import { ChevronDoubleDownIcon } from "@heroicons/react/24/solid"
 import Tilt from "react-parallax-tilt"
+import { useRouter } from "next/router"
 
 const Home = () => {
   const {
@@ -16,10 +17,19 @@ const Home = () => {
     myProfile,
     isLightMode,
     toggleLightMode,
+    saveJwt,
     quiz,
   } = useContext(AppContext)
   const [openInfo, setOpenInfo] = useState(false)
   const [scale, setScale] = useState(1.15)
+  const router = useRouter()
+  const { token } = router.query
+
+  useEffect(() => {
+    if (token && token !== "" && token !== "null") {
+      saveJwt(token)
+    }
+  }, [token])
 
   const scrollDown = () => {
     setOpenInfo(!openInfo)
