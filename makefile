@@ -1,26 +1,30 @@
 ENV_FILE = src/.env
+ENV_FILE_FRONT = front/.env
 ENV_EXAMPLE_FILE = src/.env.example
+# Détecter la commande Docker
+DOCKER_COMPOSE := $(shell if command -v docker-compose > /dev/null 2>&1; then echo "docker-compose"; else echo "docker compose"; fi)
+
 clear-cache:
-	@docker compose run --rm artisan optimize:clear
+	@$(DOCKER_COMPOSE) run --rm artisan optimize:clear
 
 # run les migrations 
 migrations:
-	@docker compose run --rm artisan migrate 
+	@$(DOCKER_COMPOSE) run --rm artisan migrate 
 
 migrations-seed:
-	@docker compose run --rm artisan migrate
-	@docker compose run --rm artisan db:seed
+	@$(DOCKER_COMPOSE) run --rm artisan migrate
+	@$(DOCKER_COMPOSE) run --rm artisan db:seed
 
 passport:
-	@docker compose run --rm artisan passport:install
+	@$(DOCKER_COMPOSE) run --rm artisan passport:install
 
 # pour lancer le projet des le début avec toutes les commande dans lordre
 build-start:
-	@docker compose up --build --force-recreate -d nginx
-	@docker compose run --rm composer install
+	@$(DOCKER_COMPOSE) up --build --force-recreate -d nginx
+	@$(DOCKER_COMPOSE) run --rm composer install
 	@make env-file
 	@echo "génération de la clé d'application... "
-	@docker compose run --rm artisan key:generate
+	@$(DOCKER_COMPOSE) run --rm artisan key:generate
 	@echo "installation de passport ... "
 	@make flush-db
 	@make migrations-seed
@@ -29,16 +33,28 @@ build-start:
 
 #refraichi la base de donnée et en met ajour le clé id client de passport 
 refresh:
-	@docker compose run --rm artisan migrate:refresh
+	@$(DOCKER_COMPOSE) run --rm artisan migrate:refresh
 	@make passport
 
 nextjs:
-	@docker compose up --build -d nextjs
+	@make env-front
+	@$(DOCKER_COMPOSE) up --build -d nextjs
 
 flush-db:
-	@docker compose run --rm artisan migrate:fresh
+	@$(DOCKER_COMPOSE) run --rm artisan migrate:fresh
 
 #création du fichier env file 
+env-front: 
+	@if [ ! -f $(ENV_FILE_FRONT) ]; then \
+		cp $(ENV_EXAMPLE_FILE) $(ENV_FILE_FRONT); \
+		echo "\n# open AI Configuration" >> $(ENV_FILE_FRONT); \
+		echo "NEXT_PUBLIC_OPENAI_API_KEY=VOTRE_CLE_ICI" >> $(ENV_FILE_FRONT); \
+		echo "$(ENV_FILE_FRONT) a été crée avec succès."; \
+	else \
+		echo "NEXT_PUBLIC_OPENAI_API_KEY=VOTRE_CLE_ICI" >> $(ENV_FILE_FRONT); \
+		echo "$(ENV_FILE_FRONT) existe déjà."; \
+	fi
+
 env-file: 
 	@if [ ! -f $(ENV_FILE) ]; then \
 		cp $(ENV_EXAMPLE_FILE) $(ENV_FILE); \

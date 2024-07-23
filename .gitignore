@@ -5,6 +5,7 @@ mysql/
 ./front/.next
 ./front/node_modules
 ./front/README.md
+./front/.env
 ./front/public/sw.js
 ./front/public/sw.js.map
 .DS_Store
