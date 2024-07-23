@@ -9,14 +9,14 @@ migrations:
 
 migrations-seed:
 	@docker compose run --rm artisan migrate
-	@docker compose run --rm db:seed
+	@docker compose run --rm artisan db:seed
 
 passport:
 	@docker compose run --rm artisan passport:install
 
 # pour lancer le projet des le début avec toutes les commande dans lordre
 build-start:
-	@docker compose up --force-recreate -d nginx
+	@docker compose up --build --force-recreate -d nginx
 	@docker compose run --rm composer install
 	@make env-file
 	@echo "génération de la clé d'application... "
@@ -55,3 +55,7 @@ env-file:
 	fi
 
 
+push: 
+	@git add . 
+	@git commit -m "add some updated"
+	@git push origin feature/swagger
