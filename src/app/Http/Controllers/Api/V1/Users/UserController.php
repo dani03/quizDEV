@@ -62,7 +62,7 @@ class UserController extends Controller
                 ]);
             }
 
-           
+
             Auth::login($user);
 
             $device = substr($request->userAgent() ?? '', 0, 30);
