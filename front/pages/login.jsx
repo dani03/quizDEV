@@ -52,8 +52,7 @@ const Login = () => {
     axios
       .get("http://localhost:3002/api/v1/authenticate/google")
       .then(function (response) {
-        console.log(response.data.url)
-        //router.push(response.data.url)
+        router.push(response.data.url)
       })
       .catch(function (error) {
         console.log(error)
@@ -94,7 +93,7 @@ const Login = () => {
           <Button
             size="sm"
             className="flex items-center justify-between mt-4 mb-2 w-64 mx-auto text-sm bg-deepBrownPrimary"
-            onClick={() => regsiterWithGoogle()}
+            onClick={() => loginWithGoogle()}
           >
             Login with Google
             <img src="/logo_google.png" height={25} width={25} />
