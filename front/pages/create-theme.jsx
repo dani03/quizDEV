@@ -15,7 +15,7 @@ const CreateThemePage = () => {
     myProfile,
     isLightMode,
     toggleLightMode,
-    quiz
+    quiz,
   } = useContext(AppContext)
   const [openTab, setOpenTab] = useState(1)
 
@@ -38,7 +38,7 @@ const CreateThemePage = () => {
 
   return (
     <div
-      className={`h-screen bg-cover ${
+      className={`bg-cover bg-center min-h-screen  ${
         !isError
           ? `${
               isLightMode

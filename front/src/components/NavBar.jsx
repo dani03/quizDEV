@@ -120,7 +120,7 @@ const NavBar = (props) => {
                 {jwt ? (
                   <Menu as="div" className="relative ml-3">
                     <div className="flex items-center">
-                      <h1 className="text-center text-sm text-zinc-100 uppercase font-bold w-40 truncate">
+                      <h1 className="text-center text-sm text-zinc-100 uppercase font-bold w-16 truncate">
                         {myProfile?.name}
                       </h1>
                       <Menu.Button className="relative flex rounded-full bg-bluePrimary text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
