@@ -16,3 +16,4 @@ Thumbs.dbs
 ./front/public/sw.js.map
 ./front/public/worker-*.js
 ./front/public/worker-*.js.map
+./front/.env

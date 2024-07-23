@@ -25,8 +25,7 @@ const CreateQuestionClassic = (props) => {
   const [responseAi, setResponseAi] = useState("")
   const [themeSelected, setThemeSelected] = useState("hasard")
   const [levelSelected, setLevelSelected] = useState("hasard")
-  const envPath = path.resolve(process.cwd(), "../../../src/.env")
-  config({ path: envPath })
+  console.log(process.env)
 
   const handleChangeTheme = (event) => {
     setThemeSelected(event.target.value)
