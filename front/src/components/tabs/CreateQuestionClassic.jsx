@@ -13,6 +13,8 @@ import {
   CheckIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid"
+import { config } from "dotenv"
+import path from "path"
 
 const CreateQuestionClassic = (props) => {
   const [error, setError] = useState("")
@@ -23,6 +25,7 @@ const CreateQuestionClassic = (props) => {
   const [responseAi, setResponseAi] = useState("")
   const [themeSelected, setThemeSelected] = useState("hasard")
   const [levelSelected, setLevelSelected] = useState("hasard")
+  console.log(process.env)
 
   const handleChangeTheme = (event) => {
     setThemeSelected(event.target.value)
@@ -95,7 +98,7 @@ const CreateQuestionClassic = (props) => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
           },
         }
       )

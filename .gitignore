@@ -5,6 +5,7 @@ mysql/
 ./front/.next
 ./front/node_modules
 ./front/README.md
+./front/.env
 ./front/public/sw.js
 ./front/public/sw.js.map
 .DS_Store
@@ -16,3 +17,4 @@ Thumbs.dbs
 ./front/public/sw.js.map
 ./front/public/worker-*.js
 ./front/public/worker-*.js.map
+/front/.env
