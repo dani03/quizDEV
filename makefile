@@ -51,7 +51,6 @@ env-front:
 		echo "NEXT_PUBLIC_OPENAI_API_KEY=VOTRE_CLE_ICI" >> $(ENV_FILE_FRONT); \
 		echo "$(ENV_FILE_FRONT) a été crée avec succès."; \
 	else \
-		echo "NEXT_PUBLIC_OPENAI_API_KEY=VOTRE_CLE_ICI" >> $(ENV_FILE_FRONT); \
 		echo "$(ENV_FILE_FRONT) existe déjà."; \
 	fi
 
