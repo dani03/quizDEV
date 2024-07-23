@@ -49,7 +49,7 @@ class UserController extends Controller
             //on recherche si le user existe
             $googleUser = Socialite::driver('google')->stateless()->user();
 
-            $user = User::where('google_id', $googleUser->getId())->first();
+            $user = User::where('google_id', $googleUser->id)->first();
 
             if (!$user) {
                 $user = User::create([
