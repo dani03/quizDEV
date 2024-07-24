@@ -1,48 +1,10 @@
 import { Card, Typography } from "@material-tailwind/react"
 import NavBar from "../src/components/NavBar"
 import ParticlesComponent from "../src/components/ParticlesComponent"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Circle } from "rc-progress"
 import { AppContext } from "../src/components/AppContext"
 import UseMediaQuery from "../src/components/UseMediaService"
-
-const candidates = [
-  {
-    id_user: 1,
-    user_name: "Nadir",
-    points: 12,
-  },
-  {
-    id_user: 2,
-    user_name: "Quentin",
-    points: 30,
-  },
-  {
-    id_user: 3,
-    user_name: "Faycal",
-    points: 25,
-  },
-  {
-    id_user: 4,
-    user_name: "Daniel",
-    points: 80,
-  },
-  {
-    id_user: 5,
-    user_name: "Jean",
-    points: 30,
-  },
-  {
-    id_user: 6,
-    user_name: "Hamza",
-    points: 33,
-  },
-  {
-    id_user: 7,
-    user_name: "Wahib",
-    points: 95,
-  },
-]
 
 const Candidates = () => {
   const {
@@ -55,6 +17,27 @@ const Candidates = () => {
     quiz,
   } = useContext(AppContext)
   const smallScreen = UseMediaQuery("(max-width: 768px)")
+  const [quizSelect, setQuizSelect] = useState("")
+  const [totalPoints, setTotalPoints] = useState(0)
+  const [candidatsList, setCandidatsList] = useState([])
+
+  const handleChangeQuiz = (event) => {
+    setQuizSelect(event.target.value)
+  }
+
+  useEffect(() => {
+    if (quiz && quiz.data) {
+      let selected = quiz.data.filter((q) => q.id == quizSelect)
+      if (selected && selected[0] && selected[0].questions) {
+        setTotalPoints(
+          selected[0].questions.reduce((accumulator, currentQuestion) => {
+            return accumulator + currentQuestion.points
+          }, 0)
+        )
+        setCandidatsList(selected[0].candidats_list)
+      }
+    }
+  }, [quizSelect])
 
   return (
     <div
@@ -78,28 +61,51 @@ const Candidates = () => {
         quiz={quiz}
       />
       <div className="flex justify-center md:mt-2 ">
-        <Card className="bg-transparent mt-4 md:mt-12" shadow={false}>
-          <Typography className="text-zinc-100 text-2xl font-bold text-center mb-2">
-            SCORE
+        <Card
+          className="bg-transparent mt-4 md:mt-12 mx-4 w-96 w-200"
+          shadow={false}
+        >
+          <Typography
+            variant="h6"
+            color="white"
+            className="py-2 font-montserrat font-bold text-left font-bold text-xl text-center"
+          >
+            Select the quiz
           </Typography>
+          <select
+            name="quizSelected"
+            onChange={handleChangeQuiz}
+            className="block w-full p-2 rounded-lg bg-transparent text-sm border border-2 text-zinc-100 my-2"
+          >
+            <option>select a quiz</option>
+            {Array.isArray(quiz.data) && quiz.data.length > 0 ? (
+              quiz.data.map((item, index) => (
+                <option key={index} value={item.id}>
+                  {item.title}
+                </option>
+              ))
+            ) : (
+              <option></option>
+            )}
+          </select>
           <div
-            className={`grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 ${
+            className={`grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 items-center my-8 ${
               smallScreen ? " overflow-y-auto max-h-150" : ""
             }`}
           >
-            {candidates.map((candidate, index) => (
+            {candidatsList.map((candidate, index) => (
               <div
                 key={index}
-                value={candidate.id_user}
+                value={candidate.id}
                 className="md:hover:scale-105"
               >
-                <div className="text-xl text-zinc-100 border border-2 rounded-xl px-2 py-3 shadow-xl w-64">
+                <div className="text-xl text-zinc-100 border border-2 mx-auto rounded-xl px-2 py-3 shadow-xl w-64">
                   <Typography className="text-zinc-100 font-bold text-center my-2">
-                    {candidate.user_name}
+                    {candidate.name} {(candidate.points / totalPoints) * 100}%
                   </Typography>
                   <div className="flex flex-col md:flex-row w-full">
                     <Circle
-                      percent={candidate.points}
+                      percent={(candidate.points / totalPoints) * 100}
                       strokeWidth={smallScreen ? 3 : 6}
                       strokeColor={{
                         "0%": "red",

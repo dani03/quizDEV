@@ -73,6 +73,11 @@ const MyApp = ({ Component, pageProps }) => {
               name="apple-mobile-web-app-status-bar-style"
               content="black-translucent"
             ></meta>
+            <link
+              rel="apple-touch-startup-image"
+              href="/background_mobile.png"
+              sizes="2048x2732"
+            />
           </Head>
           <Component {...pageProps} />
         </motion.div>
