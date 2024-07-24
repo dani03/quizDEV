@@ -16,6 +16,9 @@ const CreateQuestion = () => {
     questions,
     changeIsError,
     myProfile,
+    isLightMode,
+    toggleLightMode,
+    quiz,
   } = useContext(AppContext)
   const [openTab, setOpenTab] = useState(1)
 
@@ -44,12 +47,25 @@ const CreateQuestion = () => {
 
   return (
     <div
-      className={`h-screen bg-cover ${
-        !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
+      className={`bg-cover bg-center min-h-screen  ${
+        !isError
+          ? `${
+              isLightMode
+                ? "md:bg-normal bg-mobile"
+                : "md:bg-normal2 bg-mobile2"
+            }`
+          : "md:bg-error bg-error_mobile"
       }`}
     >
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        myProfile={myProfile}
+        isLightMode={isLightMode}
+        toggleLightMode={toggleLightMode}
+        quiz={quiz}
+      />
       <div className="flex justify-center mt-4">
         <Card className="bg-transparent mx-auto" shadow={false}>
           <div className="flex justify-center mb-4 w-80 md:w-192 p-2 bg-transparent rounded-lg mx-auto">

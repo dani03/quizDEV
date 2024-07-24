@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\Models\Question;
 use App\Models\Role;
+use App\Models\User;
 use App\Policies\QuestionPolicy;
 use App\Policies\QuizPolicy;
 use Carbon\Carbon;
@@ -37,6 +38,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-level', function($user) {
             return $user->role_id === Role::ROLE_ADMINISTRATOR ? Response::allow()
                 : Response::deny('Vous n\'avez pas les droits pour effectuer cette action.');
+        });
+
+        Gate::define('basic-user', function (User $user) {
+            return $user->role_id === Role::ROLE_USER;
+        });
+        Gate::define('entreprise-user', function (User $user) {
+            return $user->role_id === Role::ROLE_ENTREPRISE;
         });
 
         Gate::define('create-question', [QuestionPolicy::class, 'create']);

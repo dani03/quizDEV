@@ -33,21 +33,24 @@ class QuizService
        return $this->quizRepository->getQuiz($quizId);
     }
 
-    public function userAnswerToQuiz($userAnswers,  $questionsQuiz, int $quizId) {
+    public function userAnswerToQuiz(array $userAnswers,  $questionsQuiz, int $quizId) {
         $responseOfUser = [];
 
         $points = 0;
+        $possible_points = 0;
         foreach ($userAnswers as $questionIdUser => $answerIdUser) {
 
             foreach ($questionsQuiz as $question) {
+                $possible_points += $question->points;
                 $findAnswer = false;
                 $questionIdUser = (int) $questionIdUser;
 
+
                 //on récupère les 2 questions égales
                 if($questionIdUser === $question->id) {
-
                     //recuperations de toutes les reponses associer a cette question
                     $answers =  AnswerResource::collection($question->answers);
+                    $correctAnswer =$question->answers->firstWhere('correct_answer', true);
                     foreach ($answers as $answer) {
 
                         // si l'id de la reponse est egale à la réponse de l'utilisateur
@@ -59,7 +62,7 @@ class QuizService
                             $responseUser = [
                                 'question' => $question->title,
                                 'answers' => AnswerResource::collection($question->answers),
-                                'correct_answer' => $question->answers->firstWhere('correct_answer', true)->answer,
+                                'correct_answer' => $correctAnswer ?? "aucune réponse ne correspond",
                                 'user_answer' => $answer->answer
                             ];
 
@@ -73,11 +76,13 @@ class QuizService
                     // si aucune réponse n'a été trouvée c'est à dire si la réponse est fausse
                     if(!$findAnswer) {
                         //return $question->answers;
+                        $answer = $question->answers->firstWhere('correct_answer', true);
+                        $reponseUser = $question->answers->firstWhere('id', $answerIdUser)->answer ?? 'votre réponse n\'est pas un choix possible pour cette question.';
                         $responseUser = [
                             'question' => $question->title,
                             'answers' => AnswerResource::collection($question->answers),
-                            'correct_answer' => $question->answers->firstWhere('correct_answer', true)->answer,
-                            'user_answer' => $question->answers->firstWhere('id', $answerIdUser)->answer
+                            'correct_answer' =>$answer ?? 'pas de réponse possible ',
+                            'user_answer' => $reponseUser
                         ];
                         $responseOfUser[] = $responseUser;
                     }
@@ -100,7 +105,7 @@ class QuizService
             }
         }
 
-        return ["results" => $responseOfUser, 'points' => $points];
+        return ["results" => $responseOfUser, 'points' => $points, 'point_possible' => $possible_points];
     }
 
 

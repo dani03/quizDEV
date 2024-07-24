@@ -4,7 +4,10 @@ const withPWA = withPWAInit({
   dest: "public",
 })
 
-export default withPWA({
+const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-})
+  // Other Next.js config options
+}
+
+export default withPWA(nextConfig)

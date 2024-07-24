@@ -80,11 +80,12 @@ class QuizController extends Controller
      * Permet de répondre à un quiz
      *
      */
-    public function answerQuiz(QuizReponseRequest $request, int $quizId): JsonResponse
+    public function answerQuiz(QuizReponseRequest $request, int $quizId)
     {
         //vérification si le quiz est bien present en BDD
 
         $userAnswers = $request->questions_answer;
+
         $quiz = $this->quizService->getQuiz($quizId);
         if (!$quiz) {
             return response()->json(['message' => "Impossible de trouver le quiz."], Response::HTTP_NOT_FOUND);
@@ -110,9 +111,11 @@ class QuizController extends Controller
         (new ProfilService(new UserRepository()))->updateProfile($user, $data);
         return response()->json([
 
-            'message' => "Vous avez obtenu {$responseOfUser["points"]} point.s sur ce quiz. total de points: {$user->points}",
+            'points_possible' => $responseOfUser['point_possible'],
+            'point_obtenus' => $responseOfUser['points'],
             'results' => $responseOfUser['results'],
             'quiz' => QuizResource::make($quiz),
+
         ], Response::HTTP_OK);
     }
 

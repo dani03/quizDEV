@@ -14,8 +14,17 @@ import axios from "axios"
 import DataTable from "react-data-table-component"
 
 const CreateQuiz = () => {
-  const { jwt, logout, isError, questions, levels, myProfile } =
-    useContext(AppContext)
+  const {
+    jwt,
+    logout,
+    isError,
+    questions,
+    levels,
+    myProfile,
+    isLightMode,
+    toggleLightMode,
+    quiz,
+  } = useContext(AppContext)
   const [error, setError] = useState("")
   const [openPopup, setOpenPopup] = useState(false)
   const [positivPopup, setPositivPopup] = useState(false)
@@ -82,12 +91,25 @@ const CreateQuiz = () => {
 
   return (
     <div
-      className={`overflow-auto h-screen bg-cover ${
-        !isError ? "md:bg-normal bg-mobile" : "md:bg-error bg-error_mobile"
+      className={`bg-cover bg-center min-h-screen  ${
+        !isError
+          ? `${
+              isLightMode
+                ? "md:bg-normal bg-mobile"
+                : "md:bg-normal2 bg-mobile2"
+            }`
+          : "md:bg-error bg-error_mobile"
       }`}
     >
       <ParticlesComponent isError={isError} />
-      <NavBar jwt={jwt} logout={logout} myProfile={myProfile} />
+      <NavBar
+        jwt={jwt}
+        logout={logout}
+        myProfile={myProfile}
+        isLightMode={isLightMode}
+        toggleLightMode={toggleLightMode}
+        quiz={quiz}
+      />
       <div className="flex justify-center mt-8 md:mt-16">
         <Card className="bg-transparent mx-auto" shadow={false}>
           <div className="flex justify-center mb-4 w-80 md:w-192 p-2 bg-transparent rounded-lg mx-auto">
@@ -139,7 +161,7 @@ const CreateQuiz = () => {
                   fullWidth
                   className="mt-4 mx-auto bg-deepBrownPrimary hover:opacity-75"
                 >
-                  Create your Theme
+                  Create your Quiz
                 </Button>
               </div>
               <Popup

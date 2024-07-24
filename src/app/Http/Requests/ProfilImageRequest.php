@@ -22,7 +22,7 @@ class ProfilImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => ['required', 'string', 'regex:/^data:image\/(jpg|jpeg|png);base64,/', 'max:2000']
+            'image' => ['required', 'string', 'regex:/^data:image\/(jpg|jpeg|png);base64,/', 'max:200000000']
         ];
     }
 }

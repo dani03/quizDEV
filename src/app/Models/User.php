@@ -28,6 +28,7 @@ class User extends Authenticatable
         'points',
         'profil_picture',
         'company_name',
+        'google_id',
         'lastname',
         'password',
         'role_id'

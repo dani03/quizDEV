@@ -1,8 +1,11 @@
 import { Button, DialogHeader, DialogFooter } from "@material-tailwind/react"
 import { motion } from "framer-motion"
+import { useState } from "react"
+import Tilt from "react-parallax-tilt"
 
 const Popup = (props) => {
   const { msg, open, handleOpen, positive } = props
+  const [scale, setScale] = useState()
 
   return (
     <>
@@ -13,22 +16,24 @@ const Popup = (props) => {
             initial={popVariant.hidden}
             animate={popVariant.visible}
           >
-            <div
-              className={`flex justify-between flex-col h-56 w-80 md:w-128 rounded-xl shadow-xl relative 
+            <Tilt scale={scale} transitionSpeed={2500}>
+              <div
+                className={`flex justify-between flex-col h-56 w-80 md:w-128 rounded-xl shadow-xl relative border border-2
                 ${positive ? "bg-green-500" : "bg-redPrimary"}`}
-            >
-              <DialogHeader className="text-white font-montserrat font-bold">
-                {msg}
-              </DialogHeader>
-              <DialogFooter>
-                <Button
-                  className="flex justify-end bg-transparent text-white hover:scale-110"
-                  onClick={handleOpen}
-                >
-                  <span>ok</span>
-                </Button>
-              </DialogFooter>
-            </div>
+              >
+                <DialogHeader className="text-white font-montserrat font-bold text-lg md:text-2xl">
+                  {msg}
+                </DialogHeader>
+                <DialogFooter>
+                  <Button
+                    className="flex justify-end bg-transparent text-2xl text-white hover:scale-110"
+                    onClick={handleOpen}
+                  >
+                    <span>ok</span>
+                  </Button>
+                </DialogFooter>
+              </div>
+            </Tilt>
           </motion.div>
         </div>
       ) : (
@@ -50,8 +55,8 @@ export const popVariant = {
   },
   transition: {
     type: "spring",
-    stiffness: 150,
-    damping: 100,
+    stiffness: 950,
+    damping: 300,
   },
 }
 

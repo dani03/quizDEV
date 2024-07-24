@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UserHasEntrepriseRole;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -23,7 +24,9 @@ class LinkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'quiz_id' => ['required', 'integer', Rule::exists('quizzes', 'id')]
+            'quiz_id' => ['required', 'integer', Rule::exists('quizzes', 'id')],
+            'user_id' => ['required', 'integer', Rule::exists('users', 'id'), new UserHasEntrepriseRole()],
+            'validite' => ['integer'],
         ];
     }
 }
